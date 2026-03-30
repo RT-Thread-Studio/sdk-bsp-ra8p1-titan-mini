@@ -15,9 +15,9 @@ The **Titan Board Mini** is a development board launched by RT-Thread, based on 
 ```
 $ sdk-bsp-ra8p1-titan-board-mini
 ├── docs
-│   ├── ra8p1-datasheet.pdf
+│   ├── Titan_Mini_datasheet.pdf
 │   ├── ra8p1-mini_v0.1.pdf
-│   ├── ra8p1-user-manual.pdf
+│   ├── Titan_Mini_user_manual.pdf
 │   └── templates
 ├── figures
 ├── libraries

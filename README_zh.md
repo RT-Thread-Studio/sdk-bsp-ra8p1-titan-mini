@@ -17,9 +17,9 @@ Titan Board Mini开发板是 RT-Thread 推出基于瑞萨 Cortex-M85 与 Cortex-
 ```
 $ sdk-bsp-ra8p1-titan-board-mini
 ├── docs
-│   ├── ra8p1-datasheet.pdf
+│   ├── Titan_Mini_datasheet.pdf
 │   ├── ra8p1-mini_v0.1.pdf
-│   └── ra8p1-user-manual.pdf
+│   └── Titan_Mini_user_manual.pdf
 ├── figures
 ├── libraries
 ├── project
