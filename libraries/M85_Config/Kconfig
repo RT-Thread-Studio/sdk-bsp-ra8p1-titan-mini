@@ -548,8 +548,9 @@ menu "Hardware Drivers Config"
             default n
             select RT_USING_AUDIO
             if BSP_USING_AUDIO
-            config BSP_USING_I2S0
+            config BSP_USING_I2S
                 bool "Enable I2S0"
+                select BSP_USING_ES8156
                 default n
             config BSP_USING_PDM
                 bool "Enable PDM"

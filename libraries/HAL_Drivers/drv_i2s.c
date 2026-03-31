@@ -15,10 +15,13 @@
 
 #define TX_FIFO_SIZE         (1024)
 
+/* 双缓冲区，用于中断驱动的音频传输 */
 static rt_uint8_t g_stream_src[TX_FIFO_SIZE];
 uint32_t g_buffer_index = 0;
 static volatile bool g_data_ready = false;
 static volatile bool g_send_data_in_main_loop = false;
+
+
 struct sound_device
 {
     struct rt_audio_device audio;
@@ -37,40 +40,13 @@ static struct sound_device snd_dev = {0};
 bool music_player_active = false;
 bool music_player_pause = false;
 
-/* I2S Configuration Macros */
-#define STATEconfirm         0x0C
-#define NORMAL_I2S           0x00
-#define NORMAL_LJ            0x01
-#define NORMAL_DSPA          0x03
-#define NORMAL_DSPB          0x07
-#define Format_Len24         0x00
-#define Format_Len20         0x01
-#define Format_Len18         0x02
-#define Format_Len16         0x03
-#define Format_Len32         0x04
-#define VDDA_3V3             0x00
-#define VDDA_1V8             0x01
-#define MCLK_PIN             0x00
-#define SCLK_PIN             0x01
-/**************************************************/
-/* Configuration Macros - Adjust these based on your hardware */
-#define MSMode_MasterSelOn   0       // 0:Slave, 1:Master
-#define Ratio                256     // MCLK/LRCK Ratio
-#define Format               NORMAL_I2S
-#define Format_Len           Format_Len16
-#define SCLK_DIV             4
-#define SCLK_INV             0
-#define MCLK_SOURCE          MCLK_PIN
-#define EQ7bandOn            0
-#define VDDA_VOLTAGE         VDDA_3V3
-#define DAC_Volume           191     // 0dB
-#define DACHPModeOn          0       // 0:LineOut/PA, 1:Headphone
-
 void i2s0_callback(i2s_callback_args_t *p_args)
 {
     extern struct sound_device snd_dev;
-    if (I2S_EVENT_TX_EMPTY == p_args->event ||I2S_EVENT_IDLE == p_args->event)
+    if (I2S_EVENT_TX_EMPTY == p_args->event ||I2S_EVENT_IDLE == p_args->event){
         rt_audio_tx_complete(&snd_dev.audio);
+        
+    }
 }
 
 static rt_err_t sound_getcaps(struct rt_audio_device *audio, struct rt_audio_caps *caps)
@@ -157,8 +133,6 @@ static rt_err_t sound_set_samplerate( rt_uint32_t samplerate,rt_uint32_t channel
 {
     rt_err_t result = RT_EOK;
 
-    rt_kprintf("sound_set_samplerate: %u Hz\r\n", samplerate);
-
     uint32_t period_counts = 0x3d;
 
     if(channels == 2){
@@ -211,7 +185,6 @@ static rt_err_t sound_set_samplerate( rt_uint32_t samplerate,rt_uint32_t channel
         }
     }
 
-    /* 重新配置GPT定时器 */
     R_GPT_Stop(&g_timer2_ctrl);
     R_GPT_Disable(&g_timer2_ctrl);
     R_GPT_Close(&g_timer2_ctrl);
@@ -220,8 +193,6 @@ static rt_err_t sound_set_samplerate( rt_uint32_t samplerate,rt_uint32_t channel
     R_GPT_Reset(&g_timer2_ctrl);
     R_GPT_Enable(&g_timer2_ctrl);
     R_GPT_Start(&g_timer2_ctrl);
-
-
     return result;
 }
 
@@ -232,8 +203,6 @@ static rt_err_t sound_configure(struct rt_audio_device *audio, struct rt_audio_c
 
     RT_ASSERT(audio != RT_NULL);
     snd_dev = (struct sound_device *)audio->parent.user_data;
-
-    rt_kprintf("sound_configure.\r\n");
 
     switch (caps->main_type)
     {
@@ -249,7 +218,7 @@ static rt_err_t sound_configure(struct rt_audio_device *audio, struct rt_audio_c
             if (vol_pct > 100) vol_pct = 100;
             snd_dev->volume = vol_pct;
             /* 0~100% → 0~255，191=0dB */
-            es8156_set_volume((rt_uint8_t)(255 / 100 *vol_pct));
+            es8156_set_volume((rt_uint8_t)(255 / 100 * vol_pct));
             rt_kprintf("set volume %d", volume);
             break;
         }
@@ -276,29 +245,25 @@ static rt_err_t sound_configure(struct rt_audio_device *audio, struct rt_audio_c
             rt_kprintf("AUDIO_DSP_PARAM:set samplerate %d", snd_dev->audio_config.samplerate);
             break;
         }
-
         case AUDIO_DSP_SAMPLERATE:
         {
             snd_dev->audio_config.samplerate = caps->udata.config.samplerate;
             rt_kprintf("AUDIO_DSP_SAMPLERATE:set samplerate %d", snd_dev->audio_config.samplerate);
             break;
         }
-
         case AUDIO_DSP_CHANNELS:
         {
             break;
         }
-
         case AUDIO_DSP_SAMPLEBITS:
         {
+            /* not support */
             break;
         }
-
         default:
             result = -RT_ERROR;
             break;
         }
-
         break;
     }
 
@@ -341,19 +306,8 @@ static rt_err_t sound_start(struct rt_audio_device *audio, int stream)
 
     snd_dev = (struct sound_device *)audio->parent.user_data;
     if (stream == AUDIO_STREAM_REPLAY)
-    {
-        if(snd_dev->audio_config.channels == 1)
-        {
-            rt_kprintf("channels=1 not to be supported\r\n");
-            return -RT_ERROR;
-        }
-        if(snd_dev->audio_config.samplerate != 16000)
-        {
-            rt_kprintf("samplerate=16000 not to be supported\r\n");
-            return -RT_ERROR;
-        }
+
         rt_audio_tx_complete(audio); 
-    }
         
     
     return RT_EOK;

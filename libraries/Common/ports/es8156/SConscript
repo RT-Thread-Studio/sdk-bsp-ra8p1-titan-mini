@@ -8,6 +8,6 @@ CPPPATH = [cwd]
 
 src = Glob('*.c')
 
-objs = DefineGroup('Drivers', src, depend = ['BSP_USING_ES8156'], CPPPATH = CPPPATH)
+objs = DefineGroup('Drivers', src, depend = ['BSP_USING_I2S'], CPPPATH = CPPPATH)
 
 Return('objs')

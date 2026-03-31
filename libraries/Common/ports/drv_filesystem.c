@@ -131,5 +131,5 @@ static int filesystem_mount(void)
 
     return RT_EOK;
 }
-INIT_COMPONENT_EXPORT(filesystem_mount);
+INIT_ENV_EXPORT(filesystem_mount);
 #endif /* defined(BSP_USING_FILESYSTEM)*/

@@ -425,7 +425,7 @@
 /* Board extended module Drivers */
 
 #define BSP_USING_AUDIO
-#define BSP_USING_I2S0
+#define BSP_USING_I2S
 /* end of Board extended module Drivers */
 /* end of Hardware Drivers Config */
 

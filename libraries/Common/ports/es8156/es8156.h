@@ -43,4 +43,12 @@ void es8156_mute(rt_bool_t mute);
  */
 void es8156_powerdown(void);
 
+/**
+ * @brief ES8156 初始化（扩展版本）
+ *
+ * @param init_volume 初始音量值 (0-255)
+ * @return rt_err_t 执行结果
+ */
+rt_err_t es8156_init_ex(rt_uint8_t init_volume);
+
 #endif /* __ES8156_H__ */

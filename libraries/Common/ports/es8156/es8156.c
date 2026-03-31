@@ -68,7 +68,7 @@ static struct es8156_device g_es8156;
  * @param val 寄存器值
  * @return rt_err_t 执行结果
  */
-static rt_err_t es8156_write_reg(rt_uint8_t reg, rt_uint8_t val)
+rt_err_t es8156_write_reg(rt_uint8_t reg, rt_uint8_t val)
 {
     struct rt_i2c_msg msgs;
     rt_uint8_t buf[2] = { reg, val };
@@ -93,7 +93,7 @@ static rt_err_t es8156_write_reg(rt_uint8_t reg, rt_uint8_t val)
  * @param val 读取的寄存器值
  * @return rt_err_t 执行结果
  */
-static rt_err_t es8156_read_reg(rt_uint8_t reg, rt_uint8_t *val)
+rt_err_t es8156_read_reg(rt_uint8_t reg, rt_uint8_t *val)
 {
     struct rt_i2c_msg msgs[2];
 
@@ -120,7 +120,7 @@ static rt_err_t es8156_read_reg(rt_uint8_t reg, rt_uint8_t *val)
  *
  * @return rt_err_t 执行结果
  */
-static rt_err_t es8156_init(void)
+rt_err_t es8156_init(void)
 {
     rt_uint8_t chip_id = 0;
 
@@ -187,7 +187,7 @@ static rt_err_t es8156_init(void)
  *
  * @param mute 是否静音
  */
-static void es8156_mute(rt_bool_t mute)
+void es8156_mute(rt_bool_t mute)
 {
     es8156_write_reg(0x14, mute ? 0x00 : 0x20);
 }
@@ -195,7 +195,7 @@ static void es8156_mute(rt_bool_t mute)
 /**
  * @brief ES8156 掉电
  */
-static void es8156_powerdown(void)
+void es8156_powerdown(void)
 {
     es8156_write_reg(0x14, 0x00);
     es8156_write_reg(0x19, 0x02);
@@ -214,7 +214,7 @@ static void es8156_powerdown(void)
  *
  * @param volume 音量值 (0-255)
  */
-static void es8156_set_volume(rt_uint8_t volume)
+void es8156_set_volume(rt_uint8_t volume)
 {
     es8156_write_reg(0x14, volume);
     g_es8156.volume = volume;
@@ -238,15 +238,15 @@ rt_err_t es8156_device_init(void)
     }
 
     /* 初始化 ES8156 */
-    result = es8156_init();
-    if (result != RT_EOK)
-    {
-        LOG_E("ES8156 init failed!");
-        return result;
-    }
+    // result = es8156_init();
+    // if (result != RT_EOK)
+    // {
+    //     LOG_E("ES8156 init failed!");
+    //     return result;
+    // }
 
     /* 设置默认音量 */
-    es8156_set_volume(ES8156_VOL_DEFAULT);
+    // es8156_set_volume(ES8156_VOL_DEFAULT);
 
     LOG_I("ES8156 driver initialized");
     return RT_EOK;
@@ -260,4 +260,26 @@ rt_err_t es8156_device_init(void)
 struct es8156_device *es8156_get_device(void)
 {
     return &g_es8156;
+}
+
+/**
+ * @brief ES8156 初始化（扩展版本，带初始音量设置）
+ *
+ * @param init_volume 初始音量值 (0-255)
+ * @return rt_err_t 执行结果
+ */
+rt_err_t es8156_init_ex(rt_uint8_t init_volume)
+{
+    rt_err_t result;
+
+    result = es8156_init();
+    if (result != RT_EOK)
+    {
+        return result;
+    }
+
+    /* 设置初始音量 */
+    es8156_set_volume(init_volume);
+
+    return RT_EOK;
 }

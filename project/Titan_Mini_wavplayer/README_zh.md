@@ -268,7 +268,9 @@ ES8156 与 Titan Board Mini 的连接：
 
 ## 运行效果
 
+将歌曲转为2声道16k采样率wav然后存入SD卡，再把SD卡插入开发板，在上电则会自动挂载，然后输入命令wavplay -s 文件名即可播放
 
+![alt text](figures/image1.png)
 
 ## 相关资料
 

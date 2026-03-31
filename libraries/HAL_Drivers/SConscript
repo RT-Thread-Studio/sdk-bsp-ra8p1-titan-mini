@@ -69,7 +69,6 @@ if GetDepend(['BSP_USING_RS485']):
 
 if GetDepend(['BSP_USING_I2S']):
     src += ['drv_i2s.c']
-    src += ['ports/es8156/es8156.c']
 
 if GetDepend(['BSP_USING_SDRAM']):
     src += ['drv_sdram.c']
