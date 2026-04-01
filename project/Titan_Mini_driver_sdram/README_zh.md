@@ -315,4 +315,4 @@ void sdram_bulk_operation(void)
 
 将程序编译烧写进开发板，随后使用终端运行sdram_speed_test即可看到效果
 
-![alt text](image1.png)
+![alt text](figures/image1.png)

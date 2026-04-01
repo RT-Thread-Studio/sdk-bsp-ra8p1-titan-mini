@@ -136,11 +136,11 @@ RA8 series MCUs (such as RA8P1) integrate high-performance **Ethernet MAC**, sup
 
 * Configure r_mac stack:
 
-![image-20251033163125761](figures/image-20251033163125761.png)
+![image-20251031163125761](figures/image-20251031163125761.png)
 
 * Configure r_layer3_switch:
 
-![image-20251033163345186](figures/image-20251033163345186.png)
+![image-20251031163345186](figures/image-20251031163345186.png)
 
 * Configure r_rmac_phy:
 
