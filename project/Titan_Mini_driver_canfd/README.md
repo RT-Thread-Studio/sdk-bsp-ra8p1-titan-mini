@@ -1,4 +1,4 @@
-# CAN FD Driver Detailed Technical Documentation
+# CAN FD Driver Example Guide
 
 [**Chinese**](README_zh.md) | **English**
 

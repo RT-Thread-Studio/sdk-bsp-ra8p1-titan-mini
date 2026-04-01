@@ -1,4 +1,4 @@
-# RTC 驱动示例
+# RTC 驱动示例说明
 
 **中文** | [**English**](README.md)
 
@@ -308,4 +308,4 @@ void alarm_sample(void)
 
 将程序编译烧写进去后，上电在终端运行alarm_sample即可看到效果
 
-![image1](image1.png)
+![image1](figures/image1.png)

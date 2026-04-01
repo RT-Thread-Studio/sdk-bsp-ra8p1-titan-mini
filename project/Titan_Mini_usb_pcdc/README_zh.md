@@ -1,4 +1,4 @@
-# USB-PCDC 驱动例程
+# USB-PCDC 驱动示例说明
 
 **中文** | [**English**](./README.md)
 

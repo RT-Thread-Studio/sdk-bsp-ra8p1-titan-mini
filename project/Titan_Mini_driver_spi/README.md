@@ -1,4 +1,4 @@
-# SPI Driver Example
+# SPI Driver Example Guide
 
 **English** | [**中文**](README_zh.md)
 

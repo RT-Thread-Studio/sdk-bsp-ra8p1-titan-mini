@@ -1,4 +1,4 @@
-# Titan Mini GPT (通用PWM定时器) 驱动示例
+# GPT 驱动示例说明
 
 **中文** | [**English**](README.md)
 

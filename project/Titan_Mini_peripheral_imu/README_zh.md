@@ -1,4 +1,4 @@
-# LSM6DS3TR-C 六轴 IMU 传感器使用说明
+# IMU 传感器示例说明
 
 **中文** | [**English**](./README.md)
 
@@ -13,9 +13,6 @@
 - 读取 3 轴陀螺仪数据 (X/Y/Z)
 - 支持多种量程和采样率配置
 - 集成 RT-Thread 传感器框架
-- 支持 FIFO 数据缓存和中断模式
-
-![image](figures/big.png)
 
 ## 硬件介绍
 
@@ -93,30 +90,6 @@ FSP I2C/SPI HAL - 硬件抽象层
 ```
 
 ### 2. 核心组件
-
-#### LSM6DS3TR-C 寄存器驱动
-
-ST 官方提供的寄存器级驱动 (`lsm6ds3tr-c_reg.c/h`)：
-
-```c
-/* 初始化传感器 */
-int32_t lsm6ds3tr_c_init(lsm6ds3tr_c_t *ctx);
-
-/* 读取加速度计数据 */
-int32_t lsm6ds3tr_c_acceleration_raw_get(lsm6ds3tr_c_t *ctx, lsm6ds3tr_c_axis3bit16_t *val);
-
-/* 读取陀螺仪数据 */
-int32_t lsm6ds3tr_c_angular_rate_raw_get(lsm6ds3tr_c_t *ctx, lsm6ds3tr_c_axis3bit16_t *val);
-
-/* 配置加速度计量程 */
-int32_t lsm6ds3tr_c_xl_full_scale_set(lsm6ds3tr_c_t *ctx, lsm6ds3tr_c_fs_xl_t val);
-
-/* 配置陀螺仪量程 */
-int32_t lsm6ds3tr_c_gy_full_scale_set(lsm6ds3tr_c_t *ctx, lsm6ds3tr_c_fs_g_t val);
-
-/* 配置输出数据率 */
-int32_t lsm6ds3tr_c_xl_data_rate_set(lsm6ds3tr-c_t *ctx, lsm6ds3tr_c_odr_xl_t val);
-```
 
 #### 移植层接口
 
@@ -362,167 +335,14 @@ menuconfig BSP_USING_IMU
 3. **软件包**
    - 添加 LSM6DS3TR-C 驱动包
 
-### 3. 硬件连接
-
-LSM6DS3TR-C 与 Titan Board Mini 的连接：
-
-- **I2C 接口**：
-  - I2C2_SCL / I2C2_SDA
-  - I2C 地址：0x6A (SA0=GND) 或 0x6B (SA0=VDD)
-
-- **中断引脚** (可选)：
-  - INT1：数据就绪中断
-  - INT2：事件中断 (运动检测等)
-
-- **电源**：
-  - VDD：1.71V - 3.6V
-  - GND：地
-
-## 性能特性
-
-### 1. 传感器性能
-
-| 参数 | 加速度计 | 陀螺仪 |
-|------|----------|--------|
-| **量程** | ±2/±4/±8/±16g | ±125/±250/±500/±1000/±2000dps |
-| **分辨率** | 16-bit (65536 LSB) | 16-bit (65536 LSB) |
-| **输出数据率** | 1.6Hz - 6.66kHz | 1.6Hz - 6.66kHz |
-| **噪声密度** | 90μg/√Hz | 3.8mdps/√Hz |
-| **零偏稳定性** | ±40mg | ±5dps |
-| **带宽** | 50Hz - 1.6kHz | 50Hz - 1.6kHz |
-
-### 2. 系统性能
-
-- **I2C 速率**：标准模式 (100kHz) 或快速模式 (400kHz)
-- **读取延迟**：< 1ms (单次 6 轴数据读取)
-- **CPU 占用**：< 2% (轮询模式)
-- **FIFO 深度**：9KB (约 1000 帧 6 轴数据)
-
-### 3. 功耗特性
-
-| 模式 | 加速度计 | 陀螺仪 | 总功耗 |
-|------|----------|--------|--------|
-| **高性能** | 0.55mA | 0.9mA | 1.45mA |
-| **低功耗** | 25μA | - | 25μA |
-| **待机** | 3μA | 3μA | 6μA |
-
-## 编译&下载
-
-### 1. 编译环境
-
-- **IDE**：RT-Thread Studio
-- **编译器**：ARM GCC
-- **配置文件**：
-  - `.config`：RT-Thread 配置
-  - `rtconfig.h`：RT-Thread 配置头文件
-  - `configuration.xml`：FSP 配置
-
-### 2. 编译步骤
-
-1. 在 RT-Thread Studio 的包管理器中下载 Titan Board 资源包
-2. 创建新工程或导入现有工程
-3. 在 RT-Thread Settings 中启用 IMU 相关组件
-4. 添加 LSM6DS3TR-C 驱动包
-5. 配置 I2C 接口和传感器参数
-6. 执行编译
-
-### 3. 下载步骤
-
-1. 将开发板的 **USB-DBG 接口**与 PC 连接
-2. 使用 J-Link 或 DAP-Link 下载器
-3. 将生成的固件下载至开发板
-4. 复位开发板运行程序
-
 ## 运行效果
 
 ### 1. 终端输出
 
 复位 Titan Board Mini 后终端会输出如下信息：
 
-```bash
- \ | /
-- RT -     Thread Operating System
- / | \     5.1.0 build Aug 5 2025 17:24:30
- 2006 - 2024 Copyright by RT-Thread team
-
-==================================================
-Hello RT-Thread!
-==================================================
-[I2C2] I2C bus initialized
-[LSM6DS3TR-C] Chip ID: 0x6C (verified)
-[LSM6DS3TR-C] Sensor initialized
-ACC: X=0.012g Y=0.008g Z=1.005g | GYRO: X=0.52dps Y=-0.31dps Z=0.18dps
-ACC: X=0.011g Y=0.007g Z=1.004g | GYRO: X=0.48dps Y=-0.28dps Z=0.16dps
-...
-msh >
-```
-
-### 2. 数据示例
-
-不同姿态下的传感器输出：
-
-- **静止水平放置**：
-  - ACC: X≈0g, Y≈0g, Z≈1g (重力)
-  - GYRO: X≈0dps, Y≈0dps, Z≈0dps
-
-- **沿 X 轴倾斜 45°**：
-  - ACC: X≈0.707g, Y≈0g, Z≈0.707g
-  - GYRO: X≈0dps, Y≈0dps, Z≈0dps
-
-- **绕 Z 轴旋转**：
-  - ACC: X≈0g, Y≈0g, Z≈1g
-  - GYRO: Z≈±50~200dps (取决于旋转速度)
-
-## 应用场景
-
-- **姿态检测**：设备倾斜角度检测
-- **运动识别**：走路、跑步、跳跃等运动识别
-- **导航定位**：惯性导航系统 (INS)
-- **机器人控制**：平衡机器人、无人机姿态控制
-- **虚拟现实**：VR/AR 设备头部追踪
-- **手势识别**：手势控制和识别
-- **跌倒检测**：老年人跌倒检测
-- **计步器**：计步功能实现
-- **震动检测**：设备震动和冲击检测
-- **游戏控制**：体感游戏控制
-
-## 注意事项
-
-### 1. 硬件安装
-
-- **PCB 布局**：传感器应远离电机、散热器等干扰源
-- **机械固定**：确保传感器牢固固定,避免震动影响
-- **方向校准**：注意传感器方向与设备坐标系的对应关系
-
-### 2. 数据校准
-
-- **零偏校准**：使用前进行零偏校准,提高精度
-- **温度补偿**：考虑温度对传感器性能的影响
-- **交叉轴干扰**：注意加速度计和陀螺仪的交叉轴干扰
-
-### 3. 数据处理
-
-- **滤波算法**：使用低通滤波器滤除高频噪声
-- **传感器融合**：结合加速度计和陀螺仪数据进行传感器融合
-- **采样率选择**：根据应用选择合适的采样率,平衡功耗和性能
-
-## 扩展应用
-
-基于本示例,可以扩展以下应用：
-
-- **姿态解算**：实现四元数、欧拉角姿态解算
-- **运动算法**：实现步数统计、距离估算等算法
-- **传感器融合**：结合磁力计实现 9 轴传感器融合 (AHRS)
-- **机器学习**：使用 IMU 数据进行机器学习分类
-- **低功耗设计**：优化采样率和中断机制,降低功耗
-- **无线传输**：通过蓝牙/WiFi 传输 IMU 数据
-- **数据记录**：将 IMU 数据记录到 SD 卡
-- **实时可视化**：在 LCD 上实时显示传感器数据
+![image1](figures/image1.png)
 
 ## 相关资料
 
-- [LSM6DS3TR-C 数据手册](https://www.st.com/resource/en/datasheet/lsm6ds3tr-c.pdf)
-- [LSM6DS3TR-C 应用笔记](https://www.st.com/resource/en/application_note/an5054-lsm6ds3tr-c-mems-inertial-measurement-unit-6-axis-fis-on‑1g-axis-stmicroelectronics.pdf)
-- [IMU 工作原理](https://en.wikipedia.org/wiki/Inertial_measurement_unit)
 - [RT-Thread 传感器框架文档](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/sensor/sensor)
-- [RA8P1 硬件手册](https://www.renesas.cn/zh/document/mah/25574257)

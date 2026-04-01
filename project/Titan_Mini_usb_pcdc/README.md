@@ -1,4 +1,4 @@
-# USB-PCDC Usage Instructions
+# USB PCDC Driver Example Guide
 
 **English** | [**Chinese**](./README_zh.md)
 

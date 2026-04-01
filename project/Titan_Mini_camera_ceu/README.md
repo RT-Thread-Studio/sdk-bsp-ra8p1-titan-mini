@@ -1,4 +1,4 @@
-# CEU Camera User Guide
+# CEU Camera Usage Guide
 
 [**中文**](README_zh.md)|**English**
 

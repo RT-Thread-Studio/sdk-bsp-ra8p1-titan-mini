@@ -1,4 +1,4 @@
-# CAN FD 驱动程序详细技术文档
+# CAN FD 驱动示例说明
 
 [**中文**](README_zh.md) | **English**
 

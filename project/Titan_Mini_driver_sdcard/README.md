@@ -1,4 +1,4 @@
-# SD Card File System User Guide
+# SD Card File System Example Guide
 
 [**中文**](README_zh.md) | **English**
 

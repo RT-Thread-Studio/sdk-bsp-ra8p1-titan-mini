@@ -1,4 +1,4 @@
-# Titan Board Mini SDRAM 驱动开发指南
+# SDRAM 驱动示例说明
 
 **中文** | [**English**](README.md)
 

@@ -1,4 +1,4 @@
-# Titan Mini GPT (General PWM Timer) Driver Example
+# GPT Driver Example Guide
 
 [**Chinese**](README_zh.md) | **English**
 

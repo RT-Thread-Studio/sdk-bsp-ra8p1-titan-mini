@@ -1,4 +1,4 @@
-# SPI 驱动示例
+# SPI 驱动示例说明
 
 [**English**](README.md) | **中文**
 

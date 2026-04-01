@@ -1,4 +1,4 @@
-# WAV Audio Player Example
+# WAV Audio Player Example Guide
 
 **English** | [**中文**](README_zh.md)
 

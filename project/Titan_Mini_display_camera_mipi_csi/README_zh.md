@@ -1,4 +1,4 @@
-# MIPI CSI 摄像头使用说明
+# MIPI CSI 摄像头示例说明
 
 **中文**|[**English**](README.md)
 

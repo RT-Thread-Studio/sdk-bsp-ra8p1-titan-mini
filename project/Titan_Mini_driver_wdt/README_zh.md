@@ -1,4 +1,4 @@
-# RA8P1 Titan Mini 板看门狗定时器 (WDT) 驱动文档
+# WDT 驱动示例说明
 
 ## 概述
 
@@ -342,6 +342,6 @@ typedef enum e_wdt_reset_control {
 
 ![image](figures/image1.png)
 
-# 结论
+## 结论
 
 RA8P1 Titan Mini 板看门狗定时器驱动工程通过精心设计和实现，提供了一个稳定、可靠的看门狗解决方案。该方案不仅满足了基本的看门狗功能需求，还具备良好的扩展性和实用性，适用于各种嵌入式应用场景。

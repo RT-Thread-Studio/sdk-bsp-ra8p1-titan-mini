@@ -1,4 +1,4 @@
-# RGB LCD Usage Instructions
+# RGB LCD Example Guide
 
 **English** | [**Chinese**](./README_zh.md)
 

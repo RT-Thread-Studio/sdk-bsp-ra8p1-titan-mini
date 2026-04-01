@@ -1,4 +1,4 @@
-# Ethernet Example
+# Ethernet Example Guide
 
 [**Chinese**](README_zh.md) | **English**
 

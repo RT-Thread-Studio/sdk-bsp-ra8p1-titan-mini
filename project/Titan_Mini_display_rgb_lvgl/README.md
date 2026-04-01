@@ -1,4 +1,4 @@
-# LVGL Usage Instructions
+# LVGL Example Guide
 
 **English** | [**Chinese**](./README_zh.md)
 

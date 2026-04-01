@@ -1,4 +1,4 @@
-# SDRAM Driver Example
+# SDRAM Driver Example Guide
 
 **English** | [**中文**](README_zh.md)
 

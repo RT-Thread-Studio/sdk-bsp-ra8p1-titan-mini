@@ -1,4 +1,4 @@
-# QSPI Flash File System User Guide
+# QSPI Flash File System Example Guide
 
 [**中文**](./README_zh.md) | **English**
 

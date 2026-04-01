@@ -1,4 +1,4 @@
-# RA8P1 Titan Mini Board Watchdog Timer (WDT) Driver Documentation
+# WDT Driver Example Guide
 
 [**中文**](README_zh.md) | **English**
 
@@ -344,6 +344,6 @@ Then use Renesas Flexible Software Package (FSP) for hardware configuration, as 
 
 ![image](figures/image1.png)
 
-# Conclusion
+## Conclusion
 
 The RA8P1 Titan Mini board watchdog timer driver project provides a stable and reliable watchdog solution through careful design and implementation. This solution not only meets basic watchdog functional requirements but also has good scalability and practicality, suitable for various embedded application scenarios.

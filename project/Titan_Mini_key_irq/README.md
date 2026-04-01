@@ -1,4 +1,4 @@
-# Button Interrupt Usage Instructions
+# Key Interrupt Example Guide
 
 **English** | [**Chinese**](./README_zh.md)
 
