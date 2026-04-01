@@ -1,0 +1,22 @@
+@echo off
+call C:/Softwares/RT-ThreadStudio/platform/env_released/env-new/.venv/Scripts/activate.bat
+cd /d C:\Softwares\RT-ThreadStudio\workspace\RA8P1-MINI\Titan_mini_flash
+set RTT_ROOT=
+set ENV_ROOT=C:/Softwares/RT-ThreadStudio/platform/env_released/env-new
+set RTT_EXEC_PATH=C:/Softwares/RT-ThreadStudio/repo/Extract/ToolChain_Support_Packages/ARM/GNU_Tools_for_ARM_Embedded_Processors/13.3/bin
+set KCONF_EXEC_PATH=%ENV_ROOT%\tools\exec
+set RTT_CC=gcc
+set RTTS_PLATFORM=STUDIO
+set SCONS=%ENV_ROOT%\tools\python-3.11.9-amd64\Scripts
+set PKGS_ROOT=%ENV_ROOT%\packages
+set PATH=%ENV_ROOT%\tools\git-2.41.0-32-bit\cmd;%PATH%
+set PATH=%ENV_ROOT%\tools\python-3.11.9-amd64;%PATH%
+set PATH=%ENV_ROOT%\tools\python-3.11.9-amd64\Scripts;%PATH%
+set PATH=%ENV_ROOT%\tools\bin;%PATH%
+set PATH=%RTT_EXEC_PATH%;%PATH%
+set PATH=%KCONF_EXEC_PATH%;%PATH%
+set PATH=%ENV_ROOT%\tools\scripts\pkgs;%PATH%
+set PATH=%ENV_ROOT%\tools\qemu\qemu32;%PATH%
+set PYTHONPATH=%ENV_ROOT%\tools\python-3.11.9-amd64;
+set PATH=%PATH%;
+scons --target=eclipse
