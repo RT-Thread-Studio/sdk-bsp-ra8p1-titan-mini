@@ -60,7 +60,6 @@ categories:
     name_en: "Multimedia Display"
     description: "多媒体显示示例"
     patterns:
-      - "Titan_Mini_camera_ceu"
       - "Titan_Mini_display_camera_mipi_csi"
       - "Titan_Mini_display_rgb_lvgl"
 
