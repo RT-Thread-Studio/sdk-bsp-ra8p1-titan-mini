@@ -73,7 +73,7 @@ mipi_csi_instance_ctrl_t g_cam_mipi_csi_ctrl;
             .ctrl_data.control_2_bits.frrclk                        = 10,
             .ctrl_data.control_2_bits.frrskw                        = 10,
 
-            .option_data.data_type_enable                           = (mipi_csi_rx_data_enable_t)(MIPI_CSI_RX_DATA_ENABLE_YUV422_8_BIT |  0x0),
+            .option_data.data_type_enable                           = (mipi_csi_rx_data_enable_t)(MIPI_CSI_RX_DATA_ENABLE_YUV422_8_BIT | MIPI_CSI_RX_DATA_ENABLE_YUV422_8_BIT   |  0x0),
 
             .interrupt_cfg.receive_cfg.ipl                          = (12),
 
@@ -168,7 +168,7 @@ uint8_t vin_image_buffer_3[VIN_BYTES_PER_FRAME] BSP_ALIGN_VARIABLE(128) BSP_PLAC
             .input_ctrl.cfg_bits.input_mode                      = VIN_INPUT_FORMAT_YCBCR422_8_BIT,
             .input_ctrl.cfg_bits.lut_enable                      = 0,
             .input_ctrl.cfg_bits.dithering_direction             = false,
-            .input_ctrl.cfg_bits.yuv444_conversion               = VIN_YUV444_CONVERSION_MODE_DATA_EXTEND,
+            .input_ctrl.cfg_bits.yuv444_conversion               = VIN_YUV444_CONVERSION_MODE_INTERPOLATE,
             .input_ctrl.cfg_bits.scaling_enable                  = 0,
             .input_ctrl.cfg_bits.pixel_data_clipping             = VIN_PIXEL_DATA_CLIPPING_DEFAULT,
 
@@ -200,7 +200,7 @@ uint8_t vin_image_buffer_3[VIN_BYTES_PER_FRAME] BSP_ALIGN_VARIABLE(128) BSP_PLAC
             .conversion_data.uv_address                          = 0x0,
 
             .conversion_data.yc_rgb_conversion_setting_1_bits.y_mul              = 4767,
-            .conversion_data.yc_rgb_conversion_setting_1_bits.round_down_disable = 0,
+            .conversion_data.yc_rgb_conversion_setting_1_bits.round_down_disable = 1,
             .conversion_data.yc_rgb_conversion_setting_2_bits.csub2              = 2048,
             .conversion_data.yc_rgb_conversion_setting_2_bits.ysub2              = 256,
             .conversion_data.yc_rgb_conversion_setting_3_bits.cgrmul2            = 3330,
@@ -215,14 +215,14 @@ uint8_t vin_image_buffer_3[VIN_BYTES_PER_FRAME] BSP_ALIGN_VARIABLE(128) BSP_PLAC
             .conversion_data.uds_ctrl_bits.bilinear_advanced     = 1,
             .conversion_data.uds_ctrl_bits.scale_up_pixel_count  = 0,
 
-            .conversion_data.uds_scale_bits.vertical_mask        = 4096,
-            .conversion_data.uds_scale_bits.horizontal_mask      = 4096,
+            .conversion_data.uds_scale_bits.vertical_mask        = 2457,
+            .conversion_data.uds_scale_bits.horizontal_mask      = 5461,
 
             .conversion_data.uds_bwidth_bits.bwidth_v       = 32,
             .conversion_data.uds_bwidth_bits.bwidth_h       = 32,
 
-            .conversion_data.uds_clipping_bits.cl_vsize          = 480,
-            .conversion_data.uds_clipping_bits.cl_hsize          = 640,
+            .conversion_data.uds_clipping_bits.cl_vsize          = 800,
+            .conversion_data.uds_clipping_bits.cl_hsize          = 480,
 
             .conversion_data.rgb_to_yuv_conversion_settings[0].setting_1_bits.lrp             = 224,
             .conversion_data.rgb_to_yuv_conversion_settings[0].setting_2_bits.lgp             = 516,
@@ -398,7 +398,7 @@ const uint8_t DRW_INT_IPL = (2);
             .tcon_de               = GLCDC_TCON_PIN_3,
             .correction_proc_order = GLCDC_CORRECTION_PROC_ORDER_BRIGHTNESS_CONTRAST2GAMMA,
             .clksrc                = GLCDC_CLK_SRC_INTERNAL,
-            .clock_div_ratio       = GLCDC_PANEL_CLK_DIVISOR_8,
+            .clock_div_ratio       = GLCDC_PANEL_CLK_DIVISOR_4,
             .dithering_mode        = GLCDC_DITHERING_MODE_TRUNCATE,
             .dithering_pattern_A   = GLCDC_DITHERING_PATTERN_11,
             .dithering_pattern_B   = GLCDC_DITHERING_PATTERN_11,
@@ -502,9 +502,9 @@ const uint8_t DRW_INT_IPL = (2);
                 {
                     .byte = {
                         .a           = 255,
-                        .r           = 0,
-                        .g           = 0,
-                        .b           = 0
+                        .r           = 0xF,
+                        .g           = 0xF,
+                        .b           = 0xF
                     }
                 },
 #if (GLCDC_CFG_COLOR_CORRECTION_ENABLE)

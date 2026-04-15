@@ -314,7 +314,7 @@ static const st_ov_reg_t cam_config_table_normal_mode[] =
  { 0x460c, 0x22 }, // VFIFO, PCLK manual
  { 0x4837, 0x0a }, // MIPI global timing
  { 0x3824, 0x01 }, // add by bright
- { 0x5001, 0xa3 }, // Bit0: AWB enable, Bit1: Color matrix enable, Bit2: UV average enable
+ { 0x5001, 0xA3 }, // Bit0: AWB enable, Bit1: Color matrix enable, Bit2: UV average enable
                    // Bit5: Scaling enable, Bit7: SDE enable
 
  { 0x3406, 0x00 }, //awbinit
@@ -352,12 +352,12 @@ static const st_ov_reg_t cam_config_table_test_mode[] =
  */
 
 //uint8_t  camera_capture_image_rgb565[CAMERA_CAPTURE_IMAGE_WIDTH  * CAMERA_CAPTURE_IMAGE_HEIGHT * CAMERA_IMAGE_BYTE_PER_PIXEL] BSP_ALIGN_VARIABLE(8);
-uint8_t  camera_capture_image_rgb565[CAMERA_CAPTURE_IMAGE_WIDTH  * CAMERA_CAPTURE_IMAGE_HEIGHT * CAMERA_IMAGE_BYTE_PER_PIXEL] BSP_ALIGN_VARIABLE(64) BSP_PLACE_IN_SECTION(BSP_UNINIT_SECTION_PREFIX ".bss");
-//uint8_t  camera_capture_image_rgb565[CAMERA_CAPTURE_IMAGE_WIDTH  * CAMERA_CAPTURE_IMAGE_HEIGHT * CAMERA_IMAGE_BYTE_PER_PIXEL] BSP_PLACE_IN_SECTION(".ospi1_cs0_noinit") BSP_ALIGN_VARIABLE(8);
+//uint8_t  camera_capture_image_rgb565[CAMERA_CAPTURE_IMAGE_WIDTH  * CAMERA_CAPTURE_IMAGE_HEIGHT * CAMERA_IMAGE_BYTE_PER_PIXEL] BSP_ALIGN_VARIABLE(64) BSP_PLACE_IN_SECTION(BSP_UNINIT_SECTION_PREFIX ".bss");
+uint8_t  camera_capture_image_rgb565[CAMERA_CAPTURE_IMAGE_WIDTH  * CAMERA_CAPTURE_IMAGE_HEIGHT * CAMERA_IMAGE_BYTE_PER_PIXEL] BSP_PLACE_IN_SECTION(".sdram_noinit") BSP_ALIGN_VARIABLE(8);
 uint32_t camera_capture_image_rgb565_size = sizeof(camera_capture_image_rgb565);
 
 #ifndef VIN_CFG_USE_RUNTIME_BUFFER
-static uint8_t * p_camera_capture_buffer_stored BSP_ALIGN_VARIABLE(64) BSP_PLACE_IN_SECTION(BSP_UNINIT_SECTION_PREFIX ".ospi1_cs0_noinit");
+static uint8_t * p_camera_capture_buffer_stored BSP_ALIGN_VARIABLE(64) BSP_PLACE_IN_SECTION(BSP_UNINIT_SECTION_PREFIX ".sdram_noinit");
 #endif
 
 #if (ENABLE_CAMERA_CAPTURE_RUNNING_LED == 1)
@@ -382,26 +382,42 @@ fsp_err_t camera_init (bool use_test_mode)
     uint8_t reg_val1          = 0;
     uint8_t reg_val2          = 0;
 
-    /* Perform hardware reset */
-    rt_pin_write(CAM_RST_PIN, PIN_LOW);
+    R_GPT_Open(&g_timer11_ctrl, &g_timer11_cfg);
+    R_GPT_Enable(&g_timer11_ctrl);
+    R_GPT_Start(&g_timer11_ctrl);
 
     rt_thread_mdelay(100);
+    /* Perform hardware reset */
+    rt_pin_write(0x070A, 1);
+    rt_thread_mdelay(10);
+
+    rt_pin_write(0x070A, 0);
+    // rt_thread_mdelay(100);
 
     /* Release reset pin */
-    rt_pin_write(CAM_RST_PIN, PIN_HIGH);
+    rt_pin_write(0x0B00, 1);
+    rt_thread_mdelay(10);
+    rt_pin_write(0x0B00, 0);
+
+    rt_thread_mdelay(10);
+    rt_pin_write(0x070A, 0);
+    rt_thread_mdelay(10);
+    rt_pin_write(0x0B00, 1);
 
     rt_completion_init(&ceu_completion);
 
     rt_thread_mdelay(10);
-
+    rt_pin_write(BSP_IO_PORT_07_PIN_08, 1);
+    rt_pin_write(BSP_IO_PORT_07_PIN_09, 1);
+    rt_thread_mdelay(10);
     // Hardware connection check with product ID check
-    rdSensorReg16_8(REG_PRODUCT_ID_H, &reg_val1); // PIDH  PID MSB
-    rdSensorReg16_8(REG_PRODUCT_ID_L, &reg_val2); // PIDH  PID LSB REV2c - 0x4C, REV2a = 0x41, REV1a=0x40 otherwise error
-
-    if (!((reg_val2 == CORRECT_PRODUCT_ID_L_REV1A) || (reg_val2 == CORRECT_PRODUCT_ID_L_REV2A) || (reg_val2 == CORRECT_PRODUCT_ID_L_REV2C)))
-    {
-        return FSP_ERR_HW_LOCKED;
-    }
+     rdSensorReg16_8(REG_PRODUCT_ID_H, &reg_val1); // PIDH  PID MSB
+     rdSensorReg16_8(REG_PRODUCT_ID_L, &reg_val2); // PIDH  PID LSB REV2c - 0x4C, REV2a = 0x41, REV1a=0x40 otherwise error
+     rt_kprintf("Camera Product ID: 0x%02x 0x%02x\r\n", reg_val1, reg_val2);
+     if (!((reg_val2 == CORRECT_PRODUCT_ID_L_REV1A) || (reg_val2 == CORRECT_PRODUCT_ID_L_REV2A) || (reg_val2 == CORRECT_PRODUCT_ID_L_REV2C)))
+     {
+         return FSP_ERR_HW_LOCKED;
+     }
 
     // Setup the Camera
     fsp_status = bsp_camera_write_array((st_ov_reg_t *) &cam_config_table_normal_mode);

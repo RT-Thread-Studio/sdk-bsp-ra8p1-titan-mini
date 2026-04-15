@@ -366,8 +366,6 @@
 #define BSP_UART2_TX_BUFSIZE 0
 #define BSP_USING_HW_I2C
 #define BSP_USING_HW_I2C0
-#define BSP_USING_SDRAM
-#define BSP_USING_SDRAM_SIZE 0x2000000
 #define BSP_USING_TIM
 #define BSP_USING_TIM0
 #define BSP_USING_PWM
@@ -387,5 +385,8 @@
 #define BSP_USING_LCD_BL_PIN 0x0303
 /* end of Board extended module Drivers */
 /* end of Hardware Drivers Config */
-
+#define BSP_USING_SDRAM
+#define BSP_USING_SDRAM_SIZE 0x2000000
+#define CAMERA_CONFIG_WRITE_VERIFY
+#define VIN_CFG_USE_RUNTIME_BUFFER 
 #endif
