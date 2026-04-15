@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LED Blink Example &mdash; Titan-Board-Mini SDK 1.0.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=694004e0" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/edit_button.css?v=d629c565" />
+      <link rel="stylesheet" type="text/css" href="../../_static/language_switch.css?v=427b9138" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dark_mode.css?v=72ec50b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=86952a2f"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=540d3cec"></script>
+      <script src="../../_static/version_menu.js?v=cc75255b"></script>
+      <script src="../../_static/download_pdf.js?v=d1800c12"></script>
+      <script src="../../_static/version_info.js"></script>
+      <script src="../../_static/edit_on_github.js?v=5e1f1957"></script>
+      <script src="../../_static/language_switch.js?v=53d89164"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex_zh.html" />
+    <link rel="search" title="搜索" href="../../search_zh.html" />
+   
+  
+  
+    <script>window.SPHINX_EDIT_BASE_URL = "https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/";</script>
+    <meta name="edit-base-url" content="https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/">
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index_zh.html" class="icon icon-home">
+            Titan-Board-Mini SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index_zh.html">快速上手</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html">模板工程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id2">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id3">特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id4">项目结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id5">快速开始</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id6">二次开发</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id7">进阶阅读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index_zh.html">基础篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README_zh.html">LED 闪烁示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#gpio">GPIO 简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id2">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#ra8-gpio">2. RA8 系列 GPIO 特点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#rt-thread-pin">3. RT-Thread PIN 框架</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id3">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id4">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id5">编译下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id6">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id7">进阶阅读</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_key_irq/README_zh.html">按键中断 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_key_irq/README_zh.html#id2">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_key_irq/README_zh.html#ra8-mcu">RA8 系列 MCU 中断体系概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_key_irq/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_key_irq/README_zh.html#id3">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_key_irq/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_key_irq/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../driver/index_zh.html">驱动篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html">ADC 驱动示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id1">简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id2">主要特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id3">1. 硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#ra8p1">1.1 RA8P1 微控制器概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id4">1.2 ADC 硬件特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id8">1.3 硬件连接图</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id9">2. 软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#rt-thread-adc">2.1 RT-Thread ADC 驱动框架</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id12">2.2 项目软件架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id14">2.3 程序执行流程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id15">3. 使用示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id16">3.1 基础 ADC 采样</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id19">3.2 多线程实现</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id22">3.3 命令行接口使用</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id24">4. 运行效果</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id25">4.1 终端输出示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id27">5. 参考资源</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id28">5.1 技术文档</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html">CAN FD 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id1">简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id2">主要特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#ra8p1-can-fd">RA8P1 CAN FD硬件特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#rt-thread-can">软件架构 - RT-Thread CAN设备框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#rt-thread">RT-Thread驱动模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#can">CAN设备操作接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id11">中断处理机制</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id15">运行效果示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id16">1. 硬件连接</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#pcan-view">2. PCAN-View 软件配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id20">3. 终端命令操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id23">4. 数据收发测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html">Ethernet 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id2">以太网（Ethernet）简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id3">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id4">2. 以太网帧结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#ra8">RA8 系列以太网特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id5">1. 网络接口特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#mac">2. MAC 特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#dma">3. DMA 与缓冲特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id6">4. 中断机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#phy">5. PHY 管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id7">6. 协议与栈支持</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id8">7. 性能与可靠性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#fsp">FSP 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id9">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id10">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id11">运行效果</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#iperf">iperf 测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html">GPT 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id1">简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id2">核心功能特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id3">技术栈</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id4">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#ra8p1">1. RA8P1 微控制器特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id7">2. GPT 硬件模块详解</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id10">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#rt-thread">1. RT-Thread 设备框架</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id13">2. 驱动程序架构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id15">使用示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id16">配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id17">运行效果示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html">RTC 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id1">简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id2">主要功能</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#ra8p1-rtc">硬件介绍 - RA8P1 RTC 特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id3">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id4">2. RA8P1 RTC 主要特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id10">3. RA8P1 RTC 技术参数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#rt-thread-rtc">软件架构 - RT-Thread RTC 设备框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#rt-thread">1. RT-Thread 设备架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id11">2. RTC 设备类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id12">3. 设备管理接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#rt-thread-rtc-api">4. RT-Thread RTC API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id17">使用示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id18">1. 时间设置与读取</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id21">2. 闹钟配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id24">配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id25">运行效果示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id26">1. 控制台输出</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html">SDRAM 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id1">项目概述</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id2">主要特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id3">技术架构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id4">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#ra8p1">2.1 RA8P1 外部存储器接口特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id8">2.2 SDRAM 类型支持</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id11">2.3 硬件连接说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id16">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id17">3.1 SDRAM 驱动初始化流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id20">3.2 内存管理机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#bsp">3.3 BSP 层封装</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id25">使用示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id26">4.1 基础读写操作</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id29">运行效果示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html">SD卡文件系统示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id2">SD 卡简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id3">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id4">2. SD 卡类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id5">3. SD 卡接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id6">4. 工作原理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id7">5. SD 卡性能指标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id8">6. SD 卡应用场景</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#ra8-sdhi">RA8 系列 SDHI 模块概述</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id9">1. 总体特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#sdhi">2. SDHI 模块架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id10">3. SDHI 工作原理</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#fsp">FSP 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id11">示例工程说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id12">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id13">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html">SPI 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id1">项目介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id2">主要特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id3">目录结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#ra8p1-spi">1. 硬件介绍 - RA8P1 的 SPI 特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#ra8p1">1.1 RA8P1 微控制器概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id4">1.2 SPI 硬件特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id9">1.3 SPI 引脚映射</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#rt-thread-spi">2. 软件架构 - RT-Thread SPI 设备框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id10">2.1 RT-Thread SPI 架构概览</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id11">2.2 主要数据结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id14">2.3 SPI 工作模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#api">2.4 核心 API 接口</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id22">3. 运行效果示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html">WDT 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id1">概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id2">目录结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#ra8p1wdt">1. 硬件介绍 - RA8P1的WDT特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id3">1.1 看门狗概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#ra8p1-wdt">1.2 RA8P1 WDT 主要特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id8">1.3 硬件参数配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#rt-thread">2. 软件架构 - RT-Thread看门狗设备框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id9">2.1 RT-Thread 看门狗驱动架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#fsp">2.2 FSP 集成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id13">2.3 RT-Thread 设备配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id14">3. 使用示例 - 基于实际代码的看门狗初始化、喂狗</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id15">3.1 主要功能分析</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#wdt-sample">3.2 看门狗测试函数 (<code class="docutils literal notranslate"><span class="pre">wdt_sample</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#rt-thread-api">3.3 RT-Thread 看门狗 API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id19">4. 配置说明 - 超时时间、复位模式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id20">4.1 超时时间配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id22">4.2 复位模式配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id25">5.WDT工程配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id26">5. 运行效果示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id27">5.1 正常运行流程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id28">结论</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../component/index_zh.html">组件篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html">QSPI Flash 文件系统示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id2">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#w25q64-qspi-flash">1. W25Q64 QSPI Flash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#qspi">2. QSPI 接口特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id3">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id4">1. 分层设计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id5">2. 核心组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id6">3. 工程结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id7">使用示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id8">1. 初始化流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id9">2. 文件操作示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id10">运行效果</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id11">1. 终端输出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id12">2. 文件系统测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id13">注意事项</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#flash">1. Flash 使用限制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id14">2. 文件系统建议</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id15">3. 性能优化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id16">扩展应用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id17">相关资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../multimedia/index_zh.html">多媒体显示篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html">LVGL 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id2">LVGL 简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id3">主要特点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id4">应用场景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id5">生态与社区</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#i2c0">I2C0 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id6">触摸中断配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id7">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id8">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id9">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html">MIPI CSI 摄像头示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#ra8-mipi-csi">RA8 系列 MIPI CSI 特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id2">1. 硬件接口特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id3">2. 图像格式与处理能力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#dma">3. DMA 支持与缓冲机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id4">4. 中断机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id5">5. 时序与同步特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id6">6. 性能优化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id7">7. 应用场景</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#ra8-mcu-glcdc-graphics-lcd-controller">RA8 系列 MCU GLCDC（Graphics LCD Controller）特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id8">1. 硬件特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id9">2. 图层与显示模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id10">3. DMA 与帧缓冲</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id11">4. 硬件图形功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id12">5. 中断机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id13">6. 性能优化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id14">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id15">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../peripheral/index_zh.html">外设扩展篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html">IMU 传感器示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id2">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#lsm6ds3tr-c-imu">1. LSM6DS3TR-C IMU 传感器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id3">2. 加速度计特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id4">3. 陀螺仪特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id5">4. 主要功能</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id8">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id9">1. 分层设计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id10">2. 核心组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id12">3. 工程结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id13">使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id14">1. 初始化流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#i2c">2. I2C 平台接口实现</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id15">3. 数据格式转换</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id16">配置说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#kconfig">1. Kconfig 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id17">运行效果</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id18">1. 终端输出</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README_zh.html#id19">相关资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html">RGB LCD 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#ra8-glcdc">RA8 系列 GLCDC 模块</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#id2">1. 简介</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#id3">2. 模块架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#glcdc">3. GLCDC 工作原理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#id4">4. GLCDC 支持的功能与特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#rt-thread-lcd">RT-Thread LCD 驱动框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#id5">主要接口</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#id6">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#fsp">FSP 配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#hyperram">HyperRAM 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#id7">RGB LCD 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#lcd">LCD 背光配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#d-ave-2d">D/AVE 2D 配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#id8">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README_zh.html#id9">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html">USB-PCDC 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id2">USB PCDC 简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id3">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#pcdc">2. PCDC 的协议特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id4">3. 典型应用架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id5">4. 优点</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#ra8-usb-pcdc-r-usb-pcdc">RA8 系列 USB PCDC 模块（r_usb_pcdc）简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id6">1. 模块定位与功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id7">2. 支持能力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id8">3. 模块架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id9">4. 工作流程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#fsp">FSP 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id10">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README_zh.html#id11">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html">WAV 音频播放器示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id2">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#es8156">1. ES8156 音频编解码器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id3">2. ES8156 主要特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#ssi-synchronous-serial-interface">3. SSI (Synchronous Serial Interface) 接口</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id6">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id7">1. 分层设计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id8">2. 核心组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id10">3. 工程结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id11">使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id12">1. 初始化流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id13">2. 播放 WAV 文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id14">3. WAV 文件格式要求</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id15">配置说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#kconfig">1. Kconfig 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id16">3. 硬件连接</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id17">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README_zh.html#id18">相关资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index_zh.html">Titan-Board-Mini SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index_zh.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">LED Blink Example</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="led-blink-example">
+<h1>LED Blink Example<a class="headerlink" href="#led-blink-example" title="链接到此标题。"></a></h1>
+<p><strong>English</strong> | <a class="reference internal" href="README_zh.html"><span class="std std-doc"><strong>中文</strong></span></a></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="链接到此标题。"></a></h2>
+<p>This example is the simplest and most basic example in the SDK, similar to the “Hello World” program that programmers encounter as their first program. The main function of this example is to make the onboard RGB LED blink periodically.</p>
+</section>
+<section id="gpio-introduction">
+<h2>GPIO Introduction<a class="headerlink" href="#gpio-introduction" title="链接到此标题。"></a></h2>
+<section id="overview">
+<h3>1. Overview<a class="headerlink" href="#overview" title="链接到此标题。"></a></h3>
+<p><strong>GPIO (General Purpose Input/Output)</strong> is one of the most commonly used peripheral interfaces of an MCU. It can be configured under software control as either <strong>input mode</strong> or <strong>output mode</strong>:</p>
+<ul class="simple">
+<li><p><strong>Input mode</strong>: Used to read external voltage levels, such as button inputs.</p></li>
+<li><p><strong>Output mode</strong>: Used to control peripheral voltage levels, such as lighting up an LED or driving a buzzer.</p></li>
+</ul>
+</section>
+<section id="ra8-series-gpio-features">
+<h3>2. RA8 Series GPIO Features<a class="headerlink" href="#ra8-series-gpio-features" title="链接到此标题。"></a></h3>
+<ul class="simple">
+<li><p><strong>Rich pin resources</strong>: Each port can be independently configured as input/output/multiplexed function.</p></li>
+<li><p><strong>Multi-function multiplexing</strong>: In addition to GPIO functionality, the same pin can also serve as a signal line for peripherals such as UART, SPI, or I2C.</p></li>
+<li><p><strong>Level control</strong>: In output mode, pins can drive either high or low levels; some pins support open-drain mode.</p></li>
+<li><p><strong>Direction control</strong>: Input/output direction can be dynamically switched.</p></li>
+</ul>
+</section>
+<section id="rt-thread-pin-framework">
+<h3>3. RT-Thread PIN Framework<a class="headerlink" href="#rt-thread-pin-framework" title="链接到此标题。"></a></h3>
+<p>RT-Thread provides a <strong>PIN device driver framework</strong>, which offers a unified interface to shield hardware differences:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rt_pin_mode()</span></code> - Set the working mode of a pin (input/output/pull-up/pull-down, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rt_pin_write()</span></code> - Output a voltage level (high/low)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rt_pin_read()</span></code> - Read an input voltage level</p></li>
+</ul>
+<p>This way, developers don’t need to directly manipulate registers; GPIO control can be achieved through RT-Thread’s API.</p>
+<p>In this example, the LED pin is configured as <strong>output mode</strong>, and the software continuously toggles between high and low levels to make the LED blink.</p>
+</section>
+</section>
+<section id="hardware-description">
+<h2>Hardware Description<a class="headerlink" href="#hardware-description" title="链接到此标题。"></a></h2>
+<p>Titan Board Mini provides three user LEDs: LED_R (RED), LED_B (BLUE), LED_G (GREEN). The LED corresponds to specific pins on the MCU. To turn on the LED, a low level signal is output from the MCU pin, and to turn it off, a high level signal is output.</p>
+</section>
+<section id="software-description">
+<h2>Software Description<a class="headerlink" href="#software-description" title="链接到此标题。"></a></h2>
+<p>The source code for this example is located in <code class="docutils literal notranslate"><span class="pre">src/hal_entry.c</span></code>. The MCU pin definitions for the LEDs and the LED control logic can be found in the source file.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Configure LED pins */</span>
+<span class="n">rt_pin_mode</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_MODE_OUTPUT</span><span class="p">);</span>
+
+<span class="cm">/* Control LED */</span>
+<span class="n">rt_pin_write</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LED_ON</span><span class="p">);</span><span class="w">  </span><span class="c1">// Turn on</span>
+<span class="n">rt_pin_write</span><span class="p">(</span><span class="n">LED_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">LED_OFF</span><span class="p">);</span><span class="w"> </span><span class="c1">// Turn off</span>
+</pre></div>
+</div>
+</section>
+<section id="compilation-download">
+<h2>Compilation &amp; Download<a class="headerlink" href="#compilation-download" title="链接到此标题。"></a></h2>
+<ol class="arabic simple">
+<li><p>Open the project in RT-Thread Studio</p></li>
+<li><p>Build the project using the build button</p></li>
+<li><p>Connect the debug probe to the development board</p></li>
+<li><p>Download the firmware to the board</p></li>
+</ol>
+</section>
+<section id="run-effect">
+<h2>Run Effect<a class="headerlink" href="#run-effect" title="链接到此标题。"></a></h2>
+<p>After pressing the reset button to restart the development board, observe the LED blinking effect. The RGB LEDs will change periodically.</p>
+</section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="链接到此标题。"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/pin/pin">RT-Thread PIN Device</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 Copyright (c) 2006-2025, RT-Thread Development Team。</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>Titan-Board-Mini SDK</strong>
+        <span class="sdk-footer__sep">•</span> 版本：1.0.0
+      </div>
+      <div class="sdk-footer__right">
+        构建时间：<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>

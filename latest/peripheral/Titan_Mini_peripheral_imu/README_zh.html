@@ -1,0 +1,997 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMU Sensor Example Guide &mdash; Titan-Board-Mini SDK 1.0.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=694004e0" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/edit_button.css?v=d629c565" />
+      <link rel="stylesheet" type="text/css" href="../../_static/language_switch.css?v=427b9138" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dark_mode.css?v=72ec50b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=86952a2f"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=540d3cec"></script>
+      <script src="../../_static/version_menu.js?v=cc75255b"></script>
+      <script src="../../_static/download_pdf.js?v=d1800c12"></script>
+      <script src="../../_static/version_info.js"></script>
+      <script src="../../_static/edit_on_github.js?v=5e1f1957"></script>
+      <script src="../../_static/language_switch.js?v=53d89164"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex_zh.html" />
+    <link rel="search" title="搜索" href="../../search_zh.html" />
+   
+  
+  
+    <script>window.SPHINX_EDIT_BASE_URL = "https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/";</script>
+    <meta name="edit-base-url" content="https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/">
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index_zh.html" class="icon icon-home">
+            Titan-Board-Mini SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index_zh.html">快速上手</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html">模板工程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id2">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id3">特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id4">项目结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id5">快速开始</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id6">二次开发</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id7">进阶阅读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index_zh.html">基础篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html">LED 闪烁示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#gpio">GPIO 简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id2">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#ra8-gpio">2. RA8 系列 GPIO 特点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#rt-thread-pin">3. RT-Thread PIN 框架</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id3">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id4">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id5">编译下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id6">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id7">进阶阅读</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README_zh.html">按键中断 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README_zh.html#id2">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README_zh.html#ra8-mcu">RA8 系列 MCU 中断体系概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README_zh.html#id3">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../driver/index_zh.html">驱动篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html">ADC 驱动示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id1">简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id2">主要特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id3">1. 硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#ra8p1">1.1 RA8P1 微控制器概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id4">1.2 ADC 硬件特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id8">1.3 硬件连接图</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id9">2. 软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#rt-thread-adc">2.1 RT-Thread ADC 驱动框架</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id12">2.2 项目软件架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id14">2.3 程序执行流程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id15">3. 使用示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id16">3.1 基础 ADC 采样</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id19">3.2 多线程实现</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id22">3.3 命令行接口使用</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id24">4. 运行效果</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id25">4.1 终端输出示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id27">5. 参考资源</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README_zh.html#id28">5.1 技术文档</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html">CAN FD 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id1">简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id2">主要特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#ra8p1-can-fd">RA8P1 CAN FD硬件特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#rt-thread-can">软件架构 - RT-Thread CAN设备框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#rt-thread">RT-Thread驱动模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#can">CAN设备操作接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id11">中断处理机制</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id15">运行效果示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id16">1. 硬件连接</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#pcan-view">2. PCAN-View 软件配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id20">3. 终端命令操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README_zh.html#id23">4. 数据收发测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html">Ethernet 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id2">以太网（Ethernet）简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id3">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id4">2. 以太网帧结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#ra8">RA8 系列以太网特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id5">1. 网络接口特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#mac">2. MAC 特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#dma">3. DMA 与缓冲特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id6">4. 中断机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#phy">5. PHY 管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id7">6. 协议与栈支持</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id8">7. 性能与可靠性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#fsp">FSP 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id9">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id10">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id11">运行效果</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#iperf">iperf 测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html">GPT 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id1">简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id2">核心功能特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id3">技术栈</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id4">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#ra8p1">1. RA8P1 微控制器特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id7">2. GPT 硬件模块详解</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id10">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#rt-thread">1. RT-Thread 设备框架</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id13">2. 驱动程序架构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id15">使用示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id16">配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README_zh.html#id17">运行效果示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html">RTC 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id1">简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id2">主要功能</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#ra8p1-rtc">硬件介绍 - RA8P1 RTC 特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id3">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id4">2. RA8P1 RTC 主要特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id10">3. RA8P1 RTC 技术参数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#rt-thread-rtc">软件架构 - RT-Thread RTC 设备框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#rt-thread">1. RT-Thread 设备架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id11">2. RTC 设备类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id12">3. 设备管理接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#rt-thread-rtc-api">4. RT-Thread RTC API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id17">使用示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id18">1. 时间设置与读取</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id21">2. 闹钟配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id24">配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id25">运行效果示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README_zh.html#id26">1. 控制台输出</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html">SDRAM 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id1">项目概述</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id2">主要特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id3">技术架构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id4">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#ra8p1">2.1 RA8P1 外部存储器接口特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id8">2.2 SDRAM 类型支持</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id11">2.3 硬件连接说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id16">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id17">3.1 SDRAM 驱动初始化流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id20">3.2 内存管理机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#bsp">3.3 BSP 层封装</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id25">使用示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id26">4.1 基础读写操作</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README_zh.html#id29">运行效果示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html">SD卡文件系统示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id2">SD 卡简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id3">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id4">2. SD 卡类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id5">3. SD 卡接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id6">4. 工作原理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id7">5. SD 卡性能指标</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id8">6. SD 卡应用场景</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#ra8-sdhi">RA8 系列 SDHI 模块概述</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id9">1. 总体特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#sdhi">2. SDHI 模块架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id10">3. SDHI 工作原理</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#fsp">FSP 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id11">示例工程说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id12">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README_zh.html#id13">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html">SPI 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id1">项目介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id2">主要特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id3">目录结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#ra8p1-spi">1. 硬件介绍 - RA8P1 的 SPI 特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#ra8p1">1.1 RA8P1 微控制器概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id4">1.2 SPI 硬件特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id9">1.3 SPI 引脚映射</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#rt-thread-spi">2. 软件架构 - RT-Thread SPI 设备框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id10">2.1 RT-Thread SPI 架构概览</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id11">2.2 主要数据结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id14">2.3 SPI 工作模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#api">2.4 核心 API 接口</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README_zh.html#id22">3. 运行效果示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html">WDT 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id1">概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id2">目录结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#ra8p1wdt">1. 硬件介绍 - RA8P1的WDT特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id3">1.1 看门狗概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#ra8p1-wdt">1.2 RA8P1 WDT 主要特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id8">1.3 硬件参数配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#rt-thread">2. 软件架构 - RT-Thread看门狗设备框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id9">2.1 RT-Thread 看门狗驱动架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#fsp">2.2 FSP 集成</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id13">2.3 RT-Thread 设备配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id14">3. 使用示例 - 基于实际代码的看门狗初始化、喂狗</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id15">3.1 主要功能分析</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#wdt-sample">3.2 看门狗测试函数 (<code class="docutils literal notranslate"><span class="pre">wdt_sample</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#rt-thread-api">3.3 RT-Thread 看门狗 API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id19">4. 配置说明 - 超时时间、复位模式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id20">4.1 超时时间配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id22">4.2 复位模式配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id25">5.WDT工程配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id26">5. 运行效果示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id27">5.1 正常运行流程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README_zh.html#id28">结论</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../component/index_zh.html">组件篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html">QSPI Flash 文件系统示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id2">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#w25q64-qspi-flash">1. W25Q64 QSPI Flash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#qspi">2. QSPI 接口特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id3">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id4">1. 分层设计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id5">2. 核心组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id6">3. 工程结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id7">使用示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id8">1. 初始化流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id9">2. 文件操作示例</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id10">运行效果</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id11">1. 终端输出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id12">2. 文件系统测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id13">注意事项</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#flash">1. Flash 使用限制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id14">2. 文件系统建议</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id15">3. 性能优化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id16">扩展应用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README_zh.html#id17">相关资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../multimedia/index_zh.html">多媒体显示篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html">LVGL 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id2">LVGL 简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id3">主要特点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id4">应用场景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id5">生态与社区</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#i2c0">I2C0 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id6">触摸中断配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id7">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id8">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id9">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html">MIPI CSI 摄像头示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#ra8-mipi-csi">RA8 系列 MIPI CSI 特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id2">1. 硬件接口特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id3">2. 图像格式与处理能力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#dma">3. DMA 支持与缓冲机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id4">4. 中断机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id5">5. 时序与同步特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id6">6. 性能优化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id7">7. 应用场景</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#ra8-mcu-glcdc-graphics-lcd-controller">RA8 系列 MCU GLCDC（Graphics LCD Controller）特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id8">1. 硬件特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id9">2. 图层与显示模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id10">3. DMA 与帧缓冲</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id11">4. 硬件图形功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id12">5. 中断机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id13">6. 性能优化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id14">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id15">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index_zh.html">外设扩展篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README_zh.html">IMU 传感器示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id2">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#lsm6ds3tr-c-imu">1. LSM6DS3TR-C IMU 传感器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id3">2. 加速度计特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id4">3. 陀螺仪特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id5">4. 主要功能</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id8">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id9">1. 分层设计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id10">2. 核心组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id12">3. 工程结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id13">使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id14">1. 初始化流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#i2c">2. I2C 平台接口实现</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id15">3. 数据格式转换</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id16">配置说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#kconfig">1. Kconfig 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id17">运行效果</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id18">1. 终端输出</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id19">相关资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html">RGB LCD 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#ra8-glcdc">RA8 系列 GLCDC 模块</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id2">1. 简介</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id3">2. 模块架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#glcdc">3. GLCDC 工作原理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id4">4. GLCDC 支持的功能与特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#rt-thread-lcd">RT-Thread LCD 驱动框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id5">主要接口</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id6">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#fsp">FSP 配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#hyperram">HyperRAM 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id7">RGB LCD 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#lcd">LCD 背光配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#d-ave-2d">D/AVE 2D 配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id8">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id9">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html">USB-PCDC 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id2">USB PCDC 简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id3">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#pcdc">2. PCDC 的协议特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id4">3. 典型应用架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id5">4. 优点</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#ra8-usb-pcdc-r-usb-pcdc">RA8 系列 USB PCDC 模块（r_usb_pcdc）简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id6">1. 模块定位与功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id7">2. 支持能力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id8">3. 模块架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id9">4. 工作流程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#fsp">FSP 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id10">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id11">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html">WAV 音频播放器示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id2">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#es8156">1. ES8156 音频编解码器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id3">2. ES8156 主要特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#ssi-synchronous-serial-interface">3. SSI (Synchronous Serial Interface) 接口</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id6">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id7">1. 分层设计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id8">2. 核心组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id10">3. 工程结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id11">使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id12">1. 初始化流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id13">2. 播放 WAV 文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id14">3. WAV 文件格式要求</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id15">配置说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#kconfig">1. Kconfig 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id16">3. 硬件连接</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id17">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id18">相关资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index_zh.html">Titan-Board-Mini SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index_zh.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">IMU Sensor Example Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="imu-sensor-example-guide">
+<h1>IMU Sensor Example Guide<a class="headerlink" href="#imu-sensor-example-guide" title="链接到此标题。"></a></h1>
+<p><a class="reference internal" href="README_zh.html"><span class="std std-doc"><strong>中文</strong></span></a> | <strong>English</strong></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="链接到此标题。"></a></h2>
+<p>This example demonstrates how to use the <strong>LSM6DS3TR-C 6-axis IMU sensor</strong> on <strong>Titan Board Mini</strong> to implement inertial measurement functionality. It reads <strong>3-axis accelerometer</strong> and <strong>3-axis gyroscope</strong> data via the <strong>I2C interface</strong>, combined with the <strong>RT-Thread Sensor Framework</strong> for complete sensor data acquisition and processing.</p>
+<p>Key features include:</p>
+<ul class="simple">
+<li><p>6-axis inertial measurement using LSM6DS3TR-C</p></li>
+<li><p>Read 3-axis accelerometer data (X/Y/Z)</p></li>
+<li><p>Read 3-axis gyroscope data (X/Y/Z)</p></li>
+<li><p>Support for multiple range and sampling rate configurations</p></li>
+<li><p>Integrated with RT-Thread Sensor Framework</p></li>
+</ul>
+</section>
+<section id="hardware-overview">
+<h2>Hardware Overview<a class="headerlink" href="#hardware-overview" title="链接到此标题。"></a></h2>
+<section id="lsm6ds3tr-c-imu-sensor">
+<h3>1. LSM6DS3TR-C IMU Sensor<a class="headerlink" href="#lsm6ds3tr-c-imu-sensor" title="链接到此标题。"></a></h3>
+<p><strong>Titan Board Mini</strong> features the onboard <strong>LSM6DS3TR-C</strong> high-performance 6-axis IMU sensor:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Model</strong></p></td>
+<td><p>LSM6DS3TR-C</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Manufacturer</strong></p></td>
+<td><p>STMicroelectronics</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Type</strong></p></td>
+<td><p>6-axis IMU (3-axis accelerometer + 3-axis gyroscope)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Interface</strong></p></td>
+<td><p>I2C / SPI</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Operating Voltage</strong></p></td>
+<td><p>1.71V - 3.6V</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Temperature Range</strong></p></td>
+<td><p>-40°C ~ +85°C</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Package</strong></p></td>
+<td><p>2.5mm x 3mm x 0.83mm LGA-14</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="accelerometer-features">
+<h3>2. Accelerometer Features<a class="headerlink" href="#accelerometer-features" title="链接到此标题。"></a></h3>
+<p>The LSM6DS3TR-C integrates a high-performance 3-axis accelerometer:</p>
+<ul class="simple">
+<li><p><strong>Range Selection</strong>: ±2g / ±4g / ±8g / ±16g</p></li>
+<li><p><strong>Resolution</strong>: 16-bit ADC</p></li>
+<li><p><strong>Output Data Rate</strong>: 1.6Hz - 6.66kHz</p></li>
+<li><p><strong>Noise Density</strong>: 90μg/√Hz</p></li>
+<li><p><strong>Zero-g Offset</strong>: ±40mg</p></li>
+<li><p><strong>Bandwidth</strong>: Configurable (typically 50Hz - 1.6kHz)</p></li>
+</ul>
+</section>
+<section id="gyroscope-features">
+<h3>3. Gyroscope Features<a class="headerlink" href="#gyroscope-features" title="链接到此标题。"></a></h3>
+<p>The LSM6DS3TR-C integrates a high-precision 3-axis gyroscope:</p>
+<ul class="simple">
+<li><p><strong>Range Selection</strong>: ±125 / ±250 / ±500 / ±1000 / ±2000 dps</p></li>
+<li><p><strong>Resolution</strong>: 16-bit ADC</p></li>
+<li><p><strong>Output Data Rate</strong>: 1.6Hz - 6.66kHz</p></li>
+<li><p><strong>Noise Density</strong>: 3.8mdps/√Hz</p></li>
+<li><p><strong>Bias Stability</strong>: ±5dps</p></li>
+<li><p><strong>Bandwidth</strong>: Configurable</p></li>
+</ul>
+</section>
+<section id="main-features">
+<h3>4. Main Features<a class="headerlink" href="#main-features" title="链接到此标题。"></a></h3>
+<section id="advanced-features">
+<h4>Advanced Features<a class="headerlink" href="#advanced-features" title="链接到此标题。"></a></h4>
+<ul class="simple">
+<li><p><strong>FIFO Buffer</strong>: 9KB FIFO with multiple modes</p></li>
+<li><p><strong>Interrupt Functions</strong>: Motion wake-up, free fall, 6D orientation detection</p></li>
+<li><p><strong>Sensor Fusion</strong>: Built-in low-power sensor fusion algorithms</p></li>
+<li><p><strong>Self-Test</strong>: Supports self-test mode</p></li>
+<li><p><strong>Low Power Mode</strong>: Multiple low-power operating modes</p></li>
+</ul>
+</section>
+<section id="data-processing">
+<h4>Data Processing<a class="headerlink" href="#data-processing" title="链接到此标题。"></a></h4>
+<ul class="simple">
+<li><p><strong>Hardware Filtering</strong>: Configurable digital filters</p></li>
+<li><p><strong>Data Fusion</strong>: Supports accelerometer + gyroscope data fusion</p></li>
+<li><p><strong>Time Stamp</strong>: Built-in timestamp function</p></li>
+<li><p><strong>Polling/Interrupt</strong>: Supports polling and interrupt data reading</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="software-architecture">
+<h2>Software Architecture<a class="headerlink" href="#software-architecture" title="链接到此标题。"></a></h2>
+<section id="layered-design">
+<h3>1. Layered Design<a class="headerlink" href="#layered-design" title="链接到此标题。"></a></h3>
+<p>The IMU sensor system uses a layered architecture:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Application Layer (User Code)
+    ↓
+RT-Thread Sensor Framework - Sensor Framework
+    ↓
+LSM6DS3TR-C Driver - IMU Driver
+    ↓
+Sensor HAL - Sensor Hardware Abstraction Layer
+    ↓
+I2C/SPI Driver - I2C/SPI Driver
+    ↓
+FSP I2C/SPI HAL - Hardware Abstraction Layer
+</pre></div>
+</div>
+</section>
+<section id="core-components">
+<h3>2. Core Components<a class="headerlink" href="#core-components" title="链接到此标题。"></a></h3>
+<section id="porting-layer-interface">
+<h4>Porting Layer Interface<a class="headerlink" href="#porting-layer-interface" title="链接到此标题。"></a></h4>
+<p>Platform-specific interfaces to implement (<code class="docutils literal notranslate"><span class="pre">lsm6ds3tr-c_port.c</span></code>):</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* I2C read/write interfaces */</span>
+<span class="kt">int32_t</span><span class="w"> </span><span class="nf">platform_write</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">reg</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">bufp</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+<span class="kt">int32_t</span><span class="w"> </span><span class="nf">platform_read</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">reg</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">bufp</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+
+<span class="cm">/* Delay interface */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">platform_delay</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">ms</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="rt-thread-sensor-framework">
+<h4>RT-Thread Sensor Framework<a class="headerlink" href="#rt-thread-sensor-framework" title="链接到此标题。"></a></h4>
+<p>Unified sensor device interface provided by RT-Thread:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Find sensor device */</span>
+<span class="n">rt_device_t</span><span class="w"> </span><span class="nf">rt_device_find</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">);</span>
+
+<span class="cm">/* Open sensor device */</span>
+<span class="n">rt_err_t</span><span class="w"> </span><span class="nf">rt_device_open</span><span class="p">(</span><span class="n">rt_device_t</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">rt_uint16_t</span><span class="w"> </span><span class="n">oflags</span><span class="p">);</span>
+
+<span class="cm">/* Read sensor data */</span>
+<span class="n">rt_size_t</span><span class="w"> </span><span class="nf">rt_device_read</span><span class="p">(</span><span class="n">rt_device_t</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">rt_off_t</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">rt_size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+
+<span class="cm">/* Receive sensor data */</span>
+<span class="n">rt_err_t</span><span class="w"> </span><span class="nf">rt_device_set_rx_indicate</span><span class="p">(</span><span class="n">rt_device_t</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">rt_err_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">rx_ind</span><span class="p">)(</span><span class="n">rt_device_t</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">rt_size_t</span><span class="w"> </span><span class="n">size</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="project-structure">
+<h3>3. Project Structure<a class="headerlink" href="#project-structure" title="链接到此标题。"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Titan_Mini_peripheral_imu/
+├── src/
+│   └── hal_entry.c          # Main program entry
+└── packages/
+    └── lsm6ds3tr/           # LSM6DS3TR-C driver package
+        ├── lsm6ds3tr-c_reg.h    # Register definitions and driver interfaces
+        ├── lsm6ds3tr-c_reg.c    # Register-level driver implementation
+        └── lsm6ds3tr-c_port.c   # Platform porting layer
+</pre></div>
+</div>
+</section>
+</section>
+<section id="usage-guide">
+<h2>Usage Guide<a class="headerlink" href="#usage-guide" title="链接到此标题。"></a></h2>
+<section id="initialization-flow">
+<h3>1. Initialization Flow<a class="headerlink" href="#initialization-flow" title="链接到此标题。"></a></h3>
+<p>The system requires initialization of the I2C interface and IMU sensor during startup:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rtthread.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;lsm6ds3tr-c_reg.h&quot;</span>
+
+<span class="cm">/* I2C configuration */</span>
+<span class="cp">#define LSM6DS3TR_C_I2C_BUS    &quot;i2c2&quot;</span>
+<span class="cp">#define LSM6DS3TR_C_I2C_ADDR    0x6A  </span><span class="cm">/* SA0 pin connected to GND */</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">hal_entry</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">stmdev_ctx_t</span><span class="w"> </span><span class="n">imu_ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+<span class="w">    </span><span class="cm">/* Initialize I2C interface */</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_i2c_bus_device</span><span class="w"> </span><span class="o">*</span><span class="n">i2c_bus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_i2c_bus_device_find</span><span class="p">(</span><span class="n">LSM6DS3TR_C_I2C_BUS</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i2c_bus</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;I2C bus not found!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* Configure device read/write interfaces */</span>
+<span class="w">    </span><span class="n">imu_ctx</span><span class="p">.</span><span class="n">handle</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">i2c_bus</span><span class="p">;</span>
+<span class="w">    </span><span class="n">imu_ctx</span><span class="p">.</span><span class="n">write_reg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">platform_write</span><span class="p">;</span>
+<span class="w">    </span><span class="n">imu_ctx</span><span class="p">.</span><span class="n">read_reg</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">platform_read</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* Initialize sensor */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lsm6ds3tr_c_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">imu_ctx</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">LSM6DS3TR_C_OK</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;LSM6DS3TR-C initialization failed!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* Configure accelerometer */</span>
+<span class="w">    </span><span class="n">lsm6ds3tr_c_xl_full_scale_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">imu_ctx</span><span class="p">,</span><span class="w"> </span><span class="n">LSM6DS3TR_C_2g</span><span class="p">);</span><span class="w">          </span><span class="cm">/* ±2g */</span>
+<span class="w">    </span><span class="n">lsm6ds3tr_c_xl_data_rate_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">imu_ctx</span><span class="p">,</span><span class="w"> </span><span class="n">LSM6DS3TR_C_ODR_104Hz</span><span class="p">);</span><span class="w">  </span><span class="cm">/* 104Hz */</span>
+
+<span class="w">    </span><span class="cm">/* Configure gyroscope */</span>
+<span class="w">    </span><span class="n">lsm6ds3tr_c_gy_full_scale_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">imu_ctx</span><span class="p">,</span><span class="w"> </span><span class="n">LSM6DS3TR_C_250dps</span><span class="p">);</span><span class="w">    </span><span class="cm">/* ±250dps */</span>
+<span class="w">    </span><span class="n">lsm6ds3tr_c_gy_data_rate_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">imu_ctx</span><span class="p">,</span><span class="w"> </span><span class="n">LSM6DS3TR_C_ODR_104Hz</span><span class="p">);</span><span class="w">  </span><span class="cm">/* 104Hz */</span>
+
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;LSM6DS3TR-C initialized successfully!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* Main loop - read sensor data */</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="cm">/* Read accelerometer data */</span>
+<span class="w">        </span><span class="n">lsm6ds3tr_c_axis3bit16_t</span><span class="w"> </span><span class="n">acc_raw</span><span class="p">;</span>
+<span class="w">        </span><span class="n">lsm6ds3tr_c_acceleration_raw_get</span><span class="p">(</span><span class="o">&amp;</span><span class="n">imu_ctx</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">acc_raw</span><span class="p">);</span>
+
+<span class="w">        </span><span class="cm">/* Read gyroscope data */</span>
+<span class="w">        </span><span class="n">lsm6ds3tr_c_axis3bit16_t</span><span class="w"> </span><span class="n">gyro_raw</span><span class="p">;</span>
+<span class="w">        </span><span class="n">lsm6ds3tr_c_angular_rate_raw_get</span><span class="p">(</span><span class="o">&amp;</span><span class="n">imu_ctx</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">gyro_raw</span><span class="p">);</span>
+
+<span class="w">        </span><span class="cm">/* Convert data to physical units */</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">acc_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc_raw</span><span class="p">.</span><span class="n">i16bit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">32768.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">;</span><span class="w">  </span><span class="cm">/* 2g range */</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">acc_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc_raw</span><span class="p">.</span><span class="n">i16bit</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">32768.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">acc_z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc_raw</span><span class="p">.</span><span class="n">i16bit</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">32768.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">gyro_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyro_raw</span><span class="p">.</span><span class="n">i16bit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">32768.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">250.0f</span><span class="p">;</span><span class="w">  </span><span class="cm">/* 250dps range */</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">gyro_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyro_raw</span><span class="p">.</span><span class="n">i16bit</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">32768.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">250.0f</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">gyro_z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyro_raw</span><span class="p">.</span><span class="n">i16bit</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">32768.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">250.0f</span><span class="p">;</span>
+
+<span class="w">        </span><span class="cm">/* Print data */</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;ACC: X=%.3fg Y=%.3fg Z=%.3fg | GYRO: X=%.2fdps Y=%.2fdps Z=%.2fdps</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">acc_x</span><span class="p">,</span><span class="w"> </span><span class="n">acc_y</span><span class="p">,</span><span class="w"> </span><span class="n">acc_z</span><span class="p">,</span><span class="w"> </span><span class="n">gyro_x</span><span class="p">,</span><span class="w"> </span><span class="n">gyro_y</span><span class="p">,</span><span class="w"> </span><span class="n">gyro_z</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">  </span><span class="cm">/* 10Hz read rate */</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="i2c-platform-interface-implementation">
+<h3>2. I2C Platform Interface Implementation<a class="headerlink" href="#i2c-platform-interface-implementation" title="链接到此标题。"></a></h3>
+<p>The porting layer needs to implement I2C read/write functions:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rtthread.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;rtdevice.h&gt;</span>
+
+<span class="cm">/* I2C write */</span>
+<span class="kt">int32_t</span><span class="w"> </span><span class="nf">platform_write</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">reg</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">bufp</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_i2c_bus_device</span><span class="w"> </span><span class="o">*</span><span class="n">i2c_bus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_i2c_bus_device</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">handle</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_i2c_msg</span><span class="w"> </span><span class="n">msgs</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+<span class="w">    </span><span class="cm">/* Write register address */</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">addr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">LSM6DS3TR_C_I2C_ADDR</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_I2C_WR</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">buf</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">reg</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">len</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* Write data */</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">addr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">LSM6DS3TR_C_I2C_ADDR</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_I2C_WR</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RT_I2C_NO_START</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">buf</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">bufp</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">len</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rt_i2c_transfer</span><span class="p">(</span><span class="n">i2c_bus</span><span class="p">,</span><span class="w"> </span><span class="n">msgs</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* I2C read */</span>
+<span class="kt">int32_t</span><span class="w"> </span><span class="nf">platform_read</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">reg</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">bufp</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_i2c_bus_device</span><span class="w"> </span><span class="o">*</span><span class="n">i2c_bus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_i2c_bus_device</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">handle</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_i2c_msg</span><span class="w"> </span><span class="n">msgs</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+<span class="w">    </span><span class="cm">/* Write register address */</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">addr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">LSM6DS3TR_C_I2C_ADDR</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_I2C_WR</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">buf</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">reg</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">len</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* Read data */</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">addr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">LSM6DS3TR_C_I2C_ADDR</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_I2C_RD</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">buf</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">bufp</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">len</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rt_i2c_transfer</span><span class="p">(</span><span class="n">i2c_bus</span><span class="p">,</span><span class="w"> </span><span class="n">msgs</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Delay function */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">platform_delay</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">ms</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="n">ms</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="data-format-conversion">
+<h3>3. Data Format Conversion<a class="headerlink" href="#data-format-conversion" title="链接到此标题。"></a></h3>
+<p>Raw sensor data needs to be converted to physical units:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Accelerometer data conversion (assuming 2g range) */</span>
+<span class="kt">int16_t</span><span class="w"> </span><span class="n">acc_raw_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16384</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Raw ADC value */</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">acc_x_g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">acc_raw_x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">32768.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Convert to g (9.8m/s²) */</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">acc_x_m_s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acc_x_g</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">9.80665f</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Convert to m/s² */</span>
+
+<span class="cm">/* Gyroscope data conversion (assuming 250dps range) */</span>
+<span class="kt">int16_t</span><span class="w"> </span><span class="n">gyro_raw_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Raw ADC value */</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">gyro_x_dps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">gyro_raw_x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">32768.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">250.0f</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Convert to °/s */</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">gyro_x_rad_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyro_x_dps</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.017453292519943295f</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Convert to rad/s */</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-guide">
+<h2>Configuration Guide<a class="headerlink" href="#configuration-guide" title="链接到此标题。"></a></h2>
+<section id="kconfig-configuration">
+<h3>1. Kconfig Configuration<a class="headerlink" href="#kconfig-configuration" title="链接到此标题。"></a></h3>
+<p>Configure IMU options in <code class="docutils literal notranslate"><span class="pre">libraries/M85_Config/Kconfig</span></code>:</p>
+<div class="highlight-kconfig notranslate"><div class="highlight"><pre><span></span><span class="k">menuconfig</span><span class="w"> </span>BSP_USING_IMU
+<span class="w">    </span><span class="nb">bool</span><span class="w"> </span><span class="s2">&quot;Enable IMU (LSM6DS3TR-C)&quot;</span>
+<span class="w">    </span><span class="k">select</span><span class="w"> </span>BSP_USING_I2C2
+<span class="w">    </span><span class="k">default</span><span class="w"> </span>n
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>BSP_USING_IMU
+<span class="w">        </span><span class="k">config</span><span class="w"> </span>BSP_IMU_I2C_BUS
+<span class="w">            </span><span class="nb">string</span><span class="w"> </span><span class="s2">&quot;I2C bus name&quot;</span>
+<span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="s2">&quot;i2c2&quot;</span>
+
+<span class="w">        </span><span class="k">config</span><span class="w"> </span>BSP_IMU_ACC_ODR
+<span class="w">            </span><span class="nb">int</span><span class="w"> </span><span class="s2">&quot;Accelerometer ODR (Hz)&quot;</span>
+<span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="mi">104</span>
+
+<span class="w">        </span><span class="k">config</span><span class="w"> </span>BSP_IMU_GYRO_ODR
+<span class="w">            </span><span class="nb">int</span><span class="w"> </span><span class="s2">&quot;Gyroscope ODR (Hz)&quot;</span>
+<span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="mi">104</span>
+<span class="w">    </span><span class="k">endif</span>
+</pre></div>
+</div>
+</section>
+<section id="rt-thread-settings">
+<h3>2. RT-Thread Settings<a class="headerlink" href="#rt-thread-settings" title="链接到此标题。"></a></h3>
+<p>In RT-Thread Studio, the following components need to be enabled:</p>
+<ol class="arabic simple">
+<li><p><strong>Device Drivers</strong></p>
+<ul class="simple">
+<li><p>Enable I2C device driver</p></li>
+<li><p>Configure I2C2 interface</p></li>
+</ul>
+</li>
+<li><p><strong>Sensors</strong></p>
+<ul class="simple">
+<li><p>Enable RT-Thread Sensor Framework</p></li>
+<li><p>Enable Accel (accelerometer) sensor</p></li>
+<li><p>Enable Gyro (gyroscope) sensor</p></li>
+</ul>
+</li>
+<li><p><strong>Software Packages</strong></p>
+<ul class="simple">
+<li><p>Add LSM6DS3TR-C driver package</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="running-results">
+<h2>Running Results<a class="headerlink" href="#running-results" title="链接到此标题。"></a></h2>
+<section id="terminal-output">
+<h3>1. Terminal Output<a class="headerlink" href="#terminal-output" title="链接到此标题。"></a></h3>
+<p>After resetting Titan Board Mini, the terminal will output the following information:</p>
+<p><img alt="image1" src="../../_images/image17.png" /></p>
+</section>
+</section>
+<section id="related-resources">
+<h2>Related Resources<a class="headerlink" href="#related-resources" title="链接到此标题。"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/sensor/sensor">RT-Thread Sensor Framework Documentation</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 Copyright (c) 2006-2025, RT-Thread Development Team。</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>Titan-Board-Mini SDK</strong>
+        <span class="sdk-footer__sep">•</span> 版本：1.0.0
+      </div>
+      <div class="sdk-footer__right">
+        构建时间：<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>

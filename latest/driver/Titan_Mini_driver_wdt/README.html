@@ -1,0 +1,1008 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WDT Driver Example Guide &mdash; Titan-Board-Mini SDK 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=694004e0" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/edit_button.css?v=d629c565" />
+      <link rel="stylesheet" type="text/css" href="../../_static/language_switch.css?v=427b9138" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dark_mode.css?v=72ec50b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a12e3537"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/version_menu.js?v=cc75255b"></script>
+      <script src="../../_static/download_pdf.js?v=d1800c12"></script>
+      <script src="../../_static/version_info.js"></script>
+      <script src="../../_static/edit_on_github.js?v=5e1f1957"></script>
+      <script src="../../_static/language_switch.js?v=53d89164"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Components" href="../../component/index.html" />
+    <link rel="prev" title="SPI Driver Example Guide" href="../Titan_Mini_driver_spi/README.html" />
+   
+  
+  
+    <script>window.SPHINX_EDIT_BASE_URL = "https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/";</script>
+    <meta name="edit-base-url" content="https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/">
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Titan-Board-Mini SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/Titan_Mini_template/README.html">Template Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#quick-start">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#secondary-development">Secondary Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html">Key Interrupt Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#ra8-series-mcu-interrupt-system-overview">RA8 Series MCU Interrupt System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#example-code-description">Example Code Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html">LED Blink Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#gpio-introduction">GPIO Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#ra8-series-gpio-features">2. RA8 Series GPIO Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#rt-thread-pin-framework">3. RT-Thread PIN Framework</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Drivers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html">ADC Driver Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#key-features">Key Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#hardware-overview">1. Hardware Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#ra8p1-microcontroller-overview">1.1 RA8P1 Microcontroller Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#adc-hardware-features">1.2 ADC Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#hardware-connection-diagram">1.3 Hardware Connection Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#software-architecture">2. Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#rt-thread-adc-driver-framework">2.1 RT-Thread ADC Driver Framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#project-software-architecture">2.2 Project Software Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#program-execution-flow">2.3 Program Execution Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#usage-examples">3. Usage Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#basic-adc-sampling">3.1 Basic ADC Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#multi-threading-implementation">3.2 Multi-threading Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#command-line-interface-usage">3.3 Command Line Interface Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#running-results">4. Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#terminal-output-example">4.1 Terminal Output Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#reference-resources">5. Reference Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_adc/README.html#technical-documentation">5.1 Technical Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html">CAN FD Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#ra8p1-can-fd-hardware-features">RA8P1 CAN FD Hardware Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#software-architecture-rt-thread-can-device-framework">Software Architecture - RT-Thread CAN Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#rt-thread-driver-model">RT-Thread Driver Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#can-device-operation-interface">CAN Device Operation Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#interrupt-handling-mechanism">Interrupt Handling Mechanism</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#operation-example">Operation Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#hardware-connection">1. Hardware Connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#pcan-view-software-configuration">2. PCAN-View Software Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#terminal-command-operations">3. Terminal Command Operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#data-transceiver-testing">4. Data Transceiver Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html">Ethernet Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#ethernet-overview">Ethernet Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#general-introduction">1. General Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#ethernet-frame-structure">2. Ethernet Frame Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#ra8-series-ethernet-features">RA8 Series Ethernet Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#network-interface-features">1. Network Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#mac-features">2. MAC Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#dma-and-buffer-features">3. DMA and Buffer Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#interrupt-mechanism">4. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#phy-management">5. PHY Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#protocol-and-stack-support">6. Protocol and Stack Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#performance-and-reliability">7. Performance and Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#build-download">Build &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#running-effect">Running Effect</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#iperf-test">iperf Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html">GPT Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#core-features">Core Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#technology-stack">Technology Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#ra8p1-microcontroller-features">1. RA8P1 Microcontroller Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#gpt-hardware-module-details">2. GPT Hardware Module Details</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#rt-thread-device-framework">1. RT-Thread Device Framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#driver-architecture">2. Driver Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#configuration-instructions">Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#running-effect-example">Running Effect Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html">RTC Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#main-features">Main Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#hardware-introduction-ra8p1-rtc-features">Hardware Introduction - RA8P1 RTC Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#ra8p1-rtc-main-features">2. RA8P1 RTC Main Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#ra8p1-rtc-technical-parameters">3. RA8P1 RTC Technical Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#software-architecture-rt-thread-rtc-device-framework">Software Architecture - RT-Thread RTC Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#rt-thread-device-architecture">1. RT-Thread Device Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#rtc-device-type">2. RTC Device Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#device-management-interface">3. Device Management Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#rt-thread-rtc-api">4. RT-Thread RTC API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#usage-example">Usage Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#time-setting-and-reading">1. Time Setting and Reading</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#alarm-configuration">2. Alarm Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#configuration-instructions">Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#running-effect-example">Running Effect Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#console-output">1. Console Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html">SD Card File System Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sd-card-introduction">SD Card Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sd-card-types">2. SD Card Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sd-card-interfaces">3. SD Card Interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#working-principle">4. Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sd-card-performance-specifications">5. SD Card Performance Specifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sd-card-application-scenarios">6. SD Card Application Scenarios</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#ra8-series-sdhi-module-overview">RA8 Series SDHI Module Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#general-features">1. General Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sdhi-module-architecture">2. SDHI Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sdhi-working-principle">3. SDHI Working Principle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#example-project-description">Example Project Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html">SDRAM Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#ra8p1-external-memory-interface-features">2.1 RA8P1 External Memory Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#supported-sdram-types">2.2 Supported SDRAM Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#hardware-connection">2.3 Hardware Connection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#sdram-driver-initialization-flow">3.1 SDRAM Driver Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#memory-management-mechanism">3.2 Memory Management Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#bsp-layer-abstraction">3.3 BSP Layer Abstraction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#basic-read-write-operations">4.1 Basic Read/Write Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html">SPI Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#project-introduction">Project Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#key-features">Key Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#hardware-introduction-ra8p1-spi-features">1. Hardware Introduction - RA8P1 SPI Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#ra8p1-microcontroller-overview">1.1 RA8P1 Microcontroller Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#spi-hardware-features">1.2 SPI Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#spi-pin-mapping">1.3 SPI Pin Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#software-architecture-rt-thread-spi-device-framework">2. Software Architecture - RT-Thread SPI Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#rt-thread-spi-architecture-overview">2.1 RT-Thread SPI Architecture Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#main-data-structures">2.2 Main Data Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#spi-operation-modes">2.3 SPI Operation Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#core-api-interfaces">2.4 Core API Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#running-effect-example">3. Running Effect Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">WDT Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directory-structure">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-introduction-ra8p1-wdt-features">1. Hardware Introduction - RA8P1 WDT Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#watchdog-overview">1.1 Watchdog Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ra8p1-wdt-main-features">1.2 RA8P1 WDT Main Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-parameter-configuration">1.3 Hardware Parameter Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#software-architecture-rt-thread-watchdog-device-framework">2. Software Architecture - RT-Thread Watchdog Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rt-thread-watchdog-driver-architecture">2.1 RT-Thread Watchdog Driver Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fsp-integration">2.2 FSP Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rt-thread-device-configuration">2.3 RT-Thread Device Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-example-watchdog-initialization-and-feeding-based-on-actual-code">3. Usage Example - Watchdog Initialization and Feeding Based on Actual Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#main-function-analysis">3.1 Main Function Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watchdog-test-function-wdt-sample">3.2 Watchdog Test Function (<code class="docutils literal notranslate"><span class="pre">wdt_sample</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rt-thread-watchdog-api">3.3 RT-Thread Watchdog API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-description-timeout-period-reset-mode">4. Configuration Description - Timeout Period, Reset Mode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#timeout-period-configuration">4.1 Timeout Period Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reset-mode-configuration">4.2 Reset Mode Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#wdt-project-configuration">5. WDT Project Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-effect-example">5. Running Effect Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#normal-running-process">5.1 Normal Running Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../component/index.html">Components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html">QSPI Flash File System Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#w25q64-qspi-flash">1. W25Q64 QSPI Flash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#qspi-interface-features">2. QSPI Interface Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#flash-partition-plan">Flash Partition Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#file-operation-examples">2. File Operation Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#running-results">Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#terminal-output">1. Terminal Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#file-system-testing">2. File System Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#flash-usage-limitations">1. Flash Usage Limitations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#file-system-recommendations">2. File System Recommendations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#performance-optimization">3. Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#extended-applications">Extended Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../multimedia/index.html">Multimedia Display</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html">LVGL Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#instruction">Instruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#lvgl-instruction">LVGL Instruction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#application-scenarios">Application Scenarios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#ecosystem-and-community">Ecosystem and Community</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#i2c0-configuration">I2C0 Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#touch-interrupt-configuration">Touch Interrupt Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html">MIPI CSI Camera Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#ra8-series-mipi-csi-features">RA8 Series MIPI CSI Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-interface-features">1. Hardware Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#image-formats-and-processing-capabilities">2. Image Formats and Processing Capabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#dma-support-and-buffering">3. DMA Support and Buffering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#interrupt-mechanism">4. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#timing-and-synchronization-features">5. Timing and Synchronization Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#performance-optimization">6. Performance Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#application-scenarios">7. Application Scenarios</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#ra8-series-mcu-glcdc-graphics-lcd-controller-features">RA8 Series MCU GLCDC (Graphics LCD Controller) Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-features">1. Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#layers-and-display-modes">2. Layers and Display Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#dma-and-frame-buffer">3. DMA and Frame Buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-graphics-functions">4. Hardware Graphics Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#id1">5. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#id2">6. Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../peripheral/index.html">Peripherals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html">IMU Sensor Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#hardware-overview">Hardware Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#lsm6ds3tr-c-imu-sensor">1. LSM6DS3TR-C IMU Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#accelerometer-features">2. Accelerometer Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#gyroscope-features">3. Gyroscope Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#main-features">4. Main Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#usage-guide">Usage Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#i2c-platform-interface-implementation">2. I2C Platform Interface Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#data-format-conversion">3. Data Format Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#configuration-guide">Configuration Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#kconfig-configuration">1. Kconfig Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#running-results">Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#terminal-output">1. Terminal Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html">RGB LCD Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#ra8-series-glcdc-module">RA8 Series GLCDC Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#module-architecture">2. Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#glcdc-working-principle">3. GLCDC Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#glcdc-supported-features">4. GLCDC Supported Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rt-thread-lcd-driver-framework">RT-Thread LCD Driver Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#main-interfaces">Main Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#fsp-configuration">FSP Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#hyperram-configuration">HyperRAM Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rgb-lcd-configuration">RGB LCD Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#lcd-backlight-configuration">LCD Backlight Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#d-ave-2d-configuration">D/AVE 2D Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html">USB PCDC Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#usb-pcdc-instructions">USB PCDC Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#pcdc-protocol-features">2. PCDC Protocol Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#typical-application-architecture">3. Typical Application Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#advantages">4. Advantages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#ra8-series-usb-pcdc-module-r-usb-pcdc-overview">RA8 Series USB PCDC Module (r_usb_pcdc) Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#module-functionality">1. Module Functionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#supported-features">2. Supported Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#module-architecture">3. Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#workflow">4. Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#fsp-configuration-configuration">FSP Configuration Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#running-effect">Running Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html">WAV Audio Player Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#es8156-audio-codec">1. ES8156 Audio Codec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#es8156-key-features">2. ES8156 Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#ssi-synchronous-serial-interface">3. SSI (Synchronous Serial Interface)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#playing-wav-files">2. Playing WAV Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#wav-file-format-requirements">3. WAV File Format Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#kconfig-configuration">1. Kconfig Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#hardware-connections">3. Hardware Connections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Titan-Board-Mini SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Drivers</a></li>
+      <li class="breadcrumb-item active">WDT Driver Example Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="wdt-driver-example-guide">
+<h1>WDT Driver Example Guide<a class="headerlink" href="#wdt-driver-example-guide" title="Link to this heading"></a></h1>
+<p><a class="reference internal" href="README.html"><span class="std std-doc"><strong>中文</strong></span></a> | <strong>English</strong></p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>This project is a Watchdog Timer (WDT) driver example for the <strong>RA8P1 Titan Mini</strong> board based on the RT-Thread operating system. The watchdog timer is an important reliability component in embedded systems, used to monitor system running status and automatically reset when the system encounters exceptions, ensuring stable system operation.</p>
+</section>
+<section id="directory-structure">
+<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>project/Titan_Mini_driver_wdt/
+├── src/
+│   └── hal_entry.c              # Main entry file, containing watchdog initialization and dog feeding thread
+├── ra/
+│   ├── fsp/
+│   │   └── src/
+│   │       └── r_wdt/         # Renesas FSP watchdog driver source code
+│   └── inc/
+│       └── api/
+│           └── r_wdt_api.h    # Watchdog API interface definition
+├── ra_cfg/
+│   └── fsp_cfg/
+│       └── r_wdt_cfg.h         # Watchdog configuration
+├── rtconfig.h                  # RT-Thread configuration file
+└── Kconfig                     # Project configuration file
+</pre></div>
+</div>
+</section>
+<section id="hardware-introduction-ra8p1-wdt-features">
+<h2>1. Hardware Introduction - RA8P1 WDT Features<a class="headerlink" href="#hardware-introduction-ra8p1-wdt-features" title="Link to this heading"></a></h2>
+<section id="watchdog-overview">
+<h3>1.1 Watchdog Overview<a class="headerlink" href="#watchdog-overview" title="Link to this heading"></a></h3>
+<p>The watchdog timer is a special timer used to monitor system running status. Under normal circumstances, the application needs to periodically “feed the dog” (reset the timer). If the application falls into a deadlock, runs away, or encounters other abnormal states and cannot feed the dog on time, the watchdog will trigger a system reset to ensure the system returns to normal.</p>
+</section>
+<section id="ra8p1-wdt-main-features">
+<h3>1.2 RA8P1 WDT Main Features<a class="headerlink" href="#ra8p1-wdt-main-features" title="Link to this heading"></a></h3>
+<p>The RA8P1 MCU has a built-in feature-rich watchdog timer with the following characteristics:</p>
+<section id="basic-features">
+<h4>1.2.1 Basic Features<a class="headerlink" href="#basic-features" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Independent Operation</strong>: The watchdog operates independently of the main CPU and can continue counting even when the CPU is stopped</p></li>
+<li><p><strong>Multiple Timeout Periods</strong>: Supports timeout settings of 128, 512, 1024, 2048, 4096, 8192, 16384 clock cycles</p></li>
+<li><p><strong>Configurable Clock Division</strong>: Supports 1, 4, 16, 32, 64, 128, 256, 512, 2048, 8192 division</p></li>
+<li><p><strong>Window Watchdog Function</strong>: Supports window watchdog mode, allowing dog feeding only within a specific time window</p></li>
+</ul>
+</section>
+<section id="reset-modes">
+<h4>1.2.2 Reset Modes<a class="headerlink" href="#reset-modes" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Reset Mode</strong>: Triggers system reset after timeout</p></li>
+<li><p><strong>NMI Mode</strong>: Triggers Non-Maskable Interrupt (NMI) after timeout for error handling and diagnostics</p></li>
+</ul>
+</section>
+<section id="operating-modes">
+<h4>1.2.3 Operating Modes<a class="headerlink" href="#operating-modes" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Auto-start Mode</strong>: Automatically starts watchdog after reset</p></li>
+<li><p><strong>Register-start Mode</strong>: Starts through software control</p></li>
+</ul>
+</section>
+<section id="sleep-mode-support">
+<h4>1.2.4 Sleep Mode Support<a class="headerlink" href="#sleep-mode-support" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Stop Control</strong>: Configurable whether to stop counting in sleep mode</p></li>
+<li><p><strong>Low Power Optimization</strong>: Supports low power application scenarios</p></li>
+</ul>
+</section>
+</section>
+<section id="hardware-parameter-configuration">
+<h3>1.3 Hardware Parameter Configuration<a class="headerlink" href="#hardware-parameter-configuration" title="Link to this heading"></a></h3>
+<p>According to the configuration in <code class="docutils literal notranslate"><span class="pre">hal_entry.c</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define WDT_DEVICE_NAME &quot;wdt&quot;    </span><span class="c1">// Default watchdog device name</span>
+<span class="cp">#define WDT_FEED_INTERVAL 1000   </span><span class="c1">// Dog feeding interval (unit: ms)</span>
+<span class="cp">#define WDT_TIMEOUT 3            </span><span class="c1">// Watchdog timeout (unit: s)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="software-architecture-rt-thread-watchdog-device-framework">
+<h2>2. Software Architecture - RT-Thread Watchdog Device Framework<a class="headerlink" href="#software-architecture-rt-thread-watchdog-device-framework" title="Link to this heading"></a></h2>
+<section id="rt-thread-watchdog-driver-architecture">
+<h3>2.1 RT-Thread Watchdog Driver Architecture<a class="headerlink" href="#rt-thread-watchdog-driver-architecture" title="Link to this heading"></a></h3>
+<p>RT-Thread provides a standardized watchdog device driver framework that operates watchdog modules of different hardware through a unified API interface.</p>
+<section id="driver-layer-structure">
+<h4>2.1.1 Driver Layer Structure<a class="headerlink" href="#driver-layer-structure" title="Link to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Application Layer
+    ↓
+RT-Thread Device Driver Layer
+    ↓
+Hardware Abstraction Layer (HAL)
+    ↓
+Chip Register Operation Layer
+</pre></div>
+</div>
+</section>
+<section id="main-components">
+<h4>2.1.2 Main Components<a class="headerlink" href="#main-components" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Device Management</strong>: <code class="docutils literal notranslate"><span class="pre">rt_device</span></code> structure manages device instances</p></li>
+<li><p><strong>Control Interface</strong>: Provides control functions such as start, stop, feed dog</p></li>
+<li><p><strong>Status Query</strong>: Get watchdog running status and count value</p></li>
+<li><p><strong>Callback Mechanism</strong>: Supports watchdog event callback</p></li>
+</ul>
+</section>
+</section>
+<section id="fsp-integration">
+<h3>2.2 FSP Integration<a class="headerlink" href="#fsp-integration" title="Link to this heading"></a></h3>
+<p>This project uses the underlying driver provided by Renesas Flexible Software Package (FSP):</p>
+<section id="fsp-watchdog-api">
+<h4>2.2.1 FSP Watchdog API<a class="headerlink" href="#fsp-watchdog-api" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">st_wdt_api</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">fsp_err_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">open</span><span class="p">)(</span><span class="n">wdt_ctrl_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_ctrl</span><span class="p">,</span><span class="w"> </span><span class="n">wdt_cfg_t</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_cfg</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fsp_err_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">refresh</span><span class="p">)(</span><span class="n">wdt_ctrl_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_ctrl</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fsp_err_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">statusGet</span><span class="p">)(</span><span class="n">wdt_ctrl_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_ctrl</span><span class="p">,</span><span class="w"> </span><span class="n">wdt_status_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_status</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fsp_err_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">statusClear</span><span class="p">)(</span><span class="n">wdt_ctrl_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_ctrl</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">wdt_status_t</span><span class="w"> </span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fsp_err_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">counterGet</span><span class="p">)(</span><span class="n">wdt_ctrl_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_ctrl</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_count</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fsp_err_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">timeoutGet</span><span class="p">)(</span><span class="n">wdt_ctrl_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_ctrl</span><span class="p">,</span><span class="w"> </span><span class="n">wdt_timeout_values_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_timeout</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fsp_err_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">callbackSet</span><span class="p">)(</span><span class="n">wdt_ctrl_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_ctrl</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">p_callback</span><span class="p">)(</span><span class="n">wdt_callback_args_t</span><span class="w"> </span><span class="o">*</span><span class="p">),</span>
+<span class="w">                              </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_context</span><span class="p">,</span><span class="w"> </span><span class="n">wdt_callback_args_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p_callback_memory</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="n">wdt_api_t</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-parameters">
+<h4>2.2.2 Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">st_wdt_cfg</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">wdt_timeout_t</span><span class="w">        </span><span class="n">timeout</span><span class="p">;</span><span class="w">                      </span><span class="c1">// Timeout period</span>
+<span class="w">    </span><span class="n">wdt_clock_division_t</span><span class="w"> </span><span class="n">clock_division</span><span class="p">;</span><span class="w">               </span><span class="c1">// Clock division</span>
+<span class="w">    </span><span class="n">wdt_window_start_t</span><span class="w">   </span><span class="n">window_start</span><span class="p">;</span><span class="w">                 </span><span class="c1">// Window start position</span>
+<span class="w">    </span><span class="n">wdt_window_end_t</span><span class="w">     </span><span class="n">window_end</span><span class="p">;</span><span class="w">                   </span><span class="c1">// Window end position</span>
+<span class="w">    </span><span class="n">wdt_reset_control_t</span><span class="w">  </span><span class="n">reset_control</span><span class="p">;</span><span class="w">                </span><span class="c1">// Reset control mode</span>
+<span class="w">    </span><span class="n">wdt_stop_control_t</span><span class="w">   </span><span class="n">stop_control</span><span class="p">;</span><span class="w">                 </span><span class="c1">// Stop control mode</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">p_callback</span><span class="p">)(</span><span class="n">wdt_callback_args_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p_args</span><span class="p">);</span><span class="w"> </span><span class="c1">// Callback function</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p_context</span><span class="p">;</span><span class="w">                                 </span><span class="c1">// User context</span>
+<span class="p">}</span><span class="w"> </span><span class="n">wdt_cfg_t</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="rt-thread-device-configuration">
+<h3>2.3 RT-Thread Device Configuration<a class="headerlink" href="#rt-thread-device-configuration" title="Link to this heading"></a></h3>
+<p>Enable watchdog support in <code class="docutils literal notranslate"><span class="pre">rtconfig.h</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define RT_USING_WDT           </span><span class="c1">// Enable watchdog device support</span>
+<span class="cp">#define RT_USING_PIN          </span><span class="c1">// Enable pin control support (for LED demonstration)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="usage-example-watchdog-initialization-and-feeding-based-on-actual-code">
+<h2>3. Usage Example - Watchdog Initialization and Feeding Based on Actual Code<a class="headerlink" href="#usage-example-watchdog-initialization-and-feeding-based-on-actual-code" title="Link to this heading"></a></h2>
+<section id="main-function-analysis">
+<h3>3.1 Main Function Analysis<a class="headerlink" href="#main-function-analysis" title="Link to this heading"></a></h3>
+<section id="main-function-hal-entry">
+<h4>3.1.1 Main Function (<code class="docutils literal notranslate"><span class="pre">hal_entry</span></code>)<a class="headerlink" href="#main-function-hal-entry" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">hal_entry</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Hello RT-Thread!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;==================================================</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;This example project is an driver wdt routine!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;==================================================</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">LOG_I</span><span class="p">(</span><span class="s">&quot;Tips:&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">LOG_I</span><span class="p">(</span><span class="s">&quot;You can run wdt testcase by executing the instruction: </span><span class="se">\&#39;</span><span class="s">wdt_sample</span><span class="se">\&#39;</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_pin_write</span><span class="p">(</span><span class="n">LED_PIN_0</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_pin_write</span><span class="p">(</span><span class="n">LED_PIN_0</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Function Description:</p>
+<ul class="simple">
+<li><p>Print welcome message and usage tips</p></li>
+<li><p>LED blinking demonstration (indicating normal system operation)</p></li>
+<li><p>Wait for user to execute <code class="docutils literal notranslate"><span class="pre">wdt_sample</span></code> command to start watchdog test</p></li>
+</ul>
+</section>
+<section id="dog-feeding-thread-feed-dog-entry">
+<h4>3.1.2 Dog Feeding Thread (<code class="docutils literal notranslate"><span class="pre">feed_dog_entry</span></code>)<a class="headerlink" href="#dog-feeding-thread-feed-dog-entry" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">feed_dog_entry</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">parameter</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rt_device_control</span><span class="p">(</span><span class="n">wdt_dev</span><span class="p">,</span><span class="w"> </span><span class="n">RT_DEVICE_CTRL_WDT_KEEPALIVE</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">);</span>
+<span class="w">            </span><span class="n">LOG_I</span><span class="p">(</span><span class="s">&quot;[FeedDog] Feeding watchdog... %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">LOG_E</span><span class="p">(</span><span class="s">&quot;[FeedDog] Simulate exception! Stop feeding.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="n">WDT_FEED_INTERVAL</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Function Description:</p>
+<ul class="simple">
+<li><p>Create an independent dog feeding thread</p></li>
+<li><p>Feed the dog normally for the first 10 times, then stop feeding to simulate system exception</p></li>
+<li><p>Implement dog feeding operation through RT-Thread device control interface</p></li>
+</ul>
+</section>
+</section>
+<section id="watchdog-test-function-wdt-sample">
+<h3>3.2 Watchdog Test Function (<code class="docutils literal notranslate"><span class="pre">wdt_sample</span></code>)<a class="headerlink" href="#watchdog-test-function-wdt-sample" title="Link to this heading"></a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">wdt_sample</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_err_t</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 1. Find watchdog device</span>
+<span class="w">    </span><span class="n">wdt_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_device_find</span><span class="p">(</span><span class="n">WDT_DEVICE_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wdt_dev</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">LOG_E</span><span class="p">(</span><span class="s">&quot;Cannot find %s device!&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">WDT_DEVICE_NAME</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 2. Start watchdog</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_device_control</span><span class="p">(</span><span class="n">wdt_dev</span><span class="p">,</span><span class="w"> </span><span class="n">RT_DEVICE_CTRL_WDT_START</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">LOG_E</span><span class="p">(</span><span class="s">&quot;Start watchdog failed!&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">LOG_I</span><span class="p">(</span><span class="s">&quot;Watchdog started...&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">WDT_TIMEOUT</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 3. Create and start dog feeding thread</span>
+<span class="w">    </span><span class="n">feed_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_thread_create</span><span class="p">(</span><span class="s">&quot;feed_dog&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">feed_dog_entry</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">feed_thread</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">        </span><span class="n">rt_thread_startup</span><span class="p">(</span><span class="n">feed_thread</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="detailed-step-analysis">
+<h4>3.2.1 Detailed Step Analysis<a class="headerlink" href="#detailed-step-analysis" title="Link to this heading"></a></h4>
+<p><strong>Step 1: Find Device</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">wdt_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_device_find</span><span class="p">(</span><span class="n">WDT_DEVICE_NAME</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">rt_device_find()</span></code> function to find the device named “wdt”</p></li>
+<li><p>Return device handle, subsequent operations use this handle</p></li>
+</ul>
+<p><strong>Step 2: Start Watchdog</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_device_control</span><span class="p">(</span><span class="n">wdt_dev</span><span class="p">,</span><span class="w"> </span><span class="n">RT_DEVICE_CTRL_WDT_START</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">rt_device_control()</span></code> function to send control command</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RT_DEVICE_CTRL_WDT_START</span></code> starts the watchdog</p></li>
+<li><p>Return operation status code</p></li>
+</ul>
+<p><strong>Step 3: Create Dog Feeding Thread</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">feed_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_thread_create</span><span class="p">(</span><span class="s">&quot;feed_dog&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">feed_dog_entry</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create a thread named “feed_dog”</p></li>
+<li><p>Entry function is <code class="docutils literal notranslate"><span class="pre">feed_dog_entry</span></code></p></li>
+<li><p>Stack size 1024 bytes</p></li>
+<li><p>Priority 10, time slice 10</p></li>
+</ul>
+</section>
+</section>
+<section id="rt-thread-watchdog-api">
+<h3>3.3 RT-Thread Watchdog API<a class="headerlink" href="#rt-thread-watchdog-api" title="Link to this heading"></a></h3>
+<section id="device-finding-and-control">
+<h4>3.3.1 Device Finding and Control<a class="headerlink" href="#device-finding-and-control" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Find device</span>
+<span class="n">rt_device_t</span><span class="w"> </span><span class="nf">rt_device_find</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">);</span>
+
+<span class="c1">// Device control</span>
+<span class="n">rt_err_t</span><span class="w"> </span><span class="nf">rt_device_control</span><span class="p">(</span><span class="n">rt_device_t</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cmd</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">arg</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Common Control Commands:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RT_DEVICE_CTRL_WDT_START</span></code>: Start watchdog</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RT_DEVICE_CTRL_WDT_STOP</span></code>: Stop watchdog</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RT_DEVICE_CTRL_WDT_KEEPALIVE</span></code>: Feed dog operation</p></li>
+</ul>
+</section>
+<section id="thread-operations">
+<h4>3.3.2 Thread Operations<a class="headerlink" href="#thread-operations" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create thread</span>
+<span class="n">rt_thread_t</span><span class="w"> </span><span class="nf">rt_thread_create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">,</span>
+<span class="w">                           </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">entry</span><span class="p">)(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">parameter</span><span class="p">),</span>
+<span class="w">                           </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">parameter</span><span class="p">,</span>
+<span class="w">                           </span><span class="kt">size_t</span><span class="w"> </span><span class="n">stack_size</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">rt_int32_t</span><span class="w"> </span><span class="n">priority</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">rt_uint32_t</span><span class="w"> </span><span class="n">tick</span><span class="p">);</span>
+
+<span class="c1">// Start thread</span>
+<span class="n">rt_err_t</span><span class="w"> </span><span class="nf">rt_thread_startup</span><span class="p">(</span><span class="n">rt_thread_t</span><span class="w"> </span><span class="kr">thread</span><span class="p">);</span>
+
+<span class="c1">// Delay</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">rt_thread_mdelay</span><span class="p">(</span><span class="n">rt_int32_t</span><span class="w"> </span><span class="n">ms</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="configuration-description-timeout-period-reset-mode">
+<h2>4. Configuration Description - Timeout Period, Reset Mode<a class="headerlink" href="#configuration-description-timeout-period-reset-mode" title="Link to this heading"></a></h2>
+<section id="timeout-period-configuration">
+<h3>4.1 Timeout Period Configuration<a class="headerlink" href="#timeout-period-configuration" title="Link to this heading"></a></h3>
+<section id="hardware-level-timeout-settings">
+<h4>4.1.1 Hardware Level Timeout Settings<a class="headerlink" href="#hardware-level-timeout-settings" title="Link to this heading"></a></h4>
+<p>RA8P1 WDT supports multiple timeout period configurations:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Timeout period enumeration</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">e_wdt_timeout</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">WDT_TIMEOUT_128</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">    </span><span class="c1">// 128 clock cycles</span>
+<span class="w">    </span><span class="n">WDT_TIMEOUT_512</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">    </span><span class="c1">// 512 clock cycles</span>
+<span class="w">    </span><span class="n">WDT_TIMEOUT_1024</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">    </span><span class="c1">// 1024 clock cycles</span>
+<span class="w">    </span><span class="n">WDT_TIMEOUT_2048</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">    </span><span class="c1">// 2048 clock cycles</span>
+<span class="w">    </span><span class="n">WDT_TIMEOUT_4096</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">    </span><span class="c1">// 4096 clock cycles</span>
+<span class="w">    </span><span class="n">WDT_TIMEOUT_8192</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">    </span><span class="c1">// 8192 clock cycles</span>
+<span class="w">    </span><span class="n">WDT_TIMEOUT_16384</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">    </span><span class="c1">// 16384 clock cycles</span>
+<span class="p">}</span><span class="w"> </span><span class="n">wdt_timeout_t</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="reset-mode-configuration">
+<h3>4.2 Reset Mode Configuration<a class="headerlink" href="#reset-mode-configuration" title="Link to this heading"></a></h3>
+<section id="reset-mode-selection">
+<h4>4.2.1 Reset Mode Selection<a class="headerlink" href="#reset-mode-selection" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Reset control enumeration</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">e_wdt_reset_control</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">WDT_RESET_CONTROL_NMI</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">  </span><span class="c1">// NMI/IRQ request mode</span>
+<span class="w">    </span><span class="n">WDT_RESET_CONTROL_RESET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="c1">// Reset mode</span>
+<span class="p">}</span><span class="w"> </span><span class="n">wdt_reset_control_t</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="mode-feature-comparison">
+<h4>4.2.2 Mode Feature Comparison<a class="headerlink" href="#mode-feature-comparison" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Mode</p></th>
+<th class="head"><p>Features</p></th>
+<th class="head"><p>Application Scenarios</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Reset Mode</strong></p></td>
+<td><p>Directly triggers system reset after timeout</p></td>
+<td><p>General applications requiring automatic recovery</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>NMI Mode</strong></p></td>
+<td><p>Triggers non-maskable interrupt after timeout</p></td>
+<td><p>Diagnostics and debugging, need to handle before reset</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="wdt-project-configuration">
+<h2>5. WDT Project Configuration<a class="headerlink" href="#wdt-project-configuration" title="Link to this heading"></a></h2>
+<p>First, you need to enable Watchdog Timer in RT-Thread Studio Settings</p>
+<p><img alt="image" src="../../_images/image24.png" /></p>
+<p>Then use Renesas Flexible Software Package (FSP) for hardware configuration, as shown below</p>
+<p><img alt="image" src="../../_images/image32.png" /></p>
+<p><img alt="image" src="../../_images/image42.png" /></p>
+</section>
+<section id="running-effect-example">
+<h2>5. Running Effect Example<a class="headerlink" href="#running-effect-example" title="Link to this heading"></a></h2>
+<section id="normal-running-process">
+<h3>5.1 Normal Running Process<a class="headerlink" href="#normal-running-process" title="Link to this heading"></a></h3>
+<p><img alt="image" src="../../_images/image16.png" /></p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading"></a></h2>
+<p>The RA8P1 Titan Mini board watchdog timer driver project provides a stable and reliable watchdog solution through careful design and implementation. This solution not only meets basic watchdog functional requirements but also has good scalability and practicality, suitable for various embedded application scenarios.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Titan_Mini_driver_spi/README.html" class="btn btn-neutral float-left" title="SPI Driver Example Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../component/index.html" class="btn btn-neutral float-right" title="Components" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Copyright (c) 2006-2025, RT-Thread Development Team.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>Titan-Board-Mini SDK</strong>
+        <span class="sdk-footer__sep">•</span> 版本：1.0.0
+      </div>
+      <div class="sdk-footer__right">
+        构建时间：<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>

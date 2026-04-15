@@ -1,0 +1,995 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADC Driver Example &mdash; Titan-Board-Mini SDK 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=694004e0" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/edit_button.css?v=d629c565" />
+      <link rel="stylesheet" type="text/css" href="../../_static/language_switch.css?v=427b9138" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dark_mode.css?v=72ec50b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a12e3537"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/version_menu.js?v=cc75255b"></script>
+      <script src="../../_static/download_pdf.js?v=d1800c12"></script>
+      <script src="../../_static/version_info.js"></script>
+      <script src="../../_static/edit_on_github.js?v=5e1f1957"></script>
+      <script src="../../_static/language_switch.js?v=53d89164"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CAN FD Driver Example Guide" href="../Titan_Mini_driver_canfd/README.html" />
+    <link rel="prev" title="Drivers" href="../index.html" />
+   
+  
+  
+    <script>window.SPHINX_EDIT_BASE_URL = "https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/";</script>
+    <meta name="edit-base-url" content="https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/">
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Titan-Board-Mini SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/Titan_Mini_template/README.html">Template Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#quick-start">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#secondary-development">Secondary Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html">Key Interrupt Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#ra8-series-mcu-interrupt-system-overview">RA8 Series MCU Interrupt System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#example-code-description">Example Code Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html">LED Blink Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#gpio-introduction">GPIO Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#ra8-series-gpio-features">2. RA8 Series GPIO Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#rt-thread-pin-framework">3. RT-Thread PIN Framework</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Drivers</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ADC Driver Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-features">Key Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-overview">1. Hardware Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ra8p1-microcontroller-overview">1.1 RA8P1 Microcontroller Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adc-hardware-features">1.2 ADC Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-connection-diagram">1.3 Hardware Connection Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#software-architecture">2. Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rt-thread-adc-driver-framework">2.1 RT-Thread ADC Driver Framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#project-software-architecture">2.2 Project Software Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#program-execution-flow">2.3 Program Execution Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-examples">3. Usage Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic-adc-sampling">3.1 Basic ADC Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-threading-implementation">3.2 Multi-threading Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#command-line-interface-usage">3.3 Command Line Interface Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-results">4. Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#terminal-output-example">4.1 Terminal Output Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#reference-resources">5. Reference Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#technical-documentation">5.1 Technical Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html">CAN FD Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#ra8p1-can-fd-hardware-features">RA8P1 CAN FD Hardware Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#software-architecture-rt-thread-can-device-framework">Software Architecture - RT-Thread CAN Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#rt-thread-driver-model">RT-Thread Driver Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#can-device-operation-interface">CAN Device Operation Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#interrupt-handling-mechanism">Interrupt Handling Mechanism</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#operation-example">Operation Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#hardware-connection">1. Hardware Connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#pcan-view-software-configuration">2. PCAN-View Software Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#terminal-command-operations">3. Terminal Command Operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_canfd/README.html#data-transceiver-testing">4. Data Transceiver Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html">Ethernet Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#ethernet-overview">Ethernet Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#general-introduction">1. General Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#ethernet-frame-structure">2. Ethernet Frame Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#ra8-series-ethernet-features">RA8 Series Ethernet Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#network-interface-features">1. Network Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#mac-features">2. MAC Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#dma-and-buffer-features">3. DMA and Buffer Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#interrupt-mechanism">4. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#phy-management">5. PHY Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#protocol-and-stack-support">6. Protocol and Stack Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#performance-and-reliability">7. Performance and Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#build-download">Build &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#running-effect">Running Effect</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#iperf-test">iperf Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html">GPT Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#core-features">Core Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#technology-stack">Technology Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#ra8p1-microcontroller-features">1. RA8P1 Microcontroller Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#gpt-hardware-module-details">2. GPT Hardware Module Details</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#rt-thread-device-framework">1. RT-Thread Device Framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#driver-architecture">2. Driver Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#configuration-instructions">Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_gpt/README.html#running-effect-example">Running Effect Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html">RTC Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#main-features">Main Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#hardware-introduction-ra8p1-rtc-features">Hardware Introduction - RA8P1 RTC Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#ra8p1-rtc-main-features">2. RA8P1 RTC Main Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#ra8p1-rtc-technical-parameters">3. RA8P1 RTC Technical Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#software-architecture-rt-thread-rtc-device-framework">Software Architecture - RT-Thread RTC Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#rt-thread-device-architecture">1. RT-Thread Device Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#rtc-device-type">2. RTC Device Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#device-management-interface">3. Device Management Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#rt-thread-rtc-api">4. RT-Thread RTC API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#usage-example">Usage Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#time-setting-and-reading">1. Time Setting and Reading</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#alarm-configuration">2. Alarm Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#configuration-instructions">Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#running-effect-example">Running Effect Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_rtc/README.html#console-output">1. Console Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html">SD Card File System Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sd-card-introduction">SD Card Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sd-card-types">2. SD Card Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sd-card-interfaces">3. SD Card Interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#working-principle">4. Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sd-card-performance-specifications">5. SD Card Performance Specifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sd-card-application-scenarios">6. SD Card Application Scenarios</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#ra8-series-sdhi-module-overview">RA8 Series SDHI Module Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#general-features">1. General Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sdhi-module-architecture">2. SDHI Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#sdhi-working-principle">3. SDHI Working Principle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#example-project-description">Example Project Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdcard/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html">SDRAM Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#ra8p1-external-memory-interface-features">2.1 RA8P1 External Memory Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#supported-sdram-types">2.2 Supported SDRAM Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#hardware-connection">2.3 Hardware Connection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#sdram-driver-initialization-flow">3.1 SDRAM Driver Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#memory-management-mechanism">3.2 Memory Management Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#bsp-layer-abstraction">3.3 BSP Layer Abstraction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#basic-read-write-operations">4.1 Basic Read/Write Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_sdram/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html">SPI Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#project-introduction">Project Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#key-features">Key Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#hardware-introduction-ra8p1-spi-features">1. Hardware Introduction - RA8P1 SPI Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#ra8p1-microcontroller-overview">1.1 RA8P1 Microcontroller Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#spi-hardware-features">1.2 SPI Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#spi-pin-mapping">1.3 SPI Pin Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#software-architecture-rt-thread-spi-device-framework">2. Software Architecture - RT-Thread SPI Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#rt-thread-spi-architecture-overview">2.1 RT-Thread SPI Architecture Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#main-data-structures">2.2 Main Data Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#spi-operation-modes">2.3 SPI Operation Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#core-api-interfaces">2.4 Core API Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_spi/README.html#running-effect-example">3. Running Effect Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html">WDT Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#hardware-introduction-ra8p1-wdt-features">1. Hardware Introduction - RA8P1 WDT Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#watchdog-overview">1.1 Watchdog Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#ra8p1-wdt-main-features">1.2 RA8P1 WDT Main Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#hardware-parameter-configuration">1.3 Hardware Parameter Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#software-architecture-rt-thread-watchdog-device-framework">2. Software Architecture - RT-Thread Watchdog Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#rt-thread-watchdog-driver-architecture">2.1 RT-Thread Watchdog Driver Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#fsp-integration">2.2 FSP Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#rt-thread-device-configuration">2.3 RT-Thread Device Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#usage-example-watchdog-initialization-and-feeding-based-on-actual-code">3. Usage Example - Watchdog Initialization and Feeding Based on Actual Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#main-function-analysis">3.1 Main Function Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#watchdog-test-function-wdt-sample">3.2 Watchdog Test Function (<code class="docutils literal notranslate"><span class="pre">wdt_sample</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#rt-thread-watchdog-api">3.3 RT-Thread Watchdog API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#configuration-description-timeout-period-reset-mode">4. Configuration Description - Timeout Period, Reset Mode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#timeout-period-configuration">4.1 Timeout Period Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#reset-mode-configuration">4.2 Reset Mode Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#wdt-project-configuration">5. WDT Project Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#running-effect-example">5. Running Effect Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#normal-running-process">5.1 Normal Running Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_wdt/README.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../component/index.html">Components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html">QSPI Flash File System Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#w25q64-qspi-flash">1. W25Q64 QSPI Flash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#qspi-interface-features">2. QSPI Interface Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#flash-partition-plan">Flash Partition Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#file-operation-examples">2. File Operation Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#running-results">Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#terminal-output">1. Terminal Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#file-system-testing">2. File System Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#flash-usage-limitations">1. Flash Usage Limitations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#file-system-recommendations">2. File System Recommendations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#performance-optimization">3. Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#extended-applications">Extended Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/Titan_Mini_component_flash_fs/README.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../multimedia/index.html">Multimedia Display</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html">LVGL Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#instruction">Instruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#lvgl-instruction">LVGL Instruction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#application-scenarios">Application Scenarios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#ecosystem-and-community">Ecosystem and Community</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#i2c0-configuration">I2C0 Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#touch-interrupt-configuration">Touch Interrupt Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html">MIPI CSI Camera Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#ra8-series-mipi-csi-features">RA8 Series MIPI CSI Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-interface-features">1. Hardware Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#image-formats-and-processing-capabilities">2. Image Formats and Processing Capabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#dma-support-and-buffering">3. DMA Support and Buffering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#interrupt-mechanism">4. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#timing-and-synchronization-features">5. Timing and Synchronization Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#performance-optimization">6. Performance Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#application-scenarios">7. Application Scenarios</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#ra8-series-mcu-glcdc-graphics-lcd-controller-features">RA8 Series MCU GLCDC (Graphics LCD Controller) Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-features">1. Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#layers-and-display-modes">2. Layers and Display Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#dma-and-frame-buffer">3. DMA and Frame Buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-graphics-functions">4. Hardware Graphics Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#id1">5. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#id2">6. Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../peripheral/index.html">Peripherals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html">IMU Sensor Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#hardware-overview">Hardware Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#lsm6ds3tr-c-imu-sensor">1. LSM6DS3TR-C IMU Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#accelerometer-features">2. Accelerometer Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#gyroscope-features">3. Gyroscope Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#main-features">4. Main Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#usage-guide">Usage Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#i2c-platform-interface-implementation">2. I2C Platform Interface Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#data-format-conversion">3. Data Format Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#configuration-guide">Configuration Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#kconfig-configuration">1. Kconfig Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#running-results">Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#terminal-output">1. Terminal Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html">RGB LCD Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#ra8-series-glcdc-module">RA8 Series GLCDC Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#module-architecture">2. Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#glcdc-working-principle">3. GLCDC Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#glcdc-supported-features">4. GLCDC Supported Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rt-thread-lcd-driver-framework">RT-Thread LCD Driver Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#main-interfaces">Main Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#fsp-configuration">FSP Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#hyperram-configuration">HyperRAM Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rgb-lcd-configuration">RGB LCD Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#lcd-backlight-configuration">LCD Backlight Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#d-ave-2d-configuration">D/AVE 2D Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html">USB PCDC Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#usb-pcdc-instructions">USB PCDC Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#pcdc-protocol-features">2. PCDC Protocol Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#typical-application-architecture">3. Typical Application Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#advantages">4. Advantages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#ra8-series-usb-pcdc-module-r-usb-pcdc-overview">RA8 Series USB PCDC Module (r_usb_pcdc) Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#module-functionality">1. Module Functionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#supported-features">2. Supported Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#module-architecture">3. Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#workflow">4. Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#fsp-configuration-configuration">FSP Configuration Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#running-effect">Running Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html">WAV Audio Player Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#es8156-audio-codec">1. ES8156 Audio Codec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#es8156-key-features">2. ES8156 Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#ssi-synchronous-serial-interface">3. SSI (Synchronous Serial Interface)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#playing-wav-files">2. Playing WAV Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#wav-file-format-requirements">3. WAV File Format Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#kconfig-configuration">1. Kconfig Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#hardware-connections">3. Hardware Connections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Titan-Board-Mini SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Drivers</a></li>
+      <li class="breadcrumb-item active">ADC Driver Example</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="adc-driver-example">
+<h1>ADC Driver Example<a class="headerlink" href="#adc-driver-example" title="Link to this heading"></a></h1>
+<p><a class="reference internal" href="README.html"><span class="std std-doc"><strong>Chinese</strong></span></a> | <strong>English</strong></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This example demonstrates how to implement analog-to-digital conversion functionality for the RA8P1 microcontroller on <strong>Titan Board Mini</strong> using the <strong>RT-Thread ADC device driver framework</strong>. The project provides a comprehensive solution including ADC initialization, sampling, voltage conversion, and thread management.</p>
+<section id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>RA8P1 ADC Hardware Abstraction Layer</strong> - Complete 16-bit ADC driver support</p></li>
+<li><p><strong>RT-Thread Device Framework Integration</strong> - Standardized device management and control interfaces</p></li>
+<li><p><strong>Multi-threaded Concurrent Processing</strong> - Background thread for continuous sampling and data display</p></li>
+<li><p><strong>Real-time Voltage Conversion</strong> - Precise conversion from analog signals to digital signals</p></li>
+<li><p><strong>Low-power Design</strong> - Supports dynamic enable/disable of ADC channels</p></li>
+<li><p><strong>Command Line Interface</strong> - Quick sampling startup via <code class="docutils literal notranslate"><span class="pre">adc_sample</span></code> command</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hardware-overview">
+<h2>1. Hardware Overview<a class="headerlink" href="#hardware-overview" title="Link to this heading"></a></h2>
+<section id="ra8p1-microcontroller-overview">
+<h3>1.1 RA8P1 Microcontroller Overview<a class="headerlink" href="#ra8p1-microcontroller-overview" title="Link to this heading"></a></h3>
+<p><strong>RA8P1</strong> is a high-performance ARM Cortex-M85 microcontroller from Renesas, designed for edge AI and real-time applications:</p>
+<ul class="simple">
+<li><p><strong>Core Architecture</strong>: ARM Cortex-M85 &#64; 1GHz (supports Helium MVE vector extension)</p></li>
+<li><p><strong>Coprocessor</strong>: ARM Cortex-M33 &#64; 250MHz (real-time control core)</p></li>
+<li><p><strong>Memory Configuration</strong>: 2MB SRAM (with ECC), supports TCM (Tightly Coupled Memory)</p></li>
+<li><p><strong>AI Acceleration</strong>: Built-in Ethos-U55 NPU, supports neural network inference</p></li>
+</ul>
+</section>
+<section id="adc-hardware-features">
+<h3>1.2 ADC Hardware Features<a class="headerlink" href="#adc-hardware-features" title="Link to this heading"></a></h3>
+<p>RA8P1 integrates an advanced analog-to-digital conversion subsystem:</p>
+<section id="adc-core-parameters">
+<h4>1.2.1 ADC Core Parameters<a class="headerlink" href="#adc-core-parameters" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Resolution</strong></p></td>
+<td><p>16-bit</p></td>
+<td><p>High-precision conversion, maximum 65536 quantization levels</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Sampling Rate</strong></p></td>
+<td><p>Up to 23 channels</p></td>
+<td><p>Multi-channel synchronous sampling support</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Reference Voltage</strong></p></td>
+<td><p>3.3V (330mV)</p></td>
+<td><p>Built-in high-precision voltage reference</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Data Interface</strong></p></td>
+<td><p>16-bit parallel</p></td>
+<td><p>High-speed data transfer interface</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>DMA Support</strong></p></td>
+<td><p>8-channel DMA</p></td>
+<td><p>CPU-independent data acquisition</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="adc-electrical-characteristics">
+<h4>1.2.2 ADC Electrical Characteristics<a class="headerlink" href="#adc-electrical-characteristics" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Reference voltage configuration</span>
+<span class="cp">#define REFER_VOLTAGE       330     </span><span class="c1">// 3.30V × 100 (precision preserved to 2 decimal places)</span>
+<span class="cp">#define CONVERT_BITS        (1 &lt;&lt; 16) </span><span class="c1">// 16-bit resolution = 65536</span>
+
+<span class="c1">// Voltage calculation formula</span>
+<span class="c1">// Actual voltage(mV) = ADC reading × Reference voltage(mV) / Conversion bits</span>
+<span class="c1">// Voltage(V) = (ADC reading × 3.3V) / 65536</span>
+</pre></div>
+</div>
+</section>
+<section id="adc-channel-configuration">
+<h4>1.2.3 ADC Channel Configuration<a class="headerlink" href="#adc-channel-configuration" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Channel Count</strong>: 23 analog input channels</p></li>
+<li><p><strong>Channel Selection</strong>: Dynamically configurable via software</p></li>
+<li><p><strong>Input Range</strong>: 0V ~ 3.3V unipolar input</p></li>
+<li><p><strong>Sample &amp; Hold</strong>: Built-in sample-and-hold circuit</p></li>
+<li><p><strong>Trigger Modes</strong>: Software trigger, timer trigger, external event trigger</p></li>
+</ul>
+</section>
+</section>
+<section id="hardware-connection-diagram">
+<h3>1.3 Hardware Connection Diagram<a class="headerlink" href="#hardware-connection-diagram" title="Link to this heading"></a></h3>
+<p><img alt="image3" src="../../_images/image4.png" /></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="software-architecture">
+<h2>2. Software Architecture<a class="headerlink" href="#software-architecture" title="Link to this heading"></a></h2>
+<section id="rt-thread-adc-driver-framework">
+<h3>2.1 RT-Thread ADC Driver Framework<a class="headerlink" href="#rt-thread-adc-driver-framework" title="Link to this heading"></a></h3>
+<p>RT-Thread provides a unified ADC device driver framework supporting multiple microcontroller platforms:</p>
+<section id="device-management-interfaces">
+<h4>2.1.1 Device Management Interfaces<a class="headerlink" href="#device-management-interfaces" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// ADC device management core interfaces</span>
+<span class="n">rt_err_t</span><span class="w"> </span><span class="nf">rt_adc_enable</span><span class="p">(</span><span class="n">rt_adc_device_t</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">rt_uint32_t</span><span class="w"> </span><span class="n">channel</span><span class="p">);</span><span class="w">    </span><span class="c1">// Enable ADC channel</span>
+<span class="n">rt_err_t</span><span class="w"> </span><span class="nf">rt_adc_disable</span><span class="p">(</span><span class="n">rt_adc_device_t</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">rt_uint32_t</span><span class="w"> </span><span class="n">channel</span><span class="p">);</span><span class="w">   </span><span class="c1">// Disable ADC channel</span>
+<span class="n">rt_uint32_t</span><span class="w"> </span><span class="nf">rt_adc_read</span><span class="p">(</span><span class="n">rt_adc_device_t</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">rt_uint32_t</span><span class="w"> </span><span class="n">channel</span><span class="p">);</span><span class="w">   </span><span class="c1">// Read ADC value</span>
+</pre></div>
+</div>
+</section>
+<section id="device-lifecycle">
+<h4>2.1.2 Device Lifecycle<a class="headerlink" href="#device-lifecycle" title="Link to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Device init → Device find → Device enable → Data sampling → Device disable → Resource release
+     ↓           ↓          ↓              ↓              ↓              ↓
+   rt_device_init  rt_device_find  rt_adc_enable  rt_adc_read  rt_adc_disable  rt_device_close
+</pre></div>
+</div>
+</section>
+</section>
+<section id="project-software-architecture">
+<h3>2.2 Project Software Architecture<a class="headerlink" href="#project-software-architecture" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Titan_Mini_driver_adc/
+├── src/
+│   └── hal_entry.c          # Main entry file, contains ADC sampling logic
+├── Kconfig                   # RT-Thread configuration
+├── SConstruct                # Build script
+├── libraries/               # HAL library files
+│   └── HAL_Drivers/         # Hardware abstraction layer drivers
+└── rt-thread/               # RT-Thread kernel
+    └── components/
+        └── drivers/          # Device driver framework
+</pre></div>
+</div>
+<section id="module-division">
+<h4>2.2.1 Module Division<a class="headerlink" href="#module-division" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Module</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>File Location</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Application Layer</strong></p></td>
+<td><p>User interface and business logic</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">src/hal_entry.c</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Device Layer</strong></p></td>
+<td><p>ADC device management</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rt-thread/components/drivers/</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Hardware Layer</strong></p></td>
+<td><p>Low-level hardware drivers</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">libraries/HAL_Drivers/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Configuration Layer</strong></p></td>
+<td><p>System configuration</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Kconfig</span></code>, <code class="docutils literal notranslate"><span class="pre">rtconfig.h</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="program-execution-flow">
+<h3>2.3 Program Execution Flow<a class="headerlink" href="#program-execution-flow" title="Link to this heading"></a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Main program execution flow</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">hal_entry</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. Initialize system</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;Hello RT-Thread!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 2. Configure LED indicator</span>
+<span class="w">    </span><span class="n">rt_pin_mode</span><span class="p">(</span><span class="n">LED_PIN_R</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_MODE_OUTPUT</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 3. Enter main loop (LED blinking)</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_pin_write</span><span class="p">(</span><span class="n">LED_PIN_R</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_pin_write</span><span class="p">(</span><span class="n">LED_PIN_R</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ADC sampling thread startup</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">adc_sample</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Create independent thread for ADC sampling</span>
+<span class="w">    </span><span class="n">rt_thread_t</span><span class="w"> </span><span class="n">adc_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_thread_create</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;adc&quot;</span><span class="p">,</span><span class="w">           </span><span class="c1">// Thread name</span>
+<span class="w">        </span><span class="n">adc_vol_sample</span><span class="p">,</span><span class="w">  </span><span class="c1">// Thread entry function</span>
+<span class="w">        </span><span class="n">RT_NULL</span><span class="p">,</span><span class="w">         </span><span class="c1">// Thread parameter</span>
+<span class="w">        </span><span class="mi">1024</span><span class="p">,</span><span class="w">            </span><span class="c1">// Thread stack size</span>
+<span class="w">        </span><span class="mi">10</span><span class="p">,</span><span class="w">              </span><span class="c1">// Priority</span>
+<span class="w">        </span><span class="mi">10</span><span class="w">               </span><span class="c1">// Time slice</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_thread_startup</span><span class="p">(</span><span class="n">adc_thread</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="usage-examples">
+<h2>3. Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<section id="basic-adc-sampling">
+<h3>3.1 Basic ADC Sampling<a class="headerlink" href="#basic-adc-sampling" title="Link to this heading"></a></h3>
+<section id="device-initialization-and-finding">
+<h4>3.1.1 Device Initialization and Finding<a class="headerlink" href="#device-initialization-and-finding" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// ADC device configuration constants</span>
+<span class="cp">#define ADC_DEV_NAME        &quot;adc0&quot;      </span><span class="c1">// ADC device name</span>
+<span class="cp">#define ADC_DEV_CHANNEL     0           </span><span class="c1">// ADC channel number</span>
+<span class="cp">#define REFER_VOLTAGE       330         </span><span class="c1">// Reference voltage (3.3V × 100)</span>
+<span class="cp">#define CONVERT_BITS        (1 &lt;&lt; 16)    </span><span class="c1">// 16-bit resolution</span>
+
+<span class="c1">// ADC device initialization function</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">adc_vol_sample</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_adc_device_t</span><span class="w"> </span><span class="n">adc_dev</span><span class="p">;</span><span class="w">           </span><span class="c1">// ADC device handle</span>
+<span class="w">    </span><span class="n">rt_uint32_t</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">vol</span><span class="p">;</span><span class="w">            </span><span class="c1">// ADC value and voltage value</span>
+<span class="w">    </span><span class="n">rt_err_t</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">;</span><span class="w">             </span><span class="c1">// Return status code</span>
+
+<span class="w">    </span><span class="c1">// 1. Find ADC device</span>
+<span class="w">    </span><span class="n">adc_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rt_adc_device_t</span><span class="p">)</span><span class="n">rt_device_find</span><span class="p">(</span><span class="n">ADC_DEV_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">adc_dev</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;adc sample run failed! can&#39;t find %s device!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_DEV_NAME</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">RT_ERROR</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 2. Enable ADC channel</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_adc_enable</span><span class="p">(</span><span class="n">adc_dev</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_DEV_CHANNEL</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;adc enable failed! ret = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 3. Enter sampling loop</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 4. Read ADC raw value</span>
+<span class="w">        </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_adc_read</span><span class="p">(</span><span class="n">adc_dev</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_DEV_CHANNEL</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;the value is :%d </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 5. Convert to voltage value (unit: mV)</span>
+<span class="w">        </span><span class="n">vol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">REFER_VOLTAGE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CONVERT_BITS</span><span class="p">;</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;the voltage is :%d.%02d </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">vol</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">vol</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 6. Delay 1 second</span>
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 7. Disable ADC channel (theoretically will not reach here)</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_adc_disable</span><span class="p">(</span><span class="n">adc_dev</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_DEV_CHANNEL</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="voltage-calculation-details">
+<h4>3.1.2 Voltage Calculation Details<a class="headerlink" href="#voltage-calculation-details" title="Link to this heading"></a></h4>
+<p>Voltage conversion uses fixed-point arithmetic to ensure precision:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Raw ADC value range: 0 ~ 65535 (16-bit)</span>
+<span class="c1">// Reference voltage: 3.3V = 330mV</span>
+<span class="c1">// Conversion formula: Voltage(mV) = (ADC value × 330mV) / 65536</span>
+
+<span class="c1">// Example calculation:</span>
+<span class="c1">// When ADC reading is 32768 (half of full scale)</span>
+<span class="n">vol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32768</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">330</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">65536</span><span class="p">;</span>
+<span class="c1">// vol = 16500 mV = 1.65V</span>
+
+<span class="c1">// Display formatted output:</span>
+<span class="c1">// vol / 100 = 165   (integer part, volts)</span>
+<span class="c1">// vol % 100 = 0     (decimal part, hundredths of volts)</span>
+<span class="c1">// Output: &quot;the voltage is :165.00&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="multi-threading-implementation">
+<h3>3.2 Multi-threading Implementation<a class="headerlink" href="#multi-threading-implementation" title="Link to this heading"></a></h3>
+<section id="thread-creation-and-startup">
+<h4>3.2.1 Thread Creation and Startup<a class="headerlink" href="#thread-creation-and-startup" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create ADC sampling thread</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">adc_sample</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_thread_t</span><span class="w"> </span><span class="n">adc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_thread_create</span><span class="p">(</span><span class="s">&quot;adc&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">adc_vol_sample</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Start thread</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">adc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_thread_startup</span><span class="p">(</span><span class="n">adc</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;ADC sampling thread started successfully!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;Failed to create ADC sampling thread!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Export as MSH command</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">adc_sample</span><span class="p">,</span><span class="w"> </span><span class="n">adc_sample</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="thread-synchronization-mechanisms">
+<h4>3.2.2 Thread Synchronization Mechanisms<a class="headerlink" href="#thread-synchronization-mechanisms" title="Link to this heading"></a></h4>
+<p>RT-Thread provides rich thread synchronization mechanisms:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Can add mutex to protect ADC device access</span>
+<span class="k">static</span><span class="w"> </span><span class="n">rt_mutex_t</span><span class="w"> </span><span class="n">adc_mutex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">;</span>
+
+<span class="c1">// Create mutex in ADC initialization</span>
+<span class="n">rt_mutex_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">adc_mutex</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;adc_mutex&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">RT_IPC_FLAG_FIFO</span><span class="p">);</span>
+
+<span class="c1">// Use mutex in ADC sampling</span>
+<span class="n">rt_mutex_take</span><span class="p">(</span><span class="n">adc_mutex</span><span class="p">,</span><span class="w"> </span><span class="n">RT_WAITING_FOREVER</span><span class="p">);</span>
+<span class="c1">// Perform ADC operations</span>
+<span class="n">rt_mutex_release</span><span class="p">(</span><span class="n">adc_mutex</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="command-line-interface-usage">
+<h3>3.3 Command Line Interface Usage<a class="headerlink" href="#command-line-interface-usage" title="Link to this heading"></a></h3>
+<section id="terminal-commands">
+<h4>3.3.1 Terminal Commands<a class="headerlink" href="#terminal-commands" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Probe if ADC device exists</span>
+msh<span class="w"> </span>&gt;adc<span class="w"> </span>probe<span class="w"> </span>adc0
+probe<span class="w"> </span>adc0<span class="w"> </span>success
+
+<span class="c1"># 2. Start ADC sampling (command provided by this program)</span>
+msh<span class="w"> </span>&gt;adc_sample
+ADC<span class="w"> </span>sampling<span class="w"> </span>thread<span class="w"> </span>started<span class="w"> </span>successfully!
+
+<span class="c1"># 3. Use RT-Thread built-in commands to manage ADC</span>
+msh<span class="w"> </span>&gt;adc<span class="w"> </span><span class="nb">enable</span><span class="w"> </span><span class="m">0</span>
+adc0<span class="w"> </span>channel<span class="w"> </span><span class="m">0</span><span class="w"> </span>enables<span class="w"> </span>success
+
+msh<span class="w"> </span>&gt;adc<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="m">0</span>
+adc0<span class="w"> </span>channel<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>value<span class="w"> </span>is<span class="w"> </span>0x1234
+
+msh<span class="w"> </span>&gt;adc<span class="w"> </span>disable<span class="w"> </span><span class="m">0</span>
+adc0<span class="w"> </span>channel<span class="w"> </span><span class="m">0</span><span class="w"> </span>disable<span class="w"> </span>success
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="running-results">
+<h2>4. Running Results<a class="headerlink" href="#running-results" title="Link to this heading"></a></h2>
+<section id="terminal-output-example">
+<h3>4.1 Terminal Output Example<a class="headerlink" href="#terminal-output-example" title="Link to this heading"></a></h3>
+<section id="startup-information">
+<h4>4.1.1 Startup Information<a class="headerlink" href="#startup-information" title="Link to this heading"></a></h4>
+<p>Connect a dupont wire between 3.3V and the ADC pin as shown below</p>
+<p><img alt="image1" src="../../_images/image2.png" /></p>
+<p>Then run the example adc_sample through the serial terminal</p>
+<p><img alt="image1" src="../../_images/image1.png" /></p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="reference-resources">
+<h2>5. Reference Resources<a class="headerlink" href="#reference-resources" title="Link to this heading"></a></h2>
+<section id="technical-documentation">
+<h3>5.1 Technical Documentation<a class="headerlink" href="#technical-documentation" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>RT-Thread Official Documentation</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/adc/adc">RT-Thread ADC Device</a></p></li>
+<li><p><a class="reference external" href="https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/driver">RT-Thread Device Driver Model</a></p></li>
+<li><p><a class="reference external" href="https://www.rt-thread.org/document/site/">RT-Thread Development Guide</a></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Drivers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Titan_Mini_driver_canfd/README.html" class="btn btn-neutral float-right" title="CAN FD Driver Example Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Copyright (c) 2006-2025, RT-Thread Development Team.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>Titan-Board-Mini SDK</strong>
+        <span class="sdk-footer__sep">•</span> 版本：1.0.0
+      </div>
+      <div class="sdk-footer__right">
+        构建时间：<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>

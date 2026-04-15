@@ -1,0 +1,983 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QSPI Flash File System Example Guide &mdash; Titan-Board-Mini SDK 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=694004e0" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/edit_button.css?v=d629c565" />
+      <link rel="stylesheet" type="text/css" href="../../_static/language_switch.css?v=427b9138" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dark_mode.css?v=72ec50b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a12e3537"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/version_menu.js?v=cc75255b"></script>
+      <script src="../../_static/download_pdf.js?v=d1800c12"></script>
+      <script src="../../_static/version_info.js"></script>
+      <script src="../../_static/edit_on_github.js?v=5e1f1957"></script>
+      <script src="../../_static/language_switch.js?v=53d89164"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Multimedia Display" href="../../multimedia/index.html" />
+    <link rel="prev" title="Components" href="../index.html" />
+   
+  
+  
+    <script>window.SPHINX_EDIT_BASE_URL = "https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/";</script>
+    <meta name="edit-base-url" content="https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/">
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Titan-Board-Mini SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/Titan_Mini_template/README.html">Template Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#quick-start">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#secondary-development">Secondary Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html">Key Interrupt Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#ra8-series-mcu-interrupt-system-overview">RA8 Series MCU Interrupt System Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#example-code-description">Example Code Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_key_irq/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html">LED Blink Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#gpio-introduction">GPIO Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#ra8-series-gpio-features">2. RA8 Series GPIO Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#rt-thread-pin-framework">3. RT-Thread PIN Framework</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../driver/index.html">Drivers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html">ADC Driver Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#key-features">Key Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#hardware-overview">1. Hardware Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#ra8p1-microcontroller-overview">1.1 RA8P1 Microcontroller Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#adc-hardware-features">1.2 ADC Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#hardware-connection-diagram">1.3 Hardware Connection Diagram</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#software-architecture">2. Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#rt-thread-adc-driver-framework">2.1 RT-Thread ADC Driver Framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#project-software-architecture">2.2 Project Software Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#program-execution-flow">2.3 Program Execution Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#usage-examples">3. Usage Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#basic-adc-sampling">3.1 Basic ADC Sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#multi-threading-implementation">3.2 Multi-threading Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#command-line-interface-usage">3.3 Command Line Interface Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#running-results">4. Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#terminal-output-example">4.1 Terminal Output Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#reference-resources">5. Reference Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_adc/README.html#technical-documentation">5.1 Technical Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html">CAN FD Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#ra8p1-can-fd-hardware-features">RA8P1 CAN FD Hardware Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#software-architecture-rt-thread-can-device-framework">Software Architecture - RT-Thread CAN Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#rt-thread-driver-model">RT-Thread Driver Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#can-device-operation-interface">CAN Device Operation Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#interrupt-handling-mechanism">Interrupt Handling Mechanism</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#operation-example">Operation Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#hardware-connection">1. Hardware Connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#pcan-view-software-configuration">2. PCAN-View Software Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#terminal-command-operations">3. Terminal Command Operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_canfd/README.html#data-transceiver-testing">4. Data Transceiver Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html">Ethernet Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#ethernet-overview">Ethernet Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#general-introduction">1. General Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#ethernet-frame-structure">2. Ethernet Frame Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#ra8-series-ethernet-features">RA8 Series Ethernet Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#network-interface-features">1. Network Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#mac-features">2. MAC Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#dma-and-buffer-features">3. DMA and Buffer Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#interrupt-mechanism">4. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#phy-management">5. PHY Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#protocol-and-stack-support">6. Protocol and Stack Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#performance-and-reliability">7. Performance and Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#build-download">Build &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#running-effect">Running Effect</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#iperf-test">iperf Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html">GPT Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#core-features">Core Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#technology-stack">Technology Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#ra8p1-microcontroller-features">1. RA8P1 Microcontroller Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#gpt-hardware-module-details">2. GPT Hardware Module Details</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#rt-thread-device-framework">1. RT-Thread Device Framework</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#driver-architecture">2. Driver Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#configuration-instructions">Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_gpt/README.html#running-effect-example">Running Effect Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html">RTC Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#main-features">Main Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#hardware-introduction-ra8p1-rtc-features">Hardware Introduction - RA8P1 RTC Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#ra8p1-rtc-main-features">2. RA8P1 RTC Main Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#ra8p1-rtc-technical-parameters">3. RA8P1 RTC Technical Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#software-architecture-rt-thread-rtc-device-framework">Software Architecture - RT-Thread RTC Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#rt-thread-device-architecture">1. RT-Thread Device Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#rtc-device-type">2. RTC Device Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#device-management-interface">3. Device Management Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#rt-thread-rtc-api">4. RT-Thread RTC API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#usage-example">Usage Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#time-setting-and-reading">1. Time Setting and Reading</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#alarm-configuration">2. Alarm Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#configuration-instructions">Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#running-effect-example">Running Effect Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_rtc/README.html#console-output">1. Console Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html">SD Card File System Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#sd-card-introduction">SD Card Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#sd-card-types">2. SD Card Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#sd-card-interfaces">3. SD Card Interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#working-principle">4. Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#sd-card-performance-specifications">5. SD Card Performance Specifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#sd-card-application-scenarios">6. SD Card Application Scenarios</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#ra8-series-sdhi-module-overview">RA8 Series SDHI Module Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#general-features">1. General Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#sdhi-module-architecture">2. SDHI Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#sdhi-working-principle">3. SDHI Working Principle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#example-project-description">Example Project Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdcard/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html">SDRAM Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#ra8p1-external-memory-interface-features">2.1 RA8P1 External Memory Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#supported-sdram-types">2.2 Supported SDRAM Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#hardware-connection">2.3 Hardware Connection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#sdram-driver-initialization-flow">3.1 SDRAM Driver Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#memory-management-mechanism">3.2 Memory Management Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#bsp-layer-abstraction">3.3 BSP Layer Abstraction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#basic-read-write-operations">4.1 Basic Read/Write Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_sdram/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html">SPI Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#project-introduction">Project Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#key-features">Key Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#hardware-introduction-ra8p1-spi-features">1. Hardware Introduction - RA8P1 SPI Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#ra8p1-microcontroller-overview">1.1 RA8P1 Microcontroller Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#spi-hardware-features">1.2 SPI Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#spi-pin-mapping">1.3 SPI Pin Mapping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#software-architecture-rt-thread-spi-device-framework">2. Software Architecture - RT-Thread SPI Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#rt-thread-spi-architecture-overview">2.1 RT-Thread SPI Architecture Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#main-data-structures">2.2 Main Data Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#spi-operation-modes">2.3 SPI Operation Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#core-api-interfaces">2.4 Core API Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_spi/README.html#running-effect-example">3. Running Effect Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html">WDT Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#hardware-introduction-ra8p1-wdt-features">1. Hardware Introduction - RA8P1 WDT Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#watchdog-overview">1.1 Watchdog Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#ra8p1-wdt-main-features">1.2 RA8P1 WDT Main Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#hardware-parameter-configuration">1.3 Hardware Parameter Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#software-architecture-rt-thread-watchdog-device-framework">2. Software Architecture - RT-Thread Watchdog Device Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#rt-thread-watchdog-driver-architecture">2.1 RT-Thread Watchdog Driver Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#fsp-integration">2.2 FSP Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#rt-thread-device-configuration">2.3 RT-Thread Device Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#usage-example-watchdog-initialization-and-feeding-based-on-actual-code">3. Usage Example - Watchdog Initialization and Feeding Based on Actual Code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#main-function-analysis">3.1 Main Function Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#watchdog-test-function-wdt-sample">3.2 Watchdog Test Function (<code class="docutils literal notranslate"><span class="pre">wdt_sample</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#rt-thread-watchdog-api">3.3 RT-Thread Watchdog API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#configuration-description-timeout-period-reset-mode">4. Configuration Description - Timeout Period, Reset Mode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#timeout-period-configuration">4.1 Timeout Period Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#reset-mode-configuration">4.2 Reset Mode Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#wdt-project-configuration">5. WDT Project Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#running-effect-example">5. Running Effect Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#normal-running-process">5.1 Normal Running Process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_wdt/README.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Components</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QSPI Flash File System Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#w25q64-qspi-flash">1. W25Q64 QSPI Flash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qspi-interface-features">2. QSPI Interface Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#flash-partition-plan">Flash Partition Plan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-operation-examples">2. File Operation Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-results">Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#terminal-output">1. Terminal Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-system-testing">2. File System Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#flash-usage-limitations">1. Flash Usage Limitations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#file-system-recommendations">2. File System Recommendations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-optimization">3. Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#extended-applications">Extended Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#related-resources">Related Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../multimedia/index.html">Multimedia Display</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html">LVGL Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#instruction">Instruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#lvgl-instruction">LVGL Instruction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#application-scenarios">Application Scenarios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#ecosystem-and-community">Ecosystem and Community</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#i2c0-configuration">I2C0 Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#touch-interrupt-configuration">Touch Interrupt Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html">MIPI CSI Camera Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#ra8-series-mipi-csi-features">RA8 Series MIPI CSI Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-interface-features">1. Hardware Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#image-formats-and-processing-capabilities">2. Image Formats and Processing Capabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#dma-support-and-buffering">3. DMA Support and Buffering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#interrupt-mechanism">4. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#timing-and-synchronization-features">5. Timing and Synchronization Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#performance-optimization">6. Performance Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#application-scenarios">7. Application Scenarios</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#ra8-series-mcu-glcdc-graphics-lcd-controller-features">RA8 Series MCU GLCDC (Graphics LCD Controller) Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-features">1. Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#layers-and-display-modes">2. Layers and Display Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#dma-and-frame-buffer">3. DMA and Frame Buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-graphics-functions">4. Hardware Graphics Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#id1">5. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#id2">6. Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../peripheral/index.html">Peripherals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html">IMU Sensor Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#hardware-overview">Hardware Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#lsm6ds3tr-c-imu-sensor">1. LSM6DS3TR-C IMU Sensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#accelerometer-features">2. Accelerometer Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#gyroscope-features">3. Gyroscope Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#main-features">4. Main Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#usage-guide">Usage Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#i2c-platform-interface-implementation">2. I2C Platform Interface Implementation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#data-format-conversion">3. Data Format Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#configuration-guide">Configuration Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#kconfig-configuration">1. Kconfig Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#running-results">Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#terminal-output">1. Terminal Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html">RGB LCD Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#ra8-series-glcdc-module">RA8 Series GLCDC Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#module-architecture">2. Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#glcdc-working-principle">3. GLCDC Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#glcdc-supported-features">4. GLCDC Supported Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rt-thread-lcd-driver-framework">RT-Thread LCD Driver Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#main-interfaces">Main Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#fsp-configuration">FSP Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#hyperram-configuration">HyperRAM Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rgb-lcd-configuration">RGB LCD Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#lcd-backlight-configuration">LCD Backlight Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#d-ave-2d-configuration">D/AVE 2D Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html">USB PCDC Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#usb-pcdc-instructions">USB PCDC Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#pcdc-protocol-features">2. PCDC Protocol Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#typical-application-architecture">3. Typical Application Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#advantages">4. Advantages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#ra8-series-usb-pcdc-module-r-usb-pcdc-overview">RA8 Series USB PCDC Module (r_usb_pcdc) Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#module-functionality">1. Module Functionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#supported-features">2. Supported Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#module-architecture">3. Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#workflow">4. Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#fsp-configuration-configuration">FSP Configuration Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#running-effect">Running Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html">WAV Audio Player Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#es8156-audio-codec">1. ES8156 Audio Codec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#es8156-key-features">2. ES8156 Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#ssi-synchronous-serial-interface">3. SSI (Synchronous Serial Interface)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#playing-wav-files">2. Playing WAV Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#wav-file-format-requirements">3. WAV File Format Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#kconfig-configuration">1. Kconfig Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#hardware-connections">3. Hardware Connections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Titan-Board-Mini SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Components</a></li>
+      <li class="breadcrumb-item active">QSPI Flash File System Example Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="qspi-flash-file-system-example-guide">
+<h1>QSPI Flash File System Example Guide<a class="headerlink" href="#qspi-flash-file-system-example-guide" title="Link to this heading"></a></h1>
+<p><a class="reference internal" href="README.html"><span class="std std-doc"><strong>中文</strong></span></a> | <strong>English</strong></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This example demonstrates how to implement a <strong>LittleFS file system</strong> using the onboard <strong>QSPI Flash (W25Q64)</strong> on the <strong>Titan Board Mini</strong>, managed through RT-Thread’s <strong>FAL (Flash Abstraction Layer)</strong> for Flash device management.</p>
+<p>Key features include:</p>
+<ul class="simple">
+<li><p>Use QSPI interface to drive W25Q64 Flash (8MB capacity)</p></li>
+<li><p>Manage Flash devices and partitions through FAL abstraction layer</p></li>
+<li><p>Mount LittleFS file system to Flash partition</p></li>
+<li><p>Provide standard file I/O operation interfaces</p></li>
+<li><p>Support file system read/write, create, delete and other operations</p></li>
+</ul>
+</section>
+<section id="hardware-introduction">
+<h2>Hardware Introduction<a class="headerlink" href="#hardware-introduction" title="Link to this heading"></a></h2>
+<section id="w25q64-qspi-flash">
+<h3>1. W25Q64 QSPI Flash<a class="headerlink" href="#w25q64-qspi-flash" title="Link to this heading"></a></h3>
+<p><strong>Titan Board Mini</strong> has an onboard <strong>W25Q64</strong> QSPI Flash chip:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Model</strong></p></td>
+<td><p>W25Q64</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Capacity</strong></p></td>
+<td><p>8MB (64Mbit)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Interface</strong></p></td>
+<td><p>QSPI (Quad SPI)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Voltage</strong></p></td>
+<td><p>2.7V - 3.6V</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Sector Size</strong></p></td>
+<td><p>4KB</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Block Size</strong></p></td>
+<td><p>64KB</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Page Size</strong></p></td>
+<td><p>256B</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Clock Frequency</strong></p></td>
+<td><p>Up to 133MHz (QSPI mode)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="qspi-interface-features">
+<h3>2. QSPI Interface Features<a class="headerlink" href="#qspi-interface-features" title="Link to this heading"></a></h3>
+<p>QSPI (Quad Serial Peripheral Interface) is a high-speed serial interface:</p>
+<ul class="simple">
+<li><p><strong>4-bit Data Bus</strong>: 4x data throughput compared to standard SPI</p></li>
+<li><p><strong>High-speed Transfer</strong>: Supports clock frequencies up to 133MHz</p></li>
+<li><p><strong>Low Pin Count</strong>: Only 6 signal lines required (CLK, CS, D0-D3)</p></li>
+<li><p><strong>Hardware Acceleration</strong>: RA8P1 integrates OSPI_B module, supports DMA transfer</p></li>
+</ul>
+</section>
+</section>
+<section id="flash-partition-plan">
+<h2>Flash Partition Plan<a class="headerlink" href="#flash-partition-plan" title="Link to this heading"></a></h2>
+<p>This example divides the W25Q64 Flash into 4 partitions:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Partition Name</p></th>
+<th class="head"><p>Start Address</p></th>
+<th class="head"><p>Size</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>bootloader</strong></p></td>
+<td><p>0x000000</p></td>
+<td><p>512KB</p></td>
+<td><p>Bootloader program</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>app</strong></p></td>
+<td><p>0x80000</p></td>
+<td><p>512KB</p></td>
+<td><p>Application firmware</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>download</strong></p></td>
+<td><p>0x100000</p></td>
+<td><p>1MB</p></td>
+<td><p>Download cache area</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>filesystem</strong></p></td>
+<td><p>0x200000</p></td>
+<td><p>1MB</p></td>
+<td><p>LittleFS file system</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Flash Partition Layout</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>W25Q64 (8MB)
+├────────────────┬────────────────┬────────────────┬────────────────┬─────────────
+│  Bootloader    │      App       │    Download    │   Filesystem   │   Reserved
+│    512KB       │     512KB      │      1MB       │      1MB       │    4MB
+└────────────────┴────────────────┴────────────────┴────────────────┴─────────────
+0x000000        0x080000        0x100000        0x200000        0x300000
+</pre></div>
+</div>
+</section>
+<section id="software-architecture">
+<h2>Software Architecture<a class="headerlink" href="#software-architecture" title="Link to this heading"></a></h2>
+<section id="layered-design">
+<h3>1. Layered Design<a class="headerlink" href="#layered-design" title="Link to this heading"></a></h3>
+<p>The file system adopts a layered architecture design:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Application Layer (user code)
+    ↓
+DFS (Device File System) - RT-Thread file system abstraction layer
+    ↓
+LittleFS - Lightweight embedded file system
+    ↓
+FAL (Flash Abstraction Layer) - Flash abstraction layer
+    ↓
+MTD (Memory Technology Device) - Memory device driver
+    ↓
+W25Q64 QSPI Driver - Hardware driver layer
+    ↓
+QSPI/OSPI_B hardware interface
+</pre></div>
+</div>
+</section>
+<section id="core-components">
+<h3>2. Core Components<a class="headerlink" href="#core-components" title="Link to this heading"></a></h3>
+<section id="fal-flash-abstraction-layer">
+<h4>FAL (Flash Abstraction Layer)<a class="headerlink" href="#fal-flash-abstraction-layer" title="Link to this heading"></a></h4>
+<p>FAL provides unified management interfaces for Flash devices and partitions:</p>
+<ul class="simple">
+<li><p><strong>Flash Device Table</strong>: Define Flash devices in the system</p></li>
+<li><p><strong>Partition Table</strong>: Define Flash partition layout</p></li>
+<li><p><strong>Abstract Interface</strong>: Provide unified read/write/erase operations</p></li>
+</ul>
+<p><strong>FAL Configuration</strong> (<code class="docutils literal notranslate"><span class="pre">fal_cfg.h</span></code>):</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Flash device table */</span>
+<span class="cp">#define FAL_FLASH_DEV_TABLE  \</span>
+<span class="cp">{                             \</span>
+<span class="cp">    &amp;w25q64,                  \</span>
+<span class="cp">}</span>
+
+<span class="cm">/* Partition table */</span>
+<span class="cp">#define FAL_PART_TABLE  \</span>
+<span class="cp">{                        \</span>
+<span class="cp">    {FAL_PART_MAGIC_WORD, &quot;bootloader&quot;, &quot;W25Q64&quot;, 0,  512 * 1024, 0}, \</span>
+<span class="cp">    {FAL_PART_MAGIC_WORD,        &quot;app&quot;, &quot;W25Q64&quot;, 512 * 1024,  512 * 1024, 0}, \</span>
+<span class="cp">    {FAL_PART_MAGIC_WORD,   &quot;download&quot;, &quot;W25Q64&quot;, (512 + 512) * 1024, 1024 * 1024, 0}, \</span>
+<span class="cp">    {FAL_PART_MAGIC_WORD, &quot;filesystem&quot;, &quot;W25Q64&quot;, (512 + 512 + 1024) * 1024, 1024 * 1024, 0}, \</span>
+<span class="cp">}</span>
+</pre></div>
+</div>
+</section>
+<section id="littlefs-file-system">
+<h4>LittleFS File System<a class="headerlink" href="#littlefs-file-system" title="Link to this heading"></a></h4>
+<p>LittleFS is a file system designed specifically for embedded systems:</p>
+<ul class="simple">
+<li><p><strong>Power-safe</strong>: Uses Copy-on-Write mechanism to ensure data integrity</p></li>
+<li><p><strong>Wear Leveling</strong>: Automatically performs Flash wear leveling to extend Flash life</p></li>
+<li><p><strong>Low Memory Footprint</strong>: Small RAM usage, suitable for resource-constrained systems</p></li>
+<li><p><strong>Dynamic Size</strong>: File system size can be adjusted as needed</p></li>
+</ul>
+</section>
+<section id="w25q64-qspi-driver">
+<h4>W25Q64 QSPI Driver<a class="headerlink" href="#w25q64-qspi-driver" title="Link to this heading"></a></h4>
+<p>W25Q64 driver provides Flash hardware operation interfaces:</p>
+<ul class="simple">
+<li><p><strong>Read Operation</strong>: Supports fast read (Quad Read)</p></li>
+<li><p><strong>Write Operation</strong>: Page programming (256B/page)</p></li>
+<li><p><strong>Erase Operation</strong>: Supports 4KB sector erase and 64KB block erase</p></li>
+<li><p><strong>Status Query</strong>: Query Flash busy status and write enable status</p></li>
+</ul>
+</section>
+</section>
+<section id="project-structure">
+<h3>3. Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Titan_Mini_component_flash_fs/
+├── src/
+│   └── hal_entry.c          # Main program entry
+├── libraries/
+│   └── Common/ports/
+│       ├── fal_cfg.h        # FAL configuration
+│       └── w25q64/
+│           ├── drv_w25q64.c # W25Q64 driver
+│           └── ospi_b_commands.c # QSPI commands
+└── packages/
+    └── littlefs-v2.5.0/     # LittleFS file system
+        ├── lfs.c           # LittleFS core
+        ├── lfs_util.c      # Utility functions
+        └── dfs_lfs.c       # DFS adapter layer
+</pre></div>
+</div>
+</section>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<section id="initialization-flow">
+<h3>1. Initialization Flow<a class="headerlink" href="#initialization-flow" title="Link to this heading"></a></h3>
+<p>The main program (<code class="docutils literal notranslate"><span class="pre">src/hal_entry.c</span></code>) implements a complete file system initialization flow:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define FS_PARTITION_NAME   &quot;filesystem&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">hal_entry</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">==================================================</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;Hello, Titan Board Mini!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;==================================================</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 1. Initialize FAL (Flash abstraction layer)</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">fal_init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fal_init</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// 2. Create MTD device</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_device</span><span class="o">*</span><span class="w"> </span><span class="n">fal_mtd_nor_device_create</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">parition_name</span><span class="p">);</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_device</span><span class="w"> </span><span class="o">*</span><span class="n">mtd_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fal_mtd_nor_device_create</span><span class="p">(</span><span class="n">FS_PARTITION_NAME</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mtd_dev</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;Can&#39;t create a mtd device on &#39;%s&#39; partition.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FS_PARTITION_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;Create a mtd device on the %s partition of flash successful.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">FS_PARTITION_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Main loop - LED blinking</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_pin_write</span><span class="p">(</span><span class="n">LED_PIN_R</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_HIGH</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_pin_write</span><span class="p">(</span><span class="n">LED_PIN_R</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_LOW</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="file-operation-examples">
+<h3>2. File Operation Examples<a class="headerlink" href="#file-operation-examples" title="Link to this heading"></a></h3>
+<p>After the file system is initialized, standard POSIX file I/O interfaces can be used:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;dfs_file.h&gt;</span>
+
+<span class="cm">/* Write file example */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">write_file_example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;/filesystem/test.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;w&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fp</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello, Titan Board!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;This is a test file.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;File written successfully.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Read file example */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">read_file_example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">&quot;/filesystem/test.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fp</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">),</span><span class="w"> </span><span class="n">fp</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* List files example */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">list_files_example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">DIR</span><span class="w"> </span><span class="o">*</span><span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">opendir</span><span class="p">(</span><span class="s">&quot;/filesystem&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dir</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">struct</span><span class="w"> </span><span class="nc">dirent</span><span class="w"> </span><span class="o">*</span><span class="n">entry</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">entry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readdir</span><span class="p">(</span><span class="n">dir</span><span class="p">))</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;File: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">entry</span><span class="o">-&gt;</span><span class="n">d_name</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">closedir</span><span class="p">(</span><span class="n">dir</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="running-results">
+<h2>Running Results<a class="headerlink" href="#running-results" title="Link to this heading"></a></h2>
+<section id="terminal-output">
+<h3>1. Terminal Output<a class="headerlink" href="#terminal-output" title="Link to this heading"></a></h3>
+<p>After resetting Titan Board Mini, the terminal will output the following information:</p>
+<p><img alt="iamge-flash" src="../../_images/flash.png" /></p>
+</section>
+<section id="file-system-testing">
+<h3>2. File System Testing<a class="headerlink" href="#file-system-testing" title="Link to this heading"></a></h3>
+<p>The file system can be tested in the msh command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>msh<span class="w"> </span>&gt;ls<span class="w"> </span>/filesystem
+test.txt
+config.ini
+msh<span class="w"> </span>&gt;cat<span class="w"> </span>/filesystem/test.txt
+Hello,<span class="w"> </span>Titan<span class="w"> </span>Board!
+This<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span><span class="nb">test</span><span class="w"> </span>file.
+msh<span class="w"> </span>&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="flash-usage-limitations">
+<h3>1. Flash Usage Limitations<a class="headerlink" href="#flash-usage-limitations" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Erase Cycles</strong>: W25Q64 sector erase cycles are approximately 100,000 times</p></li>
+<li><p><strong>Data Retention</strong>: Data retention time at room temperature is about 20 years</p></li>
+<li><p><strong>Erase Before Write</strong>: Flash must be erased before writing</p></li>
+<li><p><strong>Alignment Requirements</strong>: Write and erase operations need to be aligned to sectors/pages</p></li>
+</ul>
+</section>
+<section id="file-system-recommendations">
+<h3>2. File System Recommendations<a class="headerlink" href="#file-system-recommendations" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Small File Optimization</strong>: LittleFS is suitable for frequent small file read/write operations</p></li>
+<li><p><strong>Power Protection</strong>: Use LittleFS’s power-safe features</p></li>
+<li><p><strong>Regular Backup</strong>: Important data should be backed up to other storage media</p></li>
+<li><p><strong>Capacity Planning</strong>: Reserve some space for wear leveling</p></li>
+</ul>
+</section>
+<section id="performance-optimization">
+<h3>3. Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>DMA Transfer</strong>: Use DMA to improve QSPI transfer efficiency</p></li>
+<li><p><strong>Cache Optimization</strong>: Configure file system cache size appropriately</p></li>
+<li><p><strong>Batch Operations</strong>: Try to read/write in batches to reduce operation count</p></li>
+<li><p><strong>Error Handling</strong>: Add appropriate error handling and retry mechanisms</p></li>
+</ul>
+</section>
+</section>
+<section id="extended-applications">
+<h2>Extended Applications<a class="headerlink" href="#extended-applications" title="Link to this heading"></a></h2>
+<p>Based on this example, the following applications can be extended:</p>
+<ul class="simple">
+<li><p><strong>Configuration Storage</strong>: Store system configuration parameters</p></li>
+<li><p><strong>Logging System</strong>: Implement circular logging</p></li>
+<li><p><strong>OTA Upgrade</strong>: Store new firmware for OTA upgrade</p></li>
+<li><p><strong>Data Cache</strong>: Cache sensor data</p></li>
+<li><p><strong>Resource Storage</strong>: Store images, audio, fonts and other resource files</p></li>
+<li><p><strong>Offline Data</strong>: Store offline database</p></li>
+<li><p><strong>Firmware Backup</strong>: Backup multiple firmware for A/B upgrade</p></li>
+</ul>
+</section>
+<section id="related-resources">
+<h2>Related Resources<a class="headerlink" href="#related-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/littlefs-project/littlefs">LittleFS Official Documentation</a></p></li>
+<li><p><a class="reference external" href="https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/fal/fal">RT-Thread FAL Documentation</a></p></li>
+<li><p><a class="reference external" href="https://www.renesas.cn/zh/document/mah/25574257">RA8P1 Hardware Manual</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Components" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../multimedia/index.html" class="btn btn-neutral float-right" title="Multimedia Display" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Copyright (c) 2006-2025, RT-Thread Development Team.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>Titan-Board-Mini SDK</strong>
+        <span class="sdk-footer__sep">•</span> 版本：1.0.0
+      </div>
+      <div class="sdk-footer__right">
+        构建时间：<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>
