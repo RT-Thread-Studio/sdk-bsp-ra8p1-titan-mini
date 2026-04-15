@@ -58,7 +58,6 @@ jobs:
       matrix:
        legs:
          - {RTT_BSP: "Titan_Mini_blink_led"}
-         - {RTT_BSP: "Titan_Mini_camera_ceu"}
          - {RTT_BSP: "Titan_Mini_component_flash_fs"}
          - {RTT_BSP: "Titan_Mini_display_camera_mipi_csi"}
          - {RTT_BSP: "Titan_Mini_display_rgb_lvgl"}
