@@ -129,73 +129,6 @@ static rt_err_t sound_getcaps(struct rt_audio_device *audio, struct rt_audio_cap
     return result;
 }
 
-static rt_err_t sound_set_samplerate( rt_uint32_t samplerate,rt_uint32_t channels)
-{
-    rt_err_t result = RT_EOK;
-
-    uint32_t period_counts = 0x3d;
-
-    if(channels == 2){
-        switch (samplerate) {
-        case 8000:
-            period_counts = (uint32_t)0x7a; 
-            break;
-        case 16000:
-            period_counts = (uint32_t) 0x3d;
-            break;
-        case 24000:
-            period_counts = (uint32_t) 0x28; 
-            break;
-        case 44100:
-            period_counts = (uint32_t) 0x16;
-            break;
-        case 48000:
-            period_counts = (uint32_t) 0x14;
-            break;
-        case 96000:
-            period_counts = (uint32_t) 0xa;
-            break;
-        default:
-            LOG_W("Unsupported samplerate: %u Hz", samplerate);
-            return -RT_ERROR;
-        }
-    }else {
-        switch (samplerate) {
-        case 8000:
-            period_counts = (uint32_t)0xf4; 
-            break;
-        case 16000:
-            period_counts = (uint32_t) 0x3d;
-            break;
-        case 24000:
-            period_counts = (uint32_t) 0x52; 
-            break;
-        case 44100:
-            period_counts = (uint32_t) 0x2b;
-            break;
-        case 48000:
-            period_counts = (uint32_t) 0x28;
-            break;
-        case 96000:
-            period_counts = (uint32_t) 0x14;
-            break;
-        default:
-            LOG_W("Unsupported samplerate: %u Hz", samplerate);
-            return -RT_ERROR;
-        }
-    }
-
-    R_GPT_Stop(&g_timer2_ctrl);
-    R_GPT_Disable(&g_timer2_ctrl);
-    R_GPT_Close(&g_timer2_ctrl);
-    R_GPT_Open(&g_timer2_ctrl, &g_timer2_cfg);
-    R_GPT_PeriodSet(&g_timer2_ctrl,period_counts);
-    R_GPT_Reset(&g_timer2_ctrl);
-    R_GPT_Enable(&g_timer2_ctrl);
-    R_GPT_Start(&g_timer2_ctrl);
-    return result;
-}
-
 static rt_err_t sound_configure(struct rt_audio_device *audio, struct rt_audio_caps *caps)
 {
     rt_err_t result = RT_EOK;
@@ -241,7 +174,7 @@ static rt_err_t sound_configure(struct rt_audio_device *audio, struct rt_audio_c
             snd_dev->audio_config.samplerate = caps->udata.config.samplerate;
             snd_dev->audio_config.channels   = caps->udata.config.channels;
             snd_dev->audio_config.samplebits = caps->udata.config.samplebits;
-            sound_set_samplerate(snd_dev->audio_config.samplerate, snd_dev->audio_config.channels);
+            // sound_set_samplerate(snd_dev->audio_config.samplerate, snd_dev->audio_config.channels);
             rt_kprintf("AUDIO_DSP_PARAM:set samplerate %d", snd_dev->audio_config.samplerate);
             break;
         }
@@ -411,7 +344,7 @@ int rt_hw_sound_init(void)
     snd_dev.audio_config.samplerate = 16000;
     snd_dev.audio_config.channels   = 2;
     snd_dev.audio_config.samplebits = 16;
-    snd_dev.volume                   = 40;
+    snd_dev.volume                   = 60;
 
     snd_dev.audio.ops = &snd_ops;
 

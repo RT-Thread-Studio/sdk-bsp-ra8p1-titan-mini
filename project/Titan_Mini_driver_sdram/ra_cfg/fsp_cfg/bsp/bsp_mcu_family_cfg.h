@@ -495,7 +495,7 @@
 #endif
 
 #ifndef BSP_CFG_SDRAM_BUS_WIDTH
- #define BSP_CFG_SDRAM_BUS_WIDTH  (1)
+ #define BSP_CFG_SDRAM_BUS_WIDTH  (0)
 #endif
 
 #ifndef BSP_CFG_OSPI_B_STARTUP_ENABLED

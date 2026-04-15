@@ -50,6 +50,7 @@ menu "Hardware Drivers Config"
                     bool "Enable QSPI Flash Filesystem"
                     select BSP_USING_QSPI_FLASH
                     select RT_USING_FAL
+                    select RT_USING_MTD_NOR
                     default n
                     if BSP_USING_FLASH_FATFS
                         config BSP_USING_FLASH_FS_AUTO_MOUNT
@@ -516,6 +517,7 @@ menu "Hardware Drivers Config"
                 menuconfig BSP_USING_GT9147
                     bool "Enable gt9147 touch driver"
                     select RT_USING_TOUCH
+                    select RT_TOUCH_PIN_IRQ
                     default n
                     if BSP_USING_GT9147
                         config BSP_USING_GT9147_SAMPLE

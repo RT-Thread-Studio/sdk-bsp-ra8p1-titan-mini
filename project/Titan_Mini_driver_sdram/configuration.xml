@@ -53,7 +53,7 @@
       <property id="config.bsp.fsp.sdram.addr_shift" value="config.bsp.fsp.sdram.addr_shift.9"/>
       <property id="config.bsp.fsp.sdram.endian_mode" value="config.bsp.fsp.sdram.endian_mode.little"/>
       <property id="config.bsp.fsp.sdram.continuous_access_mode" value="config.bsp.fsp.sdram.continuous_access_mode.enabled"/>
-      <property id="config.bsp.fsp.sdram.bus_width" value="config.bsp.fsp.sdram.bus_width.32"/>
+      <property id="config.bsp.fsp.sdram.bus_width" value="config.bsp.fsp.sdram.bus_width.16"/>
       <property id="config.bsp.fsp.ospi_b_startup" value="config.bsp.fsp.ospi_b_startup.disabled"/>
       <property id="config.bsp.fsp.tz.exception_response" value="config.bsp.fsp.tz.exception_response.nmi"/>
       <property id="config.bsp.fsp.tz.cmsis.bfhfnmins" value="config.bsp.fsp.tz.cmsis.bfhfnmins.secure"/>
@@ -781,6 +781,8 @@
       <configSetting altId="pa02.gpio_mode.gpio_mode_peripheral" configurationId="pa02.gpio_mode"/>
       <configSetting altId="pa03.sdram.a2" configurationId="pa03"/>
       <configSetting altId="pa03.gpio_mode.gpio_mode_peripheral" configurationId="pa03.gpio_mode"/>
+      <configSetting altId="pa04.sdram.a1" configurationId="pa04"/>
+      <configSetting altId="pa04.gpio_mode.gpio_mode_peripheral" configurationId="pa04.gpio_mode"/>
       <configSetting altId="pa05.sdram.dqm1" configurationId="pa05"/>
       <configSetting altId="pa05.gpio_mode.gpio_mode_peripheral" configurationId="pa05.gpio_mode"/>
       <configSetting altId="pa06.sdram.cke" configurationId="pa06"/>
@@ -801,21 +803,19 @@
       <configSetting altId="pa14.gpio_mode.gpio_mode_peripheral" configurationId="pa14.gpio_mode"/>
       <configSetting altId="pa15.sdram.sdclk" configurationId="pa15"/>
       <configSetting altId="pa15.gpio_mode.gpio_mode_peripheral" configurationId="pa15.gpio_mode"/>
-      <configSetting altId="pc15.sdram.a16" configurationId="pc15"/>
-      <configSetting altId="pc15.gpio_mode.gpio_mode_peripheral" configurationId="pc15.gpio_mode"/>
       <configSetting altId="pd00.sdram.a15" configurationId="pd00"/>
       <configSetting altId="pd00.gpio_mode.gpio_mode_peripheral" configurationId="pd00.gpio_mode"/>
       <configSetting altId="sci1.mode.custom.free" configurationId="sci1.mode"/>
       <configSetting altId="sci2.mode.asynchronousuart.free" configurationId="sci2.mode"/>
       <configSetting altId="sci2.rxd2.p802" configurationId="sci2.rxd2"/>
       <configSetting altId="sci2.txd2.p801" configurationId="sci2.txd2"/>
+      <configSetting altId="sdram.a1.pa04" configurationId="sdram.a1"/>
       <configSetting altId="sdram.a10.p507" configurationId="sdram.a10"/>
       <configSetting altId="sdram.a11.p508" configurationId="sdram.a11"/>
       <configSetting altId="sdram.a12.p509" configurationId="sdram.a12"/>
       <configSetting altId="sdram.a13.p510" configurationId="sdram.a13"/>
       <configSetting altId="sdram.a14.p608" configurationId="sdram.a14"/>
       <configSetting altId="sdram.a15.pd00" configurationId="sdram.a15"/>
-      <configSetting altId="sdram.a16.pc15" configurationId="sdram.a16"/>
       <configSetting altId="sdram.a2.pa03" configurationId="sdram.a2"/>
       <configSetting altId="sdram.a3.pa02" configurationId="sdram.a3"/>
       <configSetting altId="sdram.a4.pa01" configurationId="sdram.a4"/>
