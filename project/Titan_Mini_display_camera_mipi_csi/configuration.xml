@@ -45,7 +45,7 @@
       <property id="config.bsp.fsp.sdram.addr_shift" value="config.bsp.fsp.sdram.addr_shift.9"/>
       <property id="config.bsp.fsp.sdram.endian_mode" value="config.bsp.fsp.sdram.endian_mode.little"/>
       <property id="config.bsp.fsp.sdram.continuous_access_mode" value="config.bsp.fsp.sdram.continuous_access_mode.enabled"/>
-      <property id="config.bsp.fsp.sdram.bus_width" value="config.bsp.fsp.sdram.bus_width.32"/>
+      <property id="config.bsp.fsp.sdram.bus_width" value="config.bsp.fsp.sdram.bus_width.16"/>
       <property id="config.bsp.fsp.tz.exception_response" value="config.bsp.fsp.tz.exception_response.nmi"/>
       <property id="config.bsp.fsp.tz.cmsis.bfhfnmins" value="config.bsp.fsp.tz.cmsis.bfhfnmins.secure"/>
       <property id="config.bsp.fsp.tz.cmsis.sysresetreqs" value="config.bsp.fsp.tz.cmsis.sysresetreqs.secure_only"/>
@@ -521,16 +521,16 @@
       <property id="module.driver.display.output.color_order" value="module.driver.display.output.color_order.color_order_bgr"/>
       <property id="module.driver.display.output.endian" value="module.driver.display.output.endian.endian_little"/>
       <property id="module.driver.display.output.bg_color.byte.a" value="255"/>
-      <property id="module.driver.display.output.bg_color.byte.r" value="0"/>
-      <property id="module.driver.display.output.bg_color.byte.g" value="0"/>
-      <property id="module.driver.display.output.bg_color.byte.b" value="0"/>
+      <property id="module.driver.display.output.bg_color.byte.r" value="0xF"/>
+      <property id="module.driver.display.output.bg_color.byte.g" value="0xF"/>
+      <property id="module.driver.display.output.bg_color.byte.b" value="0xF"/>
       <property id="module.driver.display.clut.enable" value="module.driver.display.clut.enable.false"/>
       <property id="module.driver.display.clut.size" value="256"/>
       <property id="module.driver.display.tcon_hsync" value="module.driver.display.tcon_hsync.tcon_pin_0"/>
       <property id="module.driver.display.tcon_vsync" value="module.driver.display.tcon_vsync.tcon_pin_1"/>
       <property id="module.driver.display.tcon_de" value="module.driver.display.tcon_de.tcon_pin_3"/>
       <property id="module.driver.display.clksrc" value="module.driver.display.clksrc.clk_src_internal"/>
-      <property id="module.driver.display.clock_div_ratio" value="module.driver.display.clock_div_ratio.panel_clk_divisor_8"/>
+      <property id="module.driver.display.clock_div_ratio" value="module.driver.display.clock_div_ratio.panel_clk_divisor_4"/>
       <property id="module.driver.display.correction_proc_order" value="module.driver.display.correction_proc_order.correction_proc_order_brightness_contrast2gamma"/>
       <property id="module.driver.display.output.brightness.enable" value="module.driver.display.output.brightness.false"/>
       <property id="module.driver.display.output.brightness.r" value="512"/>
@@ -709,7 +709,7 @@
       <property id="module.driver.vin.input_ctrl.cfg_bits.dithering_mode" value="enum.mcu.vin.input_ctrl.cfg_bits.dithering_mode.with_addition"/>
       <property id="module.driver.vin.input_ctrl.cfg_bits.input_mode" value="enum.mcu.vin.input_ctrl.cfg_bits.input_mode.ycbcr422_8_bit"/>
       <property id="module.driver.vin.input_ctrl.cfg_bits.dithering_direction" value="enum.mcu.common_types.enabled_boolean.enabled"/>
-      <property id="module.driver.vin.input_ctrl.cfg_bits.yuv444_conversion" value="enum.mcu.vin.input_ctrl.cfg_bits.yuv444_conversion_mode.extend"/>
+      <property id="module.driver.vin.input_ctrl.cfg_bits.yuv444_conversion" value="enum.mcu.vin.input_ctrl.cfg_bits.yuv444_conversion_mode.interpolate"/>
       <property id="module.driver.vin.input_ctrl.cfg_bits.scaling_enable" value="enum.mcu.common_types.enabled_boolean.disabled"/>
       <property id="module.driver.vin.input_ctrl.cfg_bits.pixel_data_clipping" value="enum.mcu.vin.input_ctrl.cfg_bits.pixel_data_clipping.ycbcr422_8_bit"/>
       <property id="module.driver.vin.input_ctrl.preclip.line_start" value="1"/>
@@ -735,7 +735,7 @@
       <property id="module.driver.vin.conversion_ctrl.rgb8888_alpha_value" value="0xAA"/>
       <property id="module.driver.vin.conversion_data.uv_address" value="0x0"/>
       <property id="module.driver.vin.conversion_data.y_mul" value="1.164"/>
-      <property id="module.driver.vin.conversion_data.round_down_disable" value="enum.mcu.common_types.true_false_boolean.false"/>
+      <property id="module.driver.vin.conversion_data.round_down_disable" value="enum.mcu.common_types.true_false_boolean.true"/>
       <property id="module.driver.vin.conversion_data.ysub2" value="256"/>
       <property id="module.driver.vin.conversion_data.cgrmul2" value="0.813"/>
       <property id="module.driver.vin.conversion_data.rcrmul2" value="1.596"/>
@@ -747,8 +747,8 @@
       <property id="module.driver.vin.conversion_data.pixel_interpolation" value="module.driver.vin.conversion_data.pixel_interpolation.bilinear_or_nearest"/>
       <property id="module.driver.vin.conversion_data.bilinear_advanced" value="enum.mcu.common_types.enabled_boolean.enabled"/>
       <property id="module.driver.vin.conversion_data.scale_up_pixel_count" value="module.driver.vin.conversion_data.scale_up_pixel_count.minus_one"/>
-      <property id="module.driver.vin.conversion_data.cl_vsize" value="480"/>
-      <property id="module.driver.vin.conversion_data.cl_hsize" value="640"/>
+      <property id="module.driver.vin.conversion_data.cl_vsize" value="640"/>
+      <property id="module.driver.vin.conversion_data.cl_hsize" value="480"/>
       <property id="module.driver.vin.conversion_data.setting_1_bits_y.lrp" value="224"/>
       <property id="module.driver.vin.conversion_data.setting_2_bits_y.lgp" value="516"/>
       <property id="module.driver.vin.conversion_data.setting_2_bits_y.lbp" value="100"/>
@@ -781,7 +781,7 @@
       <property id="module.driver.mipi_csi.control_0.descramble_enable" value="enum.mcu.common_types.enabled_boolean.disabled"/>
       <property id="module.driver.mipi_csi.control_2.frrclk_adjustment" value="0"/>
       <property id="module.driver.mipi_csi.control_2.frrskw_adjustment" value="0"/>
-      <property id="module.driver.mipi_csi.option_data.data_type_enable_user" value=""/>
+      <property id="module.driver.mipi_csi.option_data.data_type_enable_user" value="enum.mcu.mipi_csi.data_enable.yuv422_8bit"/>
       <property id="module.driver.mipi_csi.interrupt_ctrl.rx.priority" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.mipi_csi.interrupt_ctrl.data_lane_0.priority" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.mipi_csi.interrupt_ctrl.vc_0.priority" value="board.icu.common.irq.priority12"/>
@@ -1517,6 +1517,8 @@
       <configSetting altId="pa02.gpio_mode.gpio_mode_peripheral" configurationId="pa02.gpio_mode"/>
       <configSetting altId="pa03.sdram.a2" configurationId="pa03"/>
       <configSetting altId="pa03.gpio_mode.gpio_mode_peripheral" configurationId="pa03.gpio_mode"/>
+      <configSetting altId="pa04.sdram.a1" configurationId="pa04"/>
+      <configSetting altId="pa04.gpio_mode.gpio_mode_peripheral" configurationId="pa04.gpio_mode"/>
       <configSetting altId="pa05.sdram.dqm1" configurationId="pa05"/>
       <configSetting altId="pa05.gpio_mode.gpio_mode_peripheral" configurationId="pa05.gpio_mode"/>
       <configSetting altId="pa06.sdram.cke" configurationId="pa06"/>
@@ -1591,6 +1593,7 @@
       <configSetting altId="sci2.mode.asynchronousuart.free" configurationId="sci2.mode"/>
       <configSetting altId="sci2.rxd2.p802" configurationId="sci2.rxd2"/>
       <configSetting altId="sci2.txd2.p801" configurationId="sci2.txd2"/>
+      <configSetting altId="sdram.a1.pa04" configurationId="sdram.a1"/>
       <configSetting altId="sdram.a10.p507" configurationId="sdram.a10"/>
       <configSetting altId="sdram.a11.p508" configurationId="sdram.a11"/>
       <configSetting altId="sdram.a12.p509" configurationId="sdram.a12"/>

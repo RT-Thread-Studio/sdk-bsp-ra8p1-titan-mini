@@ -91,7 +91,7 @@ typedef enum
 extern uint8_t  camera_capture_image_rgb565[CAMERA_ACTIVE_IMAGE_WIDTH  * CAMERA_ACTIVE_IMAGE_HEIGHT * CAMERA_IMAGE_BYTE_PER_PIXEL];
 extern uint32_t camera_capture_image_rgb565_size;
 
-#define CAM_RST_PIN         (BSP_IO_PORT_07_PIN_09)
+#define CAM_RST_PIN         (BSP_IO_PORT_07_PIN_08)
 
 FSP_CPP_HEADER
 fsp_err_t camera_init (bool use_test_mode);
