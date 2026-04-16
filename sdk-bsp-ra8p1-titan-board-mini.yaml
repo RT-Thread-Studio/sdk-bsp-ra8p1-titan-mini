@@ -1,5 +1,5 @@
 board:
-  buy_url_cn: N/A
+  buy_url_cn: https://e.tb.cn/h.iqdiHDVarOeKuss?tk=5QoN56bzOe5
   buy_url_global: N/A
   debug_interface: SWD
   debugger: J-LINK
@@ -12,7 +12,7 @@ board:
   price_global: N/A USD
   sale_contact_cn: https://www.rt-thread.org/
   sale_contact_global: https://www.rt-thread.org/
-  small_image: figures/small.png
+  small_image: figures/big.png
   vendor: Renesas
   version: 1.0.0
 chip:
@@ -30,12 +30,12 @@ chip:
 docs:
 - category: Datasheet
   file: docs/Titan_Mini_datasheet.pdf
-  title: RA8P1_Datasheet
+  title: Titan_Board_Mini_Datasheet
 - category: Hardware Manual
   file: docs/Titan_Mini_user_manual.pdf
-  title: Hardware Manual
+  title: Titan_Board_Mini_Hardware
 - category: Board Schematic
-  file: docs/ra8p1-mini_v0.1.pdf
+  file: docs/Titan_Mini_schematic_v1.0.pdf
   title: Titan_Board_Mini_Schematic
 features:
 - Arm® Cortex®-M85, maximum operating frequency 1GHz
