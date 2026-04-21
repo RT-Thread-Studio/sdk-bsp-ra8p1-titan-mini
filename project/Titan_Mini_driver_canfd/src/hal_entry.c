@@ -140,7 +140,7 @@ void hal_entry(void)
 {
     rt_kprintf("\nHello RT-Thread!\n");
     rt_kprintf("============================================================\n");
-    rt_kprintf("This example project is a Titan Board Mini template routine!\n");
+    rt_kprintf("This example project is a Titan Board Mini CAN routine!\n");
     rt_kprintf("============================================================\n");
 
     rt_pin_mode(LED_PIN_R, PIN_MODE_OUTPUT);

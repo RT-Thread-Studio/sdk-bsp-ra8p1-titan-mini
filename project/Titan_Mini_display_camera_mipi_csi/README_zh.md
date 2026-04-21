@@ -6,6 +6,8 @@
 
 本示例展示了如何在 **Titan Board** 上使用 **MIPI CSI（Camera Serial Interface）** 接口连接 **OV5640 摄像头**，并通过 **RT-Thread LCD 框架**将捕获的图像显示到 **RGB565 LCD 屏幕**。
 
+注意：当前摄像头示例仅能用FSP 6.0.0配置工具打开
+
 主要功能包括：
 
 - 初始化 MIPI CSI 摄像头接口，捕获实时视频流

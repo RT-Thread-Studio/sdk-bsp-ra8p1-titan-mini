@@ -263,6 +263,12 @@ static int w25q64_erase(long offset, size_t size)
             LOG_E("OSPI wait operation failed for sector %d, error code: %d", sector_no + i, err);
             return -RT_ERROR;
         }
+
+#if defined(__DCACHE_PRESENT)
+        // Data barrier and cache invalidation after erase
+        __DSB();
+        SCB_InvalidateDCache_by_Addr((uint32_t *)sector_addr, RENESAS_FLASH_SECTOR_SIZE);
+#endif
     }
 
     return (int)size;
@@ -337,6 +343,13 @@ static int w25q64_write(long offset, const uint8_t *buf, size_t size)
         // Calculate current chunk size (up to 4 bytes or remaining bytes)
         rt_uint32_t current_size = (remaining >= chunk_size) ? chunk_size : remaining;
 
+#if defined(__DCACHE_PRESENT)
+        // CRITICAL: Clean source buffer cache before write
+        // R_OSPI_B_Write reads from p_buf (source) and writes to addr (destination)
+        // If p_buf data is only in CPU Cache (not in RAM), the write will fail
+        SCB_CleanDCache_by_Addr((uint32_t *)p_buf, current_size);
+#endif
+
         // Perform write operation
         err = R_OSPI_B_Write(&g_ospi_b_ctrl, p_buf, (uint8_t *)addr, current_size);
         if (err != FSP_SUCCESS)
@@ -345,11 +358,6 @@ static int w25q64_write(long offset, const uint8_t *buf, size_t size)
             return -RT_ERROR;
         }
 
-#if defined(__DCACHE_PRESENT)
-        // Clean and invalidate cache for the written region
-        SCB_CleanInvalidateDCache_by_Addr((uint32_t *)addr, current_size);
-#endif
-
         // Wait for write operation to complete
         err = ospi_b_wait_operation(OSPI_B_TIME_WRITE);
         if (err != FSP_SUCCESS)
@@ -357,6 +365,18 @@ static int w25q64_write(long offset, const uint8_t *buf, size_t size)
             LOG_E("OSPI wait failed: addr=0x%08x, error=%d", addr, err);
             return -RT_ERROR;
         }
+
+#if defined(__DCACHE_PRESENT)
+        // Data barrier to ensure write completes before cache invalidation
+        __DSB();
+
+        // Invalidate destination cache to force CPU to read updated Flash data
+        // NOTE: Use Invalidate (not CleanInvalidate) because:
+        // 1. The data was written by OSPI hardware directly to Flash
+        // 2. CPU Cache may contain stale data from previous reads
+        // 3. Clean would write stale cache data back to Flash, corrupting it!
+        SCB_InvalidateDCache_by_Addr((uint32_t *)addr, current_size);
+#endif
 
         // Update address, buffer pointer, and remaining bytes
         addr += current_size;
@@ -380,4 +400,79 @@ const struct fal_flash_dev w25q64 =
             .erase = w25q64_erase},
         .write_gran = 0,
 };
+
+/* Cache coherency test function */
+static int cache_test(void)
+{
+    uint32_t test_offset = 0;  /* Offset 0 in filesystem partition */
+    uint8_t write_buf[16] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
+                              0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10};
+    uint8_t read_buf[16] = {0};
+    int ret;
+
+    rt_kprintf("=== OSPI Cache Coherency Test ===\n");
+
+    /* Find filesystem partition */
+    const struct fal_partition *part = fal_partition_find("filesystem");
+    if (part == NULL)
+    {
+        rt_kprintf("Error: 'filesystem' partition not found!\n");
+        return -1;
+    }
+
+    rt_kprintf("Partition: offset=0x%x, size=%dKB\n", part->offset, part->len / 1024);
+
+    /* Erase first sector */
+    rt_kprintf("Step 1: Erasing 4KB...\n");
+    ret = fal_partition_erase(part, 0, 4096);
+    if (ret < 0)
+    {
+        rt_kprintf("Erase failed!\n");
+        return -1;
+    }
+
+    /* Write test pattern */
+    rt_kprintf("Step 2: Writing 16 bytes...\n");
+    ret = fal_partition_write(part, 0, write_buf, 16);
+    if (ret < 0)
+    {
+        rt_kprintf("Write failed!\n");
+        return -1;
+    }
+
+    /* Read back */
+    rt_kprintf("Step 3: Reading 16 bytes...\n");
+    rt_memset(read_buf, 0, 16);
+    ret = fal_partition_read(part, 0, read_buf, 16);
+    if (ret < 0)
+    {
+        rt_kprintf("Read failed!\n");
+        return -1;
+    }
+
+    /* Compare */
+    rt_kprintf("Step 4: Comparing...\n");
+    if (rt_memcmp(write_buf, read_buf, 16) == 0)
+    {
+        rt_kprintf("SUCCESS: Data matches!\n");
+        rt_kprintf("Write: ");
+        for (int i = 0; i < 16; i++) rt_kprintf("%02x ", write_buf[i]);
+        rt_kprintf("\nRead:  ");
+        for (int i = 0; i < 16; i++) rt_kprintf("%02x ", read_buf[i]);
+        rt_kprintf("\n");
+        return 0;
+    }
+    else
+    {
+        rt_kprintf("FAILED: Data mismatch!\n");
+        rt_kprintf("Write: ");
+        for (int i = 0; i < 16; i++) rt_kprintf("%02x ", write_buf[i]);
+        rt_kprintf("\nRead:  ");
+        for (int i = 0; i < 16; i++) rt_kprintf("%02x ", read_buf[i]);
+        rt_kprintf("\n");
+        return -1;
+    }
+}
+MSH_CMD_EXPORT(cache_test, Test OSPI Flash cache coherency);
+
 #endif /* RT_USING_FAL */

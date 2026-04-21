@@ -13,6 +13,10 @@
             [6] = sdhimmc_accs_isr, /* SDHIMMC0 ACCS (Card access) */
             [7] = sdhimmc_card_isr, /* SDHIMMC0 CARD (Card detect) */
             [8] = dmac_int_isr, /* DMAC0 INT (DMAC0 transfer end) */
+            [9] = sci_b_uart_rxi_isr, /* SCI1 RXI (Receive data full) */
+            [10] = sci_b_uart_txi_isr, /* SCI1 TXI (Transmit data empty) */
+            [11] = sci_b_uart_tei_isr, /* SCI1 TEI (Transmit end) */
+            [12] = sci_b_uart_eri_isr, /* SCI1 ERI (Receive error) */
         };
         #if BSP_FEATURE_ICU_HAS_IELSR
         const bsp_interrupt_event_t g_interrupt_event_link_select[BSP_ICU_VECTOR_NUM_ENTRIES] =
@@ -26,6 +30,10 @@
             [6] = BSP_PRV_VECT_ENUM(EVENT_SDHIMMC0_ACCS,GROUP6), /* SDHIMMC0 ACCS (Card access) */
             [7] = BSP_PRV_VECT_ENUM(EVENT_SDHIMMC0_CARD,GROUP7), /* SDHIMMC0 CARD (Card detect) */
             [8] = BSP_PRV_VECT_ENUM(EVENT_DMAC0_INT,GROUP0), /* DMAC0 INT (DMAC0 transfer end) */
+            [9] = BSP_PRV_VECT_ENUM(EVENT_SCI1_RXI,GROUP1), /* SCI1 RXI (Receive data full) */
+            [10] = BSP_PRV_VECT_ENUM(EVENT_SCI1_TXI,GROUP2), /* SCI1 TXI (Transmit data empty) */
+            [11] = BSP_PRV_VECT_ENUM(EVENT_SCI1_TEI,GROUP3), /* SCI1 TEI (Transmit end) */
+            [12] = BSP_PRV_VECT_ENUM(EVENT_SCI1_ERI,GROUP4), /* SCI1 ERI (Receive error) */
         };
         #endif
         #endif

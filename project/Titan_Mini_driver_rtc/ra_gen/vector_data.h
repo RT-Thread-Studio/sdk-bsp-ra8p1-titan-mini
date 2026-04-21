@@ -6,7 +6,7 @@
         #endif
                 /* Number of interrupts allocated */
         #ifndef VECTOR_DATA_IRQ_COUNT
-        #define VECTOR_DATA_IRQ_COUNT    (7)
+        #define VECTOR_DATA_IRQ_COUNT    (11)
         #endif
         /* ISR prototypes */
         void sci_b_uart_rxi_isr(void);
@@ -31,8 +31,16 @@
         #define RTC_PERIOD_IRQn          ((IRQn_Type) 5) /* RTC PERIOD (Periodic interrupt) */
         #define VECTOR_NUMBER_RTC_CARRY ((IRQn_Type) 6) /* RTC CARRY (Carry interrupt) */
         #define RTC_CARRY_IRQn          ((IRQn_Type) 6) /* RTC CARRY (Carry interrupt) */
+        #define VECTOR_NUMBER_SCI1_RXI ((IRQn_Type) 7) /* SCI1 RXI (Receive data full) */
+        #define SCI1_RXI_IRQn          ((IRQn_Type) 7) /* SCI1 RXI (Receive data full) */
+        #define VECTOR_NUMBER_SCI1_TXI ((IRQn_Type) 8) /* SCI1 TXI (Transmit data empty) */
+        #define SCI1_TXI_IRQn          ((IRQn_Type) 8) /* SCI1 TXI (Transmit data empty) */
+        #define VECTOR_NUMBER_SCI1_TEI ((IRQn_Type) 9) /* SCI1 TEI (Transmit end) */
+        #define SCI1_TEI_IRQn          ((IRQn_Type) 9) /* SCI1 TEI (Transmit end) */
+        #define VECTOR_NUMBER_SCI1_ERI ((IRQn_Type) 10) /* SCI1 ERI (Receive error) */
+        #define SCI1_ERI_IRQn          ((IRQn_Type) 10) /* SCI1 ERI (Receive error) */
         /* The number of entries required for the ICU vector table. */
-        #define BSP_ICU_VECTOR_NUM_ENTRIES (7)
+        #define BSP_ICU_VECTOR_NUM_ENTRIES (11)
 
         #ifdef __cplusplus
         }

@@ -215,13 +215,13 @@ uint8_t vin_image_buffer_3[VIN_BYTES_PER_FRAME] BSP_ALIGN_VARIABLE(128) BSP_PLAC
             .conversion_data.uds_ctrl_bits.bilinear_advanced     = 1,
             .conversion_data.uds_ctrl_bits.scale_up_pixel_count  = 0,
 
-            .conversion_data.uds_scale_bits.vertical_mask        = 2457,
+            .conversion_data.uds_scale_bits.vertical_mask        = 3072,
             .conversion_data.uds_scale_bits.horizontal_mask      = 5461,
 
             .conversion_data.uds_bwidth_bits.bwidth_v       = 32,
             .conversion_data.uds_bwidth_bits.bwidth_h       = 32,
 
-            .conversion_data.uds_clipping_bits.cl_vsize          = 800,
+            .conversion_data.uds_clipping_bits.cl_vsize          = 640,
             .conversion_data.uds_clipping_bits.cl_hsize          = 480,
 
             .conversion_data.rgb_to_yuv_conversion_settings[0].setting_1_bits.lrp             = 224,

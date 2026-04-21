@@ -48,7 +48,7 @@
 #define RT_USING_DEVICE
 #define RT_USING_CONSOLE
 #define RT_CONSOLEBUF_SIZE 128
-#define RT_CONSOLE_DEVICE_NAME "uart2"
+#define RT_CONSOLE_DEVICE_NAME "uart1"
 #define RT_VER_NUM 0x50100
 #define RT_BACKTRACE_LEVEL_MAX_NR 32
 /* end of RT-Thread Kernel */
@@ -361,11 +361,16 @@
 
 #define BSP_USING_GPIO
 #define BSP_USING_UART
+#define BSP_USING_UART1
+#define BSP_UART1_RX_BUFSIZE 256
+#define BSP_UART1_TX_BUFSIZE 0
 #define BSP_USING_UART2
 #define BSP_UART2_RX_BUFSIZE 256
 #define BSP_UART2_TX_BUFSIZE 0
 #define BSP_USING_HW_I2C
 #define BSP_USING_HW_I2C0
+#define BSP_USING_SDRAM
+#define BSP_USING_SDRAM_SIZE 0x2000000
 #define BSP_USING_TIM
 #define BSP_USING_TIM0
 #define BSP_USING_PWM
@@ -385,8 +390,5 @@
 #define BSP_USING_LCD_BL_PIN 0x0303
 /* end of Board extended module Drivers */
 /* end of Hardware Drivers Config */
-#define BSP_USING_SDRAM
-#define BSP_USING_SDRAM_SIZE 0x2000000
-#define CAMERA_CONFIG_WRITE_VERIFY
-#define VIN_CFG_USE_RUNTIME_BUFFER 
+
 #endif

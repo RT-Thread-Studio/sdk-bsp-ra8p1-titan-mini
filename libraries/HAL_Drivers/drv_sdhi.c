@@ -226,6 +226,10 @@ rt_err_t transfer_write(sdhi_instance_ctrl_t *const p_ctrl,
         p_info->p_src = p_data;
     }
 
+#if defined(__DCACHE_PRESENT)
+    SCB_CleanDCache_by_Addr((uint32_t *)p_info->p_src, bytes * block_count);
+#endif
+
     p_info->transfer_settings_word = transfer_settings;
     p_info->p_dest = (uint32_t *)(&p_ctrl->p_reg->SD_BUF0);
     p_info->num_blocks = (uint16_t)block_count;
@@ -335,7 +339,7 @@ void ra_sdhi_request(struct rt_mmcsd_host *host, struct rt_mmcsd_req *req)
             {
                 transfer_read(sdio->sdhi_des.instance->p_ctrl, data->blks, data->blksize, buffer);
 #if defined(__DCACHE_PRESENT)
-                SCB_CleanInvalidateDCache();
+                SCB_CleanDCache_by_Addr((uint32_t *)buffer, size);
 #endif
             }
 
@@ -353,12 +357,24 @@ void ra_sdhi_request(struct rt_mmcsd_host *host, struct rt_mmcsd_req *req)
 
         command_send(sdio->sdhi_des.instance->p_ctrl, req->cmd);
 
-        if ((data != RT_NULL) && (data->flags & DATA_DIR_READ) && ((rt_uint32_t)data->buf & (SDIO_ALIGN_LEN - 1)))
+        if ((data != RT_NULL) && (data->flags & DATA_DIR_READ))
         {
 #if defined(__DCACHE_PRESENT)
-            SCB_CleanInvalidateDCache_by_Addr((uint32_t*)((uint32_t)sdio->cache_buf & ~(32U - 1U)), data->blks * data->blksize + 32U);
+            __DSB();
+
+            if ((rt_uint32_t)data->buf & (SDIO_ALIGN_LEN - 1))
+            {
+                SCB_InvalidateDCache_by_Addr((uint32_t *)sdio->cache_buf, data->blks * data->blksize);
+            }
+            else
+            {
+                SCB_InvalidateDCache_by_Addr((uint32_t *)data->buf, data->blks * data->blksize);
+            }
 #endif
-            rt_memcpy(data->buf, sdio->cache_buf, data->blksize * data->blks);
+            if ((rt_uint32_t)data->buf & (SDIO_ALIGN_LEN - 1))
+            {
+                rt_memcpy(data->buf, sdio->cache_buf, data->blksize * data->blks);
+            }
         }
     }
 

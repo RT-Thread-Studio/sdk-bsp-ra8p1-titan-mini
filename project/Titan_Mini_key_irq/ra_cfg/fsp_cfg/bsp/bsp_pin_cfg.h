@@ -205,7 +205,7 @@ FSP_HEADER
 #define AUDIO_MCLK (BSP_IO_PORT_13_PIN_06)
 #define USB_HS_VBUS_SEL (BSP_IO_PORT_13_PIN_07)
 
-extern const ioport_cfg_t g_bsp_pin_cfg; /* Titan_Board.pincfg */
+extern const ioport_cfg_t g_bsp_pin_cfg; /* Titan_Board_Mini.pincfg */
 
 void BSP_PinConfigSecurityInit();
 

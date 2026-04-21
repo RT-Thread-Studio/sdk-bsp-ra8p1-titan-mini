@@ -500,10 +500,38 @@
       <property id="module.driver.watchdog.stop_control" value="module.driver.watchdog.stop_control.enable"/>
       <property id="module.driver.watchdog.nmi_callback" value="NULL"/>
     </module>
+    <module id="module.driver.uart_on_sci_b_uart.1104088258">
+      <property id="module.driver.uart.name" value="g_uart1"/>
+      <property id="module.driver.uart.channel" value="1"/>
+      <property id="module.driver.uart.data_bits" value="module.driver.uart.data_bits.data_bits_8"/>
+      <property id="module.driver.uart.parity" value="module.driver.uart.parity.parity_off"/>
+      <property id="module.driver.uart.stop_bits" value="module.driver.uart.stop_bits.stop_bits_1"/>
+      <property id="module.driver.uart.baud" value="115200"/>
+      <property id="module.driver.uart.baudrate_modulation" value="module.driver.uart.baudrate_modulation.disabled"/>
+      <property id="module.driver.uart.baudrate_max_err" value="5"/>
+      <property id="module.driver.uart.flow_control" value="module.driver.uart.flow_control.rts"/>
+      <property id="module.driver.uart.pin_control_port" value="module.driver.uart.pin_control_port.PORT_DISABLE"/>
+      <property id="module.driver.uart.pin_control_pin" value="module.driver.uart.pin_control_pin.PIN_DISABLE"/>
+      <property id="module.driver.uart.clk_src" value="module.driver.uart.clk_src.int_clk"/>
+      <property id="module.driver.uart.rx_edge_start" value="module.driver.uart.rx_edge_start.falling_edge"/>
+      <property id="module.driver.uart.noisecancel_en" value="module.driver.uart.noisecancel_en.disabled"/>
+      <property id="module.driver.uart.rx_fifo_trigger" value="module.driver.uart.rx_fifo_trigger.max"/>
+      <property id="module.driver.uart.rs485.de_enable" value="module.driver.uart.rs485.de_enable.disabled"/>
+      <property id="module.driver.uart.rs485.de_polarity" value="module.driver.uart.rs485.de_polarity.high"/>
+      <property id="module.driver.uart.rs485.de_assertion_time" value="1"/>
+      <property id="module.driver.uart.rs485.de_negation_time" value="1"/>
+      <property id="module.driver.uart.tei_synchronization_delay_cycles" value="0"/>
+      <property id="module.driver.uart.callback" value="user_uart1_callback"/>
+      <property id="module.driver.uart.rxi_ipl" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.uart.txi_ipl" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.uart.tei_ipl" value="board.icu.common.irq.priority12"/>
+      <property id="module.driver.uart.eri_ipl" value="board.icu.common.irq.priority12"/>
+    </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.uart_on_sci_b_uart.1706481614"/>
       <stack module="module.driver.watchdog_on_wdt.1128709831"/>
+      <stack module="module.driver.uart_on_sci_b_uart.1104088258"/>
     </context>
     <config id="config.driver.sci_b_uart">
       <property id="config.driver.sci_b_uart.param_checking_enable" value="config.driver.sci_b_uart.param_checking_enable.bsp"/>
@@ -727,37 +755,6 @@
       <configSetting altId="eswm_gmii_fslash_mii0.mode.custom.free" configurationId="eswm_gmii_fslash_mii0.mode"/>
       <configSetting altId="eswm_rgmii.mode.custom.free" configurationId="eswm_rgmii.mode"/>
       <configSetting altId="eswm_rgmii0.mode.custom.free" configurationId="eswm_rgmii0.mode"/>
-      <configSetting altId="glcdc.lcd_clk.p515" configurationId="glcdc.lcd_clk"/>
-      <configSetting altId="glcdc.lcd_data0.p914" configurationId="glcdc.lcd_data0"/>
-      <configSetting altId="glcdc.lcd_data1.p915" configurationId="glcdc.lcd_data1"/>
-      <configSetting altId="glcdc.lcd_data10.pb07" configurationId="glcdc.lcd_data10"/>
-      <configSetting altId="glcdc.lcd_data11.pb06" configurationId="glcdc.lcd_data11"/>
-      <configSetting altId="glcdc.lcd_data12.pb05" configurationId="glcdc.lcd_data12"/>
-      <configSetting altId="glcdc.lcd_data13.pb01" configurationId="glcdc.lcd_data13"/>
-      <configSetting altId="glcdc.lcd_data14.pb04" configurationId="glcdc.lcd_data14"/>
-      <configSetting altId="glcdc.lcd_data15.pb03" configurationId="glcdc.lcd_data15"/>
-      <configSetting altId="glcdc.lcd_data16.pb02" configurationId="glcdc.lcd_data16"/>
-      <configSetting altId="glcdc.lcd_data17.pb00" configurationId="glcdc.lcd_data17"/>
-      <configSetting altId="glcdc.lcd_data18.p707" configurationId="glcdc.lcd_data18"/>
-      <configSetting altId="glcdc.lcd_data19.p711" configurationId="glcdc.lcd_data19"/>
-      <configSetting altId="glcdc.lcd_data2.p903" configurationId="glcdc.lcd_data2"/>
-      <configSetting altId="glcdc.lcd_data20.p712" configurationId="glcdc.lcd_data20"/>
-      <configSetting altId="glcdc.lcd_data21.p713" configurationId="glcdc.lcd_data21"/>
-      <configSetting altId="glcdc.lcd_data22.p714" configurationId="glcdc.lcd_data22"/>
-      <configSetting altId="glcdc.lcd_data23.p715" configurationId="glcdc.lcd_data23"/>
-      <configSetting altId="glcdc.lcd_data3.p902" configurationId="glcdc.lcd_data3"/>
-      <configSetting altId="glcdc.lcd_data4.p910" configurationId="glcdc.lcd_data4"/>
-      <configSetting altId="glcdc.lcd_data5.p911" configurationId="glcdc.lcd_data5"/>
-      <configSetting altId="glcdc.lcd_data6.p912" configurationId="glcdc.lcd_data6"/>
-      <configSetting altId="glcdc.lcd_data7.p913" configurationId="glcdc.lcd_data7"/>
-      <configSetting altId="glcdc.lcd_data8.p904" configurationId="glcdc.lcd_data8"/>
-      <configSetting altId="glcdc.lcd_data9.p207" configurationId="glcdc.lcd_data9"/>
-      <configSetting altId="glcdc.lcd_extclk.p710" configurationId="glcdc.lcd_extclk"/>
-      <configSetting altId="glcdc.lcd_tcon0.p806" configurationId="glcdc.lcd_tcon0"/>
-      <configSetting altId="glcdc.lcd_tcon1.p805" configurationId="glcdc.lcd_tcon1"/>
-      <configSetting altId="glcdc.lcd_tcon2.p807" configurationId="glcdc.lcd_tcon2"/>
-      <configSetting altId="glcdc.lcd_tcon3.p513" configurationId="glcdc.lcd_tcon3"/>
-      <configSetting altId="glcdc.mode.custom.free" configurationId="glcdc.mode"/>
       <configSetting altId="jtag_fslash_swd.mode.swd.free" configurationId="jtag_fslash_swd.mode"/>
       <configSetting altId="jtag_fslash_swd.swclk.p211" configurationId="jtag_fslash_swd.swclk"/>
       <configSetting altId="jtag_fslash_swd.swdio.p210" configurationId="jtag_fslash_swd.swdio"/>
@@ -771,8 +768,6 @@
       <configSetting altId="p012.input" configurationId="p012"/>
       <configSetting altId="p012.gpio_mode.gpio_mode_in" configurationId="p012.gpio_mode"/>
       <configSetting altId="p012.gpio_pupd.gpio_pupd_ip_up" configurationId="p012.gpio_pupd"/>
-      <configSetting altId="p207.glcdc.lcd_data9" configurationId="p207"/>
-      <configSetting altId="p207.gpio_mode.gpio_mode_peripheral" configurationId="p207.gpio_mode"/>
       <configSetting altId="p210.jtag_fslash_swd.swdio" configurationId="p210"/>
       <configSetting altId="p210.gpio_mode.gpio_mode_peripheral" configurationId="p210.gpio_mode"/>
       <configSetting altId="p211.jtag_fslash_swd.swclk" configurationId="p211"/>
@@ -786,79 +781,27 @@
       <configSetting altId="p303.output.low" configurationId="p303"/>
       <configSetting altId="p303.gpio_speed.gpio_speed_h" configurationId="p303.gpio_drivecapacity"/>
       <configSetting altId="p303.gpio_mode.gpio_mode_out.low" configurationId="p303.gpio_mode"/>
-      <configSetting altId="p513.glcdc.lcd_tcon3" configurationId="p513"/>
-      <configSetting altId="p513.gpio_mode.gpio_mode_peripheral" configurationId="p513.gpio_mode"/>
-      <configSetting altId="p515.glcdc.lcd_clk" configurationId="p515"/>
-      <configSetting altId="p515.gpio_mode.gpio_mode_peripheral" configurationId="p515.gpio_mode"/>
       <configSetting altId="p600.output.low" configurationId="p600"/>
       <configSetting altId="p600.gpio_mode.gpio_mode_out.low" configurationId="p600.gpio_mode"/>
-      <configSetting altId="p707.glcdc.lcd_data18" configurationId="p707"/>
+      <configSetting altId="p706.sci1.rxd1" configurationId="p706"/>
+      <configSetting altId="p706.gpio_mode.gpio_mode_peripheral" configurationId="p706.gpio_mode"/>
+      <configSetting altId="p707.sci1.txd1" configurationId="p707"/>
       <configSetting altId="p707.gpio_mode.gpio_mode_peripheral" configurationId="p707.gpio_mode"/>
       <configSetting altId="p709.output.low" configurationId="p709"/>
       <configSetting altId="p709.gpio_speed.gpio_speed_h" configurationId="p709.gpio_drivecapacity"/>
       <configSetting altId="p709.gpio_mode.gpio_mode_out.low" configurationId="p709.gpio_mode"/>
-      <configSetting altId="p710.glcdc.lcd_extclk" configurationId="p710"/>
-      <configSetting altId="p710.gpio_mode.gpio_mode_peripheral" configurationId="p710.gpio_mode"/>
-      <configSetting altId="p711.glcdc.lcd_data19" configurationId="p711"/>
-      <configSetting altId="p711.gpio_mode.gpio_mode_peripheral" configurationId="p711.gpio_mode"/>
-      <configSetting altId="p712.glcdc.lcd_data20" configurationId="p712"/>
-      <configSetting altId="p712.gpio_mode.gpio_mode_peripheral" configurationId="p712.gpio_mode"/>
-      <configSetting altId="p713.glcdc.lcd_data21" configurationId="p713"/>
-      <configSetting altId="p713.gpio_mode.gpio_mode_peripheral" configurationId="p713.gpio_mode"/>
-      <configSetting altId="p714.glcdc.lcd_data22" configurationId="p714"/>
-      <configSetting altId="p714.gpio_mode.gpio_mode_peripheral" configurationId="p714.gpio_mode"/>
-      <configSetting altId="p715.glcdc.lcd_data23" configurationId="p715"/>
-      <configSetting altId="p715.gpio_mode.gpio_mode_peripheral" configurationId="p715.gpio_mode"/>
       <configSetting altId="p801.sci2.txd2" configurationId="p801"/>
       <configSetting altId="p801.gpio_speed.gpio_speed_h" configurationId="p801.gpio_drivecapacity"/>
       <configSetting altId="p801.gpio_mode.gpio_mode_peripheral" configurationId="p801.gpio_mode"/>
       <configSetting altId="p802.sci2.rxd2" configurationId="p802"/>
       <configSetting altId="p802.gpio_speed.gpio_speed_h" configurationId="p802.gpio_drivecapacity"/>
       <configSetting altId="p802.gpio_mode.gpio_mode_peripheral" configurationId="p802.gpio_mode"/>
-      <configSetting altId="p805.glcdc.lcd_tcon1" configurationId="p805"/>
-      <configSetting altId="p805.gpio_mode.gpio_mode_peripheral" configurationId="p805.gpio_mode"/>
-      <configSetting altId="p806.glcdc.lcd_tcon0" configurationId="p806"/>
-      <configSetting altId="p806.gpio_mode.gpio_mode_peripheral" configurationId="p806.gpio_mode"/>
-      <configSetting altId="p807.glcdc.lcd_tcon2" configurationId="p807"/>
-      <configSetting altId="p807.gpio_mode.gpio_mode_peripheral" configurationId="p807.gpio_mode"/>
-      <configSetting altId="p902.glcdc.lcd_data3" configurationId="p902"/>
-      <configSetting altId="p902.gpio_mode.gpio_mode_peripheral" configurationId="p902.gpio_mode"/>
-      <configSetting altId="p903.glcdc.lcd_data2" configurationId="p903"/>
-      <configSetting altId="p903.gpio_mode.gpio_mode_peripheral" configurationId="p903.gpio_mode"/>
-      <configSetting altId="p904.glcdc.lcd_data8" configurationId="p904"/>
-      <configSetting altId="p904.gpio_mode.gpio_mode_peripheral" configurationId="p904.gpio_mode"/>
-      <configSetting altId="p910.glcdc.lcd_data4" configurationId="p910"/>
-      <configSetting altId="p910.gpio_mode.gpio_mode_peripheral" configurationId="p910.gpio_mode"/>
-      <configSetting altId="p911.glcdc.lcd_data5" configurationId="p911"/>
-      <configSetting altId="p911.gpio_mode.gpio_mode_peripheral" configurationId="p911.gpio_mode"/>
-      <configSetting altId="p912.glcdc.lcd_data6" configurationId="p912"/>
-      <configSetting altId="p912.gpio_mode.gpio_mode_peripheral" configurationId="p912.gpio_mode"/>
-      <configSetting altId="p913.glcdc.lcd_data7" configurationId="p913"/>
-      <configSetting altId="p913.gpio_mode.gpio_mode_peripheral" configurationId="p913.gpio_mode"/>
-      <configSetting altId="p914.glcdc.lcd_data0" configurationId="p914"/>
-      <configSetting altId="p914.gpio_mode.gpio_mode_peripheral" configurationId="p914.gpio_mode"/>
-      <configSetting altId="p915.glcdc.lcd_data1" configurationId="p915"/>
-      <configSetting altId="p915.gpio_mode.gpio_mode_peripheral" configurationId="p915.gpio_mode"/>
       <configSetting altId="pa07.output.low" configurationId="pa07"/>
       <configSetting altId="pa07.gpio_speed.gpio_speed_h" configurationId="pa07.gpio_drivecapacity"/>
       <configSetting altId="pa07.gpio_mode.gpio_mode_out.low" configurationId="pa07.gpio_mode"/>
-      <configSetting altId="pb00.glcdc.lcd_data17" configurationId="pb00"/>
-      <configSetting altId="pb00.gpio_mode.gpio_mode_peripheral" configurationId="pb00.gpio_mode"/>
-      <configSetting altId="pb01.glcdc.lcd_data13" configurationId="pb01"/>
-      <configSetting altId="pb01.gpio_mode.gpio_mode_peripheral" configurationId="pb01.gpio_mode"/>
-      <configSetting altId="pb02.glcdc.lcd_data16" configurationId="pb02"/>
-      <configSetting altId="pb02.gpio_mode.gpio_mode_peripheral" configurationId="pb02.gpio_mode"/>
-      <configSetting altId="pb03.glcdc.lcd_data15" configurationId="pb03"/>
-      <configSetting altId="pb03.gpio_mode.gpio_mode_peripheral" configurationId="pb03.gpio_mode"/>
-      <configSetting altId="pb04.glcdc.lcd_data14" configurationId="pb04"/>
-      <configSetting altId="pb04.gpio_mode.gpio_mode_peripheral" configurationId="pb04.gpio_mode"/>
-      <configSetting altId="pb05.glcdc.lcd_data12" configurationId="pb05"/>
-      <configSetting altId="pb05.gpio_mode.gpio_mode_peripheral" configurationId="pb05.gpio_mode"/>
-      <configSetting altId="pb06.glcdc.lcd_data11" configurationId="pb06"/>
-      <configSetting altId="pb06.gpio_mode.gpio_mode_peripheral" configurationId="pb06.gpio_mode"/>
-      <configSetting altId="pb07.glcdc.lcd_data10" configurationId="pb07"/>
-      <configSetting altId="pb07.gpio_mode.gpio_mode_peripheral" configurationId="pb07.gpio_mode"/>
-      <configSetting altId="sci1.mode.custom.free" configurationId="sci1.mode"/>
+      <configSetting altId="sci1.mode.asynchronousuart.free" configurationId="sci1.mode"/>
+      <configSetting altId="sci1.rxd1.p706" configurationId="sci1.rxd1"/>
+      <configSetting altId="sci1.txd1.p707" configurationId="sci1.txd1"/>
       <configSetting altId="sci2.mode.asynchronousuart.free" configurationId="sci2.mode"/>
       <configSetting altId="sci2.rxd2.p802" configurationId="sci2.rxd2"/>
       <configSetting altId="sci2.txd2.p801" configurationId="sci2.txd2"/>

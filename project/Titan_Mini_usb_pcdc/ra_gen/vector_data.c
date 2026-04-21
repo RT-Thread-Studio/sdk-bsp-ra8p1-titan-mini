@@ -15,6 +15,10 @@
             [8] = usbhs_interrupt_handler, /* USBHS USB INT RESUME (USBHS interrupt) */
             [9] = usbhs_d0fifo_handler, /* USBHS FIFO 0 (DMA transfer request 0) */
             [10] = usbhs_d1fifo_handler, /* USBHS FIFO 1 (DMA transfer request 1) */
+            [11] = sci_b_uart_rxi_isr, /* SCI1 RXI (Receive data full) */
+            [12] = sci_b_uart_txi_isr, /* SCI1 TXI (Transmit data empty) */
+            [13] = sci_b_uart_tei_isr, /* SCI1 TEI (Transmit end) */
+            [14] = sci_b_uart_eri_isr, /* SCI1 ERI (Receive error) */
         };
         #if BSP_FEATURE_ICU_HAS_IELSR
         const bsp_interrupt_event_t g_interrupt_event_link_select[BSP_ICU_VECTOR_NUM_ENTRIES] =
@@ -30,6 +34,10 @@
             [8] = BSP_PRV_VECT_ENUM(EVENT_USBHS_USB_INT_RESUME,GROUP0), /* USBHS USB INT RESUME (USBHS interrupt) */
             [9] = BSP_PRV_VECT_ENUM(EVENT_USBHS_FIFO_0,GROUP1), /* USBHS FIFO 0 (DMA transfer request 0) */
             [10] = BSP_PRV_VECT_ENUM(EVENT_USBHS_FIFO_1,GROUP2), /* USBHS FIFO 1 (DMA transfer request 1) */
+            [11] = BSP_PRV_VECT_ENUM(EVENT_SCI1_RXI,GROUP3), /* SCI1 RXI (Receive data full) */
+            [12] = BSP_PRV_VECT_ENUM(EVENT_SCI1_TXI,GROUP4), /* SCI1 TXI (Transmit data empty) */
+            [13] = BSP_PRV_VECT_ENUM(EVENT_SCI1_TEI,GROUP5), /* SCI1 TEI (Transmit end) */
+            [14] = BSP_PRV_VECT_ENUM(EVENT_SCI1_ERI,GROUP6), /* SCI1 ERI (Receive error) */
         };
         #endif
         #endif

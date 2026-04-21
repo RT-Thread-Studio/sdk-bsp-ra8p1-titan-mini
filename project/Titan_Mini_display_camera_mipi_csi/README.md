@@ -6,6 +6,8 @@
 
 This example demonstrates how to use the **MIPI CSI (Camera Serial Interface)** on the **Titan Board** to connect an **OV5640 camera**, and display the captured images on an **RGB565 LCD screen** via the **RT-Thread LCD framework**.
 
+Note: The current camera example can only be opened with the FSP 6.0.0 configuration tool.
+
 Key functionalities include:
 
 - Initialize the MIPI CSI camera interface to capture real-time video streams
@@ -173,6 +175,12 @@ The RA8 series MCU (e.g., RA8P1) integrates a **GLCDC hardware module** for driv
 3. **CPU Offload**
    - Many graphics operations performed in hardware
    - DMA + GLCDC combination enables efficient image display
+
+## RT-Thread Settings Configuration
+
+* Enable MIPI CSI camera using i2c0; enable RGB565 LCD using pwm7 for backlight output.
+
+![image-20250815175755240](figures/image-20250815175755240.png)
 
 ## Compilation & Download
 

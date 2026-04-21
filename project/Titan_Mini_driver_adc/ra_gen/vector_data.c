@@ -26,6 +26,10 @@
             [19] = adc_b_fiforeq2_isr, /* ADC FIFOREQ2 (FIFO data read request interrupt(Gr.2)) */
             [20] = adc_b_fiforeq3_isr, /* ADC FIFOREQ3 (FIFO data read request interrupt(Gr.3)) */
             [21] = adc_b_fiforeq4_isr, /* ADC FIFOREQ4 (FIFO data read request interrupt(Gr.4)) */
+            [22] = sci_b_uart_rxi_isr, /* SCI1 RXI (Receive data full) */
+            [23] = sci_b_uart_txi_isr, /* SCI1 TXI (Transmit data empty) */
+            [24] = sci_b_uart_tei_isr, /* SCI1 TEI (Transmit end) */
+            [25] = sci_b_uart_eri_isr, /* SCI1 ERI (Receive error) */
         };
         #if BSP_FEATURE_ICU_HAS_IELSR
         const bsp_interrupt_event_t g_interrupt_event_link_select[BSP_ICU_VECTOR_NUM_ENTRIES] =
@@ -52,6 +56,10 @@
             [19] = BSP_PRV_VECT_ENUM(EVENT_ADC_FIFOREQ2,GROUP3), /* ADC FIFOREQ2 (FIFO data read request interrupt(Gr.2)) */
             [20] = BSP_PRV_VECT_ENUM(EVENT_ADC_FIFOREQ3,GROUP4), /* ADC FIFOREQ3 (FIFO data read request interrupt(Gr.3)) */
             [21] = BSP_PRV_VECT_ENUM(EVENT_ADC_FIFOREQ4,GROUP5), /* ADC FIFOREQ4 (FIFO data read request interrupt(Gr.4)) */
+            [22] = BSP_PRV_VECT_ENUM(EVENT_SCI1_RXI,GROUP6), /* SCI1 RXI (Receive data full) */
+            [23] = BSP_PRV_VECT_ENUM(EVENT_SCI1_TXI,GROUP7), /* SCI1 TXI (Transmit data empty) */
+            [24] = BSP_PRV_VECT_ENUM(EVENT_SCI1_TEI,GROUP0), /* SCI1 TEI (Transmit end) */
+            [25] = BSP_PRV_VECT_ENUM(EVENT_SCI1_ERI,GROUP1), /* SCI1 ERI (Receive error) */
         };
         #endif
         #endif

@@ -11,6 +11,10 @@
             [4] = rtc_alarm_periodic_isr, /* RTC ALARM (Alarm interrupt) */
             [5] = rtc_alarm_periodic_isr, /* RTC PERIOD (Periodic interrupt) */
             [6] = rtc_carry_isr, /* RTC CARRY (Carry interrupt) */
+            [7] = sci_b_uart_rxi_isr, /* SCI1 RXI (Receive data full) */
+            [8] = sci_b_uart_txi_isr, /* SCI1 TXI (Transmit data empty) */
+            [9] = sci_b_uart_tei_isr, /* SCI1 TEI (Transmit end) */
+            [10] = sci_b_uart_eri_isr, /* SCI1 ERI (Receive error) */
         };
         #if BSP_FEATURE_ICU_HAS_IELSR
         const bsp_interrupt_event_t g_interrupt_event_link_select[BSP_ICU_VECTOR_NUM_ENTRIES] =
@@ -22,6 +26,10 @@
             [4] = BSP_PRV_VECT_ENUM(EVENT_RTC_ALARM,GROUP4), /* RTC ALARM (Alarm interrupt) */
             [5] = BSP_PRV_VECT_ENUM(EVENT_RTC_PERIOD,GROUP5), /* RTC PERIOD (Periodic interrupt) */
             [6] = BSP_PRV_VECT_ENUM(EVENT_RTC_CARRY,GROUP6), /* RTC CARRY (Carry interrupt) */
+            [7] = BSP_PRV_VECT_ENUM(EVENT_SCI1_RXI,GROUP7), /* SCI1 RXI (Receive data full) */
+            [8] = BSP_PRV_VECT_ENUM(EVENT_SCI1_TXI,GROUP0), /* SCI1 TXI (Transmit data empty) */
+            [9] = BSP_PRV_VECT_ENUM(EVENT_SCI1_TEI,GROUP1), /* SCI1 TEI (Transmit end) */
+            [10] = BSP_PRV_VECT_ENUM(EVENT_SCI1_ERI,GROUP2), /* SCI1 ERI (Receive error) */
         };
         #endif
         #endif

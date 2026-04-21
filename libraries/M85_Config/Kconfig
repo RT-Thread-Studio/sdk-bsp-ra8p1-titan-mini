@@ -269,9 +269,6 @@ menu "Hardware Drivers Config"
             default n
             select RT_USING_SPI
             if BSP_USING_SPI
-                config BSP_USING_SPI0
-                    bool "Enable SPI0 BUS"
-                    default n
                 config BSP_USING_SPI1
                     bool "Enable SPI1 BUS"
                     default n
@@ -371,6 +368,9 @@ menu "Hardware Drivers Config"
                 config BSP_USING_PWM7
                     bool "Enable GPT7 (16-Bits) output PWM"
                     default n
+                config BSP_USING_PWM9
+                    bool "Enable GPT9 (16-Bits) output PWM"
+                    default n
                 config BSP_USING_PWM10
                     bool "Enable GPT10 (16-Bits) output PWM"
                     default n
@@ -385,14 +385,8 @@ menu "Hardware Drivers Config"
             select RT_USING_CAN
             select RT_CAN_USING_CANFD
             if BSP_USING_CANFD
-                config BSP_USING_CAN_RZ_RA
-                    bool "Enabled this option means turning on standard CAN, while disabling it means switching to CANFD."
-                    default n
                 config BSP_USING_CAN0
                     bool "Enable CANFD0"
-                    default n
-                config BSP_USING_CAN1
-                    bool "Enable CANFD1"
                     default n
             endif
 
