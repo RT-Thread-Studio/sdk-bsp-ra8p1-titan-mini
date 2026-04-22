@@ -14,7 +14,7 @@ board:
   sale_contact_global: https://www.rt-thread.org/
   small_image: figures/big.png
   vendor: Renesas
-  version: 1.0.0
+  version: 1.0.1
 chip:
   chip_name: R7KA8P1KFLC
   clock_source: XTAL

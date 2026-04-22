@@ -46,4 +46,3 @@ cconfig.h
 *.asm
 **/buildinfo.gpdsc
 **/buildinfo.json
-**/rtconfig_preinc.h
