@@ -1000,6 +1000,10 @@
       <configSetting altId="p512.gpio_mode.gpio_mode_peripheral" configurationId="p512.gpio_mode"/>
       <configSetting altId="p600.output.low" configurationId="p600"/>
       <configSetting altId="p600.gpio_mode.gpio_mode_out.low" configurationId="p600.gpio_mode"/>
+      <configSetting altId="p706.sci1.rxd1" configurationId="p706"/>
+      <configSetting altId="p706.gpio_mode.gpio_mode_peripheral" configurationId="p706.gpio_mode"/>
+      <configSetting altId="p707.sci1.txd1" configurationId="p707"/>
+      <configSetting altId="p707.gpio_mode.gpio_mode_peripheral" configurationId="p707.gpio_mode"/>
       <configSetting altId="p709.output.low" configurationId="p709"/>
       <configSetting altId="p709.gpio_speed.gpio_speed_h" configurationId="p709.gpio_drivecapacity"/>
       <configSetting altId="p709.gpio_mode.gpio_mode_out.low" configurationId="p709.gpio_mode"/>
@@ -1037,6 +1041,8 @@
       <configSetting altId="pd07.sdhi0.sd0cd" configurationId="pd07"/>
       <configSetting altId="pd07.gpio_mode.gpio_mode_peripheral" configurationId="pd07.gpio_mode"/>
       <configSetting altId="sci1.mode.custom.free" configurationId="sci1.mode"/>
+      <configSetting altId="sci1.rxd1.p706" configurationId="sci1.rxd1"/>
+      <configSetting altId="sci1.txd1.p707" configurationId="sci1.txd1"/>
       <configSetting altId="sci2.mode.asynchronousuart.free" configurationId="sci2.mode"/>
       <configSetting altId="sci2.rxd2.p802" configurationId="sci2.rxd2"/>
       <configSetting altId="sci2.txd2.p801" configurationId="sci2.txd2"/>
