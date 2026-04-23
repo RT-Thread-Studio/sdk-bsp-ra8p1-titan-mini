@@ -34,6 +34,7 @@ $ sdk-bsp-ra8p1-titan-board-mini
 │   ├── Titan_Mini_driver_sdcard
 │   ├── Titan_Mini_driver_sdram
 │   ├── Titan_Mini_driver_spi
+│   ├── Titan_Mini_pdm
 │   ├── Titan_Mini_driver_wdt
 │   ├── Titan_Mini_key_irq
 │   ├── Titan_Mini_peripheral_imu
