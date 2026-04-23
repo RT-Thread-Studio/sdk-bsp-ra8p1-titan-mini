@@ -69,6 +69,7 @@ jobs:
          - {RTT_BSP: "Titan_Mini_driver_sdcard"}
          - {RTT_BSP: "Titan_Mini_driver_sdram"}
          - {RTT_BSP: "Titan_Mini_driver_spi"}
+         - {RTT_BSP: "Titan_Mini_pdm"}
          - {RTT_BSP: "Titan_Mini_driver_wdt"}
          - {RTT_BSP: "Titan_Mini_key_irq"}
          - {RTT_BSP: "Titan_Mini_peripheral_imu"}

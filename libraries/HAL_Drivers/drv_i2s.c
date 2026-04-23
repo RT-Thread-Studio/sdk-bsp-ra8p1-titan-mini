@@ -253,27 +253,6 @@ static rt_ssize_t sound_transmit(struct rt_audio_device *audio, const void *writ
     snd_dev = (struct sound_device *)audio->parent.user_data;
     if (size > 0)
     {
-
-        if(snd_dev->audio_config.channels == 1)
-        {
-            rt_uint32_t *src = (rt_uint32_t *)writeBuf;
-            rt_uint32_t *dst = (rt_uint32_t *)g_stream_src;
-            for (int i = 0; i < size/4; i++)
-            {
-                dst[i * 4] = 0;
-                dst[i * 4+4] = 0;
-            }
-
-            fsp_err_t err = R_SSI_Write(&g_i2s0_ctrl,
-                        (uint8_t *) g_stream_src,
-                        size*4);
-            if (FSP_SUCCESS != err)
-            {
-                rt_kprintf("SSI Write also failed: %d", err);
-            }    
-        }
-        else
-        {
             fsp_err_t err = R_SSI_Write(&g_i2s0_ctrl,
                                     (uint8_t *) writeBuf,
                                     size);
@@ -281,9 +260,6 @@ static rt_ssize_t sound_transmit(struct rt_audio_device *audio, const void *writ
             {
                 rt_kprintf("SSI Write also failed: %d", err);
             }    
-
-        }
-
     }
     return size;
 }
