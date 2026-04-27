@@ -1,5 +1,7 @@
 # SDRAM 驱动示例说明
 
+**中文** | [**English**](README.md)
+
 ## 项目概述
 
 本项目为 **Titan Board Mini** 平台提供了完整的 SDRAM 驱动解决方案，基于 Renesas RA8P1 微控制器和 RT-Thread 实时操作系统。该驱动充分利用了 RA8P1 的外部存储器接口，为嵌入式系统提供高性能的外部内存访问能力。

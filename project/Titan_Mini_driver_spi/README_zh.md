@@ -1,5 +1,7 @@
 # SPI 驱动示例说明
 
+[**English**](README.md) | **中文**
+
 ## 项目介绍
 
 本示例演示如何在 **Titan Board Mini** 开发板上使用 **RT-Thread SPI 设备驱动框架** 进行串行外设接口通信。基于 RA8P1 微控制器的硬件 SPI 外设，支持多种通信模式和高速数据传输。

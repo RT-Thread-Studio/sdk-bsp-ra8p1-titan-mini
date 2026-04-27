@@ -1,5 +1,7 @@
 # WDT Driver Example Guide
 
+[**中文**](README_zh.md) | **English**
+
 ## Overview
 
 This project is a Watchdog Timer (WDT) driver example for the **RA8P1 Titan Mini** board based on the RT-Thread operating system. The watchdog timer is an important reliability component in embedded systems, used to monitor system running status and automatically reset when the system encounters exceptions, ensuring stable system operation.

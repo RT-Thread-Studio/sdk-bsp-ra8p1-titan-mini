@@ -1,5 +1,7 @@
 # SD Card File System Example Guide
 
+[**中文**](README_zh.md) | **English**
+
 ## Introduction
 
 This example uses an SD card as the storage device for the file system, demonstrating how to create a file system on an SD card (format the card) and mount it to the RT-Thread operating system.

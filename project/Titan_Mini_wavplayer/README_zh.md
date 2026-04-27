@@ -1,5 +1,7 @@
 # WAV 音频播放器示例说明
 
+**中文** | [**English**](./README.md)
+
 ## 简介
 
 本示例展示了如何在 **Titan Board Mini** 上使用 **ES8156 音频编解码器** 实现 **WAV 格式音频播放**,通过 **SSI (Synchronous Serial Interface)** 接口传输音频数据,结合 **RT-Thread 音频框架** 实现完整的音频播放功能。

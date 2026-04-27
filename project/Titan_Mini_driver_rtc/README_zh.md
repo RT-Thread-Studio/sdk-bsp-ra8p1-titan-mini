@@ -1,5 +1,7 @@
 # RTC 驱动示例说明
 
+**中文** | [**English**](README.md)
+
 ## 简介
 
 本示例展示如何在 **Titan Board Mini** 上使用 **RT-Thread RTC 设备驱动框架** 来驱动 RA8P1 微控制器的实时时钟外设。RTC (Real-Time Clock) 是一个重要的硬件外设，能够在主电源断开时继续保持时间信息，为系统提供可靠的时间基准。

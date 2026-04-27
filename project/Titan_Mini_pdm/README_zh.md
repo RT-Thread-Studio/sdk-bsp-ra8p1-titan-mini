@@ -1,5 +1,7 @@
 # PDM 麦克风实时回环示例说明
 
+**中文** | [**English**](./README.md)
+
 ## 简介
 
 本示例展示了如何在 **Titan Board Mini** 上使用 **RA8P1 的 PDM (Pulse Density Modulation) 接口** 读取 **PDM 麦克风** 数据，并通过 **ES8156 音频编解码器** 实时播放，实现 **麦克风 → 扬声器** 的音频回环功能。

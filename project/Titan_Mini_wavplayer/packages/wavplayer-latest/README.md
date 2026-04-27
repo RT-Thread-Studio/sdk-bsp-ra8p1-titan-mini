@@ -1,5 +1,7 @@
 # wavplayer
 
+[中文页](README_ZH.md) | English
+
 ## 1. Introduction
 
 **wavplayer** is a simple wav format music player that provides functions for playing and recording wav files, supporting functions such as play, stop, pause, resume, and volume adjustment.

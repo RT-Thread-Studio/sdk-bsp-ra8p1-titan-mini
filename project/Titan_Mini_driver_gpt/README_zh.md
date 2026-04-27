@@ -1,5 +1,7 @@
 # GPT 驱动示例说明
 
+**中文** | [**English**](README.md)
+
 ## 简介
 
 本示例项目展示如何在 **Titan Board Mini (基于 RA8P1)** 上使用 **RT-Thread 定时器设备驱动框架** 来实现 GPT（通用PWM定时器）功能。

@@ -1,8 +1,13 @@
 <a href="https://github.com/sponsors/lvgl" target="_blank"><img align="left" src="https://lvgl.io/github-assets/sponsor.png" height="32px"></a>
 
+
+
+<p align="right"><a href="../README.md">English</a> | <a href="./README_zh.md">中文</a> | <a href="./README_pt_BR.md">Português do Brasil</a> | <b>日本語</b></p>
+
 <p align="center">
   <img src="https://lvgl.io/github-assets/logo-colored.png" width=300px>
 </p>
+
 
   <h1 align="center">Light and Versatile Graphics Library</h1>
   <br>

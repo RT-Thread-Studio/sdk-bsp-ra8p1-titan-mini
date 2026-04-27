@@ -1,5 +1,11 @@
 <a href="https://github.com/sponsors/lvgl" target="_blank"><img align="left" src="https://lvgl.io/github-assets/sponsor.png" height="32px"></a>
 
+<p align="right">
+  <b>עברית</b> | <a href="./docs/README_zh.md">中文</a> | <a href="./docs/README_pt_BR.md">Português do Brasil</a> | <a href="./docs/README_jp.md">日本語</a> | <a href="./README.md">English</a>
+</p>
+
+<br>
+
 <p align="center">
   <img src="https://lvgl.io/github-assets/logo-colored.png" width=300px>
 </p>

@@ -1,5 +1,7 @@
 # LED Blink Example
 
+**English** | [**中文**](README_zh.md)
+
 ## Introduction
 
 This example is the simplest and most basic example in the SDK, similar to the "Hello World" program that programmers encounter as their first program. The main function of this example is to make the onboard RGB LED blink periodically.

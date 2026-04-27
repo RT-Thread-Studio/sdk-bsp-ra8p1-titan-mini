@@ -1,5 +1,7 @@
 # PDM Microphone Real-time Loopback Example Guide
 
+**English** | [**中文**](./README_zh.md)
+
 ## Introduction
 
 This example demonstrates how to use the **RA8P1 PDM (Pulse Density Modulation) Interface** on **Titan Board Mini** to read audio from a **PDM Microphone** and play it back in real-time through the **ES8156 Audio Codec**, implementing a **Microphone → Speaker** audio loopback function.

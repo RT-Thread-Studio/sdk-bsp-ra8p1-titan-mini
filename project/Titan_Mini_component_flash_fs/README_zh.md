@@ -1,5 +1,7 @@
 # QSPI Flash 文件系统示例说明
 
+**中文** | [**English**](./README.md)
+
 ## 简介
 
 本示例展示了如何在 **Titan Board Mini** 上使用板载 **QSPI Flash (W25Q64)** 实现 **LittleFS 文件系统**,通过 RT-Thread 的 **FAL (Flash Abstraction Layer)** 抽象层进行 Flash 设备管理。

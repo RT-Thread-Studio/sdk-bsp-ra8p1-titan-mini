@@ -1,5 +1,7 @@
 # MIPI CSI Camera Example Guide
 
+**English**|[**Chinese**](README_zh.md)
+
 ## Introduction
 
 This example demonstrates how to use the **MIPI CSI (Camera Serial Interface)** on the **Titan Board** to connect an **OV5640 camera**, and display the captured images on an **RGB565 LCD screen** via the **RT-Thread LCD framework**.

@@ -1,5 +1,7 @@
 # USB PCDC Driver Example Guide
 
+**English** | [**Chinese**](./README_zh.md)
+
 ## Introduction
 
 This example demonstrates how to use the **RA8 Series MCU USB PCDC module (r_usb_pcdc)** on the **Titan Board** to enumerate the device as a **USB virtual serial port (CDC)**, allowing serial communication with the board on a PC as a “COM port/ttyACM”.

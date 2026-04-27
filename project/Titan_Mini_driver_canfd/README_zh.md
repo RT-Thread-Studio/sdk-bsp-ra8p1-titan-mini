@@ -1,5 +1,7 @@
 # CAN FD 驱动示例说明
 
+[**中文**](README_zh.md) | **English**
+
 ## 简介
 
 本文档详细介绍了在 **Titan Board Mini** 开发板上基于 **RA8P1** 微控制器实现的 **CAN FD (Controller Area Network with Flexible Data-Rate)** 驱动程序。CAN FD 是传统CAN协议的增强版本，在保持向后兼容性的同时提供了更高的数据传输速率和更大的数据负载容量。
