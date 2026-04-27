@@ -25,6 +25,7 @@ $ sdk-bsp-ra8p1-titan-board-mini
 │   ├── Titan_Mini_blink_led
 │   ├── Titan_Mini_component_flash_fs
 │   ├── Titan_Mini_display_camera_mipi_csi
+│   ├── Titan_Mini_npu_ai_face_detection
 │   ├── Titan_Mini_display_rgb_lvgl
 │   ├── Titan_Mini_driver_adc
 │   ├── Titan_Mini_driver_canfd

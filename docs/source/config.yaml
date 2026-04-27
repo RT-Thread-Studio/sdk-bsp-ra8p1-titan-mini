@@ -62,6 +62,7 @@ categories:
     patterns:
       - "Titan_Mini_display_camera_mipi_csi"
       - "Titan_Mini_display_rgb_lvgl"
+      - "Titan_Mini_npu_ai_face_detection"
 
   peripheral:
     name: "外设扩展篇"

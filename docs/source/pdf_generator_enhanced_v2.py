@@ -56,7 +56,7 @@ class HTMLParser:
             element = self.soup.select_one(selector)
             if element:
                 title = element.get_text().strip()
-                if title and title != "Titan-Board SDK 1.0.0 文档":
+                if title and title != "Titan-Board SDK 1.1.0 文档":
                     return title
         
         return "未知标题"
