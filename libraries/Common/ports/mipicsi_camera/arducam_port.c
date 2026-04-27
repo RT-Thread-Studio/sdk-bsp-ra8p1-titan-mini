@@ -137,3 +137,35 @@ bool rdSensorReg16_Multi(uint16_t regID, uint8_t *regDat, uint32_t len)
 
     return camera_i2c_transfer(msgs, 2);
 }
+
+bool wrSensorReg16_Multi(uint16_t regID, uint8_t *regDat, uint32_t len)
+{
+    /* 使用栈上固定大小缓冲区，避免动态内存分配 */
+    /* 最大支持一次写入 256 字节 */
+    uint8_t data[258];
+    uint32_t i;
+
+    if (len > 256)
+    {
+        LOG_E("Multi-write length %d exceeds maximum 256", len);
+        return false;
+    }
+
+    data[0] = (uint8_t)(regID >> 8);
+    data[1] = (uint8_t)regID;
+
+    for (i = 0; i < len; i++)
+    {
+        data[i + 2] = regDat[i];
+    }
+
+    struct rt_i2c_msg msg =
+    {
+        .addr  = CAMERA_I2C_ADDR,
+        .flags = RT_I2C_WR,
+        .buf   = data,
+        .len   = len + 2
+    };
+
+    return camera_i2c_transfer(&msg, 1);
+}

@@ -70,12 +70,10 @@ int sensor_set_xclk_frequency(uint32_t frequency)
     static uint8_t is_enable = 0;
     if (is_enable)
         return 0;
-/*
-    R_GPT_Open(&g_timer4_ctrl, &g_timer4_cfg);
-    R_GPT_Enable(&g_timer4_ctrl);
-    R_GPT_Start(&g_timer4_ctrl);
+    R_GPT_Open(&g_timer11_ctrl, &g_timer11_cfg);
+    R_GPT_Enable(&g_timer11_ctrl);
+    R_GPT_Start(&g_timer11_ctrl);
     LOG_D("Enable 24MHz pwm for camera");
-*/
     is_enable = 1;
 
     return 0;

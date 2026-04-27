@@ -299,7 +299,7 @@ const uint8_t DRW_INT_IPL = (2);
             d2_device *   d2_handle0;
 /** Display framebuffer */
         #if GLCDC_CFG_LAYER_1_ENABLE
-        uint8_t fb_background[1][DISPLAY_BUFFER_STRIDE_BYTES_INPUT0 * DISPLAY_VSIZE_INPUT0] BSP_ALIGN_VARIABLE(64) BSP_PLACE_IN_SECTION(BSP_UNINIT_SECTION_PREFIX ".sdram_noinit");
+        uint8_t fb_background[2][DISPLAY_BUFFER_STRIDE_BYTES_INPUT0 * DISPLAY_VSIZE_INPUT0] BSP_ALIGN_VARIABLE(64) BSP_PLACE_IN_SECTION(BSP_UNINIT_SECTION_PREFIX ".sdram_noinit");
         #else
         /** Graphics Layer 1 is specified not to be used when starting */
         #endif
@@ -497,7 +497,7 @@ const uint8_t DRW_INT_IPL = (2);
                 .endian              = DISPLAY_ENDIAN_LITTLE,
                 .color_order         = DISPLAY_COLOR_ORDER_BGR,
                 .data_enable_polarity = DISPLAY_SIGNAL_POLARITY_HIACTIVE,
-                .sync_edge           = DISPLAY_SIGNAL_SYNC_EDGE_FALLING,
+                .sync_edge           = DISPLAY_SIGNAL_SYNC_EDGE_RISING,
                 .bg_color =
                 {
                     .byte = {
