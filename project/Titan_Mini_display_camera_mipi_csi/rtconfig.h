@@ -375,6 +375,7 @@
 #define BSP_USING_TIM0
 #define BSP_USING_PWM
 #define BSP_USING_PWM7
+#define BSP_USING_PWM12
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */

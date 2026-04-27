@@ -176,6 +176,8 @@ bool wrSensorReg8_8(int regID, int regDat);
 
 bool wrSensorReg16_8(int regID, int regDat);
 
+bool wrSensorReg16_Multi(uint16_t regID, uint8_t *regDat, uint32_t len);
+
 bool rdSensorReg16_8(uint16_t regID, uint8_t * regDat);
 FSP_CPP_FOOTER
 #endif

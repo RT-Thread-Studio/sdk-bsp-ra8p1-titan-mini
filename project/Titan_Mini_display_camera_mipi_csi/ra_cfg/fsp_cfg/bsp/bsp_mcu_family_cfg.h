@@ -164,7 +164,7 @@
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 9) /* ULPT0 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 15) /* GPT COMMON */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 18) /* GPT13 */ | \
-            (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 19) /* GPT12 */ | \
+            (((1 > 0) ? 0U : 1U) << 19) /* GPT12 */ | \
             (((1 > 0) ? 0U : 1U) << 20) /* GPT11 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 21) /* GPT10 */ | \
             (((RA_NOT_DEFINED > 0) ? 0U : 1U) << 27) /* GPT4 */ | \
@@ -435,7 +435,7 @@
 
 #ifndef BSP_CFG_DCACHE_FORCE_WRITETHROUGH
  #if (0U == BSP_CFG_CPU_CORE)
-    #define BSP_CFG_DCACHE_FORCE_WRITETHROUGH (0)
+    #define BSP_CFG_DCACHE_FORCE_WRITETHROUGH (1)
  #else
     #define BSP_CFG_DCACHE_FORCE_WRITETHROUGH (0)
  #endif

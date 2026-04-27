@@ -102,6 +102,11 @@ void      camera_capture_start(void);
 uint32_t  camera_data_ready_buffer_pointer_get(void);
 
 uint32_t      camera_capture_post_process(void);
+
+int OV5640_af_init(void);
+int OV5640_auto_focus(void);
+int OV5640_release_focus(void);
+
 FSP_CPP_FOOTER
 
 #endif /* CAMERA_CAMERA_LAYER_H_ */
