@@ -9,6 +9,23 @@
     };
     
     // 从版本配置文件获取版本信息
+    // 获取嵌入的版本配置（在构建时由脚本生成）
+    function getEmbeddedVersionConfig() {
+        return {
+  "versions": [
+    {
+      "name": "main",
+      "display_name": "latest",
+      "branch": "main",
+      "url_path": "latest",
+      "description": "最新开发版本"
+    }
+  ],
+  "default_version": "main",
+  "latest_version": "main"
+};
+    }
+
     async function fetchVersionInfo() {
         try {
             // 智能检测当前版本

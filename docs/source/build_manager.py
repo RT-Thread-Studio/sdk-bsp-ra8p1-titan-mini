@@ -73,104 +73,40 @@ class BuildManager:
             versions.append(VersionConfig(version_dict))
         return versions
     
-    def get_current_branch():
-        """
-        安全获取当前分支名，处理分离头指针和错误情况
-        """
-        try:
-            # 检查是否在Git仓库中
-            subprocess.run(
-                ['git', 'rev-parse', '--git-dir'],
-                capture_output=True, check=True
-            )
-            
-            # 尝试获取分支名称
-            result = subprocess.run(
-                ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
-                capture_output=True, text=True, check=True
-            )
-            branch = result.stdout.strip()
-            
-            # 如果返回HEAD，说明在分离头指针状态
-            if branch == "HEAD":
-                result = subprocess.run(
-                    ['git', 'rev-parse', '--short', 'HEAD'],
-                    capture_output=True, text=True, check=True
-                )
-                return f"detached-{result.stdout.strip()}"
-            
-            return branch
-            
-        except subprocess.CalledProcessError:
-            return "not-a-repo"
-        except Exception as e:
-            return f"error: {str(e)}"
-
-    def is_in_ci_environment() -> bool:
-        """检查是否在CI环境中"""
-        return os.environ.get('CI') == 'true' or os.environ.get('GITHUB_ACTIONS') == 'true'
-
     def create_worktree(self, version_config: VersionConfig) -> Path:
         """为指定版本创建 Git worktree"""
         worktree_path = self.worktrees_dir / version_config.name
         
-        if is_in_ci_environment():
-            print("检测到CI环境，使用特殊处理逻辑")
-            # 在CI环境中，我们通常已经在正确的分支上
-            # 或者可以直接使用指定的分支
-            
-            # 检查目标分支是否存在
-            try:
-                subprocess.run(['git', 'show-ref', '--verify', f'refs/heads/{version_config.branch}'],
-                            check=True, capture_output=True, cwd=Path.cwd())
-                # 如果分支存在，直接使用当前目录（假设CI已经checkout到正确分支）
-                return Path.cwd()
-            except subprocess.CalledProcessError:
-                # 分支不存在，可能需要从远程获取
-                print(f"分支 {version_config.branch} 不存在，尝试从远程获取")
-                try:
-                    subprocess.run(['git', 'fetch', 'origin', f'{version_config.branch}:{version_config.branch}'],
-                                check=True, cwd=Path.cwd())
-                except subprocess.CalledProcessError:
-                    print(f"无法获取分支 {version_config.branch}，使用当前目录")
-                    return Path.cwd()
-
-    def create_worktree(self, version_config: VersionConfig) -> Path:
-        """为指定版本创建 Git worktree"""
-        worktree_path = self.worktrees_dir / version_config.name
+        # 获取当前分支
+        current_branch = subprocess.run(
+            ['git', 'rev-parse', '--abbrev-ref', 'HEAD'],
+            capture_output=True, text=True, check=True
+        ).stdout.strip()
         
-        try:
-            # 安全获取当前分支
-            current_branch = get_current_branch()
-            
-            if current_branch and version_config.branch == current_branch:
-                print(f"目标分支 {version_config.branch} 就是当前分支，使用当前目录")
-                return Path.cwd()
-            
-            # 清理已存在的 worktree
-            if worktree_path.exists():
-                print(f"清理已存在的 worktree: {worktree_path}")
-                try:
-                    subprocess.run(['git', 'worktree', 'remove', '--force', str(worktree_path)], 
-                                check=True, capture_output=True, cwd=Path.cwd())
-                except subprocess.CalledProcessError:
-                    print(f"Git worktree remove 失败，尝试手动删除")
-                    shutil.rmtree(worktree_path, ignore_errors=True)
-            
-            # 创建新的 worktree
-            print(f"创建 worktree: {version_config.branch} -> {worktree_path}")
-            subprocess.run([
-                'git', 'worktree', 'add', '--force',
-                str(worktree_path), version_config.branch
-            ], check=True, cwd=Path.cwd())
-            
-            return worktree_path
-            
-        except Exception as e:
-            print(f"创建worktree失败: {e}")
-            # 失败时返回当前目录作为fallback
+        # 如果目标分支就是当前分支，直接使用当前目录
+        if version_config.branch == current_branch:
+            print(f"目标分支 {version_config.branch} 就是当前分支，使用当前目录")
             return Path.cwd()
-
+        
+        # 清理已存在的 worktree
+        if worktree_path.exists():
+            print(f"清理已存在的 worktree: {worktree_path}")
+            try:
+                subprocess.run(['git', 'worktree', 'remove', str(worktree_path)], 
+                             check=True, capture_output=True)
+            except subprocess.CalledProcessError:
+                # 如果 worktree remove 失败，手动删除
+                shutil.rmtree(worktree_path, ignore_errors=True)
+        
+        # 创建新的 worktree
+        print(f"创建 worktree: {version_config.branch} -> {worktree_path}")
+        subprocess.run([
+            'git', 'worktree', 'add', 
+            str(worktree_path), version_config.branch
+        ], check=True)
+        
+        return worktree_path
+    
     def build_docs_in_worktree(self, worktree_path: Path, version_config: VersionConfig) -> bool:
         """在 worktree 中构建文档"""
         print(f"在 worktree 中构建文档: {worktree_path}")
@@ -685,18 +621,32 @@ class BuildManager:
                 content = re.sub(r'aria-label="页脚"', 'aria-label="Footer"', content)
                 
                 # 修复链接指向
+                # 保护章节页顶部显式声明的中文切换链接，避免被重写成当前英文页自身
+                content = re.sub(r'href="(\.?/?README)_zh\.html(#[^"]*)?"',
+                                 lambda m: f'href="__KEEP_ZH_README__{m.group(2) or ""}"', content)
                 content = re.sub(r'href="([^"]*)_zh\.html"', r'href="\1.html"', content)
                 content = re.sub(r'href="([^"]*)/index_zh\.html"', r'href="\1/index.html"', content)
                 
                 # 修复目录结构中的链接
                 content = re.sub(r'href="([^"]*)_zh\.html#', r'href="\1.html#', content)
+                content = content.replace('href="__KEEP_ZH_README__"', 'href="README_zh.html"')
+                content = content.replace('href="__KEEP_ZH_README__#', 'href="README_zh.html#')
+                content = content.replace('href=".__KEEP_ZH_README__"', 'href="./README_zh.html"')
+                content = content.replace('href=".__KEEP_ZH_README__#', 'href="./README_zh.html#')
                 
             else:
                 # 中文版保持原样，但确保语言属性正确
                 content = re.sub(r'lang="en"', 'lang="zh-CN"', content)
+                # 保护章节页顶部显式声明的英文切换链接，避免被重写成当前中文页自身
+                content = re.sub(r'href="(\.?/?README)\.html(#[^"]*)?"',
+                                 lambda m: f'href="__KEEP_EN_README__{m.group(2) or ""}"', content)
                 # 确保中文版链接指向中文版文件
                 content = re.sub(r'href="([^"]*)(?<!_zh)\.html"', r'href="\1_zh.html"', content)
                 content = re.sub(r'href="([^"]*)/index\.html"', r'href="\1/index_zh.html"', content)
+                content = content.replace('href="__KEEP_EN_README__"', 'href="README.html"')
+                content = content.replace('href="__KEEP_EN_README__#', 'href="README.html#')
+                content = content.replace('href=".__KEEP_EN_README__"', 'href="./README.html"')
+                content = content.replace('href=".__KEEP_EN_README__#', 'href="./README.html#')
                 # 修复搜索框文本
                 content = re.sub(r'placeholder="Search documentation"', 'placeholder="搜索文档"', content)
                 content = re.sub(r'aria-label="Search documentation"', 'aria-label="搜索文档"', content)
