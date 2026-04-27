@@ -277,8 +277,8 @@ class BuildManager:
             except Exception as e:
                 print(f"  警告: 移动英文版文件时出错: {e}")
             
-            # 中文版构建时只排除英文 README，保留 README_zh.md
-            zh_env['SPHINX_EXCLUDE_PATTERNS'] = '**/README.md'
+            # 中文版构建时排除英文文档
+            zh_env['SPHINX_EXCLUDE_PATTERNS'] = '*.md'
             
             print(f"中文版构建环境变量:")
             print(f"  LANG: {zh_env.get('LANG', 'N/A')}")
@@ -362,8 +362,8 @@ class BuildManager:
             except Exception as e:
                 print(f"  警告: 移动中文版文件时出错: {e}")
             
-            # 英文版构建时只排除中文 README，保留 README.md
-            en_env['SPHINX_EXCLUDE_PATTERNS'] = '**/README_zh.md'
+            # 英文版构建时排除中文文档
+            en_env['SPHINX_EXCLUDE_PATTERNS'] = '*_zh.md'
             
             print(f"英文版构建环境变量:")
             print(f"  LANG: {en_env.get('LANG', 'N/A')}")
@@ -624,10 +624,19 @@ class BuildManager:
         for item in source_dir.iterdir():
             if item.is_file():
                 if item.name.endswith('.html'):
-                    # 只复制当前语言对应的 HTML，避免英文页覆盖中文页
-                    if self._should_copy_html_for_language(item.name, language):
-                        target_file = target_dir / self._target_html_name(item.name, language)
-                        self._fix_html_language(item, target_file, language)
+                    # HTML文件需要修复语言配置
+                    if language == 'zh':
+                        # 中文版文件添加_zh后缀
+                        if item.stem.endswith('_zh'):
+                            new_name = item.name
+                        else:
+                            new_name = item.stem + '_zh.html'
+                        target_file = target_dir / new_name
+                        self._fix_html_language(item, target_file, 'zh')
+                    else:
+                        # 英文版文件保持原名
+                        target_file = target_dir / item.name
+                        self._fix_html_language(item, target_file, 'en')
                 else:
                     # 非HTML文件直接复制
                     shutil.copy2(item, target_dir / item.name)
@@ -638,26 +647,25 @@ class BuildManager:
                 for subitem in item.iterdir():
                     if subitem.is_file():
                         if subitem.name.endswith('.html'):
-                            # 只复制当前语言对应的 HTML，避免英文页覆盖中文页
-                            if self._should_copy_html_for_language(subitem.name, language):
-                                target_file = target_subdir / self._target_html_name(subitem.name, language)
-                                self._fix_html_language(subitem, target_file, language)
+                            # HTML文件需要修复语言配置
+                            if language == 'zh':
+                                # 中文版文件添加_zh后缀
+                                if subitem.stem.endswith('_zh'):
+                                    new_name = subitem.name
+                                else:
+                                    new_name = subitem.stem + '_zh.html'
+                                target_file = target_subdir / new_name
+                                self._fix_html_language(subitem, target_file, 'zh')
+                            else:
+                                # 英文版文件保持原名
+                                target_file = target_subdir / subitem.name
+                                self._fix_html_language(subitem, target_file, 'en')
                         else:
                             # 非HTML文件直接复制
                             shutil.copy2(subitem, target_subdir / subitem.name)
                     elif subitem.is_dir() and not subitem.name.startswith('.'):
                         # 递归处理子目录，跳过隐藏目录
                         self._copy_docs_with_html_fix(subitem, target_subdir / subitem.name, language)
-
-    def _should_copy_html_for_language(self, file_name: str, language: str) -> bool:
-        """仅复制目标语言对应的 HTML 页面。"""
-        is_zh_page = Path(file_name).stem.endswith('_zh')
-        return is_zh_page if language == 'zh' else not is_zh_page
-
-    def _target_html_name(self, file_name: str, language: str) -> str:
-        """返回目标 HTML 文件名。"""
-        stem = Path(file_name).stem
-        return file_name if language == 'en' or stem.endswith('_zh') else f"{stem}_zh.html"
     
     def _fix_html_language(self, source_file: Path, target_file: Path, language: str):
         """修复HTML文件的语言配置"""

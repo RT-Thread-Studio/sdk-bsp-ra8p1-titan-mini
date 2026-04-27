@@ -48,8 +48,8 @@
             return;
         }
         
-        // 查找侧边栏容器（使用 .wy-nav-side，确保位于侧栏根部而非滚动容器内）
-        const sidebar = document.querySelector('.wy-nav-side');
+        // 查找侧边栏容器
+        const sidebar = document.querySelector('.wy-nav-side .wy-side-scroll');
         if (!sidebar) {
             console.warn('未找到侧边栏容器');
             return;
