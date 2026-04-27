@@ -1,5 +1,7 @@
 # WAV Audio Player Example Guide
 
+**English** | [**中文**](README_zh.md)
+
 ## Introduction
 
 This example demonstrates how to play **WAV format audio files** on the **Titan Board Mini** using the **ES8156 Audio Codec** via the **SSI (Synchronous Serial Interface)**, combined with the **RT-Thread Audio Framework** for complete audio playback functionality.

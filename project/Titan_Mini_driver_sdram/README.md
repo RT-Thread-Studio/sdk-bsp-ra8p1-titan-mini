@@ -1,5 +1,7 @@
 # SDRAM Driver Example Guide
 
+**English** | [**中文**](README_zh.md)
+
 ## Introduction
 
 This project provides a complete SDRAM driver solution for the **Titan Board Mini** platform, based on the Renesas RA8P1 microcontroller and RT-Thread real-time operating system. This driver fully utilizes RA8P1's external memory interface to provide high-performance external memory access for embedded systems.

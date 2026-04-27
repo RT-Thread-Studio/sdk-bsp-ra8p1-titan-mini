@@ -1,5 +1,7 @@
 # RGB LCD Example Guide
 
+**English** | [**Chinese**](./README_zh.md)
+
 ## Introduction
 
 This example demonstrates how to use the **GLCDC module of the RA8 series MCU** together with **RT-Thread's LCD driver framework** on the **Titan Board** to drive an RGB LCD screen, enabling image display and interface updates. This document provides a detailed overview of **RA8 GLCDC peripheral features** and the **RT-Thread LCD driver framework**, along with example configurations and usage methods.

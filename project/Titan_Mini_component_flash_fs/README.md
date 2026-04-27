@@ -1,5 +1,7 @@
 # QSPI Flash File System Example Guide
 
+[**中文**](./README_zh.md) | **English**
+
 ## Introduction
 
 This example demonstrates how to implement a **LittleFS file system** using the onboard **QSPI Flash (W25Q64)** on the **Titan Board Mini**, managed through RT-Thread's **FAL (Flash Abstraction Layer)** for Flash device management.

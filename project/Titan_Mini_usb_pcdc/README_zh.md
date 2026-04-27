@@ -1,5 +1,7 @@
 # USB-PCDC 驱动示例说明
 
+**中文** | [**English**](./README.md)
+
 ## 简介
 
 本示例演示如何在 **Titan Board** 上使用 **RA8 系列 MCU 的 USB PCDC 模块（r_usb_pcdc）** 将设备枚举为 **USB 虚拟串口（CDC）**，从而在 PC 上以 “COM 口/ttyACM” 的形式与板卡进行串行数据通信。

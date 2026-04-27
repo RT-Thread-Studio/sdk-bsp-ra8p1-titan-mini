@@ -1,5 +1,7 @@
 # MIPI CSI 摄像头示例说明
 
+**中文**|[**English**](README.md)
+
 ## 简介
 
 本示例展示了如何在 **Titan Board** 上使用 **MIPI CSI（Camera Serial Interface）** 接口连接 **OV5640 摄像头**，并通过 **RT-Thread LCD 框架**将捕获的图像显示到 **RGB565 LCD 屏幕**。

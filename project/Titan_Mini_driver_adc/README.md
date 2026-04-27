@@ -1,5 +1,7 @@
 # ADC Driver Example
 
+[**Chinese**](README_zh.md) | **English**
+
 ## Introduction
 
 This example demonstrates how to implement analog-to-digital conversion functionality for the RA8P1 microcontroller on **Titan Board Mini** using the **RT-Thread ADC device driver framework**. The project provides a comprehensive solution including ADC initialization, sampling, voltage conversion, and thread management.

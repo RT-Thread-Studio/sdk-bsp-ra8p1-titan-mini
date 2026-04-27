@@ -1,5 +1,7 @@
 # IMU Sensor Example Guide
 
+[**中文**](./README_zh.md) | **English**
+
 ## Introduction
 
 This example demonstrates how to use the **LSM6DS3TR-C 6-axis IMU sensor** on **Titan Board Mini** to implement inertial measurement functionality. It reads **3-axis accelerometer** and **3-axis gyroscope** data via the **I2C interface**, combined with the **RT-Thread Sensor Framework** for complete sensor data acquisition and processing.

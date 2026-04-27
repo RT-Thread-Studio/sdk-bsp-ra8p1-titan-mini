@@ -1,5 +1,7 @@
 # GPT Driver Example Guide
 
+[**Chinese**](README_zh.md) | **English**
+
 ## Introduction
 
 This example project demonstrates how to use the **RT-Thread Timer Device Driver Framework** on **Titan Board Mini (based on RA8P1)** to implement GPT (General PWM Timer) functionality.

@@ -1,5 +1,7 @@
 # Key Interrupt Example Guide
 
+**English** | [**Chinese**](./README_zh.md)
+
 ## Introduction
 
 The main function of this routine is to realize the external interrupt through the KEY on the board. When USER_KEY is pressed, the state of LED_G(Green) is changed.

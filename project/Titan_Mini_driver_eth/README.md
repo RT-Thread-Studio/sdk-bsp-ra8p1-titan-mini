@@ -1,5 +1,7 @@
 # Ethernet Example Guide
 
+[**Chinese**](README_zh.md) | **English**
+
 ## Introduction
 
 This example demonstrates how to use the **Ethernet interface** on **Titan Board Mini**, combined with the **RT-Thread Ethernet driver framework** to implement network communication functions.

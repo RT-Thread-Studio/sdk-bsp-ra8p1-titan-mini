@@ -1,5 +1,7 @@
 # Ethernet 示例说明
 
+**中文** | [**English**](./README.md)
+
 ## 简介
 
 本示例展示了如何在 **Titan Board Mini** 上使用 **以太网接口**，结合 **RT-Thread Ethernet 驱动框架** 实现网络通信功能。

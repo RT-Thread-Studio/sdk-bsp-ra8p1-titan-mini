@@ -1,5 +1,7 @@
 # Template Project
 
+**English** | [**中文**](README_zh.md)
+
 ## Introduction
 
 This is a template project for **Titan Board Mini**. It implements basic LED blinking functionality and can be used as a starting point for secondary development.

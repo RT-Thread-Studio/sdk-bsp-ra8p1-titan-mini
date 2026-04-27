@@ -1,5 +1,7 @@
 # SPI Driver Example Guide
 
+**English** | [**中文**](README_zh.md)
+
 ## Project Introduction
 
 This example demonstrates how to use the **RT-Thread SPI Device Driver Framework** on the **Titan Board Mini** development board for Serial Peripheral Interface communication. Based on the hardware SPI peripheral of the RA8P1 microcontroller, it supports multiple communication modes and high-speed data transfer.

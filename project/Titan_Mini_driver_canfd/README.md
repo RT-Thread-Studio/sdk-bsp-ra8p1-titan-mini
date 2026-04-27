@@ -1,5 +1,7 @@
 # CAN FD Driver Example Guide
 
+[**Chinese**](README_zh.md) | **English**
+
 ## Introduction
 
 This document provides a detailed introduction to the **CAN FD (Controller Area Network with Flexible Data-Rate)** driver implemented on the **Titan Board Mini** development board based on the **RA8P1** microcontroller. CAN FD is an enhanced version of the traditional CAN protocol, providing higher data transmission rates and larger data payload capacity while maintaining backward compatibility.

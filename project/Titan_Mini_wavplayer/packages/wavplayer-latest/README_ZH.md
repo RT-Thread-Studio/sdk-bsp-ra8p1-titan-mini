@@ -1,5 +1,7 @@
 # wavplayer
 
+中文页 | [English](README.md)
+
 ## 1. 简介
 
 **wavplayer** 是一个简易的 wav 格式的音乐播放器，提供播放和录制 wav 文件的功能，支持播放、停止、暂停、恢复，以及音量调节等功能。

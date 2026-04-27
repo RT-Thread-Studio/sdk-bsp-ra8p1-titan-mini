@@ -1,5 +1,7 @@
 # RTC Driver Example Guide
 
+[**Chinese**](README_zh.md) | **English**
+
 ## Introduction
 
 This example demonstrates how to use the **RT-Thread RTC Device Driver Framework** on **Titan Board Mini** to drive the Real-Time Clock peripheral of the RA8P1 microcontroller. RTC (Real-Time Clock) is an important hardware peripheral that can maintain time information even when the main power is disconnected, providing a reliable time reference for the system.
