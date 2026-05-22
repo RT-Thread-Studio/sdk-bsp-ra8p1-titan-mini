@@ -12,10 +12,15 @@
 #include "hal_data.h"
 #include <rtdevice.h>
 #include <board.h>
+#include "lsm6ds3tr-c_reg.h"
 
 #define DBG_TAG     "led"
 #define DBG_LVL     DBG_LOG
 #include <rtdbg.h>
+
+/* I2C 配置 */
+#define LSM6DS3TR_C_I2C_BUS    "i2c2"
+#define LSM6DS3TR_C_I2C_ADDR    0x6A  /* SA0引脚接GND */
 
 /* 配置 LED 灯引脚 */
 #define LED_PIN_R   BSP_IO_PORT_01_PIN_09
@@ -43,7 +48,7 @@ void hal_entry(void)
 {
     rt_kprintf("\nHello RT-Thread!\n");
     rt_kprintf("==================================================\n");
-    rt_kprintf("This example project is an RGB flicker routine!\n");
+    rt_kprintf("This example project is an IMU routine!\n");
     rt_kprintf("==================================================\n");
 
     unsigned int count = 0;
@@ -60,24 +65,11 @@ void hal_entry(void)
 
     do
     {
-        /* 获得组编号 */
         group_current = count % group_num;
-
-        /* 控制 RGB 灯 */
         rt_pin_write(LED_PIN_R, _blink_tab[group_current][0]);
         rt_pin_write(LED_PIN_B, _blink_tab[group_current][1]);
         rt_pin_write(LED_PIN_G, _blink_tab[group_current][2]);
-
-        /* 输出 LOG 信息 */
-        LOG_D("group: %d | red led [%-3.3s] | | blue led [%-3.3s] | | green led [%-3.3s]",
-            group_current,
-            _blink_tab[group_current][0] == LED_ON ? "ON" : "OFF",
-            _blink_tab[group_current][1] == LED_ON ? "ON" : "OFF",
-            _blink_tab[group_current][2] == LED_ON ? "ON" : "OFF");
-
         count++;
-
-        /* 延时一段时间 */
         rt_thread_mdelay(500);
     }while(count > 0);
 }

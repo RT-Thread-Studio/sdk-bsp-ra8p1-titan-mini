@@ -73,17 +73,13 @@ int lsm6ds3tr_c_read_data_sample(void)
     lsm6ds3tr_c_xl_filter_analog_set(&dev_ctx,
                                      LSM6DS3TR_C_XL_ANA_BW_400Hz);
     /* Accelerometer - LPF1 path ( LPF2 not used )*/
-    //lsm6ds3tr_c_xl_lp1_bandwidth_set(&dev_ctx, LSM6DS3TR_C_XL_LP1_ODR_DIV_4);
     /* Accelerometer - LPF1 + LPF2 path */
     lsm6ds3tr_c_xl_lp2_bandwidth_set(&dev_ctx,
                                      LSM6DS3TR_C_XL_LOW_NOISE_LP_ODR_DIV_100);
     /* Accelerometer - High Pass / Slope path */
-    //lsm6ds3tr_c_xl_reference_mode_set(&dev_ctx, PROPERTY_DISABLE);
-    //lsm6ds3tr_c_xl_hp_bandwidth_set(&dev_ctx, LSM6DS3TR_C_XL_HP_ODR_DIV_100);
     /* Gyroscope - filtering chain */
     lsm6ds3tr_c_gy_band_pass_set(&dev_ctx,
                                  LSM6DS3TR_C_HP_260mHz_LP1_STRONG);
-//  platform_write(i2c_bus,0x10,&buff,2);
 
     /* Read samples in polling mode (no int) */
     while (1)
