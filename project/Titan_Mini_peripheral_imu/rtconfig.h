@@ -375,6 +375,7 @@
 
 /* Onboard Peripheral Drivers */
 
+#define BSP_USING_LSM6DS3
 /* end of Onboard Peripheral Drivers */
 
 /* On-chip Peripheral Drivers */
