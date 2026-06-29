@@ -7,7 +7,6 @@
 /rt-thread
 /libraries
 /project.custom_argvars
-/.vscode
 /__pycache
 /settings
 /bsp_linker_info.h

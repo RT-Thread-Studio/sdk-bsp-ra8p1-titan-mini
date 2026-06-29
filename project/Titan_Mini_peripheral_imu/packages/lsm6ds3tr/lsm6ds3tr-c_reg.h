@@ -30,6 +30,11 @@ extern "C" {
 #include <stddef.h>
 #include <math.h>
 
+/* Ensure float_t is available (some toolchain libc variants don't expose it) */
+#ifndef float_t
+typedef float float_t;
+#endif
+
 /** @addtogroup LSM6DS3TR_C
   * @{
   *

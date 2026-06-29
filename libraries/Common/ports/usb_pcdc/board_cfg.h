@@ -14,7 +14,7 @@
 #define OFF                                       (0U)
 #define ON                                        (1U)
 
-#define KIT_NAME_MACRO                            "Titan Board"
+#define KIT_NAME_MACRO                            "Titan Board Mini"
 #define KIT_PARTNUM_MACRO                         "R7KA8P1KFLCAC"
 #define KIT_LANDING_URL                           "renesas.com/ra/ra8p1"
 #define PRODUCT_INFO_URL                          "renesas.com/ra"

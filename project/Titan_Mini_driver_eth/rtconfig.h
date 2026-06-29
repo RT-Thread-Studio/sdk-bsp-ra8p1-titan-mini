@@ -101,7 +101,6 @@
 #define RT_USING_SERIAL
 #define RT_USING_SERIAL_V2
 #define RT_SERIAL_USING_DMA
-#define RT_USING_PWM
 #define RT_USING_PIN
 #define RT_USING_HWTIMER
 
@@ -126,6 +125,7 @@
 /* POSIX (Portable Operating System Interface) layer */
 
 #define RT_USING_POSIX_FS
+#define RT_USING_POSIX_DEVIO
 #define RT_USING_POSIX_POLL
 #define RT_USING_POSIX_SELECT
 #define RT_USING_POSIX_SOCKET
@@ -177,20 +177,20 @@
 #define RT_LWIP_TCP
 #define RT_LWIP_RAW
 #define RT_MEMP_NUM_NETCONN 16
-#define RT_LWIP_PBUF_NUM 64
+#define RT_LWIP_PBUF_NUM 256
 #define RT_LWIP_RAW_PCB_NUM 4
 #define RT_LWIP_UDP_PCB_NUM 24
 #define RT_LWIP_TCP_PCB_NUM 24
 #define RT_LWIP_TCP_SEG_NUM 512
 #define RT_LWIP_TCP_SND_BUF 65535
 #define RT_LWIP_TCP_WND 65535
-#define RT_LWIP_TCPTHREAD_PRIORITY 10
-#define RT_LWIP_TCPTHREAD_MBOX_SIZE 16
+#define RT_LWIP_TCPTHREAD_PRIORITY 6
+#define RT_LWIP_TCPTHREAD_MBOX_SIZE 144
 #define RT_LWIP_TCPTHREAD_STACKSIZE 2048
 #define LWIP_NO_TX_THREAD
-#define RT_LWIP_ETHTHREAD_PRIORITY 11
+#define RT_LWIP_ETHTHREAD_PRIORITY 5
 #define RT_LWIP_ETHTHREAD_STACKSIZE 2048
-#define RT_LWIP_ETHTHREAD_MBOX_SIZE 16
+#define RT_LWIP_ETHTHREAD_MBOX_SIZE 144
 #define LWIP_NETIF_STATUS_CALLBACK 1
 #define LWIP_NETIF_LINK_CALLBACK 1
 #define RT_LWIP_NETIF_NAMESIZE 6
@@ -288,6 +288,18 @@
 
 /* enhanced kernel services */
 
+#define PKG_USING_RT_VSNPRINTF_FULL
+#define PKG_VSNPRINTF_SUPPORT_DECIMAL_SPECIFIERS
+#define PKG_VSNPRINTF_SUPPORT_EXPONENTIAL_SPECIFIERS
+#define PKG_VSNPRINTF_SUPPORT_WRITEBACK_SPECIFIER
+#define PKG_VSNPRINTF_SUPPORT_LONG_LONG
+#define PKG_VSNPRINTF_CHECK_FOR_NUL_IN_FORMAT_SPECIFIER
+#define PKG_VSNPRINTF_INTEGER_BUFFER_SIZE 32
+#define PKG_VSNPRINTF_DECIMAL_BUFFER_SIZE 32
+#define PKG_VSNPRINTF_DEFAULT_FLOAT_PRECISION 6
+#define PKG_VSNPRINTF_MAX_INTEGRAL_DIGITS_FOR_DECIMAL 9
+#define PKG_VSNPRINTF_LOG10_TAYLOR_TERMS 4
+#define PKG_USING_RT_VSNPRINTF_FULL_LATEST_VERSION
 /* end of enhanced kernel services */
 
 /* acceleration: Assembly language or algorithmic acceleration packages */
@@ -374,6 +386,8 @@
 /* entertainment: terminal games and other interesting software packages */
 
 /* end of entertainment: terminal games and other interesting software packages */
+#define PKG_USING_OPTPARSE
+#define PKG_USING_OPTPARSE_LATEST_VERSION
 /* end of miscellaneous packages */
 
 /* Arduino libraries */
@@ -443,6 +457,8 @@
 #define BSP_USING_UART2
 #define BSP_UART2_RX_BUFSIZE 256
 #define BSP_UART2_TX_BUFSIZE 0
+#define BSP_USING_SDRAM
+#define BSP_USING_SDRAM_SIZE 0x2000000
 #define BSP_USING_ETH
 /* end of On-chip Peripheral Drivers */
 

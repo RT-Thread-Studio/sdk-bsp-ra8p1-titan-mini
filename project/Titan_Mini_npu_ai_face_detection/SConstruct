@@ -11,7 +11,6 @@ sys.path = sys.path + [os.path.join(RTT_ROOT, 'tools')]
 try:
     from building import *
 except Exception as e:
-    print("Error message:", e.message)
     print('Cannot found RT-Thread root directory, please check RTT_ROOT')
     print(RTT_ROOT)
     sys.exit(-1)

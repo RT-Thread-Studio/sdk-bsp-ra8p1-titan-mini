@@ -12,6 +12,9 @@
 #include "hal_data.h"
 #include <rtdevice.h>
 #include <board.h>
+#if BSP_CFG_DCACHE_ENABLED
+ #include "core_cm85.h"
+#endif
 
 #include "usb_pcdc.h"
 
@@ -23,16 +26,22 @@
 
 void hal_entry(void)
 {
+#if BSP_CFG_DCACHE_ENABLED
+    SCB_DisableDCache();
+    __DSB();
+    __ISB();
+    rt_kprintf("[SYS] DCache disabled at runtime.\n");
+#endif
+
     rt_kprintf("\nHello RT-Thread!\n");
     rt_kprintf("==================================================\n");
     rt_kprintf("This example project is an driver usb_pcdc routine!\n");
-    rt_kprintf("Please connect the HS USB development board to the PC.\n");
+    rt_kprintf("Current USB config: FS device on USB_IP0. Please connect the board USB-DEV FS port to the PC.\n");
     rt_kprintf("==================================================\n");
 
     LOG_I("\nTips:");
-    LOG_I("If you want to use FS USB, please open the configuration.xml file, modify the two parameters of the usb_basic Stack:");
-    LOG_I("USB Speed         ---> Full Speed");
-    LOG_I("USB Module Number ---> USB_IP0_port");
+    LOG_I("This firmware is currently generated for USB FS peripheral mode.");
+    LOG_I("usb_basic Stack: USB Speed = Full Speed, USB Module Number = USB_IP0_port.");
 
     rt_thread_t usb = rt_thread_create("usb_pcdc", usb_pcdc_app, RT_NULL, 1024, 20, 10);
     if(usb != RT_NULL)

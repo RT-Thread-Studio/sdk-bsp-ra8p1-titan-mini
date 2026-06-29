@@ -289,7 +289,7 @@
 /* MEMP_NUM_PBUF: the number of memp struct pbufs. If the application
    sends a lot of data out of ROM (or other static memory), this
    should be set high. */
-#define MEMP_NUM_PBUF               32 //16
+#define MEMP_NUM_PBUF               512
 
 /* the number of struct netconns */
 #ifdef RT_MEMP_NUM_NETCONN
@@ -323,7 +323,7 @@
  * setting in the lwip opts.h
  */
 /* MEMP_NUM_NETBUF: the number of struct netbufs. */
-// #define MEMP_NUM_NETBUF             2
+#define MEMP_NUM_NETBUF             512
 /* MEMP_NUM_NETCONN: the number of struct netconns. */
 // #define MEMP_NUM_NETCONN            4
 
@@ -331,7 +331,7 @@
    for sequential API communication and incoming packets. Used in
    src/api/tcpip.c. */
 // #define MEMP_NUM_TCPIP_MSG_API      16
-// #define MEMP_NUM_TCPIP_MSG_INPKT    16
+#define MEMP_NUM_TCPIP_MSG_INPKT    512
 
 /* ---------- Pbuf options ---------- */
 /* PBUF_POOL_SIZE: the number of buffers in the pbuf pool. */
@@ -415,7 +415,7 @@
 #define TCPIP_THREAD_STACKSIZE      4096
 #endif
 #define TCPIP_THREAD_NAME           "tcpip"
-#define DEFAULT_TCP_RECVMBOX_SIZE   10
+#define DEFAULT_TCP_RECVMBOX_SIZE   512
 
 /* ---------- ARP options ---------- */
 #define LWIP_ARP                    1
@@ -481,7 +481,7 @@
 
 #define LWIP_UDPLITE                0
 #define UDP_TTL                     255
-#define DEFAULT_UDP_RECVMBOX_SIZE   1
+#define DEFAULT_UDP_RECVMBOX_SIZE   512
 
 /* ---------- RAW options ---------- */
 #ifdef RT_LWIP_RAW
@@ -490,7 +490,7 @@
 #define LWIP_RAW                    0
 #endif
 
-#define DEFAULT_RAW_RECVMBOX_SIZE   1
+#define DEFAULT_RAW_RECVMBOX_SIZE   512
 #define DEFAULT_ACCEPTMBOX_SIZE     10
 
 /* ---------- Statistics options ---------- */
@@ -636,7 +636,7 @@
  * If LWIP_SO_RCVBUF is used, this is the default value for recv_bufsize.
  */
 #ifndef RECV_BUFSIZE_DEFAULT
-#define RECV_BUFSIZE_DEFAULT            8192
+#define RECV_BUFSIZE_DEFAULT            (512 * 1024)
 #endif
 
 /**

@@ -166,49 +166,34 @@ RA8 系列 MCU（如 RA8P1）集成高性能 **以太网 MAC**，支持 RGMII、
 
 ## 软件说明
 
-以太网 PHY 初始化需要通过 `rmac_phy_target_rtl8211_initialize()` / `rmac_phy_target_rtl8211_is_support_link_partner_ability()` 两个钩子函数实现。工程中可在自定义源文件（例如 `board/ports/drv_rtl8211.c` 或任意应用层 C 文件）里参考下列示例代码完成该函数，FSP 生成的 `ra_gen/common_data.c` 会在运行时调用它们：
+### LwIP 性能调优建议
 
-```c
-void rmac_phy_target_rtl8211_initialize (rmac_phy_instance_ctrl_t * phydev)
-{
-#define RTL_8211F_PAGE_SELECT 0x1F
-#define RTL_8211F_EEELCR_ADDR 0x11
-#define RTL_8211F_LED_PAGE 0xD04
-#define RTL_8211F_LCR_ADDR 0x10
+RT-Thread 上游 `rt-thread/components/net/lwip/Kconfig` 中的 LwIP 默认参数偏保守（PBUF 数量 16、TCP 发送缓冲 8196 等），无法充分发挥 RA8P1 千兆以太网 + DMA 的吞吐能力。建议在启用 `RT_USING_LWIP`（例如勾选 `BSP_USING_ETH`）后，按下列推荐值手动调优：
 
-    uint32_t val1, val2 = 0;
+| 参数 | 默认值 | 说明 |
+|------|-------:|------|
+| `RT_LWIP_PBUF_NUM` | 256 | PBUF 缓冲池数量（上游默认 16） |
+| `RT_LWIP_RAW_PCB_NUM` | 4 | RAW socket 数量 |
+| `RT_LWIP_UDP_PCB_NUM` | 24 | UDP PCB 数量（上游默认 4） |
+| `RT_LWIP_TCP_PCB_NUM` | 24 | TCP PCB 数量（上游默认 4） |
+| `RT_LWIP_TCP_SEG_NUM` | 512 | TCP 段数量（上游默认 40） |
+| `RT_LWIP_TCP_SND_BUF` | 65535 | TCP 发送缓冲（上游默认 8196） |
+| `RT_LWIP_TCP_WND` | 65535 | TCP 窗口大小（上游默认 8196） |
+| `RT_LWIP_TCPTHREAD_PRIORITY` | 6 | lwIP 主线程优先级（上游默认 10，数值越小优先级越高） |
+| `RT_LWIP_TCPTHREAD_MBOX_SIZE` | 144 | lwIP 主线程邮箱大小（上游默认 8） |
+| `RT_LWIP_TCPTHREAD_STACKSIZE` | 2048 | lwIP 主线程栈（上游默认 1024） |
+| `LWIP_NO_TX_THREAD` | y | 不使用独立 TX 线程（发送路径直接调用，减少上下文切换） |
+| `RT_LWIP_ETHTHREAD_PRIORITY` | 5 | 以太网线程优先级（上游默认 12） |
+| `RT_LWIP_ETHTHREAD_STACKSIZE` | 2048 | 以太网线程栈（上游默认 1024） |
+| `RT_LWIP_ETHTHREAD_MBOX_SIZE` | 144 | 以太网线程邮箱大小（上游默认 8） |
 
-    /* switch to led page */
-    R_RMAC_PHY_Write(phydev, RTL_8211F_PAGE_SELECT, RTL_8211F_LED_PAGE);
+如需应用上述推荐值，可在 RT-Thread Studio 的 `RT-Thread Settings → RT-Thread Components → Network → lwIP` 中修改对应项，或直接编辑工程的 `.config`。
 
-    /* set led1(green) Link 10/100/1000M, and set led2(yellow) Link 10/100/1000M+Active */
-    R_RMAC_PHY_Read(phydev, RTL_8211F_LCR_ADDR, &val1);
-    val1 |= (1 << 5);
-    val1 |= (1 << 8);
-    val1 &= (~(1 << 9));
-    val1 |= (1 << 10);
-    val1 |= (1 << 11);
-    R_RMAC_PHY_Write(phydev, RTL_8211F_LCR_ADDR, val1);
+> ⚠️ **内存占用提示**：上述参数对 RAM 占用影响较大。`RT_LWIP_PBUF_NUM=256` + `TCP_SND_BUF/WND=65535` 在默认 `RT_LWIP_PBUF_POOL_BUFSIZE` 下会预留较多堆内存，请确认链接脚本中 heap 大小足够（建议 ≥ 256 KB）。
 
-    /* set led1(green) EEE LED function disabled so it can keep on when linked */
-    R_RMAC_PHY_Read(phydev, RTL_8211F_EEELCR_ADDR, &val2);
-    val2 &= (~(1 << 2));
-    R_RMAC_PHY_Write(phydev, RTL_8211F_EEELCR_ADDR, val2);
 
-    /* switch back to page0 */
-    R_RMAC_PHY_Write(phydev, RTL_8211F_PAGE_SELECT, 0xa42);
-}
 
-bool rmac_phy_target_rtl8211_is_support_link_partner_ability (rmac_phy_instance_ctrl_t * p_instance_ctrl,
-                                                             uint32_t                   line_speed_duplex)
-{
-    FSP_PARAMETER_NOT_USED(p_instance_ctrl);
-    FSP_PARAMETER_NOT_USED(line_speed_duplex);
 
-    /* This PHY-LSI supports half and full duplex mode. */
-    return true;
-}
-```
 
 ## 编译&下载
 
@@ -231,4 +216,18 @@ bool rmac_phy_target_rtl8211_is_support_link_partner_ability (rmac_phy_instance_
 
 编译下载后在串口终端输入 `iperf -c 主机IP -p 5001` 进行 iperf 测试。
 
-![image-20251110115000947](figures/image-20251110115000947.png)
+![tcp_client](figures/tcp_client.png)
+
+### 网络应用示例
+
+借助 netutils 软件包，可以实现 TCP/UDP 的客户端与服务器收发测试。
+
+**TCP Client 测试**：开发板作为客户端，主动连接远程主机并收发数据。
+
+![tcp_client](figures/tcp_client.png)
+
+**UDP Client 测试**：开发板作为客户端，向远程主机发送或接收数据报。
+
+![udp_client](figures/udp_client.png)
+
+

@@ -238,17 +238,17 @@ rt_err_t es8156_device_init(void)
     }
 
     /* 初始化 ES8156 */
-    // result = es8156_init();
-    // if (result != RT_EOK)
-    // {
-    //     LOG_E("ES8156 init failed!");
-    //     return result;
-    // }
+    result = es8156_init();
+    if (result != RT_EOK)
+    {
+        LOG_E("ES8156 init failed!");
+        return result;
+    }
 
     /* 设置默认音量 */
-    // es8156_set_volume(ES8156_VOL_DEFAULT);
+    es8156_set_volume(ES8156_VOL_DEFAULT);
 
-    LOG_I("ES8156 driver initialized");
+    LOG_I("ES8156 driver initialized and configured");
     return RT_EOK;
 }
 

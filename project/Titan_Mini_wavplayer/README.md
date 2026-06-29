@@ -4,12 +4,12 @@
 
 ## Introduction
 
-This example demonstrates how to play **WAV format audio files** on the **Titan Board Mini** using the **ES8156 Audio Codec** via the **SSI (Synchronous Serial Interface)**, combined with the **RT-Thread Audio Framework** for complete audio playback functionality.
+This example demonstrates how to play **WAV format audio files** on the **Titan Board Mini** using the **ES8156 Audio Codec** via the **SSI (Synchronous Serial Interface)**, combined with the **RT-Thread Audio Framework** for complete audio playback functionality. This project supports **16 sample-rate options, mono/stereo channels, and 16-bit PCM WAV** files.
 
 Main features include:
 
 - High-quality audio playback using ES8156 codec
-- WAV format audio file playback support
+- WAV format audio file playback support (16 sample-rate options, 16-bit PCM, mono/stereo)
 - I2S audio data transmission via SSI interface
 - Volume control, pause/resume/stop playback control
 - Audio file reading from SD card or Flash file system
@@ -213,7 +213,7 @@ WAV files must meet the following requirements:
 
 - **Format**: Standard WAV (RIFF) format
 - **Encoding**: PCM encoding
-- **Sample rate**: 16kHz
+- **Sample rate**: One of the 16 supported sample-rate options
 - **Bit depth**: 16-bit
 - **Channels**: Mono or stereo
 - **File extension**: .wav
@@ -268,7 +268,7 @@ ES8156 connections to Titan Board Mini:
 
 ## Run Effect
 
-Convert the song to 2-channel 16kHz sample rate WAV format, save it to the SD card, insert the SD card into the development board. After powering on, the system will automatically mount the SD card. Then enter the command `wavplay -s <filename>` to play.
+Convert the audio file to **PCM, 16-bit, mono/stereo WAV** format with one of the 16 supported sample-rate options, save it to the SD card, insert the SD card into the development board. After powering on, the system will automatically mount the SD card. Then enter the command `wavplay -s <filename>` to play.
 
 ![alt text](figures/image1.png)
 

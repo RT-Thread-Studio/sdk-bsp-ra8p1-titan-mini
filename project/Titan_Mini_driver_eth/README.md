@@ -166,6 +166,33 @@ RA8 series MCUs (such as RA8P1) integrate high-performance **Ethernet MAC**, sup
 
 ## Software Description
 
+### LwIP Performance Tuning Recommendations
+
+The LwIP defaults in the upstream `rt-thread/components/net/lwip/Kconfig` are conservative (PBUF count 16, TCP send buffer 8196, etc.), which cannot fully exploit the throughput of the RA8P1 Gigabit Ethernet + DMA. After enabling `RT_USING_LWIP` (e.g. by ticking `BSP_USING_ETH`), it is recommended to manually tune the following values:
+
+| Option | Default | Note |
+|--------|--------:|------|
+| `RT_LWIP_PBUF_NUM` | 256 | PBUF pool count (upstream default 16) |
+| `RT_LWIP_RAW_PCB_NUM` | 4 | RAW socket count |
+| `RT_LWIP_UDP_PCB_NUM` | 24 | UDP PCB count (upstream default 4) |
+| `RT_LWIP_TCP_PCB_NUM` | 24 | TCP PCB count (upstream default 4) |
+| `RT_LWIP_TCP_SEG_NUM` | 512 | TCP segment count (upstream default 40) |
+| `RT_LWIP_TCP_SND_BUF` | 65535 | TCP send buffer (upstream default 8196) |
+| `RT_LWIP_TCP_WND` | 65535 | TCP window size (upstream default 8196) |
+| `RT_LWIP_TCPTHREAD_PRIORITY` | 6 | lwIP main thread priority (upstream default 10; lower number = higher priority) |
+| `RT_LWIP_TCPTHREAD_MBOX_SIZE` | 144 | lwIP main thread mailbox size (upstream default 8) |
+| `RT_LWIP_TCPTHREAD_STACKSIZE` | 2048 | lwIP main thread stack (upstream default 1024) |
+| `LWIP_NO_TX_THREAD` | y | No standalone TX thread (send path invoked directly to reduce context switches) |
+| `RT_LWIP_ETHTHREAD_PRIORITY` | 5 | Ethernet thread priority (upstream default 12) |
+| `RT_LWIP_ETHTHREAD_STACKSIZE` | 2048 | Ethernet thread stack (upstream default 1024) |
+| `RT_LWIP_ETHTHREAD_MBOX_SIZE` | 144 | Ethernet thread mailbox size (upstream default 8) |
+
+To apply these recommended values, open `RT-Thread Settings → RT-Thread Components → Network → lwIP` in RT-Thread Studio, or edit the project's `.config` directly.
+
+> ⚠️ **Memory footprint note**: These options significantly affect RAM usage. `RT_LWIP_PBUF_NUM=256` combined with `TCP_SND_BUF/WND=65535` reserves a substantial amount of heap memory at the default `RT_LWIP_PBUF_POOL_BUFSIZE`. Make sure your linker script reserves a large enough heap (≥ 256 KB recommended).
+
+### RTL8211 PHY Initialization
+
 The Ethernet PHY chip initialization function is in `./board/ports/drv_rtl8211.c`:
 
 ```c
@@ -231,4 +258,16 @@ Open RT-Thread Settings, add the netutils package and enable the iperf tool.
 
 After compilation and download, enter `iperf -c host_IP -p 5001` in the serial terminal for iperf testing.
 
-![image-20251110115000947](figures/image-20251110115000947.png)
+![tcp_client](figures/tcp_client.png)
+
+### Network Application Examples
+
+With the netutils package, TCP/UDP client and server send/receive tests can be performed.
+
+**TCP Client Test**: The board acts as a client, actively connecting to a remote host to send and receive data.
+
+![tcp_client](figures/tcp_client.png)
+
+**UDP Client Test**: The board acts as a client, sending to or receiving datagrams from a remote host.
+
+![udp_client](figures/udp_client.png)
