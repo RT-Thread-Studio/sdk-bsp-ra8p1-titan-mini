@@ -1,0 +1,50 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "defines": [
+                "RT_USING_LIBC",
+                "RT_USING_NEWLIBC",
+                "_POSIX_C_SOURCE=1",
+                "_RA_CORE=0",
+                "__RTTHREAD__"
+            ],
+            "intelliSenseMode": "clang-x64",
+            "compilerPath": "C:/RT-ThreadStudio/repo/Extract/ToolChain_Support_Packages/ARM/GNU_Tools_for_ARM_Embedded_Processors/13.3/bin/arm-none-eabi-gcc",
+            "cStandard": "c99",
+            "cppStandard": "c++11",
+            "includePath": [
+                ".",
+                "rt-thread\\components\\libc\\compilers\\common\\include",
+                "rt-thread\\components\\libc\\compilers\\newlib",
+                "rt-thread\\components\\drivers\\audio",
+                "rt-thread\\components\\drivers\\include",
+                "board",
+                "board\\ports",
+                "board\\ports\\wifi",
+                "libraries\\HAL_Drivers",
+                "libraries\\HAL_Drivers\\config",
+                "rt-thread\\components\\finsh",
+                "rt-thread\\include",
+                "rt-thread\\libcpu\\arm\\common",
+                "rt-thread\\libcpu\\arm\\cortex-m85",
+                "rt-thread\\components\\libc\\posix\\io\\epoll",
+                "rt-thread\\components\\libc\\posix\\io\\eventfd",
+                "rt-thread\\components\\libc\\posix\\io\\poll",
+                "rt-thread\\components\\libc\\posix\\ipc",
+                "ra\\arm\\CMSIS_6\\CMSIS\\Core\\Include",
+                "ra\\fsp\\inc",
+                "ra\\fsp\\inc\\api",
+                "ra\\fsp\\inc\\instances",
+                "ra\\fsp\\src\\rm_ethosu",
+                "ra\\npu\\ethos-u-core-driver\\include",
+                "ra\\tes\\dave2d\\inc",
+                "ra\\fsp\\src\\r_mipi_csi",
+                "ra\\fsp\\src\\r_vin",
+                "ra_cfg\\fsp_cfg",
+                "ra_cfg\\fsp_cfg\\bsp",
+                "ra_gen"
+            ]
+        }
+    ]
+}

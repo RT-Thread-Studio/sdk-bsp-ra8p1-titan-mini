@@ -18,7 +18,7 @@
 
 ### 1. LSM6DS3TR-C IMU 传感器
 
-**Titan Board Mini** 支持 **LSM6DS3TR-C** 高性能六轴 IMU 传感器：
+**Titan Board Mini** 板载 **LSM6DS3TR-C** 高性能六轴 IMU 传感器：
 
 | 参数 | 说明 |
 |------|------|
@@ -30,6 +30,45 @@
 | **温度范围** | -40°C ~ +85°C |
 | **封装** | 2.5mm x 3mm x 0.83mm LGA-14 |
 
+### 2. 加速度计特性
+
+LSM6DS3TR-C 内置高性能 3 轴加速度计：
+
+- **量程选择**：±2g / ±4g / ±8g / ±16g
+- **分辨率**：16-bit ADC
+- **输出数据率**：1.6Hz - 6.66kHz
+- **噪声密度**：90μg/√Hz
+- **零偏偏差**：±40mg
+- **带宽**：可配置 (通常 50Hz - 1.6kHz)
+
+### 3. 陀螺仪特性
+
+LSM6DS3TR-C 内置高精度 3 轴陀螺仪：
+
+- **量程选择**：±125 / ±250 / ±500 / ±1000 / ±2000 dps
+- **分辨率**：16-bit ADC
+- **输出数据率**：1.6Hz - 6.66kHz
+- **噪声密度**：3.8mdps/√Hz
+- **零偏稳定性**：±5dps
+- **带宽**：可配置
+
+### 4. 主要功能
+
+#### 高级功能
+
+- **FIFO 缓存**：9KB FIFO,支持多种模式
+- **中断功能**：运动唤醒、自由落体、6D方向检测
+- **传感器融合**：内置低功耗传感器融合算法
+- **自检功能**：支持自检模式
+- **低功耗模式**：多种低功耗工作模式
+
+#### 数据处理
+
+- **硬件滤波**：可配置数字滤波器
+- **数据融合**：支持加速度计+陀螺仪数据融合
+- **时间戳**：内置时间戳功能
+- **轮询/中断**：支持轮询和中断数据读取
+
 ## 软件架构
 
 ### 1. 分层设计
@@ -39,9 +78,15 @@ IMU 传感器系统采用分层架构：
 ```
 应用程序层 (用户代码)
     ↓
-RT-Thread Sensor Driver Framework - 传感器设备框架
+RT-Thread Sensor Framework - 传感器框架
     ↓
 LSM6DS3TR-C Driver - IMU驱动
+    ↓
+Sensor HAL - 传感器硬件抽象层
+    ↓
+I2C/SPI Driver - I2C/SPI驱动
+    ↓
+FSP I2C/SPI HAL - 硬件抽象层
 ```
 
 ### 2. 核心组件
@@ -82,130 +127,98 @@ rt_err_t rt_device_set_rx_indicate(rt_device_t dev, rt_err_t (*rx_ind)(rt_device
 ```
 Titan_Mini_peripheral_imu/
 ├── src/
-│   └── hal_entry.c          # 主程序入口
+│   └── hal_entry.c          # 主程序入口 (RGB LED 闪灯演示)
 └── packages/
     └── lsm6ds3tr/           # LSM6DS3TR-C 驱动包
         ├── lsm6ds3tr-c_reg.h    # 寄存器定义和驱动接口
         ├── lsm6ds3tr-c_reg.c    # 寄存器级驱动实现
-        └── lsm6ds3tr-c_port.c   # 平台移植层
+        └── lsm6ds3tr-c_port.c   # 平台移植层 + INIT_APP_EXPORT 自动初始化 + MSH imu 命令
 ```
 
 ## 使用说明
 
-```
-int lsm6ds3tr_c_read_data_sample(void)
-{
-    /* Initialize mems driver interface */
-    stmdev_ctx_t dev_ctx;
-    dev_ctx.write_reg = platform_write;
-    dev_ctx.read_reg = platform_read;
-    dev_ctx.mdelay = platform_delay;
-    /* Init test platform */
-    platform_init();
-    /* Check device ID */
-    whoamI = 0;
-    lsm6ds3tr_c_device_id_get(&dev_ctx, &whoamI);
+### 1. 工作模式
 
-    if (whoamI != LSM6DS3TR_C_ID)
-        while (1); /*manage here device not found */
+本工程采用 **开机自动初始化 + MSH 命令运行** 的模式：
 
-    /* Restore default configuration */
-    lsm6ds3tr_c_reset_set(&dev_ctx, PROPERTY_ENABLE);
+- **开机时**：RT-Thread 启动后由 `INIT_APP_EXPORT` 自动完成 LSM6DS3TR-C 的初始化（含 ID 检测、复位、ODR/满量程/滤波配置），用户无需手动 `init`。
+- **开机后**：主线程只跑 RGB LED 闪灯演示，IMU 数据读取**不自动运行**，需要用户在 msh 输入命令才会读传感器。
 
-    do
-    {
-        lsm6ds3tr_c_reset_get(&dev_ctx, &rst);
-    }
-    while (rst);
+这样既保证开机流程不被 IMU 采样死循环阻塞，也避免用户忘记初始化。
 
-    /* Enable Block Data Update */
-    lsm6ds3tr_c_block_data_update_set(&dev_ctx, PROPERTY_ENABLE);
-    /* Set Output Data Rate */
-    lsm6ds3tr_c_xl_data_rate_set(&dev_ctx, LSM6DS3TR_C_XL_ODR_12Hz5);
-    lsm6ds3tr_c_gy_data_rate_set(&dev_ctx, LSM6DS3TR_C_GY_ODR_12Hz5);
-    /* Set full scale */
-    lsm6ds3tr_c_xl_full_scale_set(&dev_ctx, LSM6DS3TR_C_2g);
-    lsm6ds3tr_c_gy_full_scale_set(&dev_ctx, LSM6DS3TR_C_2000dps);
-    /* Configure filtering chain(No aux interface) */
-    /* Accelerometer - analog filter */
-    lsm6ds3tr_c_xl_filter_analog_set(&dev_ctx,
-                                     LSM6DS3TR_C_XL_ANA_BW_400Hz);
-    /* Accelerometer - LPF1 path ( LPF2 not used )*/
-    /* Accelerometer - LPF1 + LPF2 path */
-    lsm6ds3tr_c_xl_lp2_bandwidth_set(&dev_ctx,
-                                     LSM6DS3TR_C_XL_LOW_NOISE_LP_ODR_DIV_100);
-    /* Accelerometer - High Pass / Slope path */
-    /* Gyroscope - filtering chain */
-    lsm6ds3tr_c_gy_band_pass_set(&dev_ctx,
-                                 LSM6DS3TR_C_HP_260mHz_LP1_STRONG);
+### 2. MSH 命令
 
-    /* Read samples in polling mode (no int) */
-    while (1)
-    {
-        /* Read output only if new value is available */
-        lsm6ds3tr_c_reg_t reg;
-        lsm6ds3tr_c_status_reg_get(&dev_ctx, &reg.status_reg);
-        if (reg.status_reg.xlda)
-        {
-            /* Read magnetic field data */
-            rt_memset(data_raw_acceleration, 0x00, 3 * sizeof(int16_t));
-            lsm6ds3tr_c_acceleration_raw_get(&dev_ctx,
-                                             data_raw_acceleration);
-            acceleration_mg[0] = lsm6ds3tr_c_from_fs2g_to_mg(
-                                     data_raw_acceleration[0]);
-            acceleration_mg[1] = lsm6ds3tr_c_from_fs2g_to_mg(
-                                     data_raw_acceleration[1]);
-            acceleration_mg[2] = lsm6ds3tr_c_from_fs2g_to_mg(
-                                     data_raw_acceleration[2]);
-            rt_kprintf("Acceleration [mg]:%4.2f\t%4.2f\t%4.2f\r\n",
-                       acceleration_mg[0], acceleration_mg[1], acceleration_mg[2]);
+烧录后,在串口终端（msh />）输入以下命令：
 
-        }
+| 命令 | 说明 |
+|------|------|
+| `imu` | 读取并打印一次传感器信息（含姿态解析） |
+| `imu start [ms]` | 开始周期性采样，可选周期（默认 1000ms，最小 50ms） |
+| `imu stop` | 停止周期性采样 |
 
-        if (reg.status_reg.gda)
-        {
-            /* Read magnetic field data */
-            rt_memset(data_raw_angular_rate, 0x00, 3 * sizeof(int16_t));
-            lsm6ds3tr_c_angular_rate_raw_get(&dev_ctx,
-                                             data_raw_angular_rate);
-            angular_rate_mdps[0] = lsm6ds3tr_c_from_fs2000dps_to_mdps(
-                                       data_raw_angular_rate[0]);
-            angular_rate_mdps[1] = lsm6ds3tr_c_from_fs2000dps_to_mdps(
-                                       data_raw_angular_rate[1]);
-            angular_rate_mdps[2] = lsm6ds3tr_c_from_fs2000dps_to_mdps(
-                                       data_raw_angular_rate[2]);
-            rt_kprintf("Angular rate [mdps]:%4.2f\t%4.2f\t%4.2f\r\n",
-                       angular_rate_mdps[0], angular_rate_mdps[1], angular_rate_mdps[2]);
-        }
+示例：
 
-        if (reg.status_reg.tda)
-        {
-            /* Read temperature data */
-            rt_memset(&data_raw_temperature, 0x00, sizeof(int16_t));
-            lsm6ds3tr_c_temperature_raw_get(&dev_ctx, &data_raw_temperature);
-            temperature_degC = lsm6ds3tr_c_from_lsb_to_celsius(
-                                   data_raw_temperature);
-            rt_kprintf("Temperature [degC]:%6.2f\r\n",
-                       temperature_degC);
-        }
-        rt_thread_mdelay(500);
-    }
-}
-INIT_APP_EXPORT(lsm6ds3tr_c_read_data_sample);
+```text
+msh /> imu start 500        # 每 500ms 输出一帧
+msh /> imu stop             # 停止采样
+msh /> imu                  # 单次打印
 ```
 
-程序在上电运行后会自行运行该函数，此时连接上串口终端即可查看打印的IMU数据
+### 3. 数据输出格式
+
+每帧输出包含 3 轴加速度、3 轴角速度、温度，以及解析后的合矢量与姿态角：
+
+```text
+------ LSM6DS3TR-C Sample ------
+Accel  (mg) : X=  -12.0  Y=   35.0  Z=  998.0  | |a|= 998.7
+Gyro   (dps): X=  0.02  Y=  -0.01  Z=   0.03  | |w|=  0.04
+Temp   (C)  :  28.45
+Tilt   (deg): pitch= -0.69  roll=  2.01  (static estimate)
+--------------------------------
+```
+
+- **Accel**：三轴加速度 (mg)，`|a|` 为加速度合矢量（静止时约 1000mg ≈ 1g）
+- **Gyro**：三轴角速度 (dps)，`|w|` 为角速度合矢量
+- **Temp**：板载温度 (℃)
+- **Tilt**：由重力分量估算的 pitch / roll 姿态角（仅静止时有效，动态下需结合陀螺仪做融合）
+
+### 4. 初始化流程说明
+
+开机自动初始化内部完成：
+
+1. 通过 I2C (`i2c1`, 7 位地址 `0x6A`) 查找设备并校验 WHO_AM I (期望 `0x6A`)
+2. 触发软件复位并等待复位完成
+3. 打开块数据更新 (BDU)
+4. 设置加速度计/陀螺仪 ODR = 12.5Hz，满量程 ±2g / ±2000dps
+5. 配置加速度计模拟滤波 + LPF2，陀螺仪带通滤波
+6. 初始化成功后打印 `[imu] auto-init OK`
+
+初始化函数 `lsm6ds3_init()` 同样导出，可在代码中手动调用（例如改 ODR 后重新初始化）。
 
 ## 配置说明
 
 ### 1. Kconfig 配置
 
-在 `libraries/M85_Config/Kconfig` 中包含了 IMU 选项：
+在 `libraries/M85_Config/Kconfig` 中配置 IMU 选项：
 
 ```kconfig
-config BSP_USING_LSM6DS3
-    bool "Enable LSM6DS3 6-axis IMU"
+menuconfig BSP_USING_IMU
+    bool "Enable IMU (LSM6DS3TR-C)"
+    select BSP_USING_I2C2
     default n
+    if BSP_USING_IMU
+        config BSP_IMU_I2C_BUS
+            string "I2C bus name"
+            default "i2c2"
+
+        config BSP_IMU_ACC_ODR
+            int "Accelerometer ODR (Hz)"
+            default 104
+
+        config BSP_IMU_GYRO_ODR
+            int "Gyroscope ODR (Hz)"
+            default 104
+    endif
 ```
 
 ### 2. RT-Thread Settings
@@ -214,16 +227,47 @@ config BSP_USING_LSM6DS3
 
 1. **设备驱动**
    - 启用 I2C 设备驱动
-   - 配置 I2C1 接口
+   - 配置 I2C2 接口
 
 2. **传感器**
-   - 启用 LSM6DS3 6-axis IMU
+   - 启用 RT-Thread Sensor 框架
+   - 启用 Accel (加速度计) 传感器
+   - 启用 Gyro (陀螺仪) 传感器
+
+3. **软件包**
+   - 添加 LSM6DS3TR-C 驱动包
 
 ## 运行效果
 
-### 1. 终端输出
+### 1. 开机启动信息
 
-复位 Titan Board Mini 后终端会输出如下信息：
+复位 Titan Board Mini 后,串口首先输出系统启动和 IMU 自动初始化信息：
+
+```text
+Hello RT-Thread!
+==================================================
+Titan Mini peripheral IMU demo
+  - LED RGB blink runs on boot
+  - LSM6DS3TR-C IMU auto-init on boot, commands:
+      imu                 read & print one sample
+      imu start [ms]      start periodic sampling
+      imu stop            stop periodic sampling
+==================================================
+\ | /
+- RT -     Thread Operating System
+ / | \     5.x.x build ...
+...
+[imu] device detected, id=0x6A
+[imu] initialized: ODR=12.5Hz, FS=±2g/±2000dps
+[imu] auto-init OK, run 'imu' to read sample
+msh />
+```
+
+随后 msh 就绪，此时 LED 在跑 RGB 闪灯，IMU 待命。
+
+### 2. IMU 命令运行效果
+
+输入 `imu start 1000` 后周期性输出：
 
 ![image1](figures/image1.png)
 

@@ -33,7 +33,9 @@ void hal_entry(void)
 {
     rt_kprintf("\nHello RT-Thread!\n");
     rt_kprintf("==================================================\n");
-    rt_kprintf("This example project is an RGB flicker routine!\n");
+    rt_kprintf("Titan Mini WAV player example is ready.\n");
+    rt_kprintf("Supports 16 sample rates, mono/stereo, 16-bit PCM WAV files.\n");
+    rt_kprintf("Use command: wavplay -s /sdcard/test.wav\n");
     rt_kprintf("==================================================\n");
 
     unsigned int count = 0;

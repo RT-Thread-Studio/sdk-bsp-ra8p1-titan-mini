@@ -4,7 +4,7 @@ project:
   title: "Titan-Board-Mini"
   description: "Titan Board Mini 开发板是 RT-Thread 推出基于瑞萨 Cortex-M85 与 Cortex-M33 双核架构 R7KA8P1 芯片，为工程师们提供了一个灵活、全面的开发平台，助力开发者在嵌入式物联网领域获得更深层次的体验。"
   description_en: "The Titan Board Mini, developed by RT-Thread, is built on Renesas' R7KA8P1 chip featuring a dual-core architecture of Cortex-M85 and Cortex-M33. It offers engineers a flexible and comprehensive development platform, empowering developers to gain deeper expertise in the embedded IoT field."
-  version: "1.0.0"
+  version: "1.2.0"
   author: "Hydevcode"
   copyright: "Copyright (c) 2006-2025, RT-Thread Development Team"
   # language: "zh_CN"
@@ -31,29 +31,14 @@ categories:
     description: "基础功能示例"
     patterns:
       - "Titan_Mini_blink_led"
-      - "Titan_Mini_key_irq"
 
   driver:
     name: "驱动篇"
     name_en: "Drivers"
     description: "外设驱动示例"
     patterns:
-      - "Titan_Mini_driver_adc"
-      - "Titan_Mini_driver_canfd"
+      - "Titan_Mini_driver_all"
       - "Titan_Mini_driver_eth"
-      - "Titan_Mini_driver_gpt"
-      - "Titan_Mini_driver_rtc"
-      - "Titan_Mini_driver_sdcard"
-      - "Titan_Mini_driver_sdram"
-      - "Titan_Mini_driver_spi"
-      - "Titan_Mini_driver_wdt"
-
-  component:
-    name: "组件篇"
-    name_en: "Components"
-    description: "组件示例"
-    patterns:
-      - "Titan_Mini_component_flash_fs"
 
   multimedia:
     name: "多媒体显示篇"
@@ -86,7 +71,6 @@ generation:
     - "start"
     - "basic"
     - "driver"
-    - "component"
     - "multimedia"
     - "peripheral"
 

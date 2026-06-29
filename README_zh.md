@@ -1,10 +1,6 @@
 # sdk-bsp-ra8p1-titan-board-mini
 
-**中文** | [**English**](README.md)
-
 ## 简介
-
-中文页
 
 sdk-bsp-ra8p1-titan-board-mini 是 RT-Thread 团队对 `Titan Board Mini` 开发板所作的支持包，也可作为用户开发使用的软件SDK，让用户可以更简单方便的开发自己的应用程序。
 
@@ -19,7 +15,8 @@ $ sdk-bsp-ra8p1-titan-board-mini
 ├── docs
 │   ├── Titan_Mini_datasheet.pdf
 │   ├── ra8p1-mini_v0.1.pdf
-│   └── Titan_Mini_user_manual.pdf
+│   ├── Titan_Mini_user_manual.pdf
+│   └── mechanical
 ├── figures
 ├── libraries
 ├── project
@@ -28,17 +25,9 @@ $ sdk-bsp-ra8p1-titan-board-mini
 │   ├── Titan_Mini_display_camera_mipi_csi
 │   ├── Titan_Mini_npu_ai_face_detection
 │   ├── Titan_Mini_display_rgb_lvgl
-│   ├── Titan_Mini_driver_adc
-│   ├── Titan_Mini_driver_canfd
+│   ├── Titan_Mini_driver_all
 │   ├── Titan_Mini_driver_eth
-│   ├── Titan_Mini_driver_gpt
-│   ├── Titan_Mini_driver_rtc
-│   ├── Titan_Mini_driver_sdcard
-│   ├── Titan_Mini_driver_sdram
-│   ├── Titan_Mini_driver_spi
 │   ├── Titan_Mini_pdm
-│   ├── Titan_Mini_driver_wdt
-│   ├── Titan_Mini_key_irq
 │   ├── Titan_Mini_peripheral_imu
 │   ├── Titan_Mini_rgb_lcd
 │   ├── Titan_Mini_template
@@ -59,6 +48,10 @@ $ sdk-bsp-ra8p1-titan-board-mini
 ## 使用方式
 
 `sdk-bsp-ra8p1-titan-board-mini` 支持 **RT-Thread Studio** 开发方式
+
+## FSP 配置工具下载链接
+
+- [setup_fsp_v6_4_0_rasc_v2025-12.exe](https://github.com/renesas/fsp/releases/download/v6.4.0/setup_fsp_v6_4_0_rasc_v2025-12.exe)
 
 ## **RT-Thread Studio 开发步骤**
 

@@ -58,21 +58,12 @@ jobs:
       matrix:
        legs:
          - {RTT_BSP: "Titan_Mini_blink_led"}
-         - {RTT_BSP: "Titan_Mini_component_flash_fs"}
          - {RTT_BSP: "Titan_Mini_display_camera_mipi_csi"}
          - {RTT_BSP: "Titan_Mini_npu_ai_face_detection"}
          - {RTT_BSP: "Titan_Mini_display_rgb_lvgl"}
-         - {RTT_BSP: "Titan_Mini_driver_adc"}
-         - {RTT_BSP: "Titan_Mini_driver_canfd"}
+         - {RTT_BSP: "Titan_Mini_driver_all"}
          - {RTT_BSP: "Titan_Mini_driver_eth"}
-         - {RTT_BSP: "Titan_Mini_driver_gpt"}
-         - {RTT_BSP: "Titan_Mini_driver_rtc"}
-         - {RTT_BSP: "Titan_Mini_driver_sdcard"}
-         - {RTT_BSP: "Titan_Mini_driver_sdram"}
-         - {RTT_BSP: "Titan_Mini_driver_spi"}
          - {RTT_BSP: "Titan_Mini_pdm"}
-         - {RTT_BSP: "Titan_Mini_driver_wdt"}
-         - {RTT_BSP: "Titan_Mini_key_irq"}
          - {RTT_BSP: "Titan_Mini_peripheral_imu"}
          - {RTT_BSP: "Titan_Mini_rgb_lcd"}
          - {RTT_BSP: "Titan_Mini_template"}
@@ -109,5 +100,7 @@ jobs:
         env:
           RTT_BSP: ${{ matrix.legs.RTT_BSP }}
         run: |
-          cd project
+          cd project/$RTT_BSP
+          chmod +x mklinks.sh
+          ./mklinks.sh
           scons -C $RTT_BSP

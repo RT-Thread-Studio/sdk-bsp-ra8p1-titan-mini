@@ -68,7 +68,7 @@
 #define RT_USING_FINSH
 #define FINSH_USING_MSH
 #define FINSH_THREAD_NAME "tshell"
-#define FINSH_THREAD_PRIORITY 20
+#define FINSH_THREAD_PRIORITY 5
 #define FINSH_THREAD_STACK_SIZE 4096
 #define FINSH_USING_HISTORY
 #define FINSH_HISTORY_LINES 5
@@ -94,16 +94,9 @@
 #define RT_USING_SERIAL_V2
 #define RT_SERIAL_USING_DMA
 #define RT_USING_I2C
-#define RT_USING_I2C_BITOPS
-#define RT_USING_SOFT_I2C
-#define RT_USING_SOFT_I2C1
-#define RT_SOFT_I2C1_SCL_PIN 1034
-#define RT_SOFT_I2C1_SDA_PIN 1033
-#define RT_SOFT_I2C1_BUS_NAME "i2c1"
-#define RT_SOFT_I2C1_TIMING_DELAY 10
-#define RT_SOFT_I2C1_TIMING_TIMEOUT 10
 #define RT_USING_PWM
 #define RT_USING_PIN
+#define RT_USING_HWTIMER
 
 /* Using USB */
 
@@ -371,37 +364,24 @@
 #define BSP_USING_UART1
 #define BSP_UART1_RX_BUFSIZE 256
 #define BSP_UART1_TX_BUFSIZE 0
-#define BSP_USING_SOFT_I2C
-
-/* Please configure the pins in RT_SOFT_I2C1_SCL_PIN and RT_SOFT_I2C1_SDA_PIN according to your board's actual situation */
-
-#define BSP_USING_I2C1
+#define BSP_USING_UART2
+#define BSP_UART2_RX_BUFSIZE 256
+#define BSP_UART2_TX_BUFSIZE 0
+#define BSP_USING_HW_I2C
+#define BSP_USING_HW_I2C0
 #define BSP_USING_SDRAM
 #define BSP_USING_SDRAM_SIZE 0x2000000
+#define BSP_USING_TIM
+#define BSP_USING_TIM0
 #define BSP_USING_PWM
 #define BSP_USING_PWM7
+#define BSP_USING_PWM12
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */
 
-#define BSP_USING_CEU_CAMERA
-
-/* Camera Pins Configure */
-
-#define DCMI_RESET_PIN_NUM 0x0B00
-#define DCMI_POWER_PIN_NUM 0x070A
-/* end of Camera Pins Configure */
-#define BSP_USING_CEU_CAMERA_I2C1
-#define BSP_USING_CEU_CAMERA_SOFT_I2C
-#define SENSOR_BUS_NAME "i2c1"
-#define SENSOR_MT9V034 0
-#define SENSOR_OV2640 0
-#define SENSOR_OV5640 1
-#define SENSOR_OV7725 0
-#define SENSOR_OV7670 0
-#define SENSOR_OV7690 0
-#define SENSOR_OV9650 0
-#define SENSOR_GC0328 0
+#define BSP_USING_MIPI_CSI_CAMERA
+#define BSP_USING_MIPI_CSI_CAMERA_I2C "i2c0"
 #define BSP_USING_G2D
 #define BSP_USING_LCD
 #define BSP_USING_RGB565_LCD

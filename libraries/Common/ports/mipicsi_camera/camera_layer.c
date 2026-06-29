@@ -636,12 +636,15 @@ static const st_ov_reg_t cam_config_table_test_mode[] =
  *  - camera_capture_image_rgb565         : Contains the copied capture data. This data/buffer can be used for subsequent process.
  */
 
-uint8_t  camera_capture_image_rgb565[CAMERA_CAPTURE_IMAGE_WIDTH  * CAMERA_CAPTURE_IMAGE_HEIGHT * CAMERA_IMAGE_BYTE_PER_PIXEL] BSP_PLACE_IN_SECTION(".sdram_noinit") BSP_ALIGN_VARIABLE(8);
+uint8_t  camera_capture_image_rgb565[CAMERA_CAPTURE_IMAGE_WIDTH  * CAMERA_CAPTURE_IMAGE_HEIGHT * CAMERA_IMAGE_BYTE_PER_PIXEL] BSP_PLACE_IN_SECTION(".sdram_noinit_nocache") BSP_ALIGN_VARIABLE(8);
 uint32_t camera_capture_image_rgb565_size = sizeof(camera_capture_image_rgb565);
 
-#ifndef VIN_CFG_USE_RUNTIME_BUFFER
-static uint8_t * p_camera_capture_buffer_stored BSP_ALIGN_VARIABLE(64) BSP_PLACE_IN_SECTION(BSP_UNINIT_SECTION_PREFIX ".sdram_noinit");
-#endif
+// #ifndef VIN_CFG_USE_RUNTIME_BUFFER
+static volatile uint8_t * p_camera_capture_buffer_stored BSP_ALIGN_VARIABLE(8) BSP_PLACE_IN_SECTION(BSP_UNINIT_SECTION_PREFIX ".sdram_noinit_nocache");
+static volatile uint32_t g_camera_frame_sequence;
+static volatile uint32_t g_camera_frame_sequence_processed;
+static volatile uint32_t g_camera_invalid_buffer_count;
+// #endif
 
 #if (ENABLE_CAMERA_CAPTURE_RUNNING_LED == 1)
 static volatile bool cam_capture_end_led_status = false;
@@ -654,6 +657,7 @@ static void      ov5640_mipi_virtual_channel_set(uint32_t vchannel);
 static fsp_err_t ov5640_configure_clocks(void);
 static void      ov5640_stream_on(void);
 static void      ov5640_stream_off(void);
+static bool      camera_capture_buffer_is_valid(uint8_t const * p_buffer);
 FSP_CPP_FOOTER
 
 struct rt_completion ceu_completion;
@@ -864,9 +868,45 @@ void ov5640_stream_off(void)
     wrSensorReg16_8(0x4202, 0x0f);
 }
 
+static bool camera_capture_buffer_is_valid(uint8_t const * p_buffer)
+{
+    uintptr_t const source_start = (uintptr_t) p_buffer;
+    uintptr_t const source_end   = source_start + camera_capture_image_rgb565_size;
+    uintptr_t const buffer1_base = (uintptr_t) &vin_image_buffer_1[0];
+    uintptr_t const buffer2_base = (uintptr_t) &vin_image_buffer_2[0];
+    uintptr_t const buffer3_base = (uintptr_t) &vin_image_buffer_3[0];
+    uintptr_t const buffer_limit = (uintptr_t) VIN_BYTES_PER_FRAME;
+
+    if ((NULL == p_buffer) || (source_end < source_start))
+    {
+        return false;
+    }
+
+    if ((source_start >= buffer1_base) && (source_end <= (buffer1_base + buffer_limit)))
+    {
+        return true;
+    }
+
+    if ((source_start >= buffer2_base) && (source_end <= (buffer2_base + buffer_limit)))
+    {
+        return true;
+    }
+
+    if ((source_start >= buffer3_base) && (source_end <= (buffer3_base + buffer_limit)))
+    {
+        return true;
+    }
+
+    return false;
+}
+
 void camera_image_buffer_initialize(void)
 {
-	rt_memset(camera_capture_image_rgb565, 0x0, sizeof(camera_capture_image_rgb565));
+    rt_memset(camera_capture_image_rgb565, 0x0, sizeof(camera_capture_image_rgb565));
+    p_camera_capture_buffer_stored   = NULL;
+    g_camera_frame_sequence          = 0;
+    g_camera_frame_sequence_processed = 0;
+    g_camera_invalid_buffer_count    = 0;
 }
 
 void camera_capture_start(void)
@@ -876,15 +916,31 @@ void camera_capture_start(void)
 
 uint32_t camera_data_ready_buffer_pointer_get(void)
 {
-    return (uint32_t)&camera_capture_image_rgb565[0];
+    return (uint32_t)p_camera_capture_buffer_stored;
 }
 
 uint32_t camera_capture_post_process(void)
 {
-    // Copy the image data to the buffer that will be accessed in subsequent process
-#ifndef VIN_CFG_USE_RUNTIME_BUFFER
-    rt_memcpy(&camera_capture_image_rgb565[0], (void *)p_camera_capture_buffer_stored, camera_capture_image_rgb565_size);
-#endif
+    uint8_t  * p_buffer = NULL;
+    uint32_t   frame_sequence;
+
+    if (g_camera_frame_sequence == g_camera_frame_sequence_processed)
+    {
+        return 0;
+    }
+
+    p_buffer       = (uint8_t *) p_camera_capture_buffer_stored;
+    frame_sequence = g_camera_frame_sequence;
+
+    if (!camera_capture_buffer_is_valid(p_buffer))
+    {
+        return 0;
+    }
+
+    /* The VIN hardware mailboxes already hold a complete frame in no-cache SDRAM.
+     * Keep the latest completed buffer pointer and let the display path copy from it directly. */
+    g_camera_frame_sequence_processed = frame_sequence;
+    return 1;
 }
 
 void cam_vin_callback(capture_callback_args_t *p_args)
@@ -899,10 +955,18 @@ void cam_vin_callback(capture_callback_args_t *p_args)
         if (interrupt_status.bits.frame_complete)
         {
             /* Capture Complete - Process data buffer pointer and index */
-#ifndef VIN_CFG_USE_RUNTIME_BUFFER
-            p_camera_capture_buffer_stored = p_args->p_buffer;
-            rt_completion_done(&ceu_completion);
-#endif
+// #ifndef VIN_CFG_USE_RUNTIME_BUFFER
+            if (camera_capture_buffer_is_valid(p_args->p_buffer))
+            {
+                p_camera_capture_buffer_stored = p_args->p_buffer;
+                g_camera_frame_sequence++;
+            }
+            else
+            {
+                g_camera_invalid_buffer_count++;
+            }
+//             rt_completion_done(&ceu_completion);
+// #endif
         }
     }
     rt_interrupt_leave();

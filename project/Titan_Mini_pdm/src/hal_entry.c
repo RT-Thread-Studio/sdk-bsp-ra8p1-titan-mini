@@ -25,6 +25,11 @@
 
 #define PDM_BUFFER_NUM_SAMPLES      PDM_ALIGN_UP((uint32_t)(PDM_RECORD_DURATION_SEC * PDM_FS_HZ * PDM_CHANNELS), PDM_FRAME_SAMPLES)
 
+#define AUDIO_LOOPBACK_THREAD_STACK_SIZE   (4096)
+#define AUDIO_LOOPBACK_THREAD_PRIORITY     (8)
+#define AUDIO_LOOPBACK_THREAD_TICK         (10)
+#define SOUND0_VOLUME                     (70)   /* 初始音量 70% */
+
 typedef struct
 {
     uint32_t samples;
@@ -38,11 +43,9 @@ static int16_t g_dac_buffer[NUM_BUFFERS][PDM_BUFFER_NUM_SAMPLES * 2] = {0};
 static volatile bool g_stop_receive_data = false;
 static volatile pdm_error_t g_pdm_error = PDM_ERROR_NONE;
 static volatile uint8_t g_write_buffer_index = 0;
-static volatile uint8_t g_read_buffer_index = 0;
-static volatile bool g_buffer_ready[NUM_BUFFERS] = {false, false};
 static uint8_t g_pcm_bits = PCM_16BITS;
 
-rt_device_t sound_dev;
+static rt_device_t sound_dev = RT_NULL;
 
 static pdm_buf_size_t pdm_calc_buffer_from_seconds(uint8_t seconds)
 {
@@ -61,7 +64,6 @@ void pdm_callback(pdm_callback_args_t *p_args)
         case PDM_EVENT_DATA:
         {
             g_stop_receive_data = true;
-            g_buffer_ready[g_write_buffer_index] = true;
             break;
         }
 
@@ -103,25 +105,12 @@ static void convert_pdm_to_dac(int32_t *pdm_data, uint32_t pdm_samples, int16_t 
     }
 }
 
-void hal_entry(void)
+static void audio_loopback_thread_entry(void *parameter)
 {
+    FSP_PARAMETER_NOT_USED(parameter);
+
     fsp_err_t err;
     pdm_buf_size_t buf_size;
-
-    rt_kprintf("\n");
-    rt_kprintf("********************************************************************************\n");
-    rt_kprintf("*   PDM Microphone -> Speaker Real-time Loopback (Double Buffer)               *\n");
-    rt_kprintf("********************************************************************************\n");
-    rt_kprintf("Sample Rate: %d Hz, Channels: %d\n", PDM_FS_HZ, PDM_CHANNELS);
-    rt_kprintf("Buffer: %d samples x %d buffers\n", PDM_BUFFER_NUM_SAMPLES, NUM_BUFFERS);
-    rt_kprintf("********************************************************************************\n\n");
-
-    rt_pin_mode(LED_PIN_R, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_PIN_G, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_PIN_B, PIN_MODE_OUTPUT);
-    rt_pin_write(LED_PIN_R, LED_OFF);
-    rt_pin_write(LED_PIN_G, LED_OFF);
-    rt_pin_write(LED_PIN_B, LED_OFF);
 
     g_pcm_bits = (g_pdm0_cfg.pcm_width <= PDM_PCM_WIDTH_20_BITS_3_18) ? PCM_20BITS : PCM_16BITS;
     rt_kprintf("PDM PCM bits: %d\n", g_pcm_bits);
@@ -141,6 +130,19 @@ void hal_entry(void)
         if (rt_device_open(sound_dev, RT_DEVICE_OFLAG_WRONLY) == RT_EOK)
         {
             LOG_I("Speaker opened");
+
+            struct rt_audio_caps caps;
+            caps.main_type = AUDIO_TYPE_MIXER;
+            caps.sub_type = AUDIO_MIXER_VOLUME;
+            caps.udata.value = SOUND0_VOLUME;
+            if (rt_device_control(sound_dev, AUDIO_CTL_CONFIGURE, &caps) != RT_EOK)
+            {
+                LOG_W("Failed to set speaker volume");
+            }
+            else
+            {
+                LOG_I("Speaker volume set to %d%%", SOUND0_VOLUME);
+            }
         }
         else
         {
@@ -159,7 +161,6 @@ void hal_entry(void)
     buf_size = pdm_calc_buffer_from_seconds(PDM_RECORD_DURATION_SEC);
     uint32_t loop_count = 0;
     g_write_buffer_index = 0;
-    g_read_buffer_index = 0;
     g_stop_receive_data = false;
     g_pdm_error = PDM_ERROR_NONE;
 
@@ -180,22 +181,32 @@ void hal_entry(void)
         err = R_PDM_Stop(&g_pdm0_ctrl);
         if (err != FSP_SUCCESS)
         {
-            LOG_E("R_PDM_Stop failed: %d", err);
+            LOG_E("R_PDM_Stop failed: %d, skip this frame", err);
+            g_stop_receive_data = false;
+            err = R_PDM_Start(&g_pdm0_ctrl, g_pdm_buffer[g_write_buffer_index],
+                              buf_size.bytes, buf_size.samples / 4);
+            if (err != FSP_SUCCESS)
+            {
+                LOG_E("R_PDM_Start failed: %d, abort", err);
+                break;
+            }
+            continue;
         }
 
         convert_pdm_to_dac(g_pdm_buffer[g_write_buffer_index], buf_size.samples,
-                          g_dac_buffer[g_write_buffer_index]);
+                           g_dac_buffer[g_write_buffer_index]);
 
         uint8_t ready_idx = g_write_buffer_index;
         g_write_buffer_index = (g_write_buffer_index + 1) % NUM_BUFFERS;
         g_stop_receive_data = false;
         err = R_PDM_Start(&g_pdm0_ctrl, g_pdm_buffer[g_write_buffer_index],
-                         buf_size.bytes, buf_size.samples / 4);
+                          buf_size.bytes, buf_size.samples / 4);
         if (err != FSP_SUCCESS)
         {
-            LOG_E("R_PDM_Start failed: %d", err);
+            LOG_E("R_PDM_Start failed: %d, abort", err);
             break;
         }
+
         if (sound_dev != RT_NULL)
         {
             rt_size_t total_bytes = buf_size.samples * 2;
@@ -208,8 +219,8 @@ void hal_entry(void)
                 rt_size_t write_size = (remaining < chunk_size) ? remaining : chunk_size;
 
                 rt_size_t bytes_written = rt_device_write(sound_dev, 0,
-                                                             (uint8_t*)g_dac_buffer[ready_idx] + offset,
-                                                             write_size);
+                                                          (uint8_t *)g_dac_buffer[ready_idx] + offset,
+                                                          write_size);
 
                 if (bytes_written > 0)
                 {
@@ -221,6 +232,7 @@ void hal_entry(void)
                 }
             }
         }
+
         loop_count++;
         if (loop_count % 50 == 0)
         {
@@ -233,5 +245,40 @@ cleanup:
     if (sound_dev != RT_NULL)
     {
         rt_device_close(sound_dev);
+    }
+    LOG_E("Audio loopback thread exited");
+}
+
+void hal_entry(void)
+{
+    rt_kprintf("\n");
+    rt_kprintf("********************************************************************************\n");
+    rt_kprintf("*   PDM Microphone -> Speaker Real-time Loopback (Double Buffer)               *\n");
+    rt_kprintf("********************************************************************************\n");
+    rt_kprintf("Sample Rate: %d Hz, Channels: %d\n", PDM_FS_HZ, PDM_CHANNELS);
+    rt_kprintf("Buffer: %d samples x %d buffers\n", PDM_BUFFER_NUM_SAMPLES, NUM_BUFFERS);
+    rt_kprintf("********************************************************************************\n\n");
+
+    rt_pin_mode(LED_PIN_R, PIN_MODE_OUTPUT);
+    rt_pin_mode(LED_PIN_G, PIN_MODE_OUTPUT);
+    rt_pin_mode(LED_PIN_B, PIN_MODE_OUTPUT);
+    rt_pin_write(LED_PIN_R, LED_OFF);
+    rt_pin_write(LED_PIN_G, LED_OFF);
+    rt_pin_write(LED_PIN_B, LED_OFF);
+
+    rt_thread_t audio = rt_thread_create("audio_lb",
+                                         audio_loopback_thread_entry,
+                                         RT_NULL,
+                                         AUDIO_LOOPBACK_THREAD_STACK_SIZE,
+                                         AUDIO_LOOPBACK_THREAD_PRIORITY,
+                                         AUDIO_LOOPBACK_THREAD_TICK);
+    if (audio != RT_NULL)
+    {
+        rt_thread_startup(audio);
+        LOG_I("Audio loopback thread started");
+    }
+    else
+    {
+        LOG_E("Create audio loopback thread failed");
     }
 }

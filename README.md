@@ -1,7 +1,4 @@
 # sdk-bsp-ra8p1-titan-board-mini
-
-**English** | [**Chinese**](README_zh.md)
-
 ## Introduction
 
 `sdk-bsp-ra8p1-titan-board-mini` is the Board Support Package (BSP) provided by the RT-Thread team for the **Titan Board Mini**. It can also serve as a software SDK for user development, enabling developers to build their own applications more easily and conveniently.
@@ -18,26 +15,17 @@ $ sdk-bsp-ra8p1-titan-board-mini
 │   ├── Titan_Mini_datasheet.pdf
 │   ├── ra8p1-mini_v0.1.pdf
 │   ├── Titan_Mini_user_manual.pdf
-│   └── templates
+│   └── mechanical
 ├── figures
 ├── libraries
 ├── project
 │   ├── Titan_Mini_blink_led
-│   ├── Titan_Mini_component_flash_fs
 │   ├── Titan_Mini_display_camera_mipi_csi
 │   ├── Titan_Mini_npu_ai_face_detection
 │   ├── Titan_Mini_display_rgb_lvgl
-│   ├── Titan_Mini_driver_adc
-│   ├── Titan_Mini_driver_canfd
+│   ├── Titan_Mini_driver_all
 │   ├── Titan_Mini_driver_eth
-│   ├── Titan_Mini_driver_gpt
-│   ├── Titan_Mini_driver_rtc
-│   ├── Titan_Mini_driver_sdcard
-│   ├── Titan_Mini_driver_sdram
-│   ├── Titan_Mini_driver_spi
 │   ├── Titan_Mini_pdm
-│   ├── Titan_Mini_driver_wdt
-│   ├── Titan_Mini_key_irq
 │   ├── Titan_Mini_peripheral_imu
 │   ├── Titan_Mini_rgb_lcd
 │   ├── Titan_Mini_template
@@ -59,6 +47,12 @@ $ sdk-bsp-ra8p1-titan-board-mini
 ## Usage
 
 `sdk-bsp-ra8p1-titan-board-mini` supports **RT-Thread Studio** development methods.
+
+## FSP Configuration Tool
+
+Download the Renesas FSP configuration tool here:
+
+- [setup_fsp_v6_4_0_rasc_v2025-12.exe](https://github.com/renesas/fsp/releases/download/v6.4.0/setup_fsp_v6_4_0_rasc_v2025-12.exe)
 
 ## RT-Thread Studio Development Steps
 

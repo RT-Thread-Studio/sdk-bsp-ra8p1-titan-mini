@@ -1,91 +1,80 @@
-# NPU 加速人脸检测使用说明
+# MIPI NPU 人脸检测
 
-**中文** | [**English**](./README.md)
+[English](./README.md) | [中文](./README_zh.md)
 
 ## 简介
 
-本示例展示了如何在 **Titan Board Mini** 上，利用 **Arm® Ethos™-U55 NPU** 加速运行 **YOLO-Fastest 人脸检测模型**，并结合 **CEU（Camera Engine Unit）摄像头接口** 和 **RGB LCD 显示屏** 实现实时人脸检测与显示。
+该示例在 **Titan Board Mini** 上实现了基于 **MIPI CSI 摄像头** 的实时人脸检测，主要使用以下模块：
 
-主要功能包括：
+- **OV5640** 通过 **MIPI CSI** 接入
+- **RA8P1 VIN** 负责图像采集
+- **Arm Ethos-U55 NPU** 负责 YOLO-Fastest 推理
+- **RGB565 LCD** 负责实时预览和人脸框叠加显示
 
-- 通过 CEU 采集实时视频流（OV5640 摄像头）
-- 使用 NPU 对视频帧进行 YOLO-Fastest 模型推理
-- 在 LCD 屏幕上显示检测结果（带人脸框）
-- 支持硬件加速的 YUV → RGB 转换与图形绘制
+## 功能
 
-## 系统整体架构
+- 通过 **MIPI CSI + VIN** 采集摄像头图像
+- 使用 **YOLO-Fastest 人脸检测模型** 进行 NPU 推理
+- 在 LCD 上叠加绿色人脸框
+- 支持通过用户按键触发 **OV5640 自动对焦**
+- 支持通过宏定义控制检测日志输出
 
-本示例的系统数据流如下图所示：
+## 数据流
 
-```css
-[OV5640 摄像头]
-        │
-        ▼
-[CEU 摄像头采集模块]
-        │ (YUV422)
-        ▼
-[DMA 传输到 Frame Buffer (HyperRAM)]
-        │
-        ├──► [NPU (Ethos-U55) 运行 YOLO-Fastest 推理]
-        │         │
-        │         ▼
-        │     [检测结果：坐标 + 置信度]
-        │
-        └──► [GLCDC 显示控制器]
-                  │
-                  ▼
-          [RGB LCD 实时显示]
+```text
+OV5640
+  -> MIPI CSI
+  -> VIN 帧缓冲
+  -> CPU 预处理（缩放 + 灰度化 + 量化）
+  -> Ethos-U55 推理
+  -> CPU 后处理（解码 + NMS）
+  -> D/AVE2D 叠框
+  -> GLCDC
+  -> RGB565 LCD
 ```
 
-## Arm® Ethos™-U55 NPU 特性
+## 模型信息
 
-Titan Board Mini使用的 RA8P1 MCU 集成 **Arm® Ethos™-U55 神经处理单元（NPU）**，可与 Cortex-M85 CPU 协同工作，大幅提升神经网络推理性能。
+- 模型：**YOLO-Fastest 人脸检测**
+- 框架：**TensorFlow Lite INT8**
+- 模型输入尺寸：**192 x 192**
+- 摄像头采集尺寸：**640 x 480**
 
-### 1. 硬件特性
+## 运行控制
 
-1. **算力与加速**
-   - 支持 INT8 量化模型
-   - 性能可达数百 GOPS（依型号配置）
-   - 支持卷积、池化、ReLU、Softmax 等常见算子
-2. **与 CPU 协同**
-   - 通过 CMSIS-NN & Ethos-U 驱动与 Cortex-M85 协作
-   - 支持 NPU 与 CPU 异步执行
-   - 模型前后处理由 CPU 完成
-3. **存储与带宽**
-   - 支持从片上 SRAM 或外部 HyperRAM 直接读取特征图
-   - DMA 加速模型输入/输出数据搬运
-   - 支持多层缓存机制减少延迟
-4. **兼容性**
-   - 与 TensorFlow Lite for Microcontrollers (TFLM) 完全兼容
-   - 支持 Arm NN SDK 转换的模型格式 (.tflite)
+- **自动对焦**
+  - 按下用户按键后触发 OV5640 自动对焦。
+- **检测日志开关**
+  - 在 `src/hal_entry.c` 中修改 `DETECT_RESULT_LOG_ENABLE`
+  - `0`：关闭 `detect box num` / `Time elapsed` 日志
+  - `1`：打开日志
 
-## YOLO-Fastest 模型介绍
+## 说明
 
-**YOLO-Fastest** 是轻量级目标检测网络，适合嵌入式设备实时运行。
+- 当前工程在人脸框显示时使用 framebuffer 叠加渲染路径。
+- 当前 MIPI 摄像头链路中，OV5640 通过 **I2C0** 配置。
 
-| 项目                  | 参数                         |
-| --------------------- | ---------------------------- |
-| 模型类型              | YOLO-Fastest（人脸检测版本） |
-| 模型框架              | TensorFlow Lite (INT8)       |
-| 输入尺寸              | 192 x 192                    |
-| 输出                  | 人脸检测框坐标 + 置信度      |
-| 推理时间（Ethos-U55） | 约 25 ms / 帧                |
-| 适用场景              | 人脸检测 / 实时视觉识别      |
+## RT-Thread / FSP 配置要点
 
-## RT-Thread Settings 配置
+工程需要启用以下模块：
 
-* 使能 CUE 摄像头，使用 i2c1 和 ov5640 摄像头；使能 RGB565 LCD，使用 pwm7 输出背光。
+- **MIPI CSI**
+- **VIN**
+- **Ethos-U55 / rm_ethosu**
+- **I2C0 摄像头控制**
+- **RGB565 LCD / GLCDC**
 
-![image-20250815155821339](figures/image-20250815155821339.png)
+## 编译与下载
 
-## 编译&下载
-
-- RT-Thread Studio：在RT-Thread Studio 的包管理器中下载 Titan Board 资源包，然后创建新工程，执行编译。
-
-编译完成后，将开发板的 USB-DBG 接口与PC 机连接，然后将固件下载至开发板。
+可通过 **RT-Thread Studio** 或仓库现有的工程构建流程完成编译，然后通过开发板调试接口下载固件。
 
 ## 运行效果
 
-复位 Titan Board Mini后准备一张人脸图片放到摄像头面前，此时观察 LCD 屏幕能看到人脸被一个绿色的矩形框了出来。
+系统启动后：
 
-![image-20251029173335454](figures/image-20251029173335454.png)
+- LCD 显示 OV5640 实时画面
+- 检测到人脸时在屏幕上绘制绿色矩形框
+- 按下用户按键可触发摄像头自动对焦
+
+
+![alt text](figures/image-20251029173335454.png)

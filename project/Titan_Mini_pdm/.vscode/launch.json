@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CotexDebug",
+            "executable": "${workspaceRoot}/rtthread.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "hal_entry",
+            "targetId": "R7KA8P1KF_CPU0",
+            "servertype": "jlink",
+            "device": "R7KA8P1KF_CPU0",
+            "interface": "jtag",
+            "armToolchainPath": "C:/work/env-windows/tools/gnu_gcc/arm_gcc/mingw/bin",
+            "serverpath": "C:/Program Files (x86)/SEGGER/JLink_V850/JLinkGDBServerCL.exe"
+        }
+    ]
+}

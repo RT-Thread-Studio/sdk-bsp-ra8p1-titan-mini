@@ -3,12 +3,10 @@
 /Objects
 /Debug
 /build
-/makefile.targets
 /rtconfig.pyc
 /rt-thread
 /libraries
 /project.custom_argvars
-/.vscode
 /__pycache
 /settings
 /bsp_linker_info.h
@@ -21,3 +19,5 @@
 /.secure_rzone
 /.secure_xml
 /ra_cfg.txt
+/packages/pkgs.json
+/packages/pkgs_error.json

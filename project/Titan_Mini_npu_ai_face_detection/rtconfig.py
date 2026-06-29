@@ -38,15 +38,16 @@ if PLATFORM == 'gcc':
     NM = PREFIX + 'nm'
 
     DEVICE = ' -march=armv8.1-m.main+mve.fp+fp.dp -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections'
-    CFLAGS = DEVICE + ' -Dgcc'
-    AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp -Wa,-mimplicit-it=thumb '
-    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,Reset_Handler -T board/linker_scripts/fsp.ld -L script/'
+    PREINC = ' -include rtconfig_preinc.h'
+    CFLAGS = DEVICE + ' -Dgcc -DVIN_CFG_USE_RUNTIME_BUFFER' + ' -std=gnu11'
+    AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp -Wa,-mimplicit-it=thumb -DVIN_CFG_USE_RUNTIME_BUFFER'
+    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,Reset_Handler -T board/linker_scripts/fsp.ld -L. --specs=nano.specs'
 
     CPATH = ''
     LPATH = ''
 
     if BUILD == 'debug':
-        CFLAGS += ' -O0 -gdwarf-2 -g -Wall'
+        CFLAGS += ' -O3 -gdwarf-2 -g -Wall'
         AFLAGS += ' -gdwarf-2'
     else:
         CFLAGS += ' -O2'

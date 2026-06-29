@@ -1,4 +1,3 @@
-**\.vscode
 **__pycache__
 **/packages.dbsqlite
 **/.config.old
@@ -35,7 +34,6 @@ Midea-X1
 GPATH
 GRTAGS
 GTAGS
-.vscode
 JLinkLog.txt
 JLinkSettings.ini
 DebugConfig/
