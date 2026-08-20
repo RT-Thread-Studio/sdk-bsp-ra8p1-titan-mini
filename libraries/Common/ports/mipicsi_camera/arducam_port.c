@@ -138,7 +138,7 @@ bool rdSensorReg16_Multi(uint16_t regID, uint8_t *regDat, uint32_t len)
     return camera_i2c_transfer(msgs, 2);
 }
 
-bool wrSensorReg16_Multi(uint16_t regID, uint8_t *regDat, uint32_t len)
+bool wrSensorReg16_Multi(uint16_t regID, uint8_t const *regDat, uint32_t len)
 {
     /* 使用栈上固定大小缓冲区，避免动态内存分配 */
     /* 最大支持一次写入 256 字节 */

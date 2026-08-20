@@ -11,7 +11,7 @@
 #include "rpmsg_frame.h"
 
 #define DBG_TAG "rpmsg.frame"
- #define DBG_LVL DBG_INFO
+#define DBG_LVL DBG_INFO
 #include <rtdbg.h>
 
 rt_uint32_t rpmsg_frame_calc_checksum(const void *msg, rt_size_t size)
@@ -31,21 +31,21 @@ rt_err_t rpmsg_frame_verify_checksum(const void *msg, rt_size_t size, rt_uint32_
     return (expected == received_checksum) ? RT_EOK : RT_ERROR;
 }
 
-// 打印 M33 -> M85 消息
 void rpmsg_frame_print_m33_to_m85(const m33_to_m85_msg_t *msg, const char *direction)
 {
-    LOG_I("[%s][index:%u][checksum:%u] M33 → M85 | LEFT:%.2f m/s | RIGHT:%.2f m/s | STEER:%.2f°",
-          direction, msg->index, msg->checksum,
+    LOG_I("[%s][index:%u][type:%u][checksum:%u] M33 -> M85 | LEFT:%.2f m/s | RIGHT:%.2f m/s | STEER:%.2f",
+          direction, msg->index, msg->type, msg->checksum,
           msg->left_rear_vel,
           msg->right_rear_vel,
           msg->front_steering_angle);
 }
 
-// 打印 M85 -> M33 消息
 void rpmsg_frame_print_m85_to_m33(const m85_to_m33_msg_t *msg, const char *direction)
 {
-    LOG_I("[%s][index:%u][checksum:%u] M85 → M33 | SPEED:%.2f m/s | STEER:%.2f°",
-          direction, msg->index, msg->checksum,
+    LOG_I("[%s][index:%u][type:%u][checksum:%u] M85 -> M33 | SPEED:%.2f m/s | STEER:%.2f | FACE:%u | SCORE:%.2f",
+          direction, msg->index, msg->type, msg->checksum,
           msg->vehicle_speed,
-          msg->steering_angle);
+          msg->steering_angle,
+          msg->face_count,
+          msg->face_score);
 }

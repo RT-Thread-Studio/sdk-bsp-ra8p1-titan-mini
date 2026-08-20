@@ -38,7 +38,8 @@
 #define VRING_SIZE2 (VRING_SIZE1 + sizeof(struct vring_avail) + (RL_BUFFER_COUNT * sizeof(uint16_t)) + sizeof(uint16_t))
 #define VRING_SIZE3 ((VRING_SIZE2 + VRING_ALIGN - 1UL) & ~(VRING_ALIGN - 1UL))
 #define VRING_SIZE4 (VRING_SIZE3 + sizeof(struct vring_used) + (RL_BUFFER_COUNT * sizeof(struct vring_used_elem)) + sizeof(uint16_t))
-#define VRING_SIZE (((int32_t)VRING_SIZE4))
+#define VRING_SIZE5 ((VRING_SIZE4 + VRING_ALIGN - 1UL) & ~(VRING_ALIGN - 1UL))
+#define VRING_SIZE (((int32_t)VRING_SIZE5))
 
 /* define shared memory space for VRINGS per one channel */
 #define RL_VRING_OVERHEAD (2UL * VRING_SIZE)
@@ -94,6 +95,8 @@ void platform_time_delay(uint32_t num_msec);
 void platform_map_mem_region(uint32_t vrt_addr, uint32_t phy_addr, uint32_t size, uint32_t flags);
 void platform_cache_all_flush_invalidate(void);
 void platform_cache_disable(void);
+void platform_cache_flush(void *data, uint32_t len);
+void platform_cache_invalidate(void *data, uint32_t len);
 uint32_t platform_vatopa(void *addr);
 void *platform_patova(uintptr_t addr);
 

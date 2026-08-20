@@ -566,6 +566,10 @@
       <description>Ethos-U core driver</description>
       <originalPack>Arm.Ethos-U-Core-Driver.25.2.0+renesas.0.fsp.6.4.0.pack</originalPack>
     </component>
+    <component apiversion="" class="HAL Drivers" condition="" group="all" subgroup="r_ipc" variant="" vendor="Renesas" version="6.4.0">
+      <description>IPC</description>
+      <originalPack>Renesas.RA.6.4.0.pack</originalPack>
+    </component>
   </raComponentSelection>
   <raElcConfiguration/>
   <raIcuConfiguration/>
@@ -2902,6 +2906,18 @@
     </module>
     <module id="module.google.tflm.core.lib.929530672"/>
     <module id="module.google.tflm.kernel.ethosu.1946303502"/>
+    <module id="module.driver.ipc_on_ipc.567758694">
+      <property id="module.driver.ipc.name" value="g_ipc1"/>
+      <property id="module.driver.ipc.channel" value="enum.driver.ipc.channel.1"/>
+      <property id="module.driver.ipc.callback" value="g_ipc1_callback"/>
+      <property id="module.driver.ipc.ipl" value="board.icu.common.irq.priority5"/>
+    </module>
+    <module id="module.driver.ipc_on_ipc.2036326994">
+      <property id="module.driver.ipc.name" value="g_ipc0"/>
+      <property id="module.driver.ipc.channel" value="enum.driver.ipc.channel.0"/>
+      <property id="module.driver.ipc.callback" value="NULL"/>
+      <property id="module.driver.ipc.ipl" value="_disabled"/>
+    </module>
     <context id="_hal.0">
       <stack module="module.driver.ioport_on_ioport.0"/>
       <stack module="module.driver.ether_on_rmac.1536667874">
@@ -2966,6 +2982,8 @@
           </stack>
         </stack>
       </stack>
+      <stack module="module.driver.ipc_on_ipc.567758694"/>
+      <stack module="module.driver.ipc_on_ipc.2036326994"/>
     </context>
     <config id="config.driver.ospi_b">
       <property id="config.driver.ospi_b.param_checking_enable" value="config.driver.ospi_b.param_checking_enable.bsp"/>
@@ -3009,6 +3027,9 @@
       <property id="config.driver.rmac_phy.target_vsc8541" value="config.driver.rmac_phy.target_vsc8541.disabled"/>
       <property id="config.driver.rmac_phy.use_custom_phy_lsi" value="config.driver.rmac_phy.use_custom_phy_lsi.enabled"/>
       <property id="config.driver.rmac_phy.use_reference_clock" value="config.driver.rmac_phy.use_reference_clock.enabled"/>
+    </config>
+    <config id="config.driver.ipc">
+      <property id="config.driver.ipc.param_checking_enable" value="config.driver.ipc.param_checking_enable.bsp"/>
     </config>
     <config id="config.driver.layer3_switch">
       <property id="config.driver.layer3_switch.param_checking_enable" value="config.driver.layer3_switch.param_checking_enable.bsp"/>

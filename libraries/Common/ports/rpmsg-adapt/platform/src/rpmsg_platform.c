@@ -33,8 +33,12 @@ static LOCK_STATIC_CONTEXT platform_lock_static_ctxt;
 
 #if (_RA_CORE == CPU0) && defined(SOC_SERIES_R7KA8P1)
     #define IPC_IRQ IPC_IRQ1_IRQn
+    #define RPMSG_IPC_CTRL g_ipc0_ctrl
+    #define RPMSG_IPC_CFG  g_ipc0_cfg
 #elif (_RA_CORE == CPU1)
     #define IPC_IRQ IPC_IRQ0_IRQn
+    #define RPMSG_IPC_CTRL g_ipc1_ctrl
+    #define RPMSG_IPC_CFG  g_ipc1_cfg
 #endif
 
 #if defined(RL_USE_MCMGR_IPC_ISR_HANDLER) && (RL_USE_MCMGR_IPC_ISR_HANDLER == 1)
@@ -135,10 +139,12 @@ void platform_notify(uint32_t vector_id)
     env_unlock_mutex(platform_lock);
 #else
     env_lock_mutex(platform_lock);
-#if (_RA_CORE == CPU0)
-    R_IPC_MessageSend(&g_ipc0_ctrl, (uint32_t)(RL_GET_Q_ID(vector_id)));
-#elif (_RA_CORE == CPU1)
-    R_IPC_MessageSend(&g_ipc1_ctrl, (uint32_t)(RL_GET_Q_ID(vector_id)));
+#if defined(RPMSG_IPC_CTRL)
+    fsp_err_t ipc_err = R_IPC_MessageSend(&RPMSG_IPC_CTRL, (uint32_t)(RL_GET_Q_ID(vector_id)));
+    if (ipc_err != FSP_SUCCESS)
+    {
+        rt_kprintf("[rpmsg] IPC send err %d\n", (int) ipc_err);
+    }
 #endif
     env_unlock_mutex(platform_lock);
 #endif
@@ -274,24 +280,55 @@ void platform_cache_disable(void)
 {
 }
 
+#if defined(__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
+static void rpmsg_platform_cache_op(void *data, uint32_t len, rt_bool_t invalidate)
+{
+    if ((data != NULL) && (len > 0U))
+    {
+        if (invalidate)
+        {
+            SCB_InvalidateDCache_by_Addr((volatile void *)data, (int32_t)len);
+        }
+        else
+        {
+            SCB_CleanDCache_by_Addr((volatile void *)data, (int32_t)len);
+        }
+        __DSB();
+        __ISB();
+    }
+}
+#endif
+
 /**
  * platform_cache_flush
  *
- * Empty implementation
+ * Flushes shared-memory writes so the other core can observe them.
  *
  */
 void platform_cache_flush(void *data, uint32_t len)
 {
+#if defined(__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
+    rpmsg_platform_cache_op(data, len, false);
+#else
+    (void)data;
+    (void)len;
+#endif
 }
 
 /**
  * platform_cache_invalidate
  *
- * Empty implementation
+ * Invalidates shared memory before reading data written by the other core.
  *
  */
 void platform_cache_invalidate(void *data, uint32_t len)
 {
+#if defined(__DCACHE_PRESENT) && (__DCACHE_PRESENT == 1U)
+    rpmsg_platform_cache_op(data, len, true);
+#else
+    (void)data;
+    (void)len;
+#endif
 }
 
 /**

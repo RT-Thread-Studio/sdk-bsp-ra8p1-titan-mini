@@ -69,6 +69,9 @@ jobs:
          - {RTT_BSP: "Titan_Mini_template"}
          - {RTT_BSP: "Titan_Mini_usb_pcdc"}
          - {RTT_BSP: "Titan_Mini_wavplayer"}
+         - {RTT_BSP: "Titan_Mini_rpmsg/Titan_Mini_rpmsg_master"}
+         - {RTT_BSP: "Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote"}
+
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -94,6 +97,15 @@ jobs:
           echo "RTT_ROOT=${{ github.workspace }}" >> $GITHUB_ENV
           echo "RTT_CC=gcc" >> $GITHUB_ENV
 
+      - name: Build Remote dependency
+        if: matrix.legs.RTT_BSP == 'Titan_Mini_rpmsg/Titan_Mini_rpmsg_master'
+        shell: bash
+        run: |
+          cd project/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote
+          chmod +x mklinks.sh
+          ./mklinks.sh
+          scons -j16
+
       - name: Compile ${{ matrix.legs.RTT_BSP }}
         if: ${{ success() }}
         shell: bash
@@ -103,4 +115,4 @@ jobs:
           cd project/$RTT_BSP
           chmod +x mklinks.sh
           ./mklinks.sh
-          scons -C $RTT_BSP
+          scons -j16

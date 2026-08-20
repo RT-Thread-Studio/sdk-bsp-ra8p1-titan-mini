@@ -1,0 +1,68 @@
+import os
+import sys
+import rtconfig
+
+if os.path.exists('rt-thread'):
+    RTT_ROOT = os.path.normpath(os.getcwd() + '/rt-thread')
+else:
+    RTT_ROOT = os.path.normpath(os.getcwd() + '../../../rt-thread')
+
+sys.path = sys.path + [os.path.join(RTT_ROOT, 'tools')]
+try:
+    from building import *
+except Exception as e:
+    print("Error message:", str(e))
+    print('Cannot found RT-Thread root directory, please check RTT_ROOT')
+    print(RTT_ROOT)
+    sys.exit(-1)
+
+TARGET = 'rtthread.' + rtconfig.TARGET_EXT
+
+DefaultEnvironment(tools=[])
+env = Environment(tools = ['mingw'],
+    AS = rtconfig.AS, ASFLAGS = rtconfig.AFLAGS,
+    CC = rtconfig.CC, CFLAGS = rtconfig.CFLAGS,
+    CXX = rtconfig.CXX, CXXFLAGS = rtconfig.CXXFLAGS,
+    AR = rtconfig.AR, ARFLAGS = '-rc',
+    LINK = rtconfig.LINK, LINKFLAGS = rtconfig.LFLAGS)
+env.PrependENVPath('PATH', rtconfig.EXEC_PATH)
+
+if rtconfig.PLATFORM in ['iccarm']:
+    env.Replace(CCCOM = ['$CC $CFLAGS $CPPFLAGS $_CPPDEFFLAGS $_CPPINCFLAGS -o $TARGET $SOURCES'])
+    env.Replace(ARFLAGS = [''])
+    env.Replace(LINKCOM = env["LINKCOM"] + ' --map project.map')
+
+Export('RTT_ROOT')
+Export('rtconfig')
+
+SDK_ROOT = os.path.abspath('./')
+if os.path.exists(SDK_ROOT + '/libraries'):
+    libraries_path_prefix = SDK_ROOT + '/libraries'
+else:
+    libraries_path_prefix = os.path.dirname(SDK_ROOT) + '/../libraries'
+
+SDK_LIB = libraries_path_prefix
+Export('SDK_LIB')
+
+rtconfig.BSP_LIBRARY_TYPE = None
+
+env.Append(CPPPATH = [
+    os.path.join(libraries_path_prefix, 'HAL_Drivers'),
+    os.path.join(libraries_path_prefix, 'HAL_Drivers', 'config', 'ra8'),
+    os.path.join(libraries_path_prefix, 'Common', 'ports', 'data_frame'),
+    os.path.join(libraries_path_prefix, 'Common', 'ports', 'rpmsg-adapt', 'include'),
+    os.path.join(libraries_path_prefix, 'Common', 'ports', 'rpmsg-adapt', 'platform', 'inc'),
+])
+
+# prepare building environment
+objs = PrepareBuilding(env, RTT_ROOT, has_libcpu=False)
+
+# include drivers and shared common ports
+objs.extend(SConscript(os.path.join(libraries_path_prefix, 'HAL_Drivers', 'SConscript')))
+objs.extend(SConscript(os.path.join(libraries_path_prefix, 'Common', 'ports', 'SConscript')))
+
+_common_ports_path = os.path.abspath(os.path.join(libraries_path_prefix, 'Common', 'ports'))
+env['CPPPATH'] = [p for p in env['CPPPATH'] if os.path.abspath(str(p)) != _common_ports_path]
+
+# make a building
+DoBuilding(TARGET, objs)
