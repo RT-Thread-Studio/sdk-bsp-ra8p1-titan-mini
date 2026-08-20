@@ -49,6 +49,14 @@ categories:
       - "Titan_Mini_display_rgb_lvgl"
       - "Titan_Mini_npu_ai_face_detection"
 
+  multicore:
+    name: "多核通信篇"
+    name_en: "Multicore"
+    description: "Cortex-M85 与 Cortex-M33 核间通信示例"
+    patterns:
+      - "Titan_Mini_rpmsg/Titan_Mini_rpmsg_master"
+      - "Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote"
+
   peripheral:
     name: "外设扩展篇"
     name_en: "Peripherals"
@@ -72,6 +80,7 @@ generation:
     - "basic"
     - "driver"
     - "multimedia"
+    - "multicore"
     - "peripheral"
 
 # Sphinx 配置

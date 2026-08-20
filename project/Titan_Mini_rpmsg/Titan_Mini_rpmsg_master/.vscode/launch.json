@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug CPU0 - flash dualcore",
+            "executable": "${workspaceRoot}/rtthread.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "loadFiles": [
+                "${workspaceRoot}/Titan_rpmsg_dualcore.hex"
+            ],
+            "targetId": "R7KA8P1KF_CPU0",
+            "servertype": "jlink",
+            "device": "R7KA8P1KF_CPU0",
+            "interface": "jtag",
+            "armToolchainPath": "C:/RT-ThreadStudio/repo/Extract/ToolChain_Support_Packages/ARM/GNU_Tools_for_ARM_Embedded_Processors/13.3/bin",
+            "serverpath": "C:/Program Files (x86)/SEGGER/JLink_V850/JLinkGDBServerCL.exe"
+        }
+    ]
+}

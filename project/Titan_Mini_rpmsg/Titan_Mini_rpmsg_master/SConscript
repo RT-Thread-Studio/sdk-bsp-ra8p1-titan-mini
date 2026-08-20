@@ -1,0 +1,36 @@
+# for module compiling
+import os
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+from gcc import *
+
+cwd = GetCurrentDir()
+group = []
+
+if rtconfig.PLATFORM in ['iccarm'] + GetGCCLikePLATFORM():
+    if rtconfig.PLATFORM == 'iccarm' or GetOption('target') != 'mdk5':
+        app_path = os.path.join(cwd, 'src')
+        cpppath = [
+            cwd,
+            app_path,
+            os.path.join(cwd, 'libraries', 'Common', 'ports', 'data_frame'),
+        ]
+        group = DefineGroup('Applications', Glob('./src/*.c'), depend=[''], CPPPATH=cpppath)
+
+# Keep the board and package build scripts unchanged.
+for name in os.listdir(cwd):
+    path = os.path.join(cwd, name)
+    sconscript = os.path.join(path, 'SConscript')
+    if os.path.isdir(path) and os.path.isfile(sconscript):
+        group += SConscript(sconscript)
+
+# A training feature is enabled by placing its complete directory under src.
+feature_root = os.path.join(cwd, 'src')
+for name in sorted(os.listdir(feature_root)):
+    path = os.path.join(feature_root, name)
+    sconscript = os.path.join(path, 'SConscript')
+    if os.path.isdir(path) and os.path.isfile(sconscript):
+        group += SConscript(sconscript)
+
+Return('group')

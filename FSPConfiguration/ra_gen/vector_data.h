@@ -6,7 +6,7 @@
         #endif
                 /* Number of interrupts allocated */
         #ifndef VECTOR_DATA_IRQ_COUNT
-        #define VECTOR_DATA_IRQ_COUNT    (73)
+        #define VECTOR_DATA_IRQ_COUNT    (74)
         #endif
         /* ISR prototypes */
         void layer3_switch_gwdi_isr(void);
@@ -74,6 +74,7 @@
         void mipi_csi_pm_isr(void);
         void mipi_csi_gst_isr(void);
         void rm_ethosu_isr(void);
+        void ipc_isr(void);
 
         /* Vector table allocations */
         #define VECTOR_NUMBER_ETHER_GWDI0 ((IRQn_Type) 0) /* ETHER GWDI0 (GWCA Data Interrupt 0) */
@@ -222,8 +223,10 @@
         #define MIPICSI_GST_IRQn          ((IRQn_Type) 71) /* MIPICSI GST (Generic Short Packet interrupt) */
         #define VECTOR_NUMBER_NPU_IRQ ((IRQn_Type) 72) /* NPU IRQ (NPU IRQ) */
         #define NPU_IRQ_IRQn          ((IRQn_Type) 72) /* NPU IRQ (NPU IRQ) */
+        #define VECTOR_NUMBER_IPC_IRQ1 ((IRQn_Type) 73) /* IPC IRQ1 (CPU Mutual Interrupt 1) */
+        #define IPC_IRQ1_IRQn          ((IRQn_Type) 73) /* IPC IRQ1 (CPU Mutual Interrupt 1) */
         /* The number of entries required for the ICU vector table. */
-        #define BSP_ICU_VECTOR_NUM_ENTRIES (73)
+        #define BSP_ICU_VECTOR_NUM_ENTRIES (74)
 
         #ifdef __cplusplus
         }

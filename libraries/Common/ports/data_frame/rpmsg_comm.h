@@ -18,6 +18,7 @@
 #include "rpmsg_frame.h"
 
 #define RPMSG_LOCAL_EPT_ADDR 0x00
+#define RPMSG_SERVICE_NAME   "titan-rpmsg"
 
 #define RPMSG_SHMEM_BASE     0x22174000
 #define RPMSG_SHMEM_SIZE     (64 * 1024)
@@ -29,6 +30,7 @@ typedef struct rpmsg_comm
     struct rpmsg_lite_endpoint *ept;
     rpmsg_queue_handle queue;
     volatile rt_uint32_t remote_addr;
+    volatile rt_bool_t ready;
     rt_mailbox_t tx_mb;
     volatile rpmsg_ns_handle ns_handle;
 } rpmsg_comm_t;
@@ -40,7 +42,9 @@ rt_err_t rpmsg_comm_remote_init(rpmsg_comm_t *comm);
 void rpmsg_comm_deinit(rpmsg_comm_t *comm);
 rt_err_t rpmsg_comm_send(rpmsg_comm_t *comm, void *msg, rt_size_t size);
 rt_err_t rpmsg_comm_recv(rpmsg_comm_t *comm, void *msg, rt_size_t size, rt_uint32_t *len);
+rt_bool_t rpmsg_comm_is_ready(void);
 rt_err_t rpmsg_send_to_core0(int argc, char *argv[]);
 rt_err_t rpmsg_send_to_core1(int argc, char *argv[]);
+rt_err_t rpmsg_send_ready_to_core0(void);
 
 #endif /* __RPMSG_COMM_H__ */

@@ -6,7 +6,8 @@ objs = []
 cwd  = GetCurrentDir()
 CPPPATH = [cwd,        
            cwd + '/include/',
-           cwd + '/platform/inc/']
+           cwd + '/platform/inc/',
+           os.path.abspath(os.path.join(cwd, '..', 'data_frame'))]
 
 src += Glob('platform/src/*.c')
 src += Glob('app/*.c')

@@ -133,9 +133,10 @@
 
 
 
-#define FOCUS_FW_DOWNLOAD_ADDR 0x8000  //固件写入首地址
-#define TIMEOUT 5000
-#define BURST_SIZE 32  // 每次写 32 字节，可调
+#define FOCUS_FW_DOWNLOAD_ADDR 0x8000
+#define AF_READY_TIMEOUT_MS 5000U
+#define AF_FW_BURST_SIZE 128U
+#define AF_FW_WRITE_RETRIES 3U
 //自动对焦固件数组
 const uint8_t af_firmware_regs[] = {
     0x02, 0x0f, 0xd6, 0x02, 0x0a, 0x39, 0xc2, 0x01, 0x22, 0x22, 0x00, 0x02, 0x0f, 0xb2, 0xe5, 0x1f,
@@ -983,18 +984,44 @@ int OV5640_af_init(void)
     uint8_t reg3029 = 0;
     uint32_t total_len = sizeof(af_firmware_regs) / sizeof(af_firmware_regs[0]);
     uint32_t offset = 0;
+    uint32_t start_ms = rt_tick_get_millisecond();
+
+    if (rdSensorReg16_8(REG_AF_FW_STATUS, &reg3029) && (reg3029 == 0x70))
+    {
+        rt_kprintf("[AF] Firmware is already running\n");
+        return RT_EOK;
+    }
+
     rt_kprintf("[E] Writing firmware to OV5640 ...\n");
 
-    wrSensorReg16_8(0x3000, 0x20);
+    if (!wrSensorReg16_8(REG_SYSTEM_RESET_00, 0x20))
+    {
+        rt_kprintf("[E] Failed to hold OV5640 AF MCU in reset\n");
+        return -RT_ERROR;
+    }
 
-    while (offset < total_len) {
-        uint32_t chunk_len = (total_len - offset > BURST_SIZE) ? BURST_SIZE : (total_len - offset);
-        if (!wrSensorReg16_Multi(FOCUS_FW_DOWNLOAD_ADDR + offset, &af_firmware_regs[offset], chunk_len)) {
-            rt_kprintf("[E] Firmware write failed at offset %d\n", offset);
+    while (offset < total_len)
+    {
+        uint32_t chunk_len = (total_len - offset > AF_FW_BURST_SIZE) ?
+                             AF_FW_BURST_SIZE : (total_len - offset);
+        uint32_t retry;
+
+        for (retry = 0; retry < AF_FW_WRITE_RETRIES; retry++)
+        {
+            if (wrSensorReg16_Multi(FOCUS_FW_DOWNLOAD_ADDR + offset,
+                                    &af_firmware_regs[offset], chunk_len))
+            {
+                break;
+            }
+            rt_thread_mdelay(1);
+        }
+
+        if (retry == AF_FW_WRITE_RETRIES)
+        {
+            rt_kprintf("[E] Firmware write failed at offset %u\n", offset);
             return -RT_ERROR;
         }
         offset += chunk_len;
-        rt_thread_mdelay(100);
     }
 
     wrSensorReg16_8(0x3022, 0x00);
@@ -1005,23 +1032,25 @@ int OV5640_af_init(void)
     wrSensorReg16_8(0x3027, 0x00);
     wrSensorReg16_8(0x3028, 0x00);
     wrSensorReg16_8(0x3029, 0x7F);
-    wrSensorReg16_8(0x3000, 0x00);
+    if (!wrSensorReg16_8(REG_SYSTEM_RESET_00, 0x00))
+    {
+        rt_kprintf("[E] Failed to start OV5640 AF MCU\n");
+        return -RT_ERROR;
+    }
 
-    rt_thread_mdelay(1000);
+    uint32_t timeout = 0;
 
-    int timeout = 0;
-
-    while ((reg3029 != 0x70) && (timeout < TIMEOUT))
+    while ((reg3029 != 0x70) && (timeout < AF_READY_TIMEOUT_MS))
     {
         rt_thread_mdelay(1);
-        rdSensorReg16_8( 0x3029, &reg3029);
+        (void)rdSensorReg16_8(REG_AF_FW_STATUS, &reg3029);
         timeout++;
     }
 
     if (reg3029 != 0x70)
     {
-        rt_kprintf("[E] Write Firmware Success\n");
-        return RT_ERROR;
+        rt_kprintf("[E] AF firmware did not become ready, status: 0x%02X\n", reg3029);
+        return -RT_ERROR;
     }
 
     rdSensorReg16_8(0x3000, &val);
@@ -1029,36 +1058,29 @@ int OV5640_af_init(void)
     if (((val >> 6) & 0x01) != 0 || ((val >> 5) & 0x01) != 0) {
         rt_kprintf("[E] 0x3000 check failed: BIT6=%d, BIT5=%d\n", (val >> 6) & 0x01, (val >> 5) & 0x01);
     }
-    rt_thread_mdelay(100);
-
     rdSensorReg16_8(0x3004, &val);
     rt_kprintf("MCU status 0x3004: 0x%02X\n", val);
     if (((val >> 6) & 0x01) != 1 || ((val >> 5) & 0x01) != 1) {
         rt_kprintf("[E] 0x3004 check failed: BIT6=%d, BIT5=%d\n", (val >> 6) & 0x01, (val >> 5) & 0x01);
     }
-    rt_thread_mdelay(100);
-
     rdSensorReg16_8(0x3001, &val);
     rt_kprintf("AFC status 0x3001: 0x%02X\n", val);
     if (((val >> 6) & 0x01) != 0) {
         rt_kprintf("[E] 0x3001 check failed: BIT6=%d\n", (val >> 6) & 0x01);
     }
-    rt_thread_mdelay(100);
-
     rdSensorReg16_8(0x3005, &val);
     rt_kprintf("AFC status 0x3005: 0x%02X\n", val);
     if (((val >> 6) & 0x01) != 1) {
         rt_kprintf("[E] 0x3005 check failed: BIT6=%d\n", (val >> 6) & 0x01);
     }
 
-    rt_kprintf("[AF] OV5640 AF firmware initialized successfully\n");
+    rt_kprintf("[AF] OV5640 AF firmware initialized in %u ms\n",
+               rt_tick_get_millisecond() - start_ms);
     return RT_EOK;
 }
 
 int OV5640_auto_focus(void)
 {
-    uint8_t val;
-
     wrSensorReg16_8(REG_AF_CMD_MAIN, 0x03);
 
     return RT_EOK;
