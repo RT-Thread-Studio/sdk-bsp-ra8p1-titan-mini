@@ -1,0 +1,5 @@
+from building import *
+group = [] + DefineGroup('Applications', [], depend=[''], CPPPATH=[GetCurrentDir()])
+for path in ['board', 'ra_cfg', 'ra_gen', 'platform']:
+    group += SConscript(path + '/SConscript')
+Return('group')
