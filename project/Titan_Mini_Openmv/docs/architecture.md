@@ -31,7 +31,7 @@ MSC 块设备 I/O 在独立任务中执行。IDE 的执行/停止请求在自启
 | 区域 | 配置容量 | 分配内容 |
 |---|---:|---|
 | 片内 MRAM | 1 MiB | VM、协议栈、驱动、视觉加载器 |
-| SRAM | 链接区 1872 KiB | 静态数据、1344 KiB 主 GC 池 |
+| SRAM | 链接区 1872 KiB | 静态数据、1472 KiB 主 GC 池
 | ITCM | 128 KiB | VM、图像和 CMSIS-NN 热点代码 |
 | DTCM | 128 KiB | 32 KiB VM 栈及 CPU 临时数据 |
 | 外部 SDRAM | 32 MiB | 图像池、模型、扩展 GC、RT 堆、视觉段 |

@@ -2,7 +2,7 @@
 #ifndef TITAN_OPENMV_RTCONFIG_PROJECT_H
 #define TITAN_OPENMV_RTCONFIG_PROJECT_H
 /* This project maintains only the OpenMV + NPU configuration. */
-#define TITAN_OPENMV_SRAM_GC_BYTES 1376256
+#define TITAN_OPENMV_SRAM_GC_BYTES 1507328
 #define BSP_USING_OPENMV_ML
 #define BSP_USING_OPENMV_NPU
 #define OMV_ENABLE_TF

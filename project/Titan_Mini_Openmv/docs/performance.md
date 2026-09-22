@@ -1,8 +1,6 @@
 # 性能对比
 
-对比平台：RA8P1 Titan Mini、OpenMV Cam H7 Plus、OpenMV Cam RT1062、OpenMV N6、OpenMV AE3。数据整理日期：2026-09-17。
-
-本文保留历史测试结果摘要，对应的原始采样数据和测试归档不随源码分发。
+对比平台：RA8P1 Titan Mini、OpenMV Cam H7 Plus、OpenMV Cam RT1062、OpenMV N6、OpenMV AE3。
 
 ## 平台配置
 
@@ -60,19 +58,19 @@ RA8P1 使用本地采集图；帧差参考为输入的反色图，卷积使用 3
 
 | 模型 | 输入尺寸 | RA8P1 / ms | OpenMV N6 / ms | OpenMV AE3 / ms |
 |---|---|---:|---:|---:|
-| YOLOv8n COCO-person（ST） | 192×192 | 29.77 | 24.15 | 51.47 |
-| YOLOv8n COCO-person（ST） | 256×256 | 186.54 | 33.50 | 75.49 |
-| YOLOv8n COCO-person（ST） | 320×320 | 310.29 | 40.50 | 107.26 |
-| Tiny YOLOv2 INT8（ST） | 224×224 | 53.32 | 36.33 | 75.90 |
-| Tiny YOLOv2 INT8（ST） | 416×416 | 165.59 | 42.36 | 117.10 |
+| YOLOv8n COCO-person（ST） | 192×192 | 28.53 | 24.15 | 51.47 |
+| YOLOv8n COCO-person（ST） | 256×256 | 38.33 | 33.50 | 75.49 |
+| YOLOv8n COCO-person（ST） | 320×320 | 287.49 | 40.50 | 107.26 |
+| Tiny YOLOv2 INT8（ST） | 224×224 | 50.31 | 36.33 | 75.90 |
+| Tiny YOLOv2 INT8（ST） | 416×416 | 156.10 | 42.36 | 117.10 |
 
-RA8P1：Vela 5.0.0、COP1，每项 90 次预测调用均值，不含相机与后处理。本组模型的权重与命令流位于外部 SDRAM。YOLOv8n 192 和两个 Tiny YOLOv2 模型的工作区位于片内 SRAM，其余工作区位于 16-bit SDRAM。Tiny YOLOv2 416 使用尺寸优先配置。
+RA8P1：Vela 5.0.0、COP1，每项 90 次预测调用均值，不含相机与后处理。本组模型的权重与命令流位于外部 SDRAM。YOLOv8n 192、256 和两个 Tiny YOLOv2 模型的工作区位于片内 SRAM，其余工作区位于 16-bit SDRAM。Tiny YOLOv2 416 使用尺寸优先配置。
 
 官方模型 ID：`yolov8n_quant_pc_uf_od_coco-person-st`、`tiny_yolo_v2_int8-st`。编译选项为 `max pref`；AE3 的 Tiny YOLOv2 416×416 使用 `min size`。
 
-数据来源：[OpenMV 官方 YOLO Models 测试表](https://docs.google.com/spreadsheets/d/1-FNVKCEr8-6UYs8MUm6wgsOt2c8ihJ2mg9QXKkG91os/edit#gid=1692885012)及 2026-09-17 的 RA8P1 六模型实测。
+数据来源：[OpenMV 官方 YOLO Models 测试表](https://docs.google.com/spreadsheets/d/1-FNVKCEr8-6UYs8MUm6wgsOt2c8ihJ2mg9QXKkG91os/edit#gid=1692885012)及 2026-09-22 的 RA8P1 五模型实测。
 
-当前随源码提供的模型及部署方法见 [模型说明](../models/README.md)。上述历史六模型的源模型和编译件不随本次发布源码提供，本目录保留其测量记录。
+当前随源码提供的模型及部署方法见 [模型说明](../models/README.md)。
 
 ## 神经网络示例模型推理耗时
 

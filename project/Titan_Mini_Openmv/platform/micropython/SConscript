@@ -47,7 +47,8 @@ def absolute_path(path):
 
 def header_inputs(include_dirs):
     """Cover upstream/configuration headers without fingerprinting build output."""
-    roots = [ROOT / 'platform', ROOT / 'ra_cfg', ROOT / 'ra_gen', UPSTREAM]
+    # Shared RASC headers are covered by the actual compiler include paths.
+    roots = [ROOT / 'platform', UPSTREAM]
     roots += include_dirs
     files = set()
     visited = set()

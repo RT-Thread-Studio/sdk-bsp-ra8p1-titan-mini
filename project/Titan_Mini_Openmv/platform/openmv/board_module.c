@@ -38,6 +38,24 @@ static mp_obj_t board_info(void) {
     return mp_obj_new_tuple(5, tuple);
 }
 static MP_DEFINE_CONST_FUN_OBJ_0(board_info_obj, board_info);
+static uint32_t sdram_clock_hz(void) {
+    if (!R_SYSTEM->SDCKOCR_b.SDCKOEN) { return 0; }
+    if (!R_SYSTEM->BCKCR_b.EBCKASEL) {
+        return R_FSP_SystemClockHzGet(FSP_PRIV_CLOCK_BCLK);
+    }
+    /* RA8P1 HW manual 9.2.60/9.2.64: decode the live selector/divider.
+     * This reports nominal Hz from the BSP source clock table, not a
+     * frequency measurement. BCKCR.BCLKDIV divides EBCLK, not SDCLK. */
+    static const uint8_t dividers[] = {1, 2, 4, 6, 8, 0, 0, 10, 16, 32};
+    unsigned divider = R_SYSTEM->BCKADIVCR_b.CKDIV;
+    unsigned source = R_SYSTEM->BCKACR_b.CKSEL;
+    if (divider >= sizeof(dividers) || !dividers[divider] ||
+        (source != 1 && (source < 5 || source > 10)) ||
+        R_SYSTEM->BCKACR_b.CKSREQ || R_SYSTEM->BCKACR_b.CKSRDY) {
+        return 0;
+    }
+    return R_BSP_SourceClockHzGet((fsp_priv_source_clock_t)source) / dividers[divider];
+}
 static mp_obj_t board_memory(void) {
     gc_info_t gc;
     gc_info(&gc);
@@ -47,7 +65,13 @@ static mp_obj_t board_memory(void) {
         uma_get_stats(i, false, &stats);
         uma_free_bytes += stats.free_bytes;
     }
-    mp_obj_t result = mp_obj_new_dict(7);
+    mp_obj_t result = mp_obj_new_dict(10);
+    mp_obj_dict_store(result, MP_OBJ_NEW_QSTR(MP_QSTR_sdram_clock_hz),
+                      mp_obj_new_int_from_uint(sdram_clock_hz()));
+    mp_obj_dict_store(result, MP_OBJ_NEW_QSTR(MP_QSTR_sdram_clock_async),
+                      mp_obj_new_bool(R_SYSTEM->BCKCR_b.EBCKASEL));
+    mp_obj_dict_store(result, MP_OBJ_NEW_QSTR(MP_QSTR_dcache_force_wt),
+                      mp_obj_new_bool(MEMSYSCTL->MSCR & MEMSYSCTL_MSCR_FORCEWT_Msk));
     mp_obj_dict_store(result, MP_OBJ_NEW_QSTR(MP_QSTR_gc_total), mp_obj_new_int_from_uint(gc.total));
     mp_obj_dict_store(result, MP_OBJ_NEW_QSTR(MP_QSTR_gc_free), mp_obj_new_int_from_uint(gc.free));
     mp_obj_dict_store(result, MP_OBJ_NEW_QSTR(MP_QSTR_gc_largest_free),
