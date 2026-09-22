@@ -467,7 +467,7 @@
 #endif
 
 #ifndef BSP_CFG_SDRAM_TREFW
- #define BSP_CFG_SDRAM_TREFW  (8)
+ #define BSP_CFG_SDRAM_TREFW  (10)
 #endif
 
 #ifndef BSP_CFG_SDRAM_INIT_ARFI

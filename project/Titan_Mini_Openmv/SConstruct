@@ -34,6 +34,7 @@ def backend_selected():
     return selected[0]
 
 SOURCE_OVERRIDES = {
+    "/fsp/src/bsp/mcu/all/bsp_clocks.c": "platform/drivers/ra8_clocks.c",
     "/openmv/protocol/omv_protocol_channel_stdio.c": "platform/port/omv_protocol_channel_stdio_titan.c",
     "/micropython/extmod/moddeflate.c": "platform/port/titan_moddeflate.c",
     "/libcpu/arm/cortex-m85/context_gcc.S": "platform/os/context_gcc.S",

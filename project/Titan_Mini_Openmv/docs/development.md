@@ -8,7 +8,11 @@ Windows 下使用 [RT-Thread Env](https://github.com/RT-Thread/env-windows) 打�
 
 ```text
 sdk-bsp-ra8p1-titan-mini/
-├── FSPConfiguration/ra/
+├── FSPConfiguration/
+│   ├── configuration.xml
+│   ├── ra/
+│   ├── ra_cfg/
+│   └── ra_gen/
 ├── libraries/
 ├── rt-thread/
 └── project/Titan_Mini_Openmv/
