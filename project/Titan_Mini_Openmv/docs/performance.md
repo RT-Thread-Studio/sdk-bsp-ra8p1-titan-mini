@@ -62,7 +62,7 @@ RA8P1 使用本地采集图；帧差参考为输入的反色图，卷积使用 3
 | YOLOv8n COCO-person（ST） | 256×256 | 38.33 | 33.50 | 75.49 |
 | YOLOv8n COCO-person（ST） | 320×320 | 287.49 | 40.50 | 107.26 |
 | Tiny YOLOv2 INT8（ST） | 224×224 | 50.31 | 36.33 | 75.90 |
-| Tiny YOLOv2 INT8（ST） | 416×416 | 156.10 | 42.36 | 117.10 |
+| Tiny YOLOv2 INT8（ST） | 416×416 | 58.49 | 42.36 | 117.10 |
 
 RA8P1：Vela 5.0.0、COP1，每项 90 次预测调用均值，不含相机与后处理。本组模型的权重与命令流位于外部 SDRAM。YOLOv8n 192、256 和两个 Tiny YOLOv2 模型的工作区位于片内 SRAM，其余工作区位于 16-bit SDRAM。Tiny YOLOv2 416 使用尺寸优先配置。
 
