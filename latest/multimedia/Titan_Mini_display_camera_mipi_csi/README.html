@@ -1,0 +1,833 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIPI CSI Camera Example Guide &mdash; Titan-Board-Mini SDK 1.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=694004e0" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/edit_button.css?v=d629c565" />
+      <link rel="stylesheet" type="text/css" href="../../_static/language_switch.css?v=e28326ac" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dark_mode.css?v=72ec50b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=84a24d03"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/version_menu.js?v=cc75255b"></script>
+      <script src="../../_static/download_pdf.js?v=d1800c12"></script>
+      <script src="../../_static/version_info.js"></script>
+      <script src="../../_static/edit_on_github.js?v=5e1f1957"></script>
+      <script src="../../_static/language_switch.js?v=87312f67"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="MIPI NPU Face Detection" href="../Titan_Mini_npu_ai_face_detection/README.html" />
+    <link rel="prev" title="LVGL Example Guide" href="../Titan_Mini_display_rgb_lvgl/README.html" />
+   
+  
+  
+    <script>window.SPHINX_EDIT_BASE_URL = "https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/";</script>
+    <meta name="edit-base-url" content="https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/">
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Titan-Board-Mini SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/Titan_Mini_template/README.html">Template Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#quick-start">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#secondary-development">Secondary Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html">LED Blink Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#gpio-introduction">GPIO Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#ra8-series-gpio-features">2. RA8 Series GPIO Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#rt-thread-pin-framework">3. RT-Thread PIN Framework</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../driver/index.html">Drivers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html">Ethernet Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#ethernet-overview">Ethernet Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#general-introduction">1. General Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#ethernet-frame-structure">2. Ethernet Frame Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#ra8-series-ethernet-features">RA8 Series Ethernet Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#network-interface-features">1. Network Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#mac-features">2. MAC Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#dma-and-buffer-features">3. DMA and Buffer Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#interrupt-mechanism">4. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#phy-management">5. PHY Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#protocol-and-stack-support">6. Protocol and Stack Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#performance-and-reliability">7. Performance and Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#software-description">Software Description</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#lwip-performance-tuning-recommendations">LwIP Performance Tuning Recommendations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#rtl8211-phy-initialization">RTL8211 PHY Initialization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#build-download">Build &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#running-effect">Running Effect</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#iperf-test">iperf Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README.html#network-application-examples">Network Application Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html">Titan Mini Driver All Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#fsp-configuration">FSP Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#version-requirements">Version Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#project-directory-layout">Project Directory Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#steps-to-modify-the-fsp-configuration">Steps to Modify the FSP Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#build-and-run">Build and Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#rtc-example">RTC Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id1">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#hardware-parameters">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#usage-steps">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#key-code">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#result">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#gpio-pwm-key-interrupt-example">GPIO / PWM / Key Interrupt Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id2">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id3">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id4">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id5">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#parameter-conversion">Parameter Conversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id6">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#sd-card-example">SD Card Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id7">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id8">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id9">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id10">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id11">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#flash-file-system-example">Flash File System Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id12">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id13">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#software-stack">Software Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id14">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id15">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id16">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#sdram-example">SDRAM Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id17">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id18">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id19">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id20">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id21">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#adc-example">ADC Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id22">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id23">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id24">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id25">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#voltage-conversion">Voltage Conversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id26">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#spi-example">SPI Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id27">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id28">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id29">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id30">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id31">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#canfd-example">CANFD Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id32">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id33">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id34">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id35">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id36">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#i2c-example">I2C Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id37">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id38">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id39">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id40">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id41">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#watchdog-example">Watchdog Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id42">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id43">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id44">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id45">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README.html#id46">Result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Multimedia Display</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html">LVGL Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#instruction">Instruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#lvgl-instruction">LVGL Instruction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#application-scenarios">Application Scenarios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#ecosystem-and-community">Ecosystem and Community</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#i2c0-configuration">I2C0 Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#touch-interrupt-configuration">Touch Interrupt Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_display_rgb_lvgl/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MIPI CSI Camera Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ra8-series-mipi-csi-features">RA8 Series MIPI CSI Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-interface-features">1. Hardware Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-formats-and-processing-capabilities">2. Image Formats and Processing Capabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dma-support-and-buffering">3. DMA Support and Buffering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interrupt-mechanism">4. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#timing-and-synchronization-features">5. Timing and Synchronization Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-optimization">6. Performance Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-scenarios">7. Application Scenarios</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ra8-series-mcu-glcdc-graphics-lcd-controller-features">RA8 Series MCU GLCDC (Graphics LCD Controller) Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-features">1. Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#layers-and-display-modes">2. Layers and Display Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dma-and-frame-buffer">3. DMA and Frame Buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-graphics-functions">4. Hardware Graphics Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">5. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">6. Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_npu_ai_face_detection/README.html">MIPI NPU Face Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_npu_ai_face_detection/README.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_npu_ai_face_detection/README.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_npu_ai_face_detection/README.html#data-flow">Data Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_npu_ai_face_detection/README.html#model">Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_npu_ai_face_detection/README.html#runtime-controls">Runtime Controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_npu_ai_face_detection/README.html#important-notes">Important Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_npu_ai_face_detection/README.html#rt-thread-fsp-configuration">RT-Thread / FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_npu_ai_face_detection/README.html#build-and-flash">Build and Flash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_npu_ai_face_detection/README.html#expected-result">Expected Result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../multicore/index.html">Multicore</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html">Titan_Mini_rpmsg_master Inter-Core Communication Example (M85)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html#communication-flow">Communication Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html">Titan_Mini_rpmsg_remote Inter-Core Communication Example (M33)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html#communication-flow">Communication Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../peripheral/index.html">Peripherals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html">IMU Sensor Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#lsm6ds3tr-c-imu-sensor">1. LSM6DS3TR-C IMU Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#usage-instructions">Usage Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#configuration-instructions">Configuration Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#kconfig-configuration">1. Kconfig Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#running-results">Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#terminal-output">1. Terminal Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html">PDM Microphone Real-time Loopback Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#pdm-microphone">1. PDM Microphone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#ra8p1-pdm-interface">2. RA8P1 PDM Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#audio-output">3. Audio Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#data-flow">1. Data Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#double-buffer-mechanism">3. Double Buffer Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#project-structure">4. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#pdm-configuration">1. PDM Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#key-parameters">2. Key Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#no-audio-output">1. No Audio Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#audio-stuttering">2. Audio Stuttering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#audio-distortion">3. Audio Distortion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html">RGB LCD Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#ra8-series-glcdc-module">RA8 Series GLCDC Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#module-architecture">2. Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#glcdc-working-principle">3. GLCDC Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#glcdc-supported-features">4. GLCDC Supported Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rt-thread-lcd-driver-framework">RT-Thread LCD Driver Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#main-interfaces">Main Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#fsp-configuration">FSP Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#hyperram-configuration">HyperRAM Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rgb-lcd-configuration">RGB LCD Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#lcd-backlight-configuration">LCD Backlight Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#d-ave-2d-configuration">D/AVE 2D Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html">USB PCDC Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#usb-pcdc-instructions">USB PCDC Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#pcdc-protocol-features">2. PCDC Protocol Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#typical-application-architecture">3. Typical Application Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#advantages">4. Advantages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#ra8-series-usb-pcdc-module-r-usb-pcdc-overview">RA8 Series USB PCDC Module (r_usb_pcdc) Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#module-functionality">1. Module Functionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#supported-features">2. Supported Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#module-architecture">3. Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#workflow">4. Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#fsp-configuration-configuration">FSP Configuration Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#running-effect">Running Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html">WAV Audio Player Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#es8156-audio-codec">1. ES8156 Audio Codec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#es8156-key-features">2. ES8156 Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#ssi-synchronous-serial-interface">3. SSI (Synchronous Serial Interface)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#playing-wav-files">2. Playing WAV Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#wav-file-format-requirements">3. WAV File Format Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#kconfig-configuration">1. Kconfig Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#hardware-connections">3. Hardware Connections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Titan-Board-Mini SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Multimedia Display</a></li>
+      <li class="breadcrumb-item active">MIPI CSI Camera Example Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="mipi-csi-camera-example-guide">
+<h1>MIPI CSI Camera Example Guide<a class="headerlink" href="#mipi-csi-camera-example-guide" title="Link to this heading"></a></h1>
+<p><strong>English</strong>|<span class="xref myst"><strong>Chinese</strong></span></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This example demonstrates how to use the <strong>MIPI CSI (Camera Serial Interface)</strong> on the <strong>Titan Board</strong> to connect an <strong>OV5640 camera</strong>, and display the captured images on an <strong>RGB565 LCD screen</strong> via the <strong>RT-Thread LCD framework</strong>.</p>
+<p>Note: The current camera example can only be opened with the FSP 6.0.0 configuration tool.</p>
+<p>Key functionalities include:</p>
+<ul class="simple">
+<li><p>Initialize the MIPI CSI camera interface to capture real-time video streams</p></li>
+<li><p>Configure OV5640 camera parameters (resolution, frame rate, output format)</p></li>
+<li><p>Display captured images using the RT-Thread LCD driver</p></li>
+<li><p>Support image format conversion (YUV422 → RGB565)</p></li>
+</ul>
+</section>
+<section id="ra8-series-mipi-csi-features">
+<h2>RA8 Series MIPI CSI Features<a class="headerlink" href="#ra8-series-mipi-csi-features" title="Link to this heading"></a></h2>
+<p>The RA8 series MCU integrates a <strong>MIPI CSI hardware module</strong> for high-speed, low-power camera data acquisition, suitable for HD video and real-time image processing.</p>
+<section id="hardware-interface-features">
+<h3>1. Hardware Interface Features<a class="headerlink" href="#hardware-interface-features" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Interface Type</strong></p>
+<ul class="simple">
+<li><p><strong>MIPI CSI-2</strong> D-PHY interface for high-bandwidth serial data transmission</p></li>
+<li><p>Supports 1–4 data lanes</p></li>
+<li><p>Synchronization is handled by MIPI D-PHY; no additional HSYNC/VSYNC required</p></li>
+</ul>
+</li>
+<li><p><strong>Data Rate and Resolution</strong></p>
+<ul class="simple">
+<li><p>Supports up to 1.5–2.5 Gbps per lane (depending on MCU series and PHY configuration)</p></li>
+<li><p>Can drive common camera resolutions: VGA, QVGA, SXGA, UXGA, 1080p, etc.</p></li>
+</ul>
+</li>
+<li><p><strong>Camera Compatibility</strong></p>
+<ul class="simple">
+<li><p>Compatible with OV5640, IMX219, and other common CMOS cameras</p></li>
+<li><p>Supports camera register configuration and auto-initialization</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="image-formats-and-processing-capabilities">
+<h3>2. Image Formats and Processing Capabilities<a class="headerlink" href="#image-formats-and-processing-capabilities" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Supported Image Formats</strong></p>
+<ul class="simple">
+<li><p><strong>RAW10 / RAW12</strong> (for algorithm development and image processing)</p></li>
+<li><p><strong>YUV422</strong> (for video display)</p></li>
+<li><p><strong>RGB565</strong> (suitable for LCD display)</p></li>
+</ul>
+</li>
+<li><p><strong>Image Processing Features</strong></p>
+<ul class="simple">
+<li><p><strong>Color space conversion</strong> (YUV → RGB)</p></li>
+<li><p><strong>Image cropping</strong> (ROI capture)</p></li>
+<li><p><strong>Mirror and flip</strong></p></li>
+<li><p><strong>Hardware accelerated scaling</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Hardware Acceleration</strong></p>
+<ul class="simple">
+<li><p>MIPI CSI includes built-in DMA to reduce CPU load</p></li>
+<li><p>Supports high-speed format conversion and scaling</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="dma-support-and-buffering">
+<h3>3. DMA Support and Buffering<a class="headerlink" href="#dma-support-and-buffering" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>High-Speed DMA Transfer</strong></p>
+<ul class="simple">
+<li><p>Works with MCU DMAC to write images directly to memory or LCD buffer</p></li>
+<li><p>Reduces CPU intervention and increases frame rate</p></li>
+</ul>
+</li>
+<li><p><strong>Multi-Buffer Mechanism</strong></p>
+<ul class="simple">
+<li><p>Supports double buffering or ring buffers for continuous video capture</p></li>
+<li><p>Prevents frame loss and display latency</p></li>
+</ul>
+</li>
+<li><p><strong>Flexible DMA Configuration</strong></p>
+<ul class="simple">
+<li><p>Configurable buffer start address and size</p></li>
+<li><p>Supports interrupt callback handling</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="interrupt-mechanism">
+<h3>4. Interrupt Mechanism<a class="headerlink" href="#interrupt-mechanism" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Interrupt Types</strong></p>
+<ul class="simple">
+<li><p><strong>Frame End Interrupt</strong>: triggered at the end of each frame capture</p></li>
+<li><p><strong>Line End Interrupt (optional)</strong></p></li>
+<li><p><strong>Error Interrupt</strong>: buffer overflow, PHY errors, etc.</p></li>
+</ul>
+</li>
+<li><p><strong>Interrupt Features</strong></p>
+<ul class="simple">
+<li><p>Supports RT-Thread ISR callbacks</p></li>
+<li><p>Can work with DMA to enable real-time display</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="timing-and-synchronization-features">
+<h3>5. Timing and Synchronization Features<a class="headerlink" href="#timing-and-synchronization-features" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Synchronization Method</strong></p>
+<ul class="simple">
+<li><p>CSI relies on MIPI D-PHY for clock and data synchronization</p></li>
+<li><p>No additional HSYNC/VSYNC required</p></li>
+</ul>
+</li>
+<li><p><strong>Pixel Clock and Data Alignment</strong></p>
+<ul class="simple">
+<li><p>Supports pixel-aligned or byte-aligned data</p></li>
+<li><p>Automatically handles RAW/YUV/RGB data alignment</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="performance-optimization">
+<h3>6. Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>High Throughput</strong></p>
+<ul class="simple">
+<li><p>DMA + double buffering enables continuous video capture</p></li>
+<li><p>Low CPU usage suitable for real-time applications</p></li>
+</ul>
+</li>
+<li><p><strong>Reliability</strong></p>
+<ul class="simple">
+<li><p>PHY errors or data loss interrupts can trigger exception handling</p></li>
+<li><p>Supports buffer overflow detection</p></li>
+</ul>
+</li>
+<li><p><strong>Flexibility</strong></p>
+<ul class="simple">
+<li><p>Supports multiple resolutions and formats</p></li>
+<li><p>ROI capture and hardware scaling improve display efficiency</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="application-scenarios">
+<h3>7. Application Scenarios<a class="headerlink" href="#application-scenarios" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Real-time video display on LCD</p></li>
+<li><p>Video capture and processing algorithm verification</p></li>
+<li><p>Embedded vision applications such as surveillance, gesture recognition, and robotics vision</p></li>
+</ul>
+</section>
+</section>
+<section id="ra8-series-mcu-glcdc-graphics-lcd-controller-features">
+<h2>RA8 Series MCU GLCDC (Graphics LCD Controller) Features<a class="headerlink" href="#ra8-series-mcu-glcdc-graphics-lcd-controller-features" title="Link to this heading"></a></h2>
+<p>The RA8 series MCU (e.g., RA8P1) integrates a <strong>GLCDC hardware module</strong> for driving TFT/LCD displays, enabling high-speed graphics rendering and video display, supporting multiple resolutions, color formats, and display modes.</p>
+<section id="hardware-features">
+<h3>1. Hardware Features<a class="headerlink" href="#hardware-features" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Resolution Support</strong></p>
+<ul class="simple">
+<li><p>Can drive common resolutions from QVGA (320×240) to WQVGA/XGA</p></li>
+<li><p>Limited by on-chip RAM and display interface bandwidth</p></li>
+</ul>
+</li>
+<li><p><strong>Color Support</strong></p>
+<ul class="simple">
+<li><p>Supports 1/4/8/16/24/32-bit color depth</p></li>
+<li><p>Common formats: RGB565, RGB888</p></li>
+<li><p>Supports palette mode (CLUT)</p></li>
+<li><p>Hardware color conversion available</p></li>
+</ul>
+</li>
+<li><p><strong>Interface Types</strong></p>
+<ul class="simple">
+<li><p>Parallel RGB (TFT LCD interface)</p></li>
+<li><p>Supports 16/18/24-bit data bus</p></li>
+<li><p>Direct connection to external LCD panels</p></li>
+<li><p>Programmable timing: HSYNC, VSYNC, DE, PCLK, RGB output</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="layers-and-display-modes">
+<h3>2. Layers and Display Modes<a class="headerlink" href="#layers-and-display-modes" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Layer Support</strong></p>
+<ul class="simple">
+<li><p>Single-layer mode (single screen display)</p></li>
+<li><p>Multi-layer mode (palette or hardware alpha blending)</p></li>
+<li><p>Supports transparent/semi-transparent overlay</p></li>
+</ul>
+</li>
+<li><p><strong>Display Modes</strong></p>
+<ul class="simple">
+<li><p>RGB mode (direct color output)</p></li>
+<li><p>CLUT/Palette mode (indexed color via lookup table)</p></li>
+<li><p>Configurable scan direction (horizontal/vertical)</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="dma-and-frame-buffer">
+<h3>3. DMA and Frame Buffer<a class="headerlink" href="#dma-and-frame-buffer" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Frame Buffer Access</strong></p>
+<ul class="simple">
+<li><p>GLCDC can directly access on-chip or external SRAM frame buffer</p></li>
+<li><p>Supports single or double buffering</p></li>
+<li><p>Supports ring buffer for continuous refresh</p></li>
+</ul>
+</li>
+<li><p><strong>DMA Support</strong></p>
+<ul class="simple">
+<li><p>Works with MCU DMAC to reduce CPU usage</p></li>
+<li><p>Can transfer images directly from memory to LCD</p></li>
+<li><p>Supports line, block, or full-frame transfer</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="hardware-graphics-functions">
+<h3>4. Hardware Graphics Functions<a class="headerlink" href="#hardware-graphics-functions" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Window Cropping and Scaling</strong></p>
+<ul class="simple">
+<li><p>Can specify display window area</p></li>
+<li><p>Supports simple horizontal/vertical scaling</p></li>
+</ul>
+</li>
+<li><p><strong>Hardware Graphics Acceleration</strong></p>
+<ul class="simple">
+<li><p>Rectangle fill, color replacement</p></li>
+<li><p>Image transparency processing</p></li>
+<li><p>Can be combined with CEU or DMA for video display</p></li>
+</ul>
+</li>
+<li><p><strong>Color Format Conversion</strong></p>
+<ul class="simple">
+<li><p>YCbCr → RGB</p></li>
+<li><p>RGB888 → RGB565</p></li>
+<li><p>Hardware accelerated to reduce CPU load</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id1">
+<h3>5. Interrupt Mechanism<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Interrupt Types</strong></p>
+<ul class="simple">
+<li><p>Frame End</p></li>
+<li><p>Line End (optional)</p></li>
+<li><p>Access error/overflow</p></li>
+</ul>
+</li>
+<li><p><strong>Interrupt Application</strong></p>
+<ul class="simple">
+<li><p>Integrates with RT-Thread ISR</p></li>
+<li><p>Can trigger buffer update or double-buffer swap on frame completion</p></li>
+<li><p>Enables smooth animations and video display</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id2">
+<h3>6. Performance Optimization<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Double Buffer Mechanism</strong></p>
+<ul class="simple">
+<li><p>Reduces flicker</p></li>
+<li><p>CPU can render next frame in background</p></li>
+<li><p>GLCDC hardware automatically switches display buffer</p></li>
+</ul>
+</li>
+<li><p><strong>Frame Rate Control</strong></p>
+<ul class="simple">
+<li><p>Programmable clock and line/frame synchronization</p></li>
+<li><p>Supports common refresh rates (30fps, 60fps)</p></li>
+</ul>
+</li>
+<li><p><strong>CPU Offload</strong></p>
+<ul class="simple">
+<li><p>Many graphics operations performed in hardware</p></li>
+<li><p>DMA + GLCDC combination enables efficient image display</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="rt-thread-settings-configuration">
+<h2>RT-Thread Settings Configuration<a class="headerlink" href="#rt-thread-settings-configuration" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Enable MIPI CSI camera using i2c0; enable RGB565 LCD using pwm7 for backlight output.</p></li>
+</ul>
+<p><img alt="image-20250815175755240" src="../../_images/image-20250815175755240.png" /></p>
+</section>
+<section id="compilation-download">
+<h2>Compilation &amp; Download<a class="headerlink" href="#compilation-download" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>RT-Thread Studio</strong>: In RT-Thread Studio’s package manager, download the Titan Board resource package, create a new project, and compile it.</p></li>
+</ul>
+<p>After compilation, connect the development board’s USB-DBG interface to the PC and download the firmware to the development board.</p>
+</section>
+<section id="run-effect">
+<h2>Run Effect<a class="headerlink" href="#run-effect" title="Link to this heading"></a></h2>
+<p>After resetting the Titan Board, the terminal will output the following message:</p>
+<p><img alt="image-20250815150357776" src="../../_images/image-20250815150357776.png" /></p>
+<p>Here is the image displayed on the LCD screen:</p>
+<p><img alt="image-20250815172223282" src="../../_images/image-20250815172223282.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Titan_Mini_display_rgb_lvgl/README.html" class="btn btn-neutral float-left" title="LVGL Example Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Titan_Mini_npu_ai_face_detection/README.html" class="btn btn-neutral float-right" title="MIPI NPU Face Detection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Copyright (c) 2006-2025, RT-Thread Development Team.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>Titan-Board-Mini SDK</strong>
+        <span class="sdk-footer__sep">•</span> 版本：1.2.0
+      </div>
+      <div class="sdk-footer__right">
+        构建时间：<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>
