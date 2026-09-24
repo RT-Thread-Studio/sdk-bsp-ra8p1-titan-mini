@@ -1,4 +1,5 @@
 #include "titan_ml_workspace.h"
+#include "titan_lcd.h"
 /* SPDX-License-Identifier: Apache-2.0 */
 #include <rtthread.h>
 #include <rtdevice.h>
@@ -156,6 +157,7 @@ static void omv_entry(void *arg) {
 vm_cleanup:
         mp_hal_set_interrupt_char(-1);
         ra8_vm_poll_stop();
+        titan_display_deinit_all();
         omv_csi_abort_all();
         if (ra8_capture_reset_barrier() != 0) {
             rt_kprintf("OpenMV capture drain failed; resetting before heap reuse\n");

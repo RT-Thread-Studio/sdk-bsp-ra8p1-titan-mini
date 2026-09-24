@@ -1,5 +1,6 @@
 /* Project-maintained machine vectors derived from the RASC configuration. */
 #include <rtconfig.h>
+#include "titan_lcd.h"
 #if defined(BSP_USING_ETH)
 #error "Machine I2C1 reuses Ethernet IRQs 0..2; reallocate vectors before enabling BSP_USING_ETH"
 #endif
@@ -69,7 +70,7 @@
             [61] = pdm_dat_isr, /* PDM DAT2 (Data reception interrupt channel 2) */
             [62] = pdm_err_isr, /* PDM ERR2 (Error detection interrupt channel 2) */
             [63] = gpt_counter_overflow_isr, /* GPT0 COUNTER OVERFLOW (Overflow) */
-            [64] = glcdc_line_detect_isr, /* GLCDC LINE DETECT (Specified line) */
+            [64] = titan_lcd_line_isr, /* GLCDC LINE DETECT with RT-Thread IRQ nesting */
             [65] = vin_status_isr, /* VIN IRQ (Interrupt Request) */
             [66] = vin_error_isr, /* VIN ERR (Interrupt Request for SYNC Error) */
             [67] = mipi_csi_rx_isr, /* MIPICSI RX (Receive interrupt) */

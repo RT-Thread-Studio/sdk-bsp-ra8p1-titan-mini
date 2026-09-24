@@ -34,7 +34,7 @@ src += [str(mp / s) for s in ['shared/runtime/gchelper_native.c', 'shared/runtim
 src += [s for s in files(cwd, 'micropython/*.c') if not s.endswith('_port.c')]
 src += [str(cwd / 'machine' / n) for n in ['machine_pin.c', 'machine_hw_i2c.c', 'machine_timer.c',
     'machine_uart.c', 'machine_spi.c', 'machine_adc.c', 'machine_pwm.c', 'modmachine.c']]
-src += [str(cwd / 'openmv' / n) for n in ['board_module.c', 'legacy_sensors.c', 'ra8_bus.c', 'ra8_csi.c', 'ra8_usb.c', 'titan_stdio.c']]
+src += [str(cwd / 'openmv' / n) for n in ['board_module.c', 'legacy_sensors.c', 'ra8_bus.c', 'ra8_csi.c', 'ra8_usb.c', 'titan_stdio.c', 'titan_display.c']]
 src += files(cwd, 'camera/*.c') + files(cwd, 'memory/*.c')
 src += files(cwd, 'drivers/titan_*.c')
 storage_sources = ['titan_storage.c']

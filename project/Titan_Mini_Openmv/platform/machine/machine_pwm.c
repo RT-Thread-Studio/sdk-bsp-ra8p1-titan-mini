@@ -10,6 +10,7 @@
 #include "modmachine.h"
 #include "mphalport.h"
 #include "machine_pwm.h"
+#include "titan_lcd.h"
 
 #if MICROPY_PY_MACHINE_PWM
 #define PWM_MAX_FREQ (1000000U)
@@ -167,6 +168,7 @@ static void pwm_apply(machine_pwm_obj_t *self, uint32_t freq, uint32_t duty, boo
     const pwm_pin_t *pin = &pwm_pins[self->pin_index];
     unsigned timer = pin->timer_index;
     gpt_instance_ctrl_t *ctrl = pwm_ctrls[timer];
+    if (titan_lcd_timer_owned(pwm_defaults[timer]->channel)) { mp_raise_OSError(MP_EBUSY); }
     timer_cfg_t config;
     pwm_calculate(self, freq, duty, duty_is_ns, &config);
     bool first = !self->active;

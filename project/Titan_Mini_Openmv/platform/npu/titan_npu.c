@@ -5,8 +5,62 @@
 #include "ethosu_driver.h"
 #include "titan_memory.h"
 #include "titan_npu.h"
+#include "titan_lcd.h"
+#include "ra8_memory.h"
+#include "ethosu_config_u55.h"
+#include "ethosu55_interface.h"
 
 static unsigned int initialization_state;
+
+/* Limit queued external-memory transactions while GLCDC has a scanout
+ * deadline. Keep the normal throughput settings when the display is closed.
+ * The value is bounded below and can be inspected/tuned with a debugger. */
+static volatile uint32_t lcd_npu_read_limit = 2U;
+static uint32_t lcd_saved_axi_limits[3];
+static struct ethosu_driver *lcd_limited_driver;
+
+_Static_assert(NPU_QCONFIG == 2 && NPU_REGIONCFG_0 == 3 && NPU_REGIONCFG_1 == 0,
+               "Review LCD/NPU arbitration for a different AXI region mapping");
+
+void ethosu_inference_begin(struct ethosu_driver *driver, void *user_arg)
+{
+    (void)user_arg;
+    lcd_limited_driver = NULL;
+    if (!titan_lcd_is_open()) { return; }
+    unsigned reads = lcd_npu_read_limit;
+    if (reads < 1U) { reads = 1U; }
+    if (reads > 32U) { reads = 32U; }
+    lcd_saved_axi_limits[0] = driver->dev.reg->AXI_LIMIT0.word;
+    lcd_saved_axi_limits[1] = driver->dev.reg->AXI_LIMIT2.word;
+    lcd_saved_axi_limits[2] = driver->dev.reg->AXI_LIMIT3.word;
+    /* This hook runs after the driver's reset and before command submission.
+     * LIMIT2/3 control separate command/weight counters on the read-only port. */
+    driver->dev.reg->AXI_LIMIT2.max_outstanding_read_m1 = reads - 1U;
+    driver->dev.reg->AXI_LIMIT3.max_outstanding_read_m1 = reads - 1U;
+    if (driver->job.num_base_addr > 1 &&
+        driver->job.base_addr[1] >= RA8_SDRAM_START &&
+        driver->job.base_addr[1] < RA8_SDRAM_START + RA8_SDRAM_SIZE) {
+        driver->dev.reg->AXI_LIMIT0.max_outstanding_read_m1 = reads - 1U;
+        driver->dev.reg->AXI_LIMIT0.max_outstanding_write_m1 = (reads > 16U ? 16U : reads) - 1U;
+    }
+    __DSB();
+    lcd_limited_driver = driver;
+}
+
+void ethosu_inference_end(struct ethosu_driver *driver, void *user_arg)
+{
+    (void)user_arg;
+    if (lcd_limited_driver != driver) { return; }
+    /* A timeout can leave DMA active. Let the driver's mandatory reset restore
+     * that case; change live limits only after a successful completion IRQ. */
+    if (driver->job.result == ETHOSU_JOB_RESULT_OK) {
+        driver->dev.reg->AXI_LIMIT0.word = lcd_saved_axi_limits[0];
+        driver->dev.reg->AXI_LIMIT2.word = lcd_saved_axi_limits[1];
+        driver->dev.reg->AXI_LIMIT3.word = lcd_saved_axi_limits[2];
+        __DSB();
+    }
+    lcd_limited_driver = NULL;
+}
 
 /* The OpenMV VM is the owner of model initialization and invocation. The
  * registered driver survives Ctrl-D resets; TFLM releases it after each call. */

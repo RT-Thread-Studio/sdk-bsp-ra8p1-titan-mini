@@ -18,6 +18,9 @@ extern const mp_obj_module_t mjpeg_module;
 #if MICROPY_PY_ML
 extern const mp_obj_module_t ml_module;
 #endif
+#if MICROPY_PY_DISPLAY
+extern const mp_obj_module_t display_module;
+#endif
 
 void titan_vision_module_require(mp_obj_t module)
 {
@@ -40,6 +43,9 @@ void titan_vision_module_require(mp_obj_t module)
 #endif
 #if MICROPY_PY_ML
     needs_vision |= module == MP_OBJ_FROM_PTR(&ml_module);
+#endif
+#if MICROPY_PY_DISPLAY
+    needs_vision |= module == MP_OBJ_FROM_PTR(&display_module);
 #endif
     if (needs_vision) {
         mp_raise_msg(&mp_type_OSError,
