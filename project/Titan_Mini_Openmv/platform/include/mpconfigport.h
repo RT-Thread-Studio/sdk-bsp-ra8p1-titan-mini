@@ -102,7 +102,7 @@ uint32_t ra8_random_seed(void);
 #define MICROPY_PY_PROTOCOL (1)
 #define MICROPY_PY_CRC (1)
 #ifndef MICROPY_PY_DISPLAY
-#define MICROPY_PY_DISPLAY (0)
+#define MICROPY_PY_DISPLAY (1)
 #endif
 #define MICROPY_PY_FIR (0)
 #define MICROPY_PY_IMU (0)

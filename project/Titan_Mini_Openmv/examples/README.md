@@ -1,12 +1,12 @@
 # Python 示例
 
-适用硬件：RA8P1 Titan Mini、OV5640。示例对应 OpenMV v5.0.1，共 194 个独立脚本。
+适用硬件：RA8P1 Titan Mini、OV5640。示例对应 OpenMV v5.0.1，共 198 个独立脚本。
 
 | 分类 | 脚本数 | 内容 |
 |---|---:|---|
 | [01_视觉](01_视觉/README.md) | 124 | 相机、滤波、色块、光流、条码、特征与 AprilTag |
 | [02_机器学习](02_机器学习/README.md) | 28 | 分类、检测、姿态、手脸关键点、Haar 与数值回归 |
-| [03_外设](03_外设/README.md) | 24 | GPIO、IRQ、PWM、ADC、UART、I2C、SPI |
+| [03_外设](03_外设/README.md) | 28 | GPIO、IRQ、PWM、ADC、UART、I2C、SPI、RGB LCD |
 | [04_系统与存储](04_系统与存储/README.md) | 11 | Timer、asyncio、系统信息与文件读写 |
 | [05_通信](05_通信/README.md) | 5 | Arduino UART、Pixy 与 MAVLink 数据输出 |
 | [06_性能测试](06_性能测试/README.md) | 2 | 图像算法计时 |

@@ -10,8 +10,13 @@
 | 04_SPI | SPI1 回环、SoftSPI 回环、外接 Flash ID | 先按各脚本接线；不访问板载存储 Flash |
 | 05_PWM | 占空比、脉宽/舵机信号、四路输出 | GPT6/7/8/12 每组只允许一个输出 |
 | 06_ADC | 单/双路 ADC_B 16 位采样 | U18 模拟信号在 0..3.3 V 模拟电源域内 |
+| [07_LCD](07_LCD) | 基础绘图与背光、相机预览、色块与 YOLO 姿态识别显示 | 800×480 RGB565 屏，含 `lcd/display` 的固件及配套视觉 BIN；相机示例需 OV5640，姿态示例另需模型 |
 
-本端口没有开放 LCD/display、RTC、WDT、DAC、CAN、I2S、SPI/I2C 从机、USB HID 或原始 USB_VCP API，因此不收录这些其他板专用示例。I2C1 读取 LSM6DS3 身份使用通用 I2C，不能视为已开放 imu 模块。
+LCD 示例按 [基础显示](07_LCD/lcd_basic.py)、[相机预览](07_LCD/lcd_camera.py)、[色块识别显示](07_LCD/lcd_color_tracking.py) 的顺序运行。相机图像以 2 倍等比缩放居中显示，保留左右黑边；识别示例的 LAB 阈值需按现场光照调整。脚本退出会关闭 LCD，并恢复 IDE 预览；LCD 占用 GPT7，不与同组 PWM 示例同时运行。
+
+[YOLO 姿态识别与 LCD 显示](07_LCD/lcd_yolov8n_pose.py) 显示多人检测框、17 个关键点和骨架；将 `models/sdcard/yolov8n_pose_192_u55_256.tflite` 复制到板端存储根目录即可，无需额外解码脚本或标签文件。`App FPS` 统计包含采集、推理、后处理和 LCD 显示的完整循环。
+
+本端口没有开放 RTC、WDT、DAC、CAN、I2S、SPI/I2C 从机、USB HID 或原始 USB_VCP API，因此不收录这些其他板专用示例。I2C1 读取 LSM6DS3 身份使用通用 I2C，不能视为已开放 imu 模块。
 
 GPIO、SoftSPI、SoftI2C 示例之间复用针脚，不能直接拼接同时运行。软件定时器和 GPIO IRQ 在 VM 调度器处理，不是硬实时控制。硬件 ADC、PWM、SPI、UART 脚本在退出时调用 deinit；硬件 I2C 由板级保持，不关闭相机共享总线。
 

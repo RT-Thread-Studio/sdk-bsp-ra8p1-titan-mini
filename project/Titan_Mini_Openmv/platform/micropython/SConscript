@@ -221,6 +221,8 @@ def python_modules():
     modules['uasyncio.py'] = (source, source.read_bytes())
     source = UPSTREAM / 'openmv/scripts/libraries/sensor.py'
     modules['sensor.py'] = (source, source.read_bytes())
+    source = MODULES / 'lcd.py'
+    modules['lcd.py'] = (source, source.read_bytes())
     return dict(sorted(modules.items()))
 
 

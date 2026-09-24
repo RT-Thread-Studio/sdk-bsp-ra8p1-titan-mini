@@ -55,6 +55,6 @@ extern const struct ra8_pin ra8_camera_reset_pin, ra8_camera_power_pin;
 #define OMV_PROTOCOL_HW_CAPS OMV_PROTOCOL_HW_CAPS_MAKE(HAS_DRAM)
 #define OMV_USB_IRQN USBHS_USB_INT_RESUME_IRQn
 #define OMV_PROFILE_ENABLE (0)
-/* The fixed onboard panel is already managed by the RT-Thread/FSP LCD driver. */
-#define OMV_DSI_DISPLAY_CONTROLLER (0)
+/* RGBDisplay uses the project GLCDC backend and the shared RASC panel timing. */
+#define OMV_RGB_DISPLAY_CONTROLLER (1)
 #endif

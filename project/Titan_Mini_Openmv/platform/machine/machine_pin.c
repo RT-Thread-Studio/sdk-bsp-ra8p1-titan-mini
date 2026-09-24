@@ -37,6 +37,7 @@
 #include "extmod/virtpin.h"
 #include "ra8_gpio.h"
 #include "ra8_pin_irq.h"
+#include "titan_lcd.h"
 
 #if MICROPY_PY_MACHINE_PIN
 #include <rtthread.h>
@@ -70,6 +71,7 @@ bool ra8_machine_pin_irq_owned(uint16_t pin) {
 }
 
 void ra8_machine_pin_require_available(uint16_t pin) {
+    if (titan_lcd_pin_owned(pin)) { mp_raise_OSError(MP_EBUSY); }
     /* These nets are used throughout the VM lifetime. Changing them from
      * Python would disconnect USB, corrupt storage/SDRAM or disturb the camera.
      * UART1 is the independent RT-Thread console; UART2 is available on H1. */
