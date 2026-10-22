@@ -1,6 +1,6 @@
 """GCC 13.3 configuration for the Titan Mini Cortex-M85 OpenMV port."""
 import os
-import shutil
+from studio_build import resolve_toolchain
 
 ARCH = 'arm'
 CPU = 'cortex-m85'
@@ -8,12 +8,8 @@ CROSS_TOOL = os.getenv('RTT_CC', 'gcc')
 if CROSS_TOOL != 'gcc':
     raise RuntimeError('Titan Mini OpenMV currently supports GCC; set RTT_CC=gcc')
 PLATFORM = 'gcc'
-EXEC_PATH = os.getenv('RTT_EXEC_PATH')
-if not EXEC_PATH:
-    compiler = shutil.which('arm-none-eabi-gcc')
-    if not compiler:
-        raise RuntimeError('ARM GCC not found; add it to PATH or set RTT_EXEC_PATH to its bin directory')
-    EXEC_PATH = os.path.dirname(compiler)
+EXEC_PATH = resolve_toolchain(os.environ, os.path.dirname(os.path.abspath(__file__)))
+print('OpenMV ARM GCC: ' + EXEC_PATH)
 BUILD = os.getenv('OPENMV_BUILD', 'release')
 PREFIX = 'arm-none-eabi-'
 CC = AS = LINK = PREFIX + 'gcc'
