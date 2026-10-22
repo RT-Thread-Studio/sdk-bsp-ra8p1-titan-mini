@@ -19,4 +19,4 @@ const uint64_t ra8_itcm_end_padding __attribute__((section(".itcm_padding"), ali
 #define __init_array_start __fsp_init_array_start
 #define __init_array_end __fsp_init_array_end
 #endif
-#include "../../../../FSPConfiguration/ra/fsp/src/bsp/cmsis/Device/RENESAS/Source/system.c"
+#include <fsp/src/bsp/cmsis/Device/RENESAS/Source/system.c>

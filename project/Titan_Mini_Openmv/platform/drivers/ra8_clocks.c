@@ -3,7 +3,7 @@
  * SystemInit configures SDRAM pins or initializes external memory. */
 #include "bsp_api.h"
 #define bsp_clock_init titan_fsp_clock_init
-#include "../../../../FSPConfiguration/ra/fsp/src/bsp/mcu/all/bsp_clocks.c"
+#include <fsp/src/bsp/mcu/all/bsp_clocks.c>
 #undef bsp_clock_init
 
 void bsp_clock_init(void)
