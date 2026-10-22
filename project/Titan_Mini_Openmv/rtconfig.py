@@ -1,6 +1,6 @@
 """GCC 13.3 configuration for the Titan Mini Cortex-M85 OpenMV port."""
 import os
-from studio_build import resolve_toolchain
+from tools.host_tools import resolve_toolchain
 
 ARCH = 'arm'
 CPU = 'cortex-m85'
