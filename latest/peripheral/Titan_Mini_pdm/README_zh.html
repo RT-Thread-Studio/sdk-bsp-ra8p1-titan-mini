@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDM 麦克风实时回环示例说明 &mdash; Titan-Board-Mini SDK 1.2.0 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=694004e0" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/edit_button.css?v=d629c565" />
+      <link rel="stylesheet" type="text/css" href="../../_static/language_switch.css?v=e28326ac" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dark_mode.css?v=72ec50b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a61f5bb3"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/translations.js?v=540d3cec"></script>
+      <script src="../../_static/version_menu.js?v=cc75255b"></script>
+      <script src="../../_static/download_pdf.js?v=d1800c12"></script>
+      <script src="../../_static/version_info.js"></script>
+      <script src="../../_static/edit_on_github.js?v=5e1f1957"></script>
+      <script src="../../_static/language_switch.js?v=87312f67"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex_zh.html" />
+    <link rel="search" title="搜索" href="../../search_zh.html" />
+    <link rel="next" title="RGB LCD 示例说明" href="../Titan_Mini_rgb_lcd/README_zh.html" />
+    <link rel="prev" title="IMU 传感器示例说明" href="../Titan_Mini_peripheral_imu/README_zh.html" />
+   
+  
+  
+    <script>window.SPHINX_EDIT_BASE_URL = "https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/";</script>
+    <meta name="edit-base-url" content="https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/">
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index_zh.html" class="icon icon-home">
+            Titan-Board-Mini SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index_zh.html">快速上手</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html">模板工程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id2">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id3">特性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id4">项目结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id5">快速开始</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id6">二次开发</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README_zh.html#id7">进阶阅读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index_zh.html">基础篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html">LED 闪烁示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#gpio">GPIO 简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id2">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#ra8-gpio">2. RA8 系列 GPIO 特点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#rt-thread-pin">3. RT-Thread PIN 框架</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id3">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id4">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id5">编译下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id6">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README_zh.html#id7">进阶阅读</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../driver/index_zh.html">驱动篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html">Ethernet 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id2">以太网（Ethernet）简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id3">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id4">2. 以太网帧结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#ra8">RA8 系列以太网特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id5">1. 网络接口特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#mac">2. MAC 特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#dma">3. DMA 与缓冲特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id6">4. 中断机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#phy">5. PHY 管理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id7">6. 协议与栈支持</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id8">7. 性能与可靠性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#fsp">FSP 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id9">软件说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#lwip">LwIP 性能调优建议</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id10">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id11">运行效果</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#iperf">iperf 测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_eth/README_zh.html#id12">网络应用示例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html">Titan Mini Driver All 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#fsp">FSP 环境配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id2">版本要求</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id3">工程目录结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id4">修改 FSP 配置步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id5">常见问题</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id6">编译与运行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#rtc">RTC 示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id7">介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id8">硬件参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id9">使用步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id10">关键代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id12">效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#gpio-pwm">GPIO / PWM / 按键中断示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id13">介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id14">硬件参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id15">使用步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id16">关键代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id17">参数换算说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id18">效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#sd">SD 卡示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id19">介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id20">硬件参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id21">使用步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id22">关键代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id23">效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#flash">Flash 文件系统示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id24">介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id25">硬件参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id26">软件分层</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id27">使用步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id28">关键代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id29">效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#sdram">SDRAM 示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id30">介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id31">硬件参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id32">使用步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id33">关键代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id35">效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#adc">ADC 示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id36">介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id37">硬件参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id38">使用步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id39">关键代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id43">电压换算说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id44">效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#spi">SPI 示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id45">介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id46">硬件参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id47">使用步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id48">关键代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id49">效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#canfd">CANFD 示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id50">介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id51">硬件参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id52">使用步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id53">关键代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id56">效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#i2c">I2C 示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id57">介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id58">硬件参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id59">使用步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id60">关键代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id61">效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#watchdog">Watchdog 示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id62">介绍</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id63">硬件参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id64">使用步骤</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id65">关键代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/Titan_Mini_driver_all/README_zh.html#id68">效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../multimedia/index_zh.html">多媒体显示篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html">LVGL 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id2">LVGL 简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id3">主要特点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id4">应用场景</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id5">生态与社区</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#i2c0">I2C0 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id6">触摸中断配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id7">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id8">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README_zh.html#id9">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html">MIPI CSI 摄像头示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#ra8-mipi-csi">RA8 系列 MIPI CSI 特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id2">1. 硬件接口特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id3">2. 图像格式与处理能力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#dma">3. DMA 支持与缓冲机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id4">4. 中断机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id5">5. 时序与同步特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id6">6. 性能优化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id7">7. 应用场景</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#ra8-mcu-glcdc-graphics-lcd-controller">RA8 系列 MCU GLCDC（Graphics LCD Controller）特性</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id8">1. 硬件特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id9">2. 图层与显示模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id10">3. DMA 与帧缓冲</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id11">4. 硬件图形功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id12">5. 中断机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id13">6. 性能优化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id14">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README_zh.html#id15">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README_zh.html">MIPI NPU 人脸检测</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README_zh.html#id2">功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README_zh.html#id3">数据流</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README_zh.html#id4">模型信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README_zh.html#id5">运行控制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README_zh.html#id6">说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README_zh.html#rt-thread-fsp">RT-Thread / FSP 配置要点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README_zh.html#id7">编译与下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README_zh.html#id8">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../multicore/index_zh.html">多核通信篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README_zh.html">Titan_Mini_rpmsg_master 核间通信示例（M85）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README_zh.html#id2">工程结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README_zh.html#id3">通信流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README_zh.html#id4">使用说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README_zh.html#id5">验证输出</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README_zh.html">Titan_Mini_rpmsg_remote 核间通信示例（M33）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README_zh.html#id2">工程结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README_zh.html#id3">通信流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README_zh.html#id4">使用说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README_zh.html#id5">验证输出</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_zh.html">外设扩展篇</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html">IMU 传感器示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id2">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#lsm6ds3tr-c-imu">1. LSM6DS3TR-C IMU 传感器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id3">2. 加速度计特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id4">3. 陀螺仪特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id5">4. 主要功能</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id8">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id9">1. 分层设计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id10">2. 核心组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id12">3. 工程结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id13">使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id14">1. 工作模式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#msh">2. MSH 命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id15">3. 数据输出格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id16">4. 初始化流程说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id17">配置说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#kconfig">1. Kconfig 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id18">运行效果</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id19">1. 开机启动信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id20">2. IMU 命令运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_peripheral_imu/README_zh.html#id21">相关资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PDM 麦克风实时回环示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">硬件介绍</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1. PDM 麦克风</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ra8p1-pdm">2. RA8P1 PDM 接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3. 音频输出</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">软件架构</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">1. 数据流程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">2. 核心组件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">3. 双缓冲机制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">4. 工程结构</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">配置说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id13">1. PDM 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">2. 关键参数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">故障排查</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id17">1. 没有声音输出</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">2. 声音卡顿</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">3. 声音失真</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html">RGB LCD 示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#ra8-glcdc">RA8 系列 GLCDC 模块</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id2">1. 简介</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id3">2. 模块架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#glcdc">3. GLCDC 工作原理</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id4">4. GLCDC 支持的功能与特性</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#rt-thread-lcd">RT-Thread LCD 驱动框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id5">主要接口</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id6">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#fsp">FSP 配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#hyperram">HyperRAM 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id7">RGB LCD 配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#lcd">LCD 背光配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#d-ave-2d">D/AVE 2D 配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id8">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_rgb_lcd/README_zh.html#id9">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html">USB-PCDC 驱动示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id2">USB PCDC 简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id3">1. 概述</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#pcdc">2. PCDC 的协议特性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id4">3. 典型应用架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id5">4. 优点</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#ra8-usb-pcdc-r-usb-pcdc">RA8 系列 USB PCDC 模块（r_usb_pcdc）简介</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id6">1. 模块定位与功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id7">2. 支持能力</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id8">3. 模块架构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id9">4. 工作流程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#fsp">FSP 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id10">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_usb_pcdc/README_zh.html#id11">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html">WAV 音频播放器示例说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id2">主要功能</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id3">硬件说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#es8156">1. ES8156 音频编解码器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#ssi">2. SSI 音频接口</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id4">工程结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id5">使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id6">1. 启动提示</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id7">2. 播放命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id8">3. 音频文件格式要求</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id9">运行说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_wavplayer/README_zh.html#id10">相关资料</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index_zh.html">Titan-Board-Mini SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index_zh.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_zh.html">外设扩展篇</a></li>
+      <li class="breadcrumb-item active">PDM 麦克风实时回环示例说明</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="pdm">
+<h1>PDM 麦克风实时回环示例说明<a class="headerlink" href="#pdm" title="链接到此标题。"></a></h1>
+<p><strong>中文</strong> | <span class="xref myst"><strong>English</strong></span></p>
+<section id="id1">
+<h2>简介<a class="headerlink" href="#id1" title="链接到此标题。"></a></h2>
+<p>本示例展示了如何在 <strong>Titan Board Mini</strong> 上使用 <strong>RA8P1 的 PDM (Pulse Density Modulation) 接口</strong> 读取 <strong>PDM 麦克风</strong> 数据，并通过 <strong>ES8156 音频编解码器</strong> 实时播放，实现 <strong>麦克风 → 扬声器</strong> 的音频回环功能。</p>
+<p>主要功能包括：</p>
+<ul class="simple">
+<li><p>使用 RA8P1 内置 PDM 接口读取 PDM 麦克风数据</p></li>
+<li><p>PDM 数据转 PCM 格式（支持 16-bit 和 20-bit 模式）</p></li>
+<li><p>单声道转双声道音频处理</p></li>
+<li><p>双缓冲机制实现连续音频流播放</p></li>
+<li><p>通过 SSI 接口和 ES8156 编解码器输出音频</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>硬件介绍<a class="headerlink" href="#id2" title="链接到此标题。"></a></h2>
+<section id="id3">
+<h3>1. PDM 麦克风<a class="headerlink" href="#id3" title="链接到此标题。"></a></h3>
+<p><strong>Titan Board Mini</strong> 板载 <strong>PDM 麦克风</strong>：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>类型</strong></p></td>
+<td><p>MEMS PDM 麦克风</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>接口</strong></p></td>
+<td><p>PDM (Pulse Density Modulation)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>输出格式</strong></p></td>
+<td><p>1-bit 密度流</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>采样率</strong></p></td>
+<td><p>最高 16kHz（本示例）</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>声道</strong></p></td>
+<td><p>单声道</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ra8p1-pdm">
+<h3>2. RA8P1 PDM 接口<a class="headerlink" href="#ra8p1-pdm" title="链接到此标题。"></a></h3>
+<p>RA8P1 的 PDM 接口功能：</p>
+<ul class="simple">
+<li><p><strong>内置 PDM 解调器</strong>：硬件实现 PDM → PCM 转换</p></li>
+<li><p><strong>可编程滤波器</strong>：SINC 滤波器、HPF、LPF</p></li>
+<li><p><strong>多通道支持</strong>：支持多路麦克风输入</p></li>
+<li><p><strong>可配置输出</strong>：支持 16-bit 或 20-bit PCM 输出</p></li>
+<li><p><strong>DMA 支持</strong>：支持 DMA 传输，减少 CPU 占用</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>3. 音频输出<a class="headerlink" href="#id4" title="链接到此标题。"></a></h3>
+<ul class="simple">
+<li><p><strong>编解码器</strong>：ES8156（24-bit DAC，支持 8kHz - 192kHz）</p></li>
+<li><p><strong>接口</strong>：SSI (I2S 协议)</p></li>
+<li><p><strong>输出</strong>：3.5mm 耳机接口 / 板载扬声器</p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2>软件架构<a class="headerlink" href="#id5" title="链接到此标题。"></a></h2>
+<section id="id6">
+<h3>1. 数据流程<a class="headerlink" href="#id6" title="链接到此标题。"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PDM 麦克风
+    ↓ (PDM 信号)
+RA8P1 PDM 接口
+    ↓ (硬件滤波 + PDM→PCM)
+PDM 缓冲区 (int32_t[])
+    ↓ (软件转换)
+DAC 缓冲区 (int16_t[], 双声道)
+    ↓ (I2S 协议)
+ES8156 编解码器
+    ↓ (模拟音频)
+扬声器/耳机
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>2. 核心组件<a class="headerlink" href="#id7" title="链接到此标题。"></a></h3>
+<section id="id8">
+<h4>PDM 驱动<a class="headerlink" href="#id8" title="链接到此标题。"></a></h4>
+<p>使用 Renesas FSP 的 PDM 驱动：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* 打开 PDM 模块 */</span>
+<span class="n">R_PDM_Open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_pdm0_ctrl</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g_pdm0_cfg</span><span class="p">);</span>
+
+<span class="cm">/* 启动数据采集 */</span>
+<span class="n">R_PDM_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_pdm0_ctrl</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">buf_size</span><span class="p">.</span><span class="n">bytes</span><span class="p">,</span><span class="w"> </span><span class="n">samples</span><span class="p">);</span>
+
+<span class="cm">/* 停止采集 */</span>
+<span class="n">R_PDM_Stop</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_pdm0_ctrl</span><span class="p">);</span>
+
+<span class="cm">/* 关闭 PDM 模块 */</span>
+<span class="n">R_PDM_Close</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_pdm0_ctrl</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h4>数据转换函数<a class="headerlink" href="#id9" title="链接到此标题。"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* PDM 数据转 DAC 数据 */</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">convert_pdm_to_dac</span><span class="p">(</span><span class="kt">int32_t</span><span class="w"> </span><span class="o">*</span><span class="n">pdm_data</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">pdm_samples</span><span class="p">,</span><span class="w"> </span><span class="kt">int16_t</span><span class="w"> </span><span class="o">*</span><span class="n">dac_data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">pdm_samples</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int16_t</span><span class="w"> </span><span class="n">sample_16</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_pcm_bits</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PCM_20BITS</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="cm">/* 20 位 -&gt; 16 位：右移 4 位 */</span>
+<span class="w">            </span><span class="n">sample_16</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int16_t</span><span class="p">)(</span><span class="n">pdm_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="cm">/* 16 位模式：左移 1 位 */</span>
+<span class="w">            </span><span class="n">sample_16</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int16_t</span><span class="p">)(</span><span class="n">pdm_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="cm">/* 单声道转双声道 */</span>
+<span class="w">        </span><span class="n">dac_data</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_16</span><span class="p">;</span><span class="w">      </span><span class="cm">/* 左声道 */</span>
+<span class="w">        </span><span class="n">dac_data</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample_16</span><span class="p">;</span><span class="w">  </span><span class="cm">/* 右声道 */</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id10">
+<h3>3. 双缓冲机制<a class="headerlink" href="#id10" title="链接到此标题。"></a></h3>
+<p>为了实现连续音频流，采用双缓冲模式：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>时间轴：
+    t0      t1      t2      t3      t4
+    |-------|-------|-------|-------|
+缓冲区0: [录音 ] [播放         ]
+缓冲区1:                 [录音 ] [播放         ]
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>缓冲区 0</strong>：录音 → 播放</p></li>
+<li><p><strong>缓冲区 1</strong>：录音 → 播放</p></li>
+<li><p>两个缓冲区交替工作，实现无缝连续播放</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>4. 工程结构<a class="headerlink" href="#id11" title="链接到此标题。"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Titan_Mini_pdm/
+├── src/
+│   └── hal_entry.c          # 主程序入口
+├── libraries/
+│   └── HAL_Drivers/
+│       ├── drv_i2s.c        # SSI/I2S 驱动
+│       └── ports/
+│           └── es8156/      # ES8156 编解码器驱动
+└── ra_gen/
+    └── hal_data.c           # FSP 配置（PDM、SSI 等）
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h2>配置说明<a class="headerlink" href="#id12" title="链接到此标题。"></a></h2>
+<section id="id13">
+<h3>1. PDM 配置<a class="headerlink" href="#id13" title="链接到此标题。"></a></h3>
+<p>在 <code class="docutils literal notranslate"><span class="pre">ra_gen/hal_data.c</span></code> 中配置 PDM 参数：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">pdm_cfg_t</span><span class="w"> </span><span class="n">g_pdm0_cfg</span><span class="w"> </span><span class="o">=</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">.</span><span class="n">unit</span><span class="w">                              </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">channel</span><span class="w">                           </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">        </span><span class="cm">/* PDM 通道 */</span>
+<span class="w">    </span><span class="p">.</span><span class="n">pcm_width</span><span class="w">                         </span><span class="o">=</span><span class="w"> </span><span class="n">PDM_PCM_WIDTH_16_BITS_0_14</span><span class="p">,</span><span class="w">  </span><span class="cm">/* 16-bit 输出 */</span>
+<span class="w">    </span><span class="p">.</span><span class="n">pcm_edge</span><span class="w">                          </span><span class="o">=</span><span class="w"> </span><span class="n">PDM_INPUT_DATA_EDGE_RISE</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">p_extend</span><span class="w">                          </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">g_pdm0_cfg_extend</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h3>2. 关键参数<a class="headerlink" href="#id14" title="链接到此标题。"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数</p></th>
+<th class="head"><p>值</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PDM_FS_HZ</span></code></p></td>
+<td><p>16000</p></td>
+<td><p>输出采样率 16kHz</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PDM_CHANNELS</span></code></p></td>
+<td><p>1</p></td>
+<td><p>单声道输入</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PDM_PCM_WIDTH</span></code></p></td>
+<td><p>16_BITS_0_14</p></td>
+<td><p>16-bit PCM，有效位 [14:0]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NUM_BUFFERS</span></code></p></td>
+<td><p>2</p></td>
+<td><p>双缓冲模式</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PDM_RECORD_DURATION_SEC</span></code></p></td>
+<td><p>1</p></td>
+<td><p>每个缓冲区 1 秒音频</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id15">
+<h2>运行效果<a class="headerlink" href="#id15" title="链接到此标题。"></a></h2>
+<p><img alt="运行效果" src="../../_images/image1.png" /></p>
+<ol class="arabic simple">
+<li><p>上电后，绿色 LED 点亮表示系统就绪</p></li>
+<li><p>蓝色 LED 点亮表示音频回环正在运行</p></li>
+<li><p>对着麦克风说话，可以在耳机/扬声器中实时听到声音</p></li>
+<li><p>蓝色 LED 每 50 次循环闪烁一次（心跳指示）</p></li>
+</ol>
+</section>
+<section id="id16">
+<h2>故障排查<a class="headerlink" href="#id16" title="链接到此标题。"></a></h2>
+<section id="id17">
+<h3>1. 没有声音输出<a class="headerlink" href="#id17" title="链接到此标题。"></a></h3>
+<ul class="simple">
+<li><p>检查耳机/扬声器是否正确连接</p></li>
+<li><p>检查音量设置（默认 60%）</p></li>
+<li><p>检查 ES8156 初始化是否成功</p></li>
+</ul>
+</section>
+<section id="id18">
+<h3>2. 声音卡顿<a class="headerlink" href="#id18" title="链接到此标题。"></a></h3>
+<ul class="simple">
+<li><p>当前使用 1 秒缓冲区，可尝试调整 <code class="docutils literal notranslate"><span class="pre">PDM_RECORD_DURATION_SEC</span></code></p></li>
+<li><p>检查系统负载，减少其他任务</p></li>
+</ul>
+</section>
+<section id="id19">
+<h3>3. 声音失真<a class="headerlink" href="#id19" title="链接到此标题。"></a></h3>
+<ul class="simple">
+<li><p>检查 <code class="docutils literal notranslate"><span class="pre">pcm_width</span></code> 配置是否与硬件匹配</p></li>
+<li><p>调整数据转换函数中的位移参数</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../Titan_Mini_peripheral_imu/README_zh.html" class="btn btn-neutral float-left" title="IMU 传感器示例说明" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../Titan_Mini_rgb_lcd/README_zh.html" class="btn btn-neutral float-right" title="RGB LCD 示例说明" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 Copyright (c) 2006-2025, RT-Thread Development Team。</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>Titan-Board-Mini SDK</strong>
+        <span class="sdk-footer__sep">•</span> 版本：1.2.0
+      </div>
+      <div class="sdk-footer__right">
+        构建时间：<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>

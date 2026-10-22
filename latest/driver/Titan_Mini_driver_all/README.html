@@ -1,0 +1,1841 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Titan Mini Driver All Example Guide &mdash; Titan-Board-Mini SDK 1.2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=694004e0" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/edit_button.css?v=d629c565" />
+      <link rel="stylesheet" type="text/css" href="../../_static/language_switch.css?v=e28326ac" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dark_mode.css?v=72ec50b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=84a24d03"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/version_menu.js?v=cc75255b"></script>
+      <script src="../../_static/download_pdf.js?v=d1800c12"></script>
+      <script src="../../_static/version_info.js"></script>
+      <script src="../../_static/edit_on_github.js?v=5e1f1957"></script>
+      <script src="../../_static/language_switch.js?v=87312f67"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Multimedia Display" href="../../multimedia/index.html" />
+    <link rel="prev" title="Ethernet Example Guide" href="../Titan_Mini_driver_eth/README.html" />
+   
+  
+  
+    <script>window.SPHINX_EDIT_BASE_URL = "https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/";</script>
+    <meta name="edit-base-url" content="https://github.com/RT-Thread-Studio/sdk-bsp-ra8p1-titan-mini/edit/">
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Titan-Board-Mini SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/Titan_Mini_template/README.html">Template Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#quick-start">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#secondary-development">Secondary Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/Titan_Mini_template/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html">LED Blink Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#gpio-introduction">GPIO Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#ra8-series-gpio-features">2. RA8 Series GPIO Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#rt-thread-pin-framework">3. RT-Thread PIN Framework</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/Titan_Mini_blink_led/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Drivers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html">Ethernet Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#ethernet-overview">Ethernet Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#general-introduction">1. General Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#ethernet-frame-structure">2. Ethernet Frame Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#ra8-series-ethernet-features">RA8 Series Ethernet Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#network-interface-features">1. Network Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#mac-features">2. MAC Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#dma-and-buffer-features">3. DMA and Buffer Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#interrupt-mechanism">4. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#phy-management">5. PHY Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#protocol-and-stack-support">6. Protocol and Stack Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#performance-and-reliability">7. Performance and Reliability</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#software-description">Software Description</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#lwip-performance-tuning-recommendations">LwIP Performance Tuning Recommendations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#rtl8211-phy-initialization">RTL8211 PHY Initialization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#build-download">Build &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#running-effect">Running Effect</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#iperf-test">iperf Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../Titan_Mini_driver_eth/README.html#network-application-examples">Network Application Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Titan Mini Driver All Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fsp-configuration">FSP Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#version-requirements">Version Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#project-directory-layout">Project Directory Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps-to-modify-the-fsp-configuration">Steps to Modify the FSP Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-and-run">Build and Run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rtc-example">RTC Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-parameters">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage-steps">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-code">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#result">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gpio-pwm-key-interrupt-example">GPIO / PWM / Key Interrupt Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-conversion">Parameter Conversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sd-card-example">SD Card Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#flash-file-system-example">Flash File System Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#software-stack">Software Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sdram-example">SDRAM Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id17">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#adc-example">ADC Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id22">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#voltage-conversion">Voltage Conversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#spi-example">SPI Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id27">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#canfd-example">CANFD Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id32">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id33">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id34">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id35">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id36">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#i2c-example">I2C Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id37">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id38">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id39">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id40">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id41">Result</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#watchdog-example">Watchdog Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id42">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id43">Hardware Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id44">Usage Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id45">Key Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id46">Result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../multimedia/index.html">Multimedia Display</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html">LVGL Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#instruction">Instruction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#lvgl-instruction">LVGL Instruction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#application-scenarios">Application Scenarios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#ecosystem-and-community">Ecosystem and Community</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#i2c0-configuration">I2C0 Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#touch-interrupt-configuration">Touch Interrupt Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_rgb_lvgl/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html">MIPI CSI Camera Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#ra8-series-mipi-csi-features">RA8 Series MIPI CSI Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-interface-features">1. Hardware Interface Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#image-formats-and-processing-capabilities">2. Image Formats and Processing Capabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#dma-support-and-buffering">3. DMA Support and Buffering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#interrupt-mechanism">4. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#timing-and-synchronization-features">5. Timing and Synchronization Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#performance-optimization">6. Performance Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#application-scenarios">7. Application Scenarios</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#ra8-series-mcu-glcdc-graphics-lcd-controller-features">RA8 Series MCU GLCDC (Graphics LCD Controller) Features</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-features">1. Hardware Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#layers-and-display-modes">2. Layers and Display Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#dma-and-frame-buffer">3. DMA and Frame Buffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#hardware-graphics-functions">4. Hardware Graphics Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#id1">5. Interrupt Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#id2">6. Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_display_camera_mipi_csi/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README.html">MIPI NPU Face Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README.html#data-flow">Data Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README.html#model">Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README.html#runtime-controls">Runtime Controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README.html#important-notes">Important Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README.html#rt-thread-fsp-configuration">RT-Thread / FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README.html#build-and-flash">Build and Flash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multimedia/Titan_Mini_npu_ai_face_detection/README.html#expected-result">Expected Result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../multicore/index.html">Multicore</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html">Titan_Mini_rpmsg_master Inter-Core Communication Example (M85)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html#communication-flow">Communication Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_master/README.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html">Titan_Mini_rpmsg_remote Inter-Core Communication Example (M33)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html#project-structure">Project Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html#communication-flow">Communication Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../multicore/Titan_Mini_rpmsg/Titan_Mini_rpmsg_remote/README.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../peripheral/index.html">Peripherals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html">IMU Sensor Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#lsm6ds3tr-c-imu-sensor">1. LSM6DS3TR-C IMU Sensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#usage-instructions">Usage Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#configuration-instructions">Configuration Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#kconfig-configuration">1. Kconfig Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#running-results">Running Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#terminal-output">1. Terminal Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_peripheral_imu/README.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html">PDM Microphone Real-time Loopback Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#pdm-microphone">1. PDM Microphone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#ra8p1-pdm-interface">2. RA8P1 PDM Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#audio-output">3. Audio Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#data-flow">1. Data Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#double-buffer-mechanism">3. Double Buffer Mechanism</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#project-structure">4. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#pdm-configuration">1. PDM Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#key-parameters">2. Key Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#no-audio-output">1. No Audio Output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#audio-stuttering">2. Audio Stuttering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#audio-distortion">3. Audio Distortion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_pdm/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html">RGB LCD Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#ra8-series-glcdc-module">RA8 Series GLCDC Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#module-architecture">2. Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#glcdc-working-principle">3. GLCDC Working Principle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#glcdc-supported-features">4. GLCDC Supported Features</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rt-thread-lcd-driver-framework">RT-Thread LCD Driver Framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#main-interfaces">Main Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#fsp-configuration">FSP Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#hyperram-configuration">HyperRAM Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rgb-lcd-configuration">RGB LCD Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#lcd-backlight-configuration">LCD Backlight Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#d-ave-2d-configuration">D/AVE 2D Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_rgb_lcd/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html">USB PCDC Driver Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#usb-pcdc-instructions">USB PCDC Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#overview">1. Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#pcdc-protocol-features">2. PCDC Protocol Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#typical-application-architecture">3. Typical Application Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#advantages">4. Advantages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#ra8-series-usb-pcdc-module-r-usb-pcdc-overview">RA8 Series USB PCDC Module (r_usb_pcdc) Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#module-functionality">1. Module Functionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#supported-features">2. Supported Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#module-architecture">3. Module Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#workflow">4. Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#fsp-configuration-configuration">FSP Configuration Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_usb_pcdc/README.html#running-effect">Running Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html">WAV Audio Player Example Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#hardware-introduction">Hardware Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#es8156-audio-codec">1. ES8156 Audio Codec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#es8156-key-features">2. ES8156 Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#ssi-synchronous-serial-interface">3. SSI (Synchronous Serial Interface)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#software-architecture">Software Architecture</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#layered-design">1. Layered Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#core-components">2. Core Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#project-structure">3. Project Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#initialization-flow">1. Initialization Flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#playing-wav-files">2. Playing WAV Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#wav-file-format-requirements">3. WAV File Format Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#kconfig-configuration">1. Kconfig Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#rt-thread-settings">2. RT-Thread Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#hardware-connections">3. Hardware Connections</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../peripheral/Titan_Mini_wavplayer/README.html#further-reading">Further Reading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Titan-Board-Mini SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Drivers</a></li>
+      <li class="breadcrumb-item active">Titan Mini Driver All Example Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="titan-mini-driver-all-example-guide">
+<h1>Titan Mini Driver All Example Guide<a class="headerlink" href="#titan-mini-driver-all-example-guide" title="Link to this heading"></a></h1>
+<p><span class="xref myst"><strong>Chinese</strong></span> | <strong>English</strong></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Titan_Mini_driver_all</span></code> is a peripheral driver example collection project for the Titan Mini Board. It centralizes verification of common peripherals, storage, and networking functions. The project exposes individual example entry points for each peripheral through MSH commands, making them convenient to debug independently.</p>
+<p>Currently integrated examples:</p>
+<ul class="simple">
+<li><p>RTC</p></li>
+<li><p>GPIO / PWM / Key interrupt</p></li>
+<li><p>SD Card</p></li>
+<li><p>Flash file system</p></li>
+<li><p>SDRAM</p></li>
+<li><p>ADC</p></li>
+<li><p>SPI</p></li>
+<li><p>CANFD</p></li>
+<li><p>I2C</p></li>
+<li><p>Watchdog</p></li>
+</ul>
+</section>
+<section id="fsp-configuration">
+<h2>FSP Configuration<a class="headerlink" href="#fsp-configuration" title="Link to this heading"></a></h2>
+<p>This project is based on <strong>Renesas FSP (Flexible Software Package) 6.4.0</strong> and <strong>RT-Thread Studio</strong> for hardware abstraction layer configuration and code generation. It works out of the box without reconfiguration, but follow the workflow below to modify peripheral pins or add new FSP Stacks.</p>
+<p>FSP configuration tool download:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/renesas/fsp/releases/download/v6.4.0/setup_fsp_v6_4_0_rasc_v2025-12.exe">setup_fsp_v6_4_0_rasc_v2025-12.exe</a></p></li>
+</ul>
+<section id="version-requirements">
+<h3>Version Requirements<a class="headerlink" href="#version-requirements" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Version</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>FSP version</strong></p></td>
+<td><p>6.4.0</p></td>
+<td><p>Pinned by <code class="docutils literal notranslate"><span class="pre">#FSPVersion#</span></code> in <code class="docutils literal notranslate"><span class="pre">configuration.xml</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>MCU</strong></p></td>
+<td><p>R7KA8P1KFLCAC (RA8P1)</p></td>
+<td><p>Cortex-M85 + Cortex-M33 dual-core</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>IDE</strong></p></td>
+<td><p>RT-Thread Studio</p></td>
+<td><p>Bundled with the FSP configuration plug-in</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>⚠️ Always use FSP 6.4.0. Other versions may cause regenerated <code class="docutils literal notranslate"><span class="pre">ra/</span></code>, <code class="docutils literal notranslate"><span class="pre">ra_gen/</span></code>, <code class="docutils literal notranslate"><span class="pre">ra_cfg/</span></code> code to be incompatible with the driver layer.</p>
+</div></blockquote>
+</section>
+<section id="project-directory-layout">
+<h3>Project Directory Layout<a class="headerlink" href="#project-directory-layout" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Titan_Mini_driver_all/
+├── configuration.xml      # FSP configuration (pins / clocks / Stack definitions)
+├── ra/                    # FSP-generated driver sources (r_gpt/r_spi/r_canfd etc.)
+├── ra_cfg/                # FSP configuration headers (fsp_cfg/)
+├── ra_gen/                # FSP auto-generated HAL data (hal_data.c/h)
+├── board/                 # BSP board-level initialization
+├── src/                   # Application-layer example code (rt_example_*.c)
+└── rtconfig.h             # RT-Thread kernel configuration
+</pre></div>
+</div>
+</section>
+<section id="steps-to-modify-the-fsp-configuration">
+<h3>Steps to Modify the FSP Configuration<a class="headerlink" href="#steps-to-modify-the-fsp-configuration" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Open configuration</strong>: In RT-Thread Studio, right-click the project → <code class="docutils literal notranslate"><span class="pre">Renesas</span> <span class="pre">FSP</span> <span class="pre">Configuration</span></code> (or double-click <code class="docutils literal notranslate"><span class="pre">configuration.xml</span></code>).</p></li>
+<li><p><strong>Adjust Stacks</strong>: In the <code class="docutils literal notranslate"><span class="pre">Stacks</span></code> view, add/remove driver Stacks (such as <code class="docutils literal notranslate"><span class="pre">r_gpt</span></code>, <code class="docutils literal notranslate"><span class="pre">r_adc</span></code>, <code class="docutils literal notranslate"><span class="pre">r_canfd</span></code>). The properties of each Stack must match the channel/pins described in the corresponding peripheral section.</p></li>
+<li><p><strong>Configure pins</strong>: In the <code class="docutils literal notranslate"><span class="pre">Pins</span></code> view, assign pin modes (GPIO/SPI/I2C/CAN, etc.). Ethernet-related pins must have their drive strength set to <code class="docutils literal notranslate"><span class="pre">H</span></code>.</p></li>
+<li><p><strong>Generate code</strong>: Click <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">Project</span> <span class="pre">Content</span></code>. FSP will regenerate <code class="docutils literal notranslate"><span class="pre">ra_gen/hal_data.c</span></code>, <code class="docutils literal notranslate"><span class="pre">ra_gen/pin_data.c</span></code>, and the configuration headers under <code class="docutils literal notranslate"><span class="pre">ra_cfg/</span></code>.</p></li>
+<li><p><strong>Sync RT-Thread Settings</strong>: In <code class="docutils literal notranslate"><span class="pre">RT-Thread</span> <span class="pre">Settings</span></code>, tick the corresponding driver frameworks (PWM / ADC / CAN / SPI / I2C / WDT, etc.) so that the RT-Thread device framework registers the corresponding device nodes (such as <code class="docutils literal notranslate"><span class="pre">pwm6</span></code>, <code class="docutils literal notranslate"><span class="pre">adc0</span></code>, <code class="docutils literal notranslate"><span class="pre">canfd0</span></code>).</p></li>
+<li><p><strong>Rebuild</strong>: After FSP generates code, you must clean and then build to avoid stale <code class="docutils literal notranslate"><span class="pre">.o</span></code> caches causing link errors.</p></li>
+</ol>
+</section>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pwm6</span></code> / <code class="docutils literal notranslate"><span class="pre">adc0</span></code> not found</strong>: Usually because the corresponding driver framework is not ticked in RT-Thread Settings, or the FSP Stack is not added.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">hal_data.h</span></code> errors</strong>: FSP version mismatch. Regenerate with 6.4.0.</p></li>
+<li><p><strong>ETH pin communication abnormal</strong>: Confirm that all ETH pins have their drive strength set to <code class="docutils literal notranslate"><span class="pre">H</span></code> (see the Ethernet section).</p></li>
+<li><p><strong>Link errors after modifying configuration</strong>: Run <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">→</span> <span class="pre">Clean</span></code>, then build.</p></li>
+</ul>
+</section>
+</section>
+<section id="build-and-run">
+<h2>Build and Run<a class="headerlink" href="#build-and-run" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Open the <code class="docutils literal notranslate"><span class="pre">project/Titan_Mini_driver_all</span></code> project in RT-Thread Studio.</p></li>
+<li><p>Compile and download the firmware to the Titan Mini development board.</p></li>
+<li><p>Enter the MSH command line through the serial terminal or USB PCDC terminal.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">help</span></code> to see available commands. Example commands for each peripheral are described in the following sections.</p></li>
+</ol>
+<p>After power-on, the terminal prints the following boot banner:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>============================================================
+           Titan Mini Board Factory Test System
+============================================================
+System initialized successfully!
+</pre></div>
+</div>
+</section>
+<section id="rtc-example">
+<h2>RTC Example<a class="headerlink" href="#rtc-example" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Introduction<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>The RTC example is based on the <strong>RT-Thread RTC device driver framework</strong>. It verifies the proper operation of the RA8P1 on-chip real-time clock, supporting date/time set and read operations. When the <code class="docutils literal notranslate"><span class="pre">RT_USING_ALARM</span></code> component is enabled, it also verifies the alarm function. The RTC is driven by a 32.768 kHz crystal; when main power is removed, time can be backed up via the VBATT battery.</p>
+</section>
+<section id="hardware-parameters">
+<h3>Hardware Parameters<a class="headerlink" href="#hardware-parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Clock source</strong></p></td>
+<td><p>32.768 kHz crystal</p></td>
+<td><p>Sub-clock oscillator, ±5 ppm accuracy</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Calendar range</strong></p></td>
+<td><p>2000–2099</p></td>
+<td><p>Automatic leap-year compensation</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Time format</strong></p></td>
+<td><p>24-hour</p></td>
+<td><p>HH:MM:SS</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Operating voltage</strong></p></td>
+<td><p>1.62–3.6 V</p></td>
+<td><p>Wide voltage range</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Backup power</strong></p></td>
+<td><p>VBATT</p></td>
+<td><p>Keeps time information after main power loss</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Alarm triggers</strong></p></td>
+<td><p>sec / min / hour / day / week / month / year</p></td>
+<td><p>Multiple programmable triggers</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="usage-steps">
+<h3>Usage Steps<a class="headerlink" href="#usage-steps" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">rtc_sample</span></code> to set the RTC date to 2025-8-1, time to 15:00:00, and read and print the current time after 3 seconds.</p></li>
+<li><p>If the project enables <code class="docutils literal notranslate"><span class="pre">RT_USING_ALARM</span></code>, enter <code class="docutils literal notranslate"><span class="pre">alarm_sample</span></code> to create a second-level alarm.</p></li>
+</ol>
+</section>
+<section id="key-code">
+<h3>Key Code<a class="headerlink" href="#key-code" title="Link to this heading"></a></h3>
+<p>The example source is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_rtc.c</span></code>. The core logic is shown below.</p>
+<section id="time-set-and-read">
+<h4>Time Set and Read<a class="headerlink" href="#time-set-and-read" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">rtc_sample</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_device_t</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_device_find</span><span class="p">(</span><span class="n">RTC_NAME</span><span class="p">);</span><span class="w">     </span><span class="c1">// RTC_NAME = "rtc"</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">device</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"find %s failed!</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">RTC_NAME</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rt_device_open</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"open %s failed!</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">RTC_NAME</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">set_date</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">                              </span><span class="c1">// set date</span>
+<span class="w">    </span><span class="n">set_time</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">                                </span><span class="c1">// set time</span>
+
+<span class="w">    </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">time_t</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">get_timestamp</span><span class="p">(</span><span class="o">&amp;</span><span class="n">now</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"now: %.*s"</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="n">ctime</span><span class="p">(</span><span class="o">&amp;</span><span class="n">now</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">rtc_sample</span><span class="p">,</span><span class="w"> </span><span class="n">rtc</span><span class="w"> </span><span class="n">sample</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="alarm-creation-depends-on-rt-using-alarm">
+<h4>Alarm Creation (depends on <code class="docutils literal notranslate"><span class="pre">RT_USING_ALARM</span></code>)<a class="headerlink" href="#alarm-creation-depends-on-rt-using-alarm" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">user_alarm_callback</span><span class="p">(</span><span class="n">rt_alarm_t</span><span class="w"> </span><span class="n">alarm</span><span class="p">,</span><span class="w"> </span><span class="kt">time_t</span><span class="w"> </span><span class="n">timestamp</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"user alarm callback function.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">alarm_sample</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_alarm_setup</span><span class="w"> </span><span class="n">setup</span><span class="p">;</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">rt_alarm_t</span><span class="w"> </span><span class="n">alarm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">time_t</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_timestamp</span><span class="p">(</span><span class="n">RT_NULL</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">            </span><span class="c1">// trigger next second</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">tm</span><span class="w"> </span><span class="n">p_tm</span><span class="p">;</span>
+<span class="w">    </span><span class="n">gmtime_r</span><span class="p">(</span><span class="o">&amp;</span><span class="n">now</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p_tm</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">setup</span><span class="p">.</span><span class="n">flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_ALARM_SECOND</span><span class="p">;</span><span class="w">                       </span><span class="c1">// second-level alarm</span>
+<span class="w">    </span><span class="n">setup</span><span class="p">.</span><span class="n">wktime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">tm</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">p_tm</span><span class="p">;</span><span class="w">                 </span><span class="c1">// trigger moment</span>
+
+<span class="w">    </span><span class="n">alarm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_alarm_create</span><span class="p">(</span><span class="n">user_alarm_callback</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">setup</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_alarm_start</span><span class="p">(</span><span class="n">alarm</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>If <code class="docutils literal notranslate"><span class="pre">RT_USING_ALARM</span></code> is not enabled, <code class="docutils literal notranslate"><span class="pre">alarm_sample</span></code> prints <code class="docutils literal notranslate"><span class="pre">alarm</span> <span class="pre">sample</span> <span class="pre">is</span> <span class="pre">unavailable:</span> <span class="pre">RT_USING_ALARM</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">enabled.</span></code>.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="result">
+<h3>Result<a class="headerlink" href="#result" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rtc_sample</span></code> prints the current RTC time after setting it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alarm_sample</span></code> prints <code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">alarm</span> <span class="pre">callback</span> <span class="pre">function.</span></code> when triggered.</p></li>
+</ul>
+<p>Terminal output after running <code class="docutils literal notranslate"><span class="pre">alarm_sample</span></code>:</p>
+<p><img alt="RTC alarm output" src="../../_images/rtc_run.png" /></p>
+</section>
+</section>
+<section id="gpio-pwm-key-interrupt-example">
+<h2>GPIO / PWM / Key Interrupt Example<a class="headerlink" href="#gpio-pwm-key-interrupt-example" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3>Introduction<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>These examples are based on the <strong>RT-Thread PWM device driver framework</strong> and the <strong>PIN device interrupt interface</strong>. They verify the RA8P1 GPT general-purpose PWM timer and GPIO external interrupt functionality. Two entry points are provided:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pwm_sample</span></code>: manually configure the period and duty cycle of <code class="docutils literal notranslate"><span class="pre">pwm6</span></code> for oscilloscope observation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">key_irq_sample</span></code>: configure the key falling-edge interrupt; the green LED toggles on each trigger.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Hardware Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>PWM device</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pwm6</span></code> (GPT6)</p></td>
+<td><p>32-bit general-purpose PWM timer</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>PWM counter</strong></p></td>
+<td><p>32-bit</p></td>
+<td><p>Range 0 – 4294967295</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>PWM output pin</strong></p></td>
+<td><p>P601 (GTIOC6A)</p></td>
+<td><p>Oscilloscope probe point</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>LED pin</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BSP_IO_PORT_01_PIN_08</span></code></p></td>
+<td><p>Green LED</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Key pin</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BSP_IO_PORT_02_PIN_01</span></code></p></td>
+<td><p>Internal pull-up, falling-edge trigger</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>GPT modes</strong></p></td>
+<td><p>Periodic / One-shot / PWM</p></td>
+<td><p>Square / Sawtooth / Triangle wave</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h3>Usage Steps<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">pwm_sample</span> <span class="pre">&lt;period&gt;</span> <span class="pre">&lt;pulse&gt;</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">pwm_sample</span> <span class="pre">500000</span> <span class="pre">250000</span></code> (units in ns → 2 kHz / 50% duty). Connect an oscilloscope to P601 to observe the waveform.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">key_irq_sample</span></code>, then press the key to toggle the green LED.</p></li>
+</ol>
+</section>
+<section id="id5">
+<h3>Key Code<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>The PWM example is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_gpt.c</span></code>, and the key interrupt example is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_key_irq.c</span></code>.</p>
+<section id="pwm-configuration-manual-period-and-pulse">
+<h4>PWM Configuration (manual period and pulse)<a class="headerlink" href="#pwm-configuration-manual-period-and-pulse" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PWM_DEV_NAME        "pwm6"</span>
+<span class="cp">#define PWM_DEV_CHANNEL     0</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">pwm_sample</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_uint32_t</span><span class="w"> </span><span class="n">period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rt_uint32_t</span><span class="p">)</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">rt_uint32_t</span><span class="w"> </span><span class="n">pulse</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rt_uint32_t</span><span class="p">)</span><span class="w"> </span><span class="n">atoi</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">period</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">pulse</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">period</span><span class="p">))</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"invalid parameters, ensure period &gt; 0 and pulse &lt;= period.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">RT_ERROR</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_device_pwm</span><span class="w"> </span><span class="o">*</span><span class="n">pwm_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_device_pwm</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">rt_device_find</span><span class="p">(</span><span class="n">PWM_DEV_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_pwm_set</span><span class="p">(</span><span class="n">pwm_dev</span><span class="p">,</span><span class="w"> </span><span class="n">PWM_DEV_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="n">period</span><span class="p">,</span><span class="w"> </span><span class="n">pulse</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_pwm_enable</span><span class="p">(</span><span class="n">pwm_dev</span><span class="p">,</span><span class="w"> </span><span class="n">PWM_DEV_CHANNEL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"pwm started on %s channel %d, period=%u pulse=%u</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
+<span class="w">               </span><span class="n">PWM_DEV_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">PWM_DEV_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="n">period</span><span class="p">,</span><span class="w"> </span><span class="n">pulse</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">pwm_sample</span><span class="p">,</span><span class="w"> </span><span class="n">configure</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="n">pwm</span><span class="w"> </span><span class="n">output</span><span class="o">:</span><span class="w"> </span><span class="n">pwm_sample</span><span class="w"> </span><span class="o">&lt;</span><span class="n">period</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">pulse</span><span class="o">&gt;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="key-interrupt-toggle-led-on-falling-edge">
+<h4>Key Interrupt (toggle LED on falling edge)<a class="headerlink" href="#key-interrupt-toggle-led-on-falling-edge" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define LED_PIN_G   BSP_IO_PORT_01_PIN_08</span>
+<span class="cp">#define KEY_PIN     BSP_IO_PORT_02_PIN_01</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">volatile</span><span class="w"> </span><span class="n">rt_bool_t</span><span class="w"> </span><span class="n">g_key_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_FALSE</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">key_irq_callback</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_pin_write</span><span class="p">(</span><span class="n">LED_PIN_G</span><span class="p">,</span><span class="w"> </span><span class="n">g_key_flag</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">PIN_HIGH</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">PIN_LOW</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_key_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_key_flag</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">RT_FALSE</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">RT_TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">key_irq_sample</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_pin_mode</span><span class="p">(</span><span class="n">LED_PIN_G</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_MODE_OUTPUT</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_pin_mode</span><span class="p">(</span><span class="n">KEY_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_MODE_INPUT_PULLUP</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_pin_attach_irq</span><span class="p">(</span><span class="n">KEY_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_IRQ_MODE_FALLING</span><span class="p">,</span><span class="w"> </span><span class="n">key_irq_callback</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_pin_irq_enable</span><span class="p">(</span><span class="n">KEY_PIN</span><span class="p">,</span><span class="w"> </span><span class="n">PIN_IRQ_ENABLE</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">key_irq_sample</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">interrupt</span><span class="w"> </span><span class="n">sample</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="parameter-conversion">
+<h3>Parameter Conversion<a class="headerlink" href="#parameter-conversion" title="Link to this heading"></a></h3>
+<p>Parameters of <code class="docutils literal notranslate"><span class="pre">pwm_sample</span></code> are in <strong>nanoseconds</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Frequency = 1e9 / period
+Duty cycle = pulse / period × 100%
+
+Example pwm_sample 500000 250000:
+  Frequency = 1e9 / 500000 = 2000 Hz (2 kHz)
+  Duty cycle = 250000 / 500000 = 50%
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>Result<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>On success, <code class="docutils literal notranslate"><span class="pre">pwm_sample</span></code> prints the device, channel, period, and pulse. The waveform can be observed on P601.</p></li>
+<li><p>After <code class="docutils literal notranslate"><span class="pre">key_irq_sample</span></code> starts, every falling edge of the key toggles the green LED once.</p></li>
+</ul>
+<p>Terminal output of <code class="docutils literal notranslate"><span class="pre">pwm_sample</span> <span class="pre">500000</span> <span class="pre">250000</span></code>:</p>
+<p><img alt="PWM output" src="../../_images/gpt_run.png" /></p>
+<p>The 2 kHz / 50% PWM waveform observed on P601 with an oscilloscope:</p>
+<p><img alt="PWM scope waveform" src="../../_images/gpt_scope.png" /></p>
+</section>
+</section>
+<section id="sd-card-example">
+<h2>SD Card Example<a class="headerlink" href="#sd-card-example" title="Link to this heading"></a></h2>
+<section id="id7">
+<h3>Introduction<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>The SD card example is based on the <strong>RT-Thread DFS file system framework</strong> and the <strong>RA8 SDHI hardware module</strong>. It verifies that the <code class="docutils literal notranslate"><span class="pre">/sdcard</span></code> mount point can be properly created, written, read, and used to delete test files. SDHI communicates with SD/SDHC/SDXC cards via the SD bus, supporting 1-bit/4-bit data lines and DMA transfer.</p>
+</section>
+<section id="id8">
+<h3>Hardware Parameters<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Supported card types</strong></p></td>
+<td><p>SDSC / SDHC / SDXC</p></td>
+<td><p>Compatible with SD v1.x / v2.x</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Bus width</strong></p></td>
+<td><p>1-bit / 4-bit</p></td>
+<td><p>Project default: 1-bit</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Block size</strong></p></td>
+<td><p>512 Byte</p></td>
+<td><p>Standard block size</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Maximum clock</strong></p></td>
+<td><p>50 MHz SDCLK</p></td>
+<td><p>Depends on MCU clock configuration</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Operating voltage</strong></p></td>
+<td><p>3.3 V</p></td>
+<td><p>Some Micro SD cards support 1.8 V</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Error check</strong></p></td>
+<td><p>CRC7 (command) / CRC16 (data)</p></td>
+<td><p>Hardware auto check</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id9">
+<h3>Usage Steps<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Confirm the SD card is inserted and automatically mounted at <code class="docutils literal notranslate"><span class="pre">/sdcard</span></code> (handled by <code class="docutils literal notranslate"><span class="pre">BSP_USING_FS_AUTO_MOUNT</span></code> + <code class="docutils literal notranslate"><span class="pre">BSP_USING_SDCARD_FATFS</span></code>).</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">sdcard_sample</span></code> to perform one file read/write verification.</p></li>
+</ol>
+</section>
+<section id="id10">
+<h3>Key Code<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>The example source is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_sdcard.c</span></code>, using the standard POSIX <code class="docutils literal notranslate"><span class="pre">fopen/fputs/fgets/unlink</span></code> API.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">sdcard_sample</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">test_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/sdcard/test_sdcard.txt"</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">test_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"SD Card test data - Titan Mini Board"</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">read_buf</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+<span class="w">    </span><span class="cm">/* 1. Write test data */</span>
+<span class="w">    </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span><span class="w"> </span><span class="s">"w"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fp</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"failed to create test file: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">test_file</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">fputs</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* 2. Read back and verify */</span>
+<span class="w">    </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span><span class="w"> </span><span class="s">"r"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">read_buf</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">read_buf</span><span class="p">),</span><span class="w"> </span><span class="n">fp</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"failed to read test data</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* 3. Compare content */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">read_buf</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"sdcard data mismatch!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* 4. Cleanup */</span>
+<span class="w">    </span><span class="n">unlink</span><span class="p">(</span><span class="n">test_file</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"sdcard sample passed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">sdcard_sample</span><span class="p">,</span><span class="w"> </span><span class="n">sdcard</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="n">write</span><span class="w"> </span><span class="n">sample</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h3>Result<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>On success, the example writes, reads, verifies, and deletes the test file, then prints <code class="docutils literal notranslate"><span class="pre">sdcard</span> <span class="pre">sample</span> <span class="pre">passed</span></code>.</p></li>
+<li><p>On mount failure, write failure, or data mismatch, the corresponding cause is printed (<code class="docutils literal notranslate"><span class="pre">failed</span> <span class="pre">to</span> <span class="pre">create/write/read</span></code> or <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">mismatch</span></code>).</p></li>
+</ul>
+<p>Terminal output after the SD card is mounted:</p>
+<p><img alt="SD card output" src="../../_images/sdcard_run.png" /></p>
+</section>
+</section>
+<section id="flash-file-system-example">
+<h2>Flash File System Example<a class="headerlink" href="#flash-file-system-example" title="Link to this heading"></a></h2>
+<section id="id12">
+<h3>Introduction<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<p>The Flash example is based on the <strong>RT-Thread DFS + FAL + LittleFS</strong> three-layer architecture. It verifies basic read/write capability on the on-board QSPI Flash (W25Q64) at the <code class="docutils literal notranslate"><span class="pre">/fal</span></code> mount point. The bottom layer uses the FAL abstraction layer to manage Flash partitions, and the file system uses power-loss-safe LittleFS.</p>
+</section>
+<section id="id13">
+<h3>Hardware Parameters<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Flash model</strong></p></td>
+<td><p>W25Q64</p></td>
+<td><p>On-board QSPI NOR Flash</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Capacity</strong></p></td>
+<td><p>8 MB (64 Mbit)</p></td>
+<td><p>4 KB sector / 64 KB block / 256 B page</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Interface</strong></p></td>
+<td><p>QSPI (Quad SPI)</p></td>
+<td><p>4-bit data line, up to 133 MHz</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Operating voltage</strong></p></td>
+<td><p>2.7 V – 3.6 V</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Endurance</strong></p></td>
+<td><p>~100k erase/program per sector</p></td>
+<td><p>~20-year data retention at room temperature</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Filesystem partition</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">filesystem</span></code> (1 MB)</p></td>
+<td><p>Defined by the FAL partition table</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="software-stack">
+<h3>Software Stack<a class="headerlink" href="#software-stack" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Application (flash_sample)
+    ↓
+DFS (DFS framework, provides fopen/fread/POSIX API)
+    ↓
+LittleFS (power-loss safe + wear leveling)
+    ↓
+FAL (Flash abstraction layer, manages partitions)
+    ↓
+W25Q64 QSPI driver → OSPI_B hardware
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h3>Usage Steps<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Confirm that FAL and LittleFS are enabled and automatically mounted at <code class="docutils literal notranslate"><span class="pre">/fal</span></code> (handled by <code class="docutils literal notranslate"><span class="pre">BSP_USING_FLASH_FS_AUTO_MOUNT</span></code>; on first mount failure it will automatically <code class="docutils literal notranslate"><span class="pre">dfs_mkfs(&quot;lfs&quot;,</span> <span class="pre">...)</span></code> to format).</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">flash_sample</span></code> to perform a small-file read/write verification.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">flash_speed_test</span></code> to perform a 64 KB write/read/delete bandwidth test.</p></li>
+</ol>
+</section>
+<section id="id15">
+<h3>Key Code<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<p>The example source is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_flash.c</span></code>. It provides two commands: <code class="docutils literal notranslate"><span class="pre">flash_sample</span></code> (functional verification) and <code class="docutils literal notranslate"><span class="pre">flash_speed_test</span></code> (bandwidth test).</p>
+<section id="functional-verification-flash-sample">
+<h4>Functional Verification (flash_sample)<a class="headerlink" href="#functional-verification-flash-sample" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">flash_sample</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">test_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/fal/test_flash.txt"</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">test_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Flash test data - Titan Mini Board"</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">read_buf</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+<span class="w">    </span><span class="cm">/* 1. Write test data */</span>
+<span class="w">    </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span><span class="w"> </span><span class="s">"w"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fp</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"failed to create test file: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">test_file</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">fputs</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* 2. Read back and verify */</span>
+<span class="w">    </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span><span class="w"> </span><span class="s">"r"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">read_buf</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">read_buf</span><span class="p">),</span><span class="w"> </span><span class="n">fp</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"failed to read test data</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* 3. Compare content */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">read_buf</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"flash data mismatch!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* 4. Cleanup */</span>
+<span class="w">    </span><span class="n">unlink</span><span class="p">(</span><span class="n">test_file</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"flash sample passed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">flash_sample</span><span class="p">,</span><span class="w"> </span><span class="n">flash</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="n">write</span><span class="w"> </span><span class="n">sample</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="bandwidth-test-flash-speed-test">
+<h4>Bandwidth Test (flash_speed_test)<a class="headerlink" href="#bandwidth-test-flash-speed-test" title="Link to this heading"></a></h4>
+<p>The DWT cycle counter is used to time the write, read, and delete operations on a 64 KB file and convert them to KB/s bandwidth. The read phase also performs data verification.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define FLASH_SPEED_TEST_SIZE   (64 * 1024)   </span><span class="cm">/* 64 KB test file */</span>
+<span class="cp">#define FLASH_SPEED_BUF_SIZE    4096          </span><span class="cm">/* single read/write block */</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">flash_speed_test</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* 1. Sequentially write 64 KB (4 KB per iteration), DWT-timed */</span>
+<span class="w">    </span><span class="n">dwt_init</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">"/fal/speed_test.bin"</span><span class="p">,</span><span class="w"> </span><span class="s">"wb"</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dwt_get_cycle</span><span class="p">();</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">total</span><span class="p">;</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">FLASH_SPEED_BUF_SIZE</span><span class="p">)</span>
+<span class="w">        </span><span class="n">fwrite</span><span class="p">(</span><span class="n">wr_buf</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">FLASH_SPEED_BUF_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fflush</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span><span class="w"> </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">flash_speed_report</span><span class="p">(</span><span class="s">"Write"</span><span class="p">,</span><span class="w"> </span><span class="n">dwt_get_cycle</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">total</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* 2. Sequential read + data verification, DWT-timed */</span>
+<span class="w">    </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="s">"/fal/speed_test.bin"</span><span class="p">,</span><span class="w"> </span><span class="s">"rb"</span><span class="p">);</span>
+<span class="w">    </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dwt_get_cycle</span><span class="p">();</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">total</span><span class="p">;</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">FLASH_SPEED_BUF_SIZE</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fread</span><span class="p">(</span><span class="n">rd_buf</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">FLASH_SPEED_BUF_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">memcmp</span><span class="p">(</span><span class="n">rd_buf</span><span class="p">,</span><span class="w"> </span><span class="n">wr_buf</span><span class="p">,</span><span class="w"> </span><span class="n">FLASH_SPEED_BUF_SIZE</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* verification failed */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">flash_speed_report</span><span class="p">(</span><span class="s">"Read"</span><span class="p">,</span><span class="w"> </span><span class="n">dwt_get_cycle</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">total</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* 3. Delete the file (corresponds to Flash erase), DWT-timed */</span>
+<span class="w">    </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dwt_get_cycle</span><span class="p">();</span>
+<span class="w">    </span><span class="n">unlink</span><span class="p">(</span><span class="s">"/fal/speed_test.bin"</span><span class="p">);</span>
+<span class="w">    </span><span class="n">flash_speed_report</span><span class="p">(</span><span class="s">"Erase"</span><span class="p">,</span><span class="w"> </span><span class="n">dwt_get_cycle</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">total</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">flash_speed_test</span><span class="p">,</span><span class="w"> </span><span class="n">flash</span><span class="w"> </span><span class="n">read</span><span class="o">/</span><span class="n">write</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="n">test</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Bandwidth conversion formula (same as SDRAM):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Elapsed</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="n">DWT</span> <span class="n">delta</span> <span class="o">/</span> <span class="n">SystemCoreClock</span>
+<span class="n">Bandwidth</span> <span class="p">(</span><span class="n">KB</span><span class="o">/</span><span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">test</span> <span class="nb">bytes</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">)</span> <span class="o">/</span> <span class="n">elapsed</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id16">
+<h3>Result<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flash_sample</span></code> prints <code class="docutils literal notranslate"><span class="pre">flash</span> <span class="pre">sample</span> <span class="pre">passed</span></code> on success; on failure it prints <code class="docutils literal notranslate"><span class="pre">failed</span> <span class="pre">to</span> <span class="pre">create/write/read</span></code> or <code class="docutils literal notranslate"><span class="pre">flash</span> <span class="pre">data</span> <span class="pre">mismatch!</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flash_speed_test</span></code> reports <code class="docutils literal notranslate"><span class="pre">Write</span></code>, <code class="docutils literal notranslate"><span class="pre">Read</span></code>, and <code class="docutils literal notranslate"><span class="pre">Erase</span></code> bandwidth (KB/s) and elapsed time (ms), and verifies data during the read phase.</p></li>
+</ul>
+<blockquote>
+<div><p>Flash must be erased before writing and must be aligned to sector/page boundaries. LittleFS automatically handles wear leveling and power-loss protection; the application layer simply uses POSIX interfaces.</p>
+</div></blockquote>
+<p>Terminal output after the Flash file system is mounted:</p>
+<p><img alt="Flash output" src="../../_images/flash_run.png" /></p>
+</section>
+</section>
+<section id="sdram-example">
+<h2>SDRAM Example<a class="headerlink" href="#sdram-example" title="Link to this heading"></a></h2>
+<section id="id17">
+<h3>Introduction<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<p>The SDRAM example is based on the <strong>RA8P1 SDRAMC controller</strong>. It verifies that the external 64 MB SDRAM is readable/writable and uses the DWT cycle counter to report write, read, and <code class="docutils literal notranslate"><span class="pre">memcpy</span></code> bandwidth.</p>
+</section>
+<section id="id18">
+<h3>Hardware Parameters<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Capacity</strong></p></td>
+<td><p>64 MB (256 Mbit)</p></td>
+<td><p>4 banks × 4 M × 32 bit</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Data width</strong></p></td>
+<td><p>32 bit</p></td>
+<td><p>High-throughput data transfer</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Base address</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x68000000</span></code></p></td>
+<td><p>Access range 0x68000000 – 0x68FFFFFF</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Operating voltage</strong></p></td>
+<td><p>3.3 V</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>CAS latency</strong></p></td>
+<td><p>CL3</p></td>
+<td><p>Programmable timing</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Refresh</strong></p></td>
+<td><p>Auto refresh</p></td>
+<td><p>Built into SDRAMC, ensures data integrity</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id19">
+<h3>Usage Steps<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">sdram_speed_test</span></code> to perform one SDRAM speed test.</p></li>
+</ol>
+</section>
+<section id="id20">
+<h3>Key Code<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<p>The example source is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_sdram.c</span></code>. It uses the DWT cycle counter for nanosecond-level timing.</p>
+<section id="memory-mapping-and-timing-helpers">
+<h4>Memory Mapping and Timing Helpers<a class="headerlink" href="#memory-mapping-and-timing-helpers" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define SDRAM_TEST_WORDS   (8 * 1024 * 1024)             </span><span class="c1">// 8 M words = 32 MB</span>
+<span class="cp">#define SDRAM_BASE_ADDR    (0x68000000)</span>
+
+<span class="k">static</span><span class="w"> </span><span class="k">volatile</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="n">sdram_buf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">SDRAM_BASE_ADDR</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dwt_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">CoreDebug</span><span class="o">-&gt;</span><span class="n">DEMCR</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">CoreDebug_DEMCR_TRCENA_Msk</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DWT</span><span class="o">-&gt;</span><span class="n">CYCCNT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DWT</span><span class="o">-&gt;</span><span class="n">CTRL</span><span class="w">  </span><span class="o">|=</span><span class="w"> </span><span class="n">DWT_CTRL_CYCCNTENA_Msk</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id21">
+<h3>Result<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The terminal prints the test capacity, CPU frequency, and <code class="docutils literal notranslate"><span class="pre">Write</span></code>, <code class="docutils literal notranslate"><span class="pre">Read</span></code>, and <code class="docutils literal notranslate"><span class="pre">memcpy</span></code> bandwidth results (MB/s and ms).</p></li>
+<li><p>If a read-back verification mismatch occurs, it prints the error address and the expected/actual values (<code class="docutils literal notranslate"><span class="pre">expect_low16</span></code> / <code class="docutils literal notranslate"><span class="pre">actual_low16</span></code>).</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">sdram_speed_test</span></code> output:</p>
+<p><img alt="SDRAM speed test" src="../../_images/sdram_run.png" /></p>
+</section>
+</section>
+<section id="adc-example">
+<h2>ADC Example<a class="headerlink" href="#adc-example" title="Link to this heading"></a></h2>
+<section id="id22">
+<h3>Introduction<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<p>The ADC example is based on the <strong>RT-Thread ADC device driver framework</strong>. It verifies that channel 0 of <code class="docutils literal notranslate"><span class="pre">adc0</span></code> on the RA8P1 can sample correctly and converts the raw value to a voltage. The example also adds <strong>invalid-value detection</strong> and <strong>near-full-scale warning</strong> logic to avoid mistaking inputs above the reference voltage for valid samples.</p>
+</section>
+<section id="id23">
+<h3>Hardware Parameters<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Resolution</strong></p></td>
+<td><p>16 bit</p></td>
+<td><p>Raw value range 0 – 65535</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Reference voltage</strong></p></td>
+<td><p>3.3 V</p></td>
+<td><p>Expressed in code as <code class="docutils literal notranslate"><span class="pre">330</span></code> (3.30 V × 100, fixed-point)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Sample channel</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">adc0</span></code> channel 0</p></td>
+<td><p>Single-ended input, range 0 V – 3.3 V</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Trigger</strong></p></td>
+<td><p>Software trigger</p></td>
+<td><p>Periodic sampling via <code class="docutils literal notranslate"><span class="pre">rt_adc_read</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>⚠️ <strong>Important</strong>: The input voltage must be below the reference voltage Vref. Applying 3.3 V directly may trigger a full-scale warning or overflow message.</p>
+</div></blockquote>
+</section>
+<section id="id24">
+<h3>Usage Steps<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Connect the analog voltage under test to the corresponding ADC channel (input should be below Vref).</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">adc_sample</span></code> to start the continuous sampling thread, which outputs the raw value and converted voltage once per second.</p></li>
+</ol>
+</section>
+<section id="id25">
+<h3>Key Code<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<p>The example source is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_adc.c</span></code>. The core logic is shown below.</p>
+<section id="voltage-conversion-constants">
+<h4>Voltage Conversion Constants<a class="headerlink" href="#voltage-conversion-constants" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define ADC_DEV_NAME        "adc0"</span>
+<span class="cp">#define ADC_DEV_CHANNEL     0</span>
+<span class="cp">#define REFER_VOLTAGE       330              </span><span class="c1">// 3.30 V × 100, fixed-point with 2 decimals</span>
+<span class="cp">#define CONVERT_BITS        (1 &lt;&lt; 16)        </span><span class="c1">// 16-bit resolution</span>
+<span class="cp">#define ADC_INVALID_VALUE   0xFFFF           </span><span class="c1">// ADC overrange marker</span>
+<span class="cp">#define ADC_WARN_THRESHOLD  (CONVERT_BITS * 95 / 100)  </span><span class="c1">// 95% full-scale warning threshold</span>
+</pre></div>
+</div>
+</section>
+<section id="sampling-thread-main-loop">
+<h4>Sampling Thread Main Loop<a class="headerlink" href="#sampling-thread-main-loop" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">adc_vol_sample</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">parameter</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_adc_device_t</span><span class="w"> </span><span class="n">adc_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">rt_adc_device_t</span><span class="p">)</span><span class="n">rt_device_find</span><span class="p">(</span><span class="n">ADC_DEV_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">adc_dev</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"adc sample run failed! can't find %s device!</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_DEV_NAME</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rt_adc_enable</span><span class="p">(</span><span class="n">adc_dev</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_DEV_CHANNEL</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"adc enable failed! channel = %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_DEV_CHANNEL</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_uint32_t</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_adc_read</span><span class="p">(</span><span class="n">adc_dev</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_DEV_CHANNEL</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ADC_INVALID_VALUE</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"adc overrange: input is too high, please keep it below Vref.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rt_uint32_t</span><span class="w"> </span><span class="n">vol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">REFER_VOLTAGE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CONVERT_BITS</span><span class="p">;</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"the value is :%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">ADC_WARN_THRESHOLD</span><span class="p">)</span>
+<span class="w">                </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"warning: near full scale, the voltage is :%d.%02d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">vol</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">vol</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">            </span><span class="k">else</span>
+<span class="w">                </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"the voltage is :%d.%02d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">vol</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">vol</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="command-export">
+<h4>Command Export<a class="headerlink" href="#command-export" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">adc_sample</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_thread_t</span><span class="w"> </span><span class="n">adc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_thread_create</span><span class="p">(</span><span class="s">"adc"</span><span class="p">,</span><span class="w"> </span><span class="n">adc_vol_sample</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">adc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"create adc thread failed!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">rt_thread_startup</span><span class="p">(</span><span class="n">adc</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">adc_sample</span><span class="p">,</span><span class="w"> </span><span class="n">adc</span><span class="w"> </span><span class="n">sample</span><span class="w"> </span><span class="n">demo</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="voltage-conversion">
+<h3>Voltage Conversion<a class="headerlink" href="#voltage-conversion" title="Link to this heading"></a></h3>
+<p>Fixed-point arithmetic is used to avoid floating-point overhead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Voltage (mV) = ADC reading × Reference voltage (mV) / Conversion bits
+             = value × 3300 / 65536
+
+In code: vol = value * 330 / 65536   (unit is 0.01 V)
+Display: vol / 100  -&gt; integer part (V)
+         vol % 100  -&gt; fractional part (0.01 V)
+</pre></div>
+</div>
+<p>For example, when <code class="docutils literal notranslate"><span class="pre">value</span> <span class="pre">=</span> <span class="pre">32768</span></code>, <code class="docutils literal notranslate"><span class="pre">vol</span> <span class="pre">≈</span> <span class="pre">165</span></code>, the output is <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">voltage</span> <span class="pre">is</span> <span class="pre">:1.65</span></code>.</p>
+</section>
+<section id="id26">
+<h3>Result<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">adc_sample</span></code> periodically prints the raw sample value and the converted voltage.</p></li>
+<li><p>When the reading is <code class="docutils literal notranslate"><span class="pre">0xFFFF</span></code>, it reports <code class="docutils literal notranslate"><span class="pre">adc</span> <span class="pre">overrange</span></code> — the input is over range.</p></li>
+<li><p>When the reading approaches full scale (≥ 95%), it outputs <code class="docutils literal notranslate"><span class="pre">warning:</span> <span class="pre">near</span> <span class="pre">full</span> <span class="pre">scale</span></code>.</p></li>
+</ul>
+<p>When testing, you can use a jumper wire to connect 3.3 V to the ADC pin for verification:</p>
+<p><img alt="ADC wiring" src="../../_images/adc_connection.png" /></p>
+<p>Terminal sampling output after running <code class="docutils literal notranslate"><span class="pre">adc_sample</span></code>:</p>
+<p><img alt="ADC output" src="../../_images/adc_run.png" /></p>
+</section>
+</section>
+<section id="spi-example">
+<h2>SPI Example<a class="headerlink" href="#spi-example" title="Link to this heading"></a></h2>
+<section id="id27">
+<h3>Introduction<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<p>The SPI example is based on the <strong>RT-Thread SPI device driver framework</strong>. It performs a loopback test on the <code class="docutils literal notranslate"><span class="pre">spi1</span></code> bus, defaulting to 1 MHz, Mode 0, 8-bit data width. MOSI and MISO must be shorted before running the test.</p>
+</section>
+<section id="id28">
+<h3>Hardware Parameters<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>SPI bus</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">spi1</span></code></p></td>
+<td><p>RA8 hardware SPI</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Attached device</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">spi10</span></code></p></td>
+<td><p>Created via <code class="docutils literal notranslate"><span class="pre">rt_hw_spi_device_attach</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Data width</strong></p></td>
+<td><p>8 bit</p></td>
+<td><p>Configurable 1–16 bit</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Maximum clock</strong></p></td>
+<td><p>25 MHz (depends on system clock)</p></td>
+<td><p>Example uses 1 MHz</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Mode</strong></p></td>
+<td><p>Mode 0 (CPOL=0, CPHA=0)</p></td>
+<td><p>Master + MSB first</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Chip select</strong></p></td>
+<td><p>Software (<code class="docutils literal notranslate"><span class="pre">RT_SPI_NO_CS</span></code>)</p></td>
+<td><p>No CS needed for loopback</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>MOSI/MISO</strong></p></td>
+<td><p>P708 / P709</p></td>
+<td><p>Raspberry Pi expansion header</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id29">
+<h3>Usage Steps<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Short P708 (MOSI) and P709 (MISO) as required by the wiring.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">spi_loop_test</span></code> to run the basic SPI loopback example.</p></li>
+</ol>
+</section>
+<section id="id30">
+<h3>Key Code<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<p>The example source is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_spi.c</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define SPI_BUS_NAME        "spi1"</span>
+<span class="cp">#define SPI_NAME            "spi10"</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">spi_loop_test</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">sendbuf</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">readbuf</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+
+<span class="w">    </span><span class="cm">/* 1. Prepare test data 0x00 ~ 0xFF cyclic */</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">sendbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">)</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* 2. Attach SPI device and configure */</span>
+<span class="w">    </span><span class="n">rt_hw_spi_device_attach</span><span class="p">(</span><span class="n">SPI_BUS_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">SPI_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_spi_configuration</span><span class="w"> </span><span class="n">cfg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">.</span><span class="n">data_width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">        </span><span class="p">.</span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_SPI_MASTER</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RT_SPI_MODE_0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RT_SPI_MSB</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RT_SPI_NO_CS</span><span class="p">,</span>
+<span class="w">        </span><span class="p">.</span><span class="n">max_hz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">                 </span><span class="c1">// 1 MHz</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_spi_device</span><span class="w"> </span><span class="o">*</span><span class="n">spi_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_spi_device</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">rt_device_find</span><span class="p">(</span><span class="n">SPI_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_spi_configure</span><span class="p">(</span><span class="n">spi_dev</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">);</span>
+
+<span class="w">    </span><span class="cm">/* 3. Full-duplex transfer + byte-by-byte compare */</span>
+<span class="w">    </span><span class="n">rt_spi_transfer</span><span class="p">(</span><span class="n">spi_dev</span><span class="p">,</span><span class="w"> </span><span class="n">sendbuf</span><span class="p">,</span><span class="w"> </span><span class="n">readbuf</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">));</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">readbuf</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">readbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">sendbuf</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"SPI test fail!!!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"</span><span class="se">\n\n</span><span class="s">SPI test end</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">spi_loop_test</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">spi1</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id31">
+<h3>Result<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">spi_loop_test</span></code> prints the contents of the send and receive buffers. When all bytes match, it outputs <code class="docutils literal notranslate"><span class="pre">SPI</span> <span class="pre">test</span> <span class="pre">end</span></code>.</p></li>
+</ul>
+<p>Wiring point for shorting P708 (MOSI) and P709 (MISO) to form the loopback:</p>
+<p><img alt="SPI wiring" src="../../_images/spi_connection.png" /></p>
+<p>Terminal output after running <code class="docutils literal notranslate"><span class="pre">spi_loop_test</span></code>:</p>
+<p><img alt="SPI output" src="../../_images/spi_run.png" /></p>
+</section>
+</section>
+<section id="canfd-example">
+<h2>CANFD Example<a class="headerlink" href="#canfd-example" title="Link to this heading"></a></h2>
+<section id="id32">
+<h3>Introduction<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<p>The CANFD example is based on the <strong>RT-Thread CAN device driver framework</strong> and the <strong>RA8P1 CANFD controller</strong>. It uses an interrupt-driven + semaphore mechanism to implement asynchronous transmit/receive. The <code class="docutils literal notranslate"><span class="pre">canfd_test</span></code> command spawns independent TX/RX threads that continuously send and receive CAN frames.</p>
+</section>
+<section id="id33">
+<h3>Hardware Parameters<a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>CANFD channel</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">canfd0</span></code></p></td>
+<td><p>RA8P1 has 2 independent CANFD channels</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Arbitration bitrate</strong></p></td>
+<td><p>Up to 1 Mbps</p></td>
+<td><p>Classic CAN compatible</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Data bitrate</strong></p></td>
+<td><p>Up to 8 Mbps</p></td>
+<td><p>CANFD high-speed segment</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Frame ID</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x78</span></code> (standard frame)</p></td>
+<td><p>8-byte data <code class="docutils literal notranslate"><span class="pre">0x00~0x07</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>TX buffers</strong></p></td>
+<td><p>16 per channel</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>RX FIFOs</strong></p></td>
+<td><p>2 per channel</p></td>
+<td><p>Interrupt + semaphore notification</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Filters</strong></p></td>
+<td><p>16 rules per channel</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Error check</strong></p></td>
+<td><p>CRC17 / CRC21</p></td>
+<td><p>Enhanced CRC</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id34">
+<h3>Usage Steps<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">canfd_test</span></code> to start the TX/RX threads (after startup, one 8-byte frame with ID <code class="docutils literal notranslate"><span class="pre">0x78</span></code> is sent every second).</p></li>
+<li><p>To interface with an external node, prepare a bus loopback or a peer CAN device to observe received data.</p></li>
+</ol>
+</section>
+<section id="id35">
+<h3>Key Code<a class="headerlink" href="#id35" title="Link to this heading"></a></h3>
+<p>The example source is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_canfd.c</span></code>. It uses interrupt reception + a semaphore to wake the receive thread.</p>
+<section id="rx-callback-and-rx-thread">
+<h4>RX Callback and RX Thread<a class="headerlink" href="#rx-callback-and-rx-thread" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_semaphore</span><span class="w"> </span><span class="n">g_can_rx_sem</span><span class="p">;</span>
+
+<span class="k">static</span><span class="w"> </span><span class="n">rt_err_t</span><span class="w"> </span><span class="nf">can_rx_indicate</span><span class="p">(</span><span class="n">rt_device_t</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">rt_size_t</span><span class="w"> </span><span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_sem_release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_can_rx_sem</span><span class="p">);</span><span class="w">          </span><span class="c1">// release semaphore in ISR to wake RX thread</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">can_rx_thread</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">parameter</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_can_msg</span><span class="w"> </span><span class="n">rxmsg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">rt_device_set_rx_indicate</span><span class="p">(</span><span class="n">g_can_dev</span><span class="p">,</span><span class="w"> </span><span class="n">can_rx_indicate</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rxmsg</span><span class="p">.</span><span class="n">hdrindex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">rt_sem_take</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_can_rx_sem</span><span class="p">,</span><span class="w"> </span><span class="n">RT_WAITING_FOREVER</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rt_device_read</span><span class="p">(</span><span class="n">g_can_dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rxmsg</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">rxmsg</span><span class="p">))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"ID:%x message:"</span><span class="p">,</span><span class="w"> </span><span class="n">rxmsg</span><span class="p">.</span><span class="n">id</span><span class="p">);</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">rt_uint8_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">rxmsg</span><span class="p">.</span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">                </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"%d "</span><span class="p">,</span><span class="w"> </span><span class="n">rxmsg</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="tx-thread-and-initialization">
+<h4>TX Thread and Initialization<a class="headerlink" href="#tx-thread-and-initialization" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">can_tx_thread</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">parameter</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_can_msg</span><span class="w"> </span><span class="n">txmsg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">txmsg</span><span class="p">.</span><span class="n">id</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mh">0x78</span><span class="p">;</span>
+<span class="w">    </span><span class="n">txmsg</span><span class="p">.</span><span class="n">ide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_CAN_STDID</span><span class="p">;</span><span class="w">       </span><span class="c1">// standard frame</span>
+<span class="w">    </span><span class="n">txmsg</span><span class="p">.</span><span class="n">rtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_CAN_DTR</span><span class="p">;</span><span class="w">         </span><span class="c1">// data frame</span>
+<span class="w">    </span><span class="n">txmsg</span><span class="p">.</span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">rt_uint8_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">txmsg</span><span class="p">.</span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="n">txmsg</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">rt_device_write</span><span class="p">(</span><span class="n">g_can_dev</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">txmsg</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">txmsg</span><span class="p">));</span><span class="w">   </span><span class="c1">// send one frame per second</span>
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">canfd_test</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">rt_sem_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">g_can_rx_sem</span><span class="p">,</span><span class="w"> </span><span class="s">"canrx"</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">RT_IPC_FLAG_FIFO</span><span class="p">);</span>
+<span class="w">    </span><span class="n">g_can_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_device_find</span><span class="p">(</span><span class="s">"canfd0"</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_device_open</span><span class="p">(</span><span class="n">g_can_dev</span><span class="p">,</span><span class="w"> </span><span class="n">RT_DEVICE_FLAG_INT_TX</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RT_DEVICE_FLAG_INT_RX</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">rt_thread_startup</span><span class="p">(</span><span class="n">rt_thread_create</span><span class="p">(</span><span class="s">"can_rx"</span><span class="p">,</span><span class="w"> </span><span class="n">can_rx_thread</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">));</span>
+<span class="w">    </span><span class="n">rt_thread_startup</span><span class="p">(</span><span class="n">rt_thread_create</span><span class="p">(</span><span class="s">"can_tx"</span><span class="p">,</span><span class="w"> </span><span class="n">can_tx_thread</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">));</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">canfd_test</span><span class="p">,</span><span class="w"> </span><span class="n">canfd</span><span class="w"> </span><span class="n">test</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id36">
+<h3>Result<a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>After <code class="docutils literal notranslate"><span class="pre">canfd_test</span></code> starts, it periodically prints <code class="docutils literal notranslate"><span class="pre">canfd</span> <span class="pre">tx</span> <span class="pre">ok</span></code>, and prints <code class="docutils literal notranslate"><span class="pre">ID:&lt;id&gt;</span> <span class="pre">message:&lt;data...&gt;</span></code> when a frame is received.</p></li>
+</ul>
+<p>CAN connector location on the board (note: CAN_H / CAN_L must not be swapped):</p>
+<p><img alt="CANFD connector" src="../../_images/canfd_connection.png" /></p>
+<p>Terminal TX/RX output after running <code class="docutils literal notranslate"><span class="pre">canfd_test</span></code>:</p>
+<p><img alt="CANFD output" src="../../_images/canfd_run.png" /></p>
+</section>
+</section>
+<section id="i2c-example">
+<h2>I2C Example<a class="headerlink" href="#i2c-example" title="Link to this heading"></a></h2>
+<section id="id37">
+<h3>Introduction<a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<p>The I2C example is based on the <strong>RT-Thread I2C device driver framework</strong>. It reads the on-board <strong>LSM6DS3TR-C</strong> 6-axis IMU sensor (accelerometer + gyroscope + temperature) via the on-board software I2C bus <code class="docutils literal notranslate"><span class="pre">i2c1</span></code>, and prints the parsed physical quantities along with a static attitude estimate — a complete I2C sensor read-out example.</p>
+</section>
+<section id="id38">
+<h3>Hardware Parameters<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>I2C bus</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">i2c1</span></code></p></td>
+<td><p>On-board software I2C (SCL=PIN1292, SDA=PIN1291)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Target device</strong></p></td>
+<td><p>LSM6DS3TR-C</p></td>
+<td><p>On-board 6-axis IMU</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Device address</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x6A</span></code></p></td>
+<td><p>7-bit address, WHO_AM_I=0x6A</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Accel full scale</strong></p></td>
+<td><p>±2g</p></td>
+<td><p>ODR 12.5 Hz, 1 LSB ≈ 0.061 mg</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Gyro full scale</strong></p></td>
+<td><p>±2000 dps</p></td>
+<td><p>ODR 12.5 Hz, 1 LSB ≈ 70 mdps</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Temperature precision</strong></p></td>
+<td><p>0.0625 ℃ / LSB</p></td>
+<td><p>Offset 25 ℃</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id39">
+<h3>Usage Steps<a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Confirm that the on-board LSM6DS3TR-C IMU is wired to <code class="docutils literal notranslate"><span class="pre">i2c1</span></code> (SDA/SCL/GND/VCC; the dev board is shipped pre-connected).</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">i2c_sample</span></code>. It will automatically perform: device probe → register configuration → one-shot data acquisition → parsing and printing.</p></li>
+</ol>
+</section>
+<section id="id40">
+<h3>Key Code<a class="headerlink" href="#id40" title="Link to this heading"></a></h3>
+<p>The example source is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_i2c.c</span></code>. The core flow is: first verify WHO_AM_I, then configure the CTRL1_XL / CTRL2_G / CTRL3_C registers, and finally read STATUS_REG to check data-ready and combine 6 bytes of acceleration / 6 bytes of angular rate / 2 bytes of temperature in little-endian order.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define I2C_BUS_NAME            "i2c1"</span>
+<span class="cp">#define LSM6DS3TR_C_I2C_ADDR    0x6A</span>
+<span class="cp">#define LSM6DS3TR_C_WHO_AM_I    0x0F</span>
+
+<span class="cm">/* Register read: write register address first, then read N bytes (auto-increment) */</span>
+<span class="k">static</span><span class="w"> </span><span class="n">rt_err_t</span><span class="w"> </span><span class="nf">imu_reg_read</span><span class="p">(</span><span class="n">rt_uint8_t</span><span class="w"> </span><span class="n">reg</span><span class="p">,</span><span class="w"> </span><span class="n">rt_uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">rt_uint16_t</span><span class="w"> </span><span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_i2c_msg</span><span class="w"> </span><span class="n">msgs</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">addr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">LSM6DS3TR_C_I2C_ADDR</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_I2C_WR</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">buf</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">reg</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">len</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">addr</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">LSM6DS3TR_C_I2C_ADDR</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_I2C_RD</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">buf</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">;</span>
+<span class="w">    </span><span class="n">msgs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">len</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rt_i2c_transfer</span><span class="p">(</span><span class="n">i2c_bus</span><span class="p">,</span><span class="w"> </span><span class="n">msgs</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">RT_ERROR</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">i2c_sample</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">imu_init</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">)</span><span class="w">              </span><span class="cm">/* WHO_AM_I check + configure CTRL1/2/3 */</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="n">imu_read_and_print</span><span class="p">();</span><span class="w">                  </span><span class="cm">/* read accel/gyro/temp and print */</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">i2c_sample</span><span class="p">,</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="n">LSM6DS3TR</span><span class="o">-</span><span class="n">C</span><span class="w"> </span><span class="n">IMU</span><span class="w"> </span><span class="n">sensor</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">i2c1</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id41">
+<h3>Result<a class="headerlink" href="#id41" title="Link to this heading"></a></h3>
+<p>On success, a complete IMU sample is printed, including acceleration (mg), angular rate (dps), temperature (℃), and the pitch / roll estimated from the gravity direction:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[I/i2c.imu] LSM6DS3TR-C detected, WHO_AM_I=0x6A
+[I/i2c.imu] IMU configured: ODR=12.5Hz, accel ±2g, gyro ±2000dps
+------ LSM6DS3TR-C IMU Sample ------
+Accel  (mg) : X=   -8.5  Y=   12.3  Z= 1003.4  | |a|= 1003.5
+Gyro   (dps): X=   0.12  Y=   -0.05  Z=   0.08  | |w|=   0.15
+Temp   (C)  :   28.50
+Tilt   (deg): pitch=  -0.49  roll=   0.70  (static estimate)
+------------------------------------
+</pre></div>
+</div>
+<p>On failure, possible messages:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cannot</span> <span class="pre">find</span> <span class="pre">i2c</span> <span class="pre">bus</span> <span class="pre">i2c1</span></code>: software I2C bus not registered (check <code class="docutils literal notranslate"><span class="pre">RT_USING_SOFT_I2C1</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IMU</span> <span class="pre">not</span> <span class="pre">found,</span> <span class="pre">WHO_AM_I=0xXX</span></code>: sensor did not respond or address mismatch; check wiring / power.</p></li>
+</ul>
+<p><img alt="I2C IMU output" src="../../_images/i2c_imu_run.png" /></p>
+</section>
+</section>
+<section id="watchdog-example">
+<h2>Watchdog Example<a class="headerlink" href="#watchdog-example" title="Link to this heading"></a></h2>
+<section id="id42">
+<h3>Introduction<a class="headerlink" href="#id42" title="Link to this heading"></a></h3>
+<p>The Watchdog example is based on the <strong>RT-Thread watchdog device framework</strong> and the <strong>RA8P1 WDT hardware</strong>. It verifies that the <code class="docutils literal notranslate"><span class="pre">wdt</span></code> device can start correctly, and uses an independent thread to simulate the scenario of “feeding the dog normally 10 times, then stopping” to demonstrate the watchdog timeout reset mechanism.</p>
+</section>
+<section id="id43">
+<h3>Hardware Parameters<a class="headerlink" href="#id43" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Specification</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>WDT device</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wdt</span></code></p></td>
+<td><p>RA8P1 on-chip independent watchdog</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Independent operation</strong></p></td>
+<td><p>Yes</p></td>
+<td><p>Still counts when CPU is halted</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Timeout</strong></p></td>
+<td><p>128/512/…/16384 cycles</p></td>
+<td><p>Configurable via FSP</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Clock divider</strong></p></td>
+<td><p>1/4/16/…/8192</p></td>
+<td><p>Multiple options</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Reset mode</strong></p></td>
+<td><p>Reset mode / NMI mode</p></td>
+<td><p>Reset mode auto restarts</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Feed method</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RT_DEVICE_CTRL_WDT_KEEPALIVE</span></code></p></td>
+<td><p>Software control command</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Feed interval</strong></p></td>
+<td><p>1000 ms</p></td>
+<td><p>Defined by <code class="docutils literal notranslate"><span class="pre">WDT_FEED_INTERVAL</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id44">
+<h3>Usage Steps<a class="headerlink" href="#id44" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">wdt_sample</span></code> to start the watchdog example.</p></li>
+<li><p>Observe the first 10 feed logs (once per second).</p></li>
+<li><p>From the 11th iteration feeding stops. Keep the terminal connected and observe the system reset.</p></li>
+</ol>
+</section>
+<section id="id45">
+<h3>Key Code<a class="headerlink" href="#id45" title="Link to this heading"></a></h3>
+<p>The example source is in <code class="docutils literal notranslate"><span class="pre">src/rt_example_wdt.c</span></code>.</p>
+<section id="feed-thread-feed-for-the-first-10-times-then-stop">
+<h4>Feed Thread (feed for the first 10 times, then stop)<a class="headerlink" href="#feed-thread-feed-for-the-first-10-times-then-stop" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#define WDT_FEED_INTERVAL   1000</span>
+
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">feed_dog_entry</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">parameter</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rt_device_control</span><span class="p">(</span><span class="n">g_wdt_dev</span><span class="p">,</span><span class="w"> </span><span class="n">RT_DEVICE_CTRL_WDT_KEEPALIVE</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">);</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"[FeedDog] Feeding watchdog... %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"[FeedDog] Simulate exception! Stop feeding.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">rt_thread_mdelay</span><span class="p">(</span><span class="n">WDT_FEED_INTERVAL</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="start-watchdog-and-feed-thread">
+<h4>Start Watchdog and Feed Thread<a class="headerlink" href="#start-watchdog-and-feed-thread" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">wdt_sample</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">g_wdt_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_device_find</span><span class="p">(</span><span class="s">"wdt"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">g_wdt_dev</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"cannot find wdt device!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">RT_ERROR</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rt_device_control</span><span class="p">(</span><span class="n">g_wdt_dev</span><span class="p">,</span><span class="w"> </span><span class="n">RT_DEVICE_CTRL_WDT_START</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"start watchdog failed!</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">RT_ERROR</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">g_feed_thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rt_thread_create</span><span class="p">(</span><span class="s">"feed_dog"</span><span class="p">,</span><span class="w"> </span><span class="n">feed_dog_entry</span><span class="p">,</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_thread_startup</span><span class="p">(</span><span class="n">g_feed_thread</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">"watchdog sample started</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RT_EOK</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">MSH_CMD_EXPORT</span><span class="p">(</span><span class="n">wdt_sample</span><span class="p">,</span><span class="w"> </span><span class="n">wdt_sample</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id46">
+<h3>Result<a class="headerlink" href="#id46" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>On startup it prints <code class="docutils literal notranslate"><span class="pre">watchdog</span> <span class="pre">sample</span> <span class="pre">started</span></code>.</p></li>
+<li><p>For the first 10 iterations it prints <code class="docutils literal notranslate"><span class="pre">[FeedDog]</span> <span class="pre">Feeding</span> <span class="pre">watchdog...</span> <span class="pre">&lt;n&gt;</span></code> once per second.</p></li>
+<li><p>After that it keeps printing <code class="docutils literal notranslate"><span class="pre">[FeedDog]</span> <span class="pre">Simulate</span> <span class="pre">exception!</span> <span class="pre">Stop</span> <span class="pre">feeding.</span></code>. If the WDT is configured in reset mode, the system will automatically reset after timeout.</p></li>
+</ul>
+<p>Feed and stop-feed output after running <code class="docutils literal notranslate"><span class="pre">wdt_sample</span></code>:</p>
+<p><img alt="Watchdog output" src="../../_images/wdt_run.png" /></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Titan_Mini_driver_eth/README.html" class="btn btn-neutral float-left" title="Ethernet Example Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../multimedia/index.html" class="btn btn-neutral float-right" title="Multimedia Display" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Copyright (c) 2006-2025, RT-Thread Development Team.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>Titan-Board-Mini SDK</strong>
+        <span class="sdk-footer__sep">•</span> 版本：1.2.0
+      </div>
+      <div class="sdk-footer__right">
+        构建时间：<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>
