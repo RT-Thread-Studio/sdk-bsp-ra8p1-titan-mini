@@ -27,7 +27,7 @@ IDE 板型标识为 AE3，固件和引脚定义均采用本工程的 RA8P1 配�
 
 接线、烧录和自启动操作见 [上手指南](docs/getting_started.md)。`firmware/` 仅存放 HEX 和视觉 BIN；从源码生成这两个文件的步骤见 [编译与验证](docs/development.md)。
 
-配置好工具链后，在工程目录执行 `scons -j8` 即可编译并自动生成 `firmware/` 中的发布文件，无需手工运行额外的生成或打包脚本。
+在 RT-Thread Studio 中创建工程后直接点击 **Build**，使用 GNU Make 托管构建，自动完成代码生成、编译和固件打包。也可在配置好 Python 3 和工具链的 Env 中执行 `scons -j8`。两种方式都输出配套的 `firmware/` 发布文件，详见[编译说明](docs/development.md)。
 
 也可从 GitHub Actions 的 **OpenMV Firmware** 工作流下载 SD / Flash 配置的预编译固件，操作见 [CI 固件下载](docs/development.md#github-ci-与固件下载)。
 

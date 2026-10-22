@@ -1,28 +1,65 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <projectDescription>
-    <name>Titan_Mini_Openmv</name>
-    <comment></comment>
-    <projects>
+  <name>Titan_Mini_Openmv</name>
+  <comment />
+  <projects>
     </projects>
-    <buildSpec>
-        <buildCommand>
-            <name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
-            <triggers>clean,full,incremental,</triggers>
-            <arguments>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
+      <triggers>clean,full,incremental,</triggers>
+      <arguments>
             </arguments>
-        </buildCommand>
-        <buildCommand>
-            <name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
-            <triggers>full,incremental,</triggers>
-            <arguments>
+    </buildCommand>
+    <buildCommand>
+      <name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
+      <triggers>full,incremental,</triggers>
+      <arguments>
             </arguments>
-        </buildCommand>
-    </buildSpec>
-    <natures>
-        <nature>org.eclipse.cdt.core.cnature</nature>
-        <nature>org.eclipse.cdt.core.ccnature</nature>
-        <nature>org.rt-thread.studio.rttnature</nature>
-        <nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
-        <nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
-    </natures>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.cdt.core.cnature</nature>
+    <nature>org.eclipse.cdt.core.ccnature</nature>
+    <nature>org.rt-thread.studio.rttnature</nature>
+    <nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
+    <nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
+  </natures>
+  <linkedResources>
+    <link>
+      <name>rt-thread</name>
+      <type>2</type>
+      <locationURI>PARENT-2-PROJECT_LOC/rt-thread</locationURI>
+    </link>
+    <link>
+      <name>libraries</name>
+      <type>2</type>
+      <locationURI>PARENT-2-PROJECT_LOC/libraries</locationURI>
+    </link>
+    <link>
+      <name>ra</name>
+      <type>2</type>
+      <locationURI>PARENT-2-PROJECT_LOC/FSPConfiguration/ra</locationURI>
+    </link>
+    <link>
+      <name>ra_cfg</name>
+      <type>2</type>
+      <locationURI>PARENT-2-PROJECT_LOC/FSPConfiguration/ra_cfg</locationURI>
+    </link>
+    <link>
+      <name>ra_gen</name>
+      <type>2</type>
+      <locationURI>PARENT-2-PROJECT_LOC/FSPConfiguration/ra_gen</locationURI>
+    </link>
+    <link>
+      <name>FSPConfiguration</name>
+      <type>2</type>
+      <locationURI>PARENT-2-PROJECT_LOC/FSPConfiguration</locationURI>
+    </link>
+    <link>
+      <name>configuration.xml</name>
+      <type>1</type>
+      <locationURI>PARENT-2-PROJECT_LOC/FSPConfiguration/configuration.xml</locationURI>
+    </link>
+  </linkedResources>
 </projectDescription>

@@ -11,7 +11,7 @@ import tempfile
 sys.dont_write_bytecode = True
 os.environ["PYTHONDONTWRITEBYTECODE"] = "1"
 import rtconfig
-from studio_build import configure_host_tools
+from tools.host_tools import configure_host_tools
 
 ROOT = Path(Dir('#').abspath)
 configure_host_tools(os.environ, str(ROOT))
@@ -210,15 +210,18 @@ objs = isolate_sources(objs, building.Projects)
 projects = building.Projects
 
 if GetOption('target') == 'eclipse':
-    # Studio resets this preference when creating a BSP example. OpenMV needs
-    # SCons for VM source generation and the paired HEX/vision packaging steps.
-    studio_config = ROOT / '.settings/projcfg.ini'
-    if studio_config.is_file():
-        content = studio_config.read_text(encoding='utf-8')
-        updated = re.sub(r'(?m)^is_use_scons_build=.*$',
-                         'is_use_scons_build=True', content)
-        if updated != content:
-            studio_config.write_text(updated, encoding='utf-8')
+    from tools.native_project import export_project
+    env.AppendUnique(LIBS=['stdc++', 'm', 'c'])
+    def export_native(program=None):
+        # RT-Thread defaults this option to "project", even when Studio only
+        # passes --target=eclipse. Preserve the imported project's actual name.
+        named = any(argument == '--project-name' or argument.startswith('--project-name=')
+                    for argument in sys.argv[1:])
+        export_project(ROOT, env, projects, rtconfig,
+                       GetOption('reset-project-config'), GetOption('project-name') if named else None)
+    building.GenTargetProject = export_native
+    building.DoBuilding('Debug/rtthread.elf', objs)
+    Exit(0)
 
 # Updating Studio's index does not need the generated VM sources or host GCC.
 if not GetOption('clean') and GetOption('target') != 'eclipse':
