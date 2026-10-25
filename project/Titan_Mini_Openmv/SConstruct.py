@@ -24,7 +24,11 @@ FSP_ROOT = str(ROOT / 'ra' if (ROOT / 'ra').is_dir()
 # Keep Kconfig usable in both the SDK checkout and an exported Studio project.
 os.environ['RTT_ROOT'] = RTT_ROOT
 os.environ['TITAN_OPENMV_SDK_LIB_ROOT'] = SDK_LIB
-sys.path.extend([str(Path(RTT_ROOT) / 'tools'), str(ROOT / 'ThirdParty')])
+# Prefer RT-Thread's helpers over same-named modules in site-packages.
+# Kconfiglib also installs menuconfig.py, but it has no guiconfig_silent API
+# and imports curses even when Studio only needs to regenerate rtconfig.h.
+sys.path.insert(0, str(Path(RTT_ROOT) / 'tools'))
+sys.path.append(str(ROOT / 'ThirdParty'))
 import building
 
 AddOption('--prepare-only', dest='prepare_only', action='store_true', default=False,
