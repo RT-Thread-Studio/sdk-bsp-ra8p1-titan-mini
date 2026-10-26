@@ -1,0 +1,1 @@
+window.projectInfo = {"projectName": "Titan-Board-Mini SDK", "pdfFileName": "Titan-Board-Mini_SDK.pdf"};
